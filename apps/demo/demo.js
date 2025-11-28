@@ -1,8 +1,7 @@
 import '../../packages/eva-sovereign-ui-wc/src/index.ts';
 
-const { i18n, getAllProfiles } = window.EVASovereignUI;
-
 function initProfileSelector() {
+  const { getAllProfiles } = window.EVASovereignUI;
   const profileSelector = document.getElementById('profile-selector');
   const body = document.body;
   
@@ -41,6 +40,7 @@ function initLanguageSwitchers() {
 }
 
 function updateFooter() {
+  const { i18n } = window.EVASovereignUI;
   const copyrightEl = document.getElementById('footer-copyright');
   const privacyEl = document.getElementById('footer-privacy');
   const termsEl = document.getElementById('footer-terms');
