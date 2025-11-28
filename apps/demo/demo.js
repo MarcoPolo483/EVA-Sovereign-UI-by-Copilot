@@ -1,6 +1,11 @@
 import '../../packages/eva-sovereign-ui-wc/src/index.ts';
 
 function initProfileSelector() {
+  if (!window.EVASovereignUI?.getAllProfiles) {
+    console.warn('EVASovereignUI.getAllProfiles not available');
+    return;
+  }
+  
   const { getAllProfiles } = window.EVASovereignUI;
   const profileSelector = document.getElementById('profile-selector');
   const body = document.body;
@@ -40,6 +45,11 @@ function initLanguageSwitchers() {
 }
 
 function updateFooter() {
+  if (!window.EVASovereignUI?.i18n) {
+    console.warn('EVASovereignUI.i18n not available');
+    return;
+  }
+  
   const { i18n } = window.EVASovereignUI;
   const copyrightEl = document.getElementById('footer-copyright');
   const privacyEl = document.getElementById('footer-privacy');
@@ -75,6 +85,11 @@ function initChatPanel() {
 }
 
 function init() {
+  if (!window.EVASovereignUI) {
+    console.warn('EVASovereignUI not loaded. Web components may not be available.');
+    return;
+  }
+  
   console.log('EVA Sovereign UI Demo initialized');
   console.log('Available components:', Object.keys(window.EVASovereignUI));
   
