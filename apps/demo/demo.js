@@ -112,6 +112,13 @@ async function init() {
   console.log('EVA Sovereign UI Demo initialized');
   console.log('Available components:', Object.keys(window.EVASovereignUI));
   
+  await customElements.whenDefined('eva-gc-header');
+  await customElements.whenDefined('eva-hero-banner');
+  await customElements.whenDefined('eva-language-switcher');
+  await customElements.whenDefined('eva-quick-actions');
+  await customElements.whenDefined('eva-chat-panel');
+  await customElements.whenDefined('eva-page-shell');
+  
   initProfileSelector();
   initLanguageSwitchers();
   initQuickActions();
