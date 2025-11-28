@@ -61,7 +61,7 @@ function updateFooter() {
   const termsEl = document.getElementById('footer-terms');
   const accessibilityEl = document.getElementById('footer-accessibility');
   
-  if (!window.EVASovereignUI?.i18n || typeof window.EVASovereignUI.i18n.t !== 'function') {
+  if (typeof window === 'undefined' || !window.EVASovereignUI?.i18n || typeof window.EVASovereignUI.i18n.t !== 'function') {
     console.warn('EVASovereignUI.i18n not available, using fallback text');
     if (copyrightEl) copyrightEl.textContent = '© Government of Canada';
     if (privacyEl) privacyEl.textContent = 'Privacy';
@@ -111,7 +111,7 @@ function initChatPanel() {
 async function init() {
   await loadComponents();
   
-  if (!window.EVASovereignUI) {
+  if (typeof window === 'undefined' || !window.EVASovereignUI) {
     console.warn('EVASovereignUI not loaded. Web components may not be available.');
     updateFooter();
     return;
@@ -139,9 +139,11 @@ async function init() {
   initChatPanel();
   updateFooter();
   
-  window.addEventListener('eva-locale-changed', () => {
-    updateFooter();
-  });
+  if (typeof window !== 'undefined') {
+    window.addEventListener('eva-locale-changed', () => {
+      updateFooter();
+    });
+  }
 }
 
 if (document.readyState === 'loading') {
