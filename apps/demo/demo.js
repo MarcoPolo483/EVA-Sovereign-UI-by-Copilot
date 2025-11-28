@@ -61,7 +61,7 @@ function updateFooter() {
   const termsEl = document.getElementById('footer-terms');
   const accessibilityEl = document.getElementById('footer-accessibility');
   
-  if (!window.EVASovereignUI?.i18n) {
+  if (!window.EVASovereignUI?.i18n || typeof window.EVASovereignUI.i18n.t !== 'function') {
     console.warn('EVASovereignUI.i18n not available, using fallback text');
     if (copyrightEl) copyrightEl.textContent = '© Government of Canada';
     if (privacyEl) privacyEl.textContent = 'Privacy';
@@ -70,12 +70,20 @@ function updateFooter() {
     return;
   }
   
-  const i18nService = window.EVASovereignUI.i18n;
-  
-  if (copyrightEl) copyrightEl.textContent = i18nService.t('footer.copyright');
-  if (privacyEl) privacyEl.textContent = i18nService.t('footer.privacy');
-  if (termsEl) termsEl.textContent = i18nService.t('footer.terms');
-  if (accessibilityEl) accessibilityEl.textContent = i18nService.t('footer.accessibility');
+  try {
+    const i18nService = window.EVASovereignUI.i18n;
+    
+    if (copyrightEl) copyrightEl.textContent = i18nService.t('footer.copyright');
+    if (privacyEl) privacyEl.textContent = i18nService.t('footer.privacy');
+    if (termsEl) termsEl.textContent = i18nService.t('footer.terms');
+    if (accessibilityEl) accessibilityEl.textContent = i18nService.t('footer.accessibility');
+  } catch (error) {
+    console.error('Error updating footer with i18n:', error);
+    if (copyrightEl) copyrightEl.textContent = '© Government of Canada';
+    if (privacyEl) privacyEl.textContent = 'Privacy';
+    if (termsEl) termsEl.textContent = 'Terms';
+    if (accessibilityEl) accessibilityEl.textContent = 'Accessibility';
+  }
 }
 
 function initQuickActions() {
@@ -112,12 +120,18 @@ async function init() {
   console.log('EVA Sovereign UI Demo initialized');
   console.log('Available components:', Object.keys(window.EVASovereignUI));
   
-  await customElements.whenDefined('eva-gc-header');
-  await customElements.whenDefined('eva-hero-banner');
-  await customElements.whenDefined('eva-language-switcher');
-  await customElements.whenDefined('eva-quick-actions');
-  await customElements.whenDefined('eva-chat-panel');
-  await customElements.whenDefined('eva-page-shell');
+  try {
+    await Promise.all([
+      customElements.whenDefined('eva-gc-header'),
+      customElements.whenDefined('eva-hero-banner'),
+      customElements.whenDefined('eva-language-switcher'),
+      customElements.whenDefined('eva-quick-actions'),
+      customElements.whenDefined('eva-chat-panel'),
+      customElements.whenDefined('eva-page-shell')
+    ]);
+  } catch (error) {
+    console.warn('Some custom elements failed to load:', error);
+  }
   
   initProfileSelector();
   initLanguageSwitchers();
