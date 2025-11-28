@@ -1,4 +1,15 @@
-import '../../packages/eva-sovereign-ui-wc/src/index.ts';
+let componentsLoaded = false;
+
+async function loadComponents() {
+  try {
+    await import('../../packages/eva-sovereign-ui-wc/src/index.ts');
+    componentsLoaded = true;
+    console.log('EVA Sovereign UI components loaded successfully');
+  } catch (error) {
+    console.error('Failed to load EVA Sovereign UI components:', error);
+    console.warn('Demo will run with limited functionality');
+  }
+}
 
 function initProfileSelector() {
   if (!window.EVASovereignUI?.getAllProfiles) {
@@ -45,16 +56,21 @@ function initLanguageSwitchers() {
 }
 
 function updateFooter() {
-  if (!window.EVASovereignUI?.i18n) {
-    console.warn('EVASovereignUI.i18n not available');
-    return;
-  }
-  
-  const { i18n } = window.EVASovereignUI;
   const copyrightEl = document.getElementById('footer-copyright');
   const privacyEl = document.getElementById('footer-privacy');
   const termsEl = document.getElementById('footer-terms');
   const accessibilityEl = document.getElementById('footer-accessibility');
+  
+  if (!window.EVASovereignUI?.i18n) {
+    console.warn('EVASovereignUI.i18n not available, using fallback text');
+    if (copyrightEl) copyrightEl.textContent = '© Government of Canada';
+    if (privacyEl) privacyEl.textContent = 'Privacy';
+    if (termsEl) termsEl.textContent = 'Terms';
+    if (accessibilityEl) accessibilityEl.textContent = 'Accessibility';
+    return;
+  }
+  
+  const { i18n } = window.EVASovereignUI;
   
   if (copyrightEl) copyrightEl.textContent = i18n.t('footer.copyright');
   if (privacyEl) privacyEl.textContent = i18n.t('footer.privacy');
@@ -84,9 +100,12 @@ function initChatPanel() {
   });
 }
 
-function init() {
+async function init() {
+  await loadComponents();
+  
   if (!window.EVASovereignUI) {
     console.warn('EVASovereignUI not loaded. Web components may not be available.');
+    updateFooter();
     return;
   }
   
