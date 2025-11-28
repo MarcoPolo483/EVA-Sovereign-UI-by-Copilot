@@ -70,12 +70,12 @@ function updateFooter() {
     return;
   }
   
-  const { i18n } = window.EVASovereignUI;
+  const i18nService = window.EVASovereignUI.i18n;
   
-  if (copyrightEl) copyrightEl.textContent = i18n.t('footer.copyright');
-  if (privacyEl) privacyEl.textContent = i18n.t('footer.privacy');
-  if (termsEl) termsEl.textContent = i18n.t('footer.terms');
-  if (accessibilityEl) accessibilityEl.textContent = i18n.t('footer.accessibility');
+  if (copyrightEl) copyrightEl.textContent = i18nService.t('footer.copyright');
+  if (privacyEl) privacyEl.textContent = i18nService.t('footer.privacy');
+  if (termsEl) termsEl.textContent = i18nService.t('footer.terms');
+  if (accessibilityEl) accessibilityEl.textContent = i18nService.t('footer.accessibility');
 }
 
 function initQuickActions() {
