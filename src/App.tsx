@@ -41,25 +41,6 @@ function App() {
                         <li>✓ Shadow DOM encapsulation</li>
                     </ul>
                 </div>
-                <a 
-                    href="/apps/demo/" 
-                    style={{ 
-                        display: 'inline-block',
-                        background: 'white',
-                        color: '#0033a0',
-                        padding: '1rem 2rem',
-                        borderRadius: '4px',
-                        textDecoration: 'none',
-                        fontWeight: '600',
-                        fontSize: '1.1rem',
-                        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)',
-                        transition: 'transform 0.15s'
-                    }}
-                    onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-2px)'}
-                    onMouseLeave={(e) => e.currentTarget.style.transform = 'translateY(0)'}
-                >
-                    View Live Demo →
-                </a>
                 <div style={{ marginTop: '2rem', fontSize: '0.9rem', opacity: 0.8 }}>
                     <p>Read the full documentation in <code style={{ 
                         background: 'rgba(255, 255, 255, 0.2)', 
