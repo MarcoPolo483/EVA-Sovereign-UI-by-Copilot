@@ -1,138 +1,159 @@
-# Planning Guide
+# EVA-Sovereign-UI: Government Design System & Component Library
 
-A developer-focused toolkit providing instant access to CSS shortcuts, color palette templates, reusable styles, and graphic elements to accelerate frontend development workflows.
+A production-ready, framework-agnostic web components design system demonstrating official government design patterns, comprehensive accessibility, and internationalization across Five Eyes sovereign nations.
 
-**Experience Qualities**: 
-1. **Efficient** - Quick copy-paste functionality with zero friction, allowing developers to grab what they need and move on.
-2. **Organized** - Logical categorization and search that makes finding the right snippet or resource feel intuitive.
-3. **Practical** - Real-world, production-ready code and assets that work immediately without modification.
+**Experience Qualities**:
+1. **Trustworthy** - Official government branding with strict adherence to national design standards conveys authority and legitimacy
+2. **Accessible** - WCAG 2.2 AAA compliance ensures every citizen can access critical government services regardless of ability
+3. **Inclusive** - Multi-language support and cultural sensitivity demonstrate respect for diverse populations
 
-**Complexity Level**: Light Application (multiple features with basic state)
-- Multiple organized sections (CSS shortcuts, color palettes, styles, graphics) with filtering, search, and copy functionality, plus user preferences for favorites and theme selection.
+**Complexity Level**: Complex Application (advanced functionality, multiple sovereign profiles, comprehensive i18n, accessibility features, component library with two full demo applications)
 
 ## Essential Features
 
-**CSS Shortcuts Browser**
-- Functionality: Displays categorized CSS snippets (flexbox, grid, animations, typography, shadows, borders) with syntax highlighting and copy button
-- Purpose: Eliminates the need to memorize or look up common CSS patterns
-- Trigger: User selects a category or searches for a specific pattern
-- Progression: Browse categories → View snippet with preview → Click copy → Visual confirmation → Snippet in clipboard
-- Success criteria: Users can find and copy any common CSS pattern in under 5 seconds
+### 1. Web Components Library (31 Components)
+- **Functionality**: Standards-based Custom Elements with Shadow DOM providing framework-agnostic UI components
+- **Purpose**: Enable any government agency to build accessible, bilingual web applications without framework lock-in
+- **Trigger**: Developer includes `<script src="eva-sovereign-ui.js">` and uses custom HTML elements
+- **Progression**: Import library → Use custom elements in HTML → Components render with Shadow DOM → Apply themes via CSS custom properties → Switch locales dynamically
+- **Success criteria**: Components work in plain HTML, React, Vue, Angular with consistent behavior and styling
 
-**Color Palette Templates**
-- Functionality: Pre-built color schemes with hex/rgb/oklch values, showing colors in context with contrast ratios
-- Purpose: Provides ready-to-use, accessible color combinations for rapid prototyping
-- Trigger: User browses palette categories (professional, vibrant, pastel, monochrome) or searches by mood
-- Progression: Select palette category → View color schemes with previews → Click individual color or entire palette → Copy values → Visual confirmation
-- Success criteria: All palettes meet WCAG AA contrast requirements; users can copy individual colors or entire palettes
+### 2. GC Design System Implementation
+- **Functionality**: Official Government of Canada design patterns (Lato/Noto Sans fonts, 65ch line length, 8px grid, official colors, 6 button variants)
+- **Purpose**: Legal compliance with Treasury Board standards and visual consistency with Canada.ca
+- **Trigger**: Apply `canada_gc` profile and theme CSS
+- **Progression**: Set profile attribute → Load GC theme → Components adopt official styling → Wordmark/flag display → Footer shows Crown copyright
+- **Success criteria**: Visual match to official Canada.ca pages, passes GC design review standards
 
-**Style Templates**
-- Functionality: Complete component styles (buttons, cards, forms, modals) as ready-to-use CSS classes
-- Purpose: Jumpstart UI development with polished, consistent component styles
-- Trigger: User selects component type from library
-- Progression: Browse components → Preview live example → View CSS code → Copy to clipboard → Apply to project
-- Success criteria: Each template works standalone without dependencies; includes hover/focus/active states
+### 3. ESDC Public Website Demo
+- **Functionality**: Realistic Employment and Social Development Canada portal with programs (EI, OAS, CPP), services (Job Search, Benefits Finder), and EVA chatbot
+- **Purpose**: Demonstrate real-world government use case with complex information architecture
+- **Trigger**: User navigates to ESDC demo URL
+- **Progression**: View homepage hero → Browse program cards → Click into program details → Ask EVA questions → Switch to French → See translated content
+- **Success criteria**: Feels like authentic government website, chatbot provides contextual responses, bilingual toggle works seamlessly
 
-**Graphic Elements Library**
-- Functionality: SVG patterns, shapes, dividers, and decorative elements with customization options
-- Purpose: Add visual interest without leaving the development environment or searching asset sites
-- Trigger: User browses graphic categories (patterns, dividers, shapes, icons)
-- Progression: Select category → Preview element → Adjust colors/size if applicable → Copy SVG code → Paste into project
-- Success criteria: All SVGs are optimized and accessible; color customization works in real-time
+### 4. EVA AI Assistant Chatbot
+- **Functionality**: Conversational interface with context-aware responses about ESDC programs
+- **Purpose**: Show modern citizen engagement pattern for government services
+- **Trigger**: User types question in chat input or clicks suggested topics
+- **Progression**: Enter question → Press send → Loading spinner → Response appears with typing animation → Auto-scroll to latest → Ask follow-up
+- **Success criteria**: Natural conversation flow, accurate program information, accessible with screen readers, keyboard navigable
+
+### 5. Five Eyes Sovereign Profiles
+- **Functionality**: Pre-configured themes for Canada, USA, UK, Australia, New Zealand with official logos, colors, legal text
+- **Purpose**: Enable rapid deployment for allied nations sharing security architecture
+- **Trigger**: Set `profile` attribute to country code
+- **Progression**: Select profile → Load country theme → Display national symbols → Apply color palette → Show localized footer text
+- **Success criteria**: Each profile looks distinctly governmental with correct national branding
+
+### 6. Internationalization System
+- **Functionality**: Translation engine with 5+ locales (EN-CA, FR-CA, EN-US, EN-GB, EN-AU), date/number/currency formatters, RTL preparation
+- **Purpose**: Official Languages Act compliance and global accessibility
+- **Trigger**: User clicks language switcher or sets `lang` attribute
+- **Progression**: Click language toggle → Emit locale change event → Components fetch translations → Re-render with new text → Format dates/numbers correctly
+- **Success criteria**: Complete UI translation in <100ms, no layout shift, dates format per locale conventions
+
+### 7. WCAG 2.2 AAA Accessibility
+- **Functionality**: 7:1 contrast, full keyboard nav, screen reader optimization, focus indicators, skip links, ARIA landmarks
+- **Purpose**: Legal requirement for government accessibility and disability inclusion
+- **Trigger**: User navigates with keyboard or screen reader
+- **Progression**: Tab through page → Skip link appears on focus → Navigate to main content → Interactive elements announce properly → Focus visible at all times
+- **Success criteria**: Passes WAVE/axe audits, usable with NVDA/JAWS, keyboard-only navigation complete
+
+### 8. Developer Kit Demo
+- **Functionality**: Interactive component gallery with live code examples, theme switcher, accessibility showcase, integration patterns
+- **Purpose**: Developer onboarding and adoption acceleration
+- **Trigger**: Developer visits dev kit URL
+- **Progression**: Browse component categories → View live examples → Copy code snippets → Switch themes → See visual changes → Test accessibility features
+- **Success criteria**: Developers can copy-paste examples and get working components in <5 minutes
 
 ## Edge Case Handling
 
-- **Empty search results**: Display helpful suggestions for similar terms or show popular items from that category
-- **Copy failure**: Provide fallback manual selection with clear visual boundaries around code blocks
-- **Browser compatibility**: Gracefully indicate when CSS features require vendor prefixes or have limited support
-- **Mobile users**: Optimize touch targets and provide mobile-friendly code viewing with horizontal scroll
-- **Favorites overflow**: Implement pagination or grouping when user saves many items
+- **Missing translations**: Fall back to English key name, log warning for developer awareness
+- **Invalid locale**: Default to `en-CA`, show error in console but maintain functionality
+- **Chatbot unknown question**: Provide helpful fallback with list of available topics
+- **Slow network**: Show loading states, disable buttons during fetch, timeout after 30s
+- **JavaScript disabled**: Components fail gracefully, show `<noscript>` message for critical functions
+- **Old browsers**: Polyfills for Custom Elements and Shadow DOM, graceful degradation for CSS features
+- **Screen reader edge cases**: ARIA live regions have politeness delays, focus management respects user preferences
+- **Keyboard trap prevention**: Escape key always closes modals, focus returns to trigger element
 
 ## Design Direction
 
-The design should feel professional, efficient, and developer-centric—like a well-organized workshop where every tool has its place. Favor a clean, minimal interface that prioritizes content visibility and quick scanning, with subtle interactions that feel snappy and responsive rather than decorative.
+The design should evoke **institutional trust and governmental authority** while remaining **approachable and modern**. Visual style should be **serious yet accessible** - not corporate slick, but professional and service-oriented. Interface should be **minimal and content-focused**, letting critical information and calls-to-action breathe without decorative distractions. The aesthetic must balance **tradition** (official symbols, formal language) with **contemporary** (clean typography, generous whitespace, modern interaction patterns).
 
 ## Color Selection
 
-Custom palette - A sophisticated developer tool aesthetic with muted, high-contrast colors that reduce eye strain during extended use while maintaining clear visual hierarchy.
+**Custom palette** based on official Government of Canada Design System specifications with strict adherence to accessibility standards.
 
-- **Primary Color**: Deep slate blue `oklch(0.35 0.06 250)` - Communicates technical precision and trustworthiness, used for primary actions and interactive elements
-- **Secondary Colors**: Soft purple `oklch(0.55 0.08 285)` for secondary actions and complementary elements, creating visual interest without overwhelming
-- **Accent Color**: Vibrant cyan `oklch(0.65 0.15 200)` for success states, highlights, and copy confirmations—draws attention exactly when needed
-- **Foreground/Background Pairings**: 
-  - Background (Light Gray `oklch(0.98 0 0)`): Dark charcoal text `oklch(0.25 0 0)` - Ratio 12.8:1 ✓
-  - Card (White `oklch(1 0 0)`): Dark charcoal text `oklch(0.25 0 0)` - Ratio 13.5:1 ✓
-  - Primary (Deep Slate `oklch(0.35 0.06 250)`): White text `oklch(1 0 0)` - Ratio 10.2:1 ✓
-  - Secondary (Soft Purple `oklch(0.55 0.08 285)`): White text `oklch(1 0 0)` - Ratio 5.8:1 ✓
-  - Accent (Vibrant Cyan `oklch(0.65 0.15 200)`): Dark text `oklch(0.25 0 0)` - Ratio 6.2:1 ✓
-  - Muted (Cool Gray `oklch(0.95 0.005 250)`): Medium gray text `oklch(0.50 0.01 250)` - Ratio 6.8:1 ✓
+- **Primary Color**: `#26374A` (Deep Blue-Grey) - Communicates stability, authority, and trustworthiness of federal institutions. Used for primary actions and key UI elements.
+- **Secondary Colors**: 
+  - `#284162` (Link Blue) - Standard link color with heritage in web accessibility
+  - `#A62A1E` (Burgundy Red) - Accent for H1 bars and urgent calls-to-action, references Canadian flag
+- **Accent Color**: `#0535d2` (Bright Blue) - Hover state for links, provides clear interactive feedback and high contrast
+- **Foreground/Background Pairings**:
+  - Background White `#ffffff`: Text `#333` - Ratio 12.6:1 ✓ (AAA)
+  - Primary `#26374A`: White text `#ffffff` - Ratio 9.4:1 ✓ (AAA)
+  - Link Blue `#284162`: White text `#ffffff` - Ratio 8.2:1 ✓ (AAA)
+  - Error Red `#d3080c`: White text `#ffffff` - Ratio 5.5:1 ✓ (AA Large)
+  - Accent `#0535d2`: White text `#ffffff` - Ratio 8.9:1 ✓ (AAA)
+  - Muted Grey `#f5f5f5`: Text `#333` - Ratio 11.8:1 ✓ (AAA)
 
 ## Font Selection
 
-Clean, technical typography that mirrors code editor aesthetics while maintaining excellent readability—Inter for UI elements combined with JetBrains Mono for code snippets to create familiar, developer-friendly typography.
+Typography should convey **clarity and readability** with fonts optimized for long-form government content and multilingual support. **Lato** (headings) provides geometric precision and authority, while **Noto Sans** (body) ensures comprehensive Unicode coverage for Official Languages Act compliance.
 
-- **Typographic Hierarchy**: 
-  - H1 (Section Titles): Inter SemiBold/32px/tight tracking (-0.02em)
-  - H2 (Category Headers): Inter SemiBold/24px/normal tracking
-  - H3 (Component Names): Inter Medium/18px/normal tracking
-  - Body (Descriptions): Inter Regular/15px/relaxed leading (1.6)
-  - Code (Snippets): JetBrains Mono Regular/14px/normal leading (1.5)
-  - Labels (Metadata): Inter Medium/13px/wide tracking (0.02em) uppercase
+- **Typographic Hierarchy**:
+  - H1 (Page Title): Lato Bold/41px/1.2 line height/tight tracking
+  - H2 (Section): Lato Bold/32px/1.3 line height
+  - H3 (Subsection): Lato SemiBold/24px/1.4 line height
+  - Body (Content): Noto Sans Regular/20px/1.5 line height/65ch max width
+  - Label (Forms): Noto Sans Medium/18px/1.4 line height
+  - Small (Legal): Noto Sans Regular/16px/1.5 line height
 
 ## Animations
 
-Subtle, performance-focused animations that provide feedback without slowing workflow—emphasizing instant response over decorative flourishes, like a well-tuned IDE.
+Motion should be **purposeful and restrained** - reinforcing interaction feedback and guiding attention without drawing focus from content. Balance is **heavily weighted toward functionality** (state changes, loading indicators, focus transitions) with **minimal decorative motion**. Government users value efficiency over entertainment.
 
-- **Purposeful Meaning**: Quick fade-ins for copied confirmations (checkmark icons), smooth color transitions on hover states, and gentle scale effects on cards to communicate interactivity
-- **Hierarchy of Movement**: Primary focus on copy confirmation feedback (most important user action), secondary on category switching and filtering, minimal on decorative elements
+- **Purposeful Meaning**: Subtle fade-ins on page load convey professionalism, button press animations provide tactile feedback, loading spinners communicate system status
+- **Hierarchy of Movement**: 
+  1. Critical: Loading states, form validation feedback (immediate, assertive)
+  2. Important: Modal open/close, language switch (smooth, 200ms)
+  3. Subtle: Hover states, focus indicators (instant, <100ms)
+  4. Minimal: Card hovers, decorative elements (gentle, optional)
 
 ## Component Selection
 
 - **Components**: 
-  - Tabs (Shadcn) for main navigation between CSS/Colors/Styles/Graphics with subtle underline indicator
-  - Card (Shadcn) for displaying individual snippets and templates with slight elevation on hover
-  - Input (Shadcn) for search functionality with clear button
-  - Button (Shadcn) for copy actions—primary variant with icon
-  - Badge (Shadcn) for category tags and feature labels (e.g., "CSS3", "Responsive", "Animated")
-  - Dialog (Shadcn) for expanded preview of complex components
-  - Tooltip (Shadcn) for showing full color values on hover
-  - Separator (Shadcn) for visual organization between sections
-  - ScrollArea (Shadcn) for code blocks that might overflow
+  - Dialogs: `<eva-dialog-modal>` with focus trap for critical confirmations
+  - Cards: `<eva-card>` and `<eva-program-card>` with semantic header/body/footer slots
+  - Forms: `<eva-form-field>` with integrated label/hint/error, `<eva-error-summary>` for validation
+  - Buttons: `<eva-gc-button>` with 6 GC-compliant variants
+  - Layout: `<eva-page-shell>`, `<eva-container>` enforcing 65ch max width
+  - Navigation: `<eva-breadcrumbs>`, `<eva-skip-link>`, `<eva-service-list>`
+  - Feedback: `<eva-alert>`, `<eva-loading-spinner>`, `<eva-progress-bar>`, `<eva-aria-live>`
+  - Chat: `<eva-chat-panel>`, `<eva-chat-message>`, `<eva-chat-input>`
+  - i18n: `<eva-language-switcher>`, `<eva-date-formatter>`, `<eva-currency-formatter>`
+  - Accessibility: `<eva-tooltip>`, focus management utilities
 
 - **Customizations**: 
-  - Syntax highlighted code blocks using custom component with line numbers
-  - Color swatch grid component with click-to-copy functionality
-  - SVG preview component with live customization controls
-  - Favorites toggle button component with heart icon and animation
+  - Country-specific headers (`<eva-canada-header>`, etc.) beyond standard components
+  - Chat components with government-specific styling (formal, professional)
+  - Program cards with icon support for ESDC services
 
 - **States**: 
-  - Buttons: Default (subtle shadow), Hover (lift + shadow increase), Active (scale down), Copied (green checkmark + background color shift for 1.5s)
-  - Cards: Rest (flat), Hover (subtle lift + border color change), Selected (persistent border highlight)
-  - Search input: Empty (placeholder visible), Focused (border accent color + subtle glow), Filled (clear button appears)
-  - Copy buttons: Show icon only on card hover, success state replaces copy icon with check
+  - Buttons: default, hover (darker shade), active (pressed inset), focus (3px outline), disabled (50% opacity), loading (spinner + disabled)
+  - Inputs: default, focus (blue border + outline), error (red border + icon), success (green check), disabled (grey background)
+  - Links: default (blue), hover (darker blue + underline), visited (purple), focus (outline)
 
-- **Icon Selection**: 
-  - Copy (phosphor) for copy-to-clipboard actions
-  - Check (phosphor) for confirmation states
-  - MagnifyingGlass (phosphor) for search
-  - Heart (phosphor) for favorites toggle
-  - Code (phosphor) for CSS shortcuts section
-  - Palette (phosphor) for colors section
-  - PaintBrush (phosphor) for styles section
-  - Shapes (phosphor) for graphics section
-  - X (phosphor) for clearing search/closing dialogs
+- **Icon Selection**: Phosphor Icons for clarity and consistency - House (home), Briefcase (employment), UserCircle (profile), Globe (language), ChatCircle (chat), CaretRight (navigation), Check (success), Warning (error)
 
-- **Spacing**: 
-  - Consistent 16px (gap-4) between cards in grid
-  - 24px (gap-6) between major sections
-  - 8px (gap-2) for inline elements (badges, small buttons)
-  - 32px (px-8) horizontal padding in main container
-  - 48px (py-12) vertical padding for section breaks
+- **Spacing**: 8px base unit - xs(8px), sm(16px), md(24px), lg(32px), xl(48px), 2xl(64px) for consistent rhythm
 
 - **Mobile**: 
-  - Stack tabs vertically as dropdown select on mobile (<768px)
-  - Switch from 3-column grid to single column on mobile
-  - Make code blocks horizontally scrollable with touch momentum
-  - Increase copy button size to 44x44px minimum touch target
-  - Position search bar sticky at top on scroll
-  - Use sheet component instead of dialog for mobile previews
+  - Header: Wordmark scales down, language switcher remains accessible
+  - Navigation: Hamburger menu pattern for service lists
+  - Cards: Stack vertically, full width on <768px
+  - Chat: Fixed bottom panel, collapsible on mobile
+  - Forms: Full-width inputs, larger touch targets (44px minimum)
+  - Typography: Scale down to 18px body, 32px H1 on mobile

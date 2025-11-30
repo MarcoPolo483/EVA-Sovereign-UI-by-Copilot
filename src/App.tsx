@@ -1,56 +1,48 @@
-import { useState } from 'react'
-import { Button } from '@/components/ui/button'
-import { Chat, Code } from '@phosphor-icons/react'
-import { Toaster } from 'sonner'
-import { DevKit } from '@/pages/DevKit'
-import { ChatDemo } from '@/pages/ChatDemo'
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Buildings, Code } from '@phosphor-icons/react';
+import { Toaster } from 'sonner';
+import { ESDCDemo } from '@/pages/ESDCDemo';
+import { DeveloperKitDemo } from '@/pages/DeveloperKitDemo';
 
-type Page = 'devkit' | 'chat'
+type Page = 'esdc' | 'devkit';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('devkit')
+  const [currentPage, setCurrentPage] = useState<Page>('esdc');
 
   return (
     <div className="min-h-screen bg-background">
       <Toaster position="top-center" />
       
-      <header className="border-b bg-card sticky top-0 z-50">
-        <div className="container mx-auto px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-semibold tracking-tight">DevKit</h1>
-              <p className="text-sm text-muted-foreground mt-1">CSS Shortcuts & Design Resources</p>
-            </div>
-            <nav className="flex gap-2">
-              <Button
-                variant={currentPage === 'devkit' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setCurrentPage('devkit')}
-                className="flex items-center gap-2"
-              >
-                <Code size={18} />
-                DevKit
-              </Button>
-              <Button
-                variant={currentPage === 'chat' ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setCurrentPage('chat')}
-                className="flex items-center gap-2"
-              >
-                <Chat size={18} />
-                Chat Demo
-              </Button>
-            </nav>
-          </div>
+      <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-card border rounded-full shadow-lg px-2 py-2">
+        <div className="flex gap-2">
+          <Button
+            variant={currentPage === 'esdc' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setCurrentPage('esdc')}
+            className="flex items-center gap-2 rounded-full"
+          >
+            <Buildings size={18} weight="duotone" />
+            <span className="hidden sm:inline">ESDC Demo</span>
+          </Button>
+          <Button
+            variant={currentPage === 'devkit' ? 'default' : 'ghost'}
+            size="sm"
+            onClick={() => setCurrentPage('devkit')}
+            className="flex items-center gap-2 rounded-full"
+          >
+            <Code size={18} weight="duotone" />
+            <span className="hidden sm:inline">Developer Kit</span>
+          </Button>
         </div>
-      </header>
+      </nav>
 
-      <main className="container mx-auto px-8 py-12">
-        {currentPage === 'devkit' && <DevKit />}
-        {currentPage === 'chat' && <ChatDemo />}
-      </main>
+      <div className="pt-4">
+        {currentPage === 'esdc' && <ESDCDemo />}
+        {currentPage === 'devkit' && <DeveloperKitDemo />}
+      </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

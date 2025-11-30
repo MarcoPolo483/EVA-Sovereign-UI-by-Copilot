@@ -8,7 +8,7 @@
 }
 
 :root {
-  --background: oklch(0.98 0 0);
+  --background: oklch(1 0 0);
   --foreground: oklch(0.25 0 0);
 
   --card: oklch(1 0 0);
@@ -16,22 +16,22 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.25 0 0);
 
-  --primary: oklch(0.35 0.06 250);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.55 0.08 285);
-  --secondary-foreground: oklch(1 0 0);
-  --accent: oklch(0.65 0.15 200);
-  --accent-foreground: oklch(0.25 0 0);
+  --primary: oklch(0.30 0.04 250);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.32 0.04 245);
+  --secondary-foreground: oklch(0.98 0 0);
+  --accent: oklch(0.45 0.08 10);
+  --accent-foreground: oklch(0.98 0 0);
   --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(1 0 0);
+  --destructive-foreground: oklch(0.98 0 0);
 
-  --muted: oklch(0.95 0.005 250);
+  --muted: oklch(0.96 0.005 250);
   --muted-foreground: oklch(0.50 0.01 250);
   --border: oklch(0.90 0.005 250);
   --input: oklch(0.90 0.005 250);
   --ring: oklch(0.35 0.06 250);
 
-  --radius: 0.5rem;
+  --radius: 0.25rem;
 }
 
 @theme {
@@ -64,7 +64,29 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 41px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 1.4;
 }
 
 code, pre, .font-mono {
@@ -96,8 +118,8 @@ code, pre, .font-mono {
 }
 
 *:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -116,4 +138,8 @@ code, pre, .font-mono {
     --border: oklch(0.40 0 0);
     --input: oklch(0.40 0 0);
   }
+}
+
+.max-line-length {
+  max-width: 65ch;
 }
