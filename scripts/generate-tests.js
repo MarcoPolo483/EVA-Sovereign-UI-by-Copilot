@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 
 const COMPONENTS_DIR = path.join(__dirname, '../packages/eva-sovereign-ui-wc/src/components/ui');
 const TEST_TEMPLATE = (componentName, tagName) => `import { describe, it, expect, beforeEach } from 'vitest';
-import { createComponent, testAccessibility, shadowQuery, simulateClick, simulateKeyboard } from '../../../../../tests/test-utils';
+import { createComponent, testAccessibility, shadowQuery, simulateClick, simulateKeyboard } from '../../../../tests/test-utils';
 import './${componentName}';
 
 describe('${tagName}', () => {

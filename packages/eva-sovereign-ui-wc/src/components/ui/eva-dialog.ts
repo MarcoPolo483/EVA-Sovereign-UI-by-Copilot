@@ -189,6 +189,21 @@ export class EVADialog extends EVABaseComponent {
     content.className = 'content';
     content.setAttribute('role', 'dialog');
     content.setAttribute('aria-modal', 'true');
+    // Minimal accessible name
+    const explicitLabel = this.getAttr('aria-label');
+    if (explicitLabel) {
+      content.setAttribute('aria-label', explicitLabel);
+    } else {
+      // Fallback generic label
+      content.setAttribute('aria-label', 'Dialog');
+    }
+    // If a title element exists in light DOM, reference it
+    const titleEl = this.querySelector('eva-dialog-title') as HTMLElement | null;
+    if (titleEl) {
+      const titleId = titleEl.getAttribute('id') || 'dialog-title';
+      titleEl.setAttribute('id', titleId);
+      content.setAttribute('aria-labelledby', titleId);
+    }
     content.addEventListener('click', (e) => e.stopPropagation());
     
     const slot = document.createElement('slot');

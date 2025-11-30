@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { createComponent, shadowQuery } from '../../../../tests/test-utils';
+import { createComponent, shadowQuery } from 'tests/test-utils';
 import './eva-alert';
 
 describe('eva-alert', () => {

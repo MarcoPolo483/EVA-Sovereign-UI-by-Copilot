@@ -233,6 +233,14 @@ export class EVAGCButton extends EVABaseComponent {
     button.className = `${variant} size-${size}`;
     button.disabled = disabled || loading;
     button.setAttribute('type', 'button');
+    // Minimal ARIA attributes
+    button.setAttribute('aria-disabled', (disabled || loading) ? 'true' : 'false');
+    button.setAttribute('aria-busy', loading ? 'true' : 'false');
+    // Provide accessible name for icon-only buttons when no text
+    const hasLightText = (this.textContent || '').trim().length > 0;
+    if (size === 'icon' && !hasLightText) {
+      button.setAttribute('aria-label', this.getAttr('aria-label', 'Button'));
+    }
 
     if (loading) {
       const spinner = document.createElement('span');
@@ -244,6 +252,16 @@ export class EVAGCButton extends EVABaseComponent {
 
     const slot = document.createElement('slot');
     button.appendChild(slot);
+    // Mirror light DOM text into a span to ensure text presence and respond to slot changes
+    const textSpan = document.createElement('span');
+    const updateText = () => {
+      const assigned = (slot as HTMLSlotElement).assignedNodes({ flatten: true });
+      const text = assigned.map(n => n.textContent || '').join('').trim();
+      textSpan.textContent = text;
+    };
+    updateText();
+    slot.addEventListener('slotchange', updateText);
+    button.appendChild(textSpan);
 
     this.shadow.appendChild(button);
   }

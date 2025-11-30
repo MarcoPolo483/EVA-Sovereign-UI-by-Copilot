@@ -1,12 +1,12 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { createComponent, testAccessibility, simulateClick, waitForEvent, shadowQuery } from '../../../../tests/test-utils';
-import '../eva-button';
+import { createComponent, testAccessibility, simulateClick, waitForEvent, shadowQuery } from 'tests/test-utils';
+import '../gc-design/eva-gc-button';
 
-describe('eva-button', () => {
+describe('eva-gc-button', () => {
   let button: HTMLElement;
 
   beforeEach(async () => {
-    button = await createComponent('eva-button');
+    button = await createComponent('eva-gc-button');
   });
 
   describe('Rendering', () => {
@@ -70,7 +70,8 @@ describe('eva-button', () => {
       let clicked = false;
       button.addEventListener('click', () => { clicked = true; });
       
-      simulateClick(button);
+      const shadowButton = shadowQuery<HTMLButtonElement>(button, 'button');
+      shadowButton && simulateClick(shadowButton);
       await new Promise(resolve => setTimeout(resolve, 10));
       
       expect(clicked).toBe(false);
