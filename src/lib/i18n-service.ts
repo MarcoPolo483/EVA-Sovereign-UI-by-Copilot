@@ -1,7 +1,7 @@
 export type Locale = 'en-CA' | 'fr-CA'
 
-    | 'hero.title'
-    | 'language.
+type TranslationKey =
+    | 'app.name'
     | 'hero.title'
     | 'hero.description'
     | 'language.english'
@@ -14,106 +14,106 @@ export type Locale = 'en-CA' | 'fr-CA'
     | 'quick.actions.myAccount'
     | 'quick.actions.myAccount.desc'
     | 'quick.actions.applications'
+    | 'quick.actions.applications.desc'
+    | 'quick.actions.payments'
+    | 'quick.actions.payments.desc'
+    | 'quick.actions.documents'
     | 'quick.actions.documents.desc'
+    | 'chat.title'
     | 'chat.subtitle'
+    | 'chat.placeholder'
+    | 'chat.welcome'
     | 'chat.send'
     | 'chat.voice'
+    | 'footer.copyright'
     | 'footer.privacy'
-    | 'footer.acce
-type Translations = R
+    | 'footer.terms'
+    | 'footer.accessibility'
 
+type Translations = Record<Locale, Record<TranslationKey, string>>
+
+const translations: Translations = {
     'en-CA': {
-        'hero.title'
-        'language.englis
-        'language.swit
-        'demo.profil
-        'quick.actions.title
-
-        'quick.actions.applications.desc': 'Track 
-
-        'quick.actions.documents.desc': 'Access your
-        'chat.
+        'app.name': 'Government Portal',
+        'hero.title': 'Welcome to the Government Portal',
+        'hero.description': 'Access your services and information securely',
+        'language.english': 'English',
+        'language.french': 'Français',
+        'language.switcher.label': 'Language',
+        'demo.controls': 'Demo Controls',
+        'demo.profile': 'Sovereign Profile',
+        'demo.language': 'Language',
+        'quick.actions.title': 'Quick Actions',
+        'quick.actions.myAccount': 'My Account',
+        'quick.actions.myAccount.desc': 'View and manage your account settings',
+        'quick.actions.applications': 'Applications',
+        'quick.actions.applications.desc': 'Track your applications',
+        'quick.actions.payments': 'Payments',
+        'quick.actions.payments.desc': 'Make a payment or view history',
+        'quick.actions.documents': 'Documents',
+        'quick.actions.documents.desc': 'Access your documents and forms',
+        'chat.title': 'Ask EVA',
+        'chat.subtitle': 'Ask me questions about government services',
+        'chat.placeholder': 'Type your question here...',
+        'chat.welcome': 'Hello! How can I assist you today?',
         'chat.send': 'Send',
         'chat.voice': 'Voice input is not yet implemented',
+        'footer.copyright': '© 2024 Government Portal. All rights reserved.',
         'footer.privacy': 'Privacy',
-        'footer.accessibility': 'Acces
+        'footer.terms': 'Terms of Service',
+        'footer.accessibility': 'Accessibility'
+    },
     'fr-CA': {
-        'hero.title': 'Bienvenue au Portail de
+        'app.name': 'Portail gouvernemental',
+        'hero.title': 'Bienvenue au Portail gouvernemental',
+        'hero.description': 'Accédez à vos services et informations en toute sécurité',
         'language.english': 'English',
+        'language.french': 'Français',
         'language.switcher.label': 'Langue',
-        'demo.profile': 'Profil souv
-        'quick.actions.title': 'Actions rapides
-        'quick.actions.myAccount.desc': 'Voir et
+        'demo.controls': 'Contrôles de démonstration',
+        'demo.profile': 'Profil souverain',
+        'demo.language': 'Langue',
+        'quick.actions.title': 'Actions rapides',
+        'quick.actions.myAccount': 'Mon compte',
+        'quick.actions.myAccount.desc': 'Voir et gérer les paramètres de votre compte',
+        'quick.actions.applications': 'Demandes',
         'quick.actions.applications.desc': 'Suivre vos demandes',
-        'quick.actions.payments.desc': 'Effectuer un 
-        'quick.actions.documents.desc': 'Accéder à vos documents et f
-        'chat.subtitle': 'Posez-moi des quest
+        'quick.actions.payments': 'Paiements',
+        'quick.actions.payments.desc': 'Effectuer un paiement ou voir l\'historique',
+        'quick.actions.documents': 'Documents',
+        'quick.actions.documents.desc': 'Accéder à vos documents et formulaires',
+        'chat.title': 'Demander à EVA',
+        'chat.subtitle': 'Posez-moi des questions sur les services gouvernementaux',
+        'chat.placeholder': 'Tapez votre question ici...',
+        'chat.welcome': 'Bonjour! Comment puis-je vous aider aujourd\'hui?',
         'chat.send': 'Envoyer',
-        'chat.voice': 'L\'entrée vocale n\'est 
+        'chat.voice': 'L\'entrée vocale n\'est pas encore implémentée',
+        'footer.copyright': '© 2024 Portail gouvernemental. Tous droits réservés.',
         'footer.privacy': 'Confidentialité',
-        'footer.accessibility': 
+        'footer.terms': 'Conditions d\'utilisation',
+        'footer.accessibility': 'Accessibilité'
+    }
 }
+
 class I18nService {
+    private currentLocale: Locale = 'en-CA'
 
+    setLocale(locale: Locale) {
         this.currentLocale = locale
-            document.documentElement.lang = locale
+        document.documentElement.lang = locale
     }
+
     getLocale(): Locale {
+        return this.currentLocale
     }
-    t(
-        if (!t
+
+    t(key: TranslationKey | string): string {
+        const translation = translations[this.currentLocale]?.[key as TranslationKey]
+        if (!translation) {
             return key
+        }
         return translation
+    }
 }
-export const i18nService = new I18nSer
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const i18nService = new I18nService()
