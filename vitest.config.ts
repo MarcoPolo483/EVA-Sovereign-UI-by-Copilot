@@ -27,7 +27,8 @@ export default defineConfig({
             // Exclude Playwright suites from Vitest unit run
             'tests/browser-compatibility/**',
             'tests/performance/**',
-            'tests/accessibility/**'
+            'tests/accessibility/**',
+            'tests/visual-regression/**'
           ],
   },
   resolve: {

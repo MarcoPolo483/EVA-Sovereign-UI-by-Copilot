@@ -31,6 +31,9 @@ export class EVAContextMenu extends EVABaseComponent {
         this.render();
       }
     });
+
+    // Capture keydown even when focus inside item shadows
+    this.addEventListener('keydown', (e) => this.handleMenuKeydown(e as KeyboardEvent));
   }
 
   private positionMenu(x: number, y: number) {
@@ -98,11 +101,67 @@ export class EVAContextMenu extends EVABaseComponent {
 
     const menu = document.createElement('div');
     menu.className = 'menu';
+    menu.setAttribute('role', 'menu');
+    menu.addEventListener('keydown', (e) => this.handleMenuKeydown(e as KeyboardEvent));
     const menuSlot = document.createElement('slot');
     menu.appendChild(menuSlot);
 
     this.shadow.appendChild(trigger);
     this.shadow.appendChild(menu);
+
+    if (this.isOpen) {
+      requestAnimationFrame(() => requestAnimationFrame(() => this.initializeRoving()));
+    }
+  }
+
+  private getItemButtons(): HTMLButtonElement[] {
+    return Array.from(this.querySelectorAll('eva-context-menu-item'))
+      .map(i => (i as any).shadowRoot?.querySelector('button.item') as HTMLButtonElement | null)
+      .filter(Boolean) as HTMLButtonElement[];
+  }
+
+  private initializeRoving() {
+    const items = this.getItemButtons();
+    items.forEach((b, i) => b.setAttribute('tabindex', i === 0 ? '0' : '-1'));
+    if (items[0]) items[0].focus();
+  }
+
+  private moveFocus(delta: number) {
+    const items = this.getItemButtons();
+    if (!items.length) return;
+    const cur = items.findIndex(i => i === document.activeElement);
+    const target = cur === -1 ? 0 : Math.min(Math.max(cur + delta, 0), items.length - 1);
+    items.forEach((b, i) => b.setAttribute('tabindex', i === target ? '0' : '-1'));
+    items[target].focus();
+  }
+
+  private handleMenuKeydown(e: KeyboardEvent) {
+    if (!this.isOpen) return;
+    switch (e.key) {
+      case 'ArrowDown':
+      case 'Down':
+        this.moveFocus(1); e.preventDefault(); break;
+      case 'ArrowUp':
+      case 'Up':
+        this.moveFocus(-1); e.preventDefault(); break;
+      case 'Home':
+        this.moveFocus(-9999); e.preventDefault(); break;
+      case 'End':
+        this.moveFocus(9999); e.preventDefault(); break;
+      case 'Escape':
+        this.isOpen = false; this.render(); e.preventDefault(); break;
+      case 'Enter':
+      case ' ': {
+        const el = document.activeElement as HTMLElement | null;
+        if (el && el.classList.contains('item')) {
+          el.click();
+          e.preventDefault();
+        }
+        break;
+      }
+      default:
+        break;
+    }
   }
 }
 
@@ -159,6 +218,10 @@ export class EVAContextMenuItem extends EVABaseComponent {
 
     const button = document.createElement('button');
     button.className = 'item';
+    button.setAttribute('role', 'menuitem');
+    if (!button.hasAttribute('tabindex')) {
+      button.setAttribute('tabindex', '-1');
+    }
     
     if (this.getBoolAttr('disabled')) {
       button.disabled = true;

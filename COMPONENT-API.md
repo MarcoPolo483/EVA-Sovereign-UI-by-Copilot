@@ -1,6 +1,49 @@
 # EVA Sovereign UI - Component API Reference
+### eva-pagination
 
-Complete API documentation for all 43 Web Components.
+Accessible pagination control with previous/next buttons, dynamic page number window and ellipsis compression for large totals.
+
+**Attributes:**
+- `total`: number (total pages; default `1`)
+- `current`: number (current page; default `1`)
+
+**Events:**
+- `change`: Fired when page changes
+  - `detail`: `{ page: number }`
+
+**Features:**
+- Collapses page list with leading/trailing ellipsis when `total > 7` while keeping first, last and pages around `current`.
+- Roving `tabindex` for numeric page buttons: only one page button is tabbable (`tabindex="0"`), others receive `tabindex="-1"` to reduce tab stops.
+- Landmark semantics: wraps controls in `<nav role="navigation" aria-label="Pagination">`.
+- `aria-current="page"` applied to active page button; inactive buttons remove the attribute.
+- Keyboard support:
+  - `ArrowRight` / `ArrowLeft`: Move focus to next/previous numeric page button (does not change page value until activation).
+  - `Home` / `End`: Move focus to first / last numeric page button.
+  - `Enter` / `Space`: Activate focused page button (updates `current`, emits `change`).
+  - Focus movement updates roving `tabindex` without triggering page change, preserving expected separation of navigation vs activation.
+- Previous/Next buttons (`‹` / `›`) disabled at boundaries (`current === 1` or `current === total`).
+
+**Accessibility Notes:**
+- Numeric page buttons announce current state via `aria-current`; screen readers provide context (e.g., "Page 3, current page").
+- Limited tab stops improves keyboard efficiency; arrows allow intra-widget navigation consistent with WAI-ARIA authoring practices for composite widgets.
+
+**Example:**
+```html
+<eva-pagination total="42" current="7"></eva-pagination>
+```
+
+**Programmatic Update Example:**
+```js
+const pager = document.querySelector('eva-pagination');
+pager.setAttribute('current', '8'); // re-renders and updates aria-current
+pager.addEventListener('change', (e) => {
+  console.log('Page changed to', e.detail.page);
+});
+```
+
+---
+
+Complete API documentation for all Web Components (primary + structural sub-components). This supersedes earlier partial list of 43 components.
 
 ---
 
@@ -107,39 +150,30 @@ Individual toggle within a toggle group.
 Text input field with multiple types.
 
 **Attributes:**
- - Landmark navigation wrapper (`role="navigation"`, `aria-label="Pagination"`)
- - Active page annotated with `aria-current="page"`
-- `type`: `"text"` | `"email"` | `"password"` | `"number"` | `"file"` (default: `"text"`)
+- `type`: "text" | "email" | "password" | "number" | "file" (default: "text")
 - `placeholder`: string
-**Attributes:**
-- `auto-advance`: number (milliseconds, 0 = disabled)
-- `label`: string (accessible name announced for the carousel region, default: `"Carousel"`)
+- `value`: string
 - `disabled`: boolean
-**Features:**
-- Previous/next buttons (`aria-label="Previous slide"` / `"Next slide"`)
-- Indicator dots (each button gets `aria-label="Go to slide N"`, current slide marked with `aria-current="true"`)
-- Auto-advance (optional)
-- Keyboard navigation
-- Screen reader live announcement (`aria-live="polite"` region: "Slide X of Y")
-- Structural `aria-roledescription="carousel"` and `aria-label` for overall container
+- `required`: boolean
+- `error`: string (sets error message + aria-invalid)
+- `label`: string (accessible label)
+
+**Events:**
+- `input`: Native input event
 - `change`: Native change event
+
+**Accessibility:**
+- Internal label & error IDs mapped via aria-labelledby/aria-describedby.
+- Error state sets `aria-invalid="true"`.
 
 **Example:**
 ```html
-<eva-input type="email" placeholder="Enter email"></eva-input>
-**Accessibility:**
-- Dynamically generated label and error message IDs
-- Error state exposes `aria-invalid="true"` and associates helper text via `aria-describedby`
-- Label associated via `aria-labelledby` when present
+<eva-input label="Email" type="email" placeholder="Enter" error="Invalid"></eva-input>
 ```
 
 ---
 
 ### eva-textarea
-
-**Accessibility:**
-- Internal input is associated with external label using `for`/`id`
-- Component sets `aria-labelledby` to ensure proper announcement
 Multi-line text input.
 
 **Attributes:**
@@ -984,6 +1018,7 @@ Image/content carousel with navigation.
 
 **Attributes:**
 - `auto-advance`: number (milliseconds, 0 = disabled)
+- `label`: region accessible name (default: "Carousel")
 
 **Events:**
 - `change`: Fired when slide changes
@@ -996,10 +1031,85 @@ Image/content carousel with navigation.
 - `eva-carousel-item`: Individual slide
 
 **Features:**
-- Previous/next buttons
-- Indicator dots
+- Previous/next buttons (`aria-label` applied)
+- Indicator dots (`aria-label` per slide + `aria-current` on active)
 - Auto-advance (optional)
-- Keyboard navigation
+- Keyboard navigation (arrows/Home/End + Enter/Space activation)
+- Live region announcing current slide (`aria-live="polite"`)
+- Semantics: `aria-roledescription="carousel"` + configurable `aria-label`
+
+### eva-carousel-item
+Individual slide container (visibility controlled by parent).
+
+**Attributes:**
+- `active`: boolean (managed)
+
+**Slots:**
+- Default slot: slide content
+
+**Example:**
+```html
+<eva-carousel-item><img src="hero.jpg" alt="Hero"></eva-carousel-item>
+```
+
+---
+### Structural & Sub-Components (Overview)
+These custom elements provide layout, semantics or styling; they rarely emit custom events.
+
+#### Accordion Parts
+- `eva-accordion-item` (attribute `value` identifies section)
+- `eva-accordion-trigger` (button with `aria-expanded`)
+- `eva-accordion-content` (collapsible region)
+
+#### Tabs Parts
+- `eva-tabs-list` (tablist container)
+- `eva-tabs-trigger` (`role="tab"`, `aria-selected`)
+- `eva-tabs-content` (`role="tabpanel"`)
+
+#### Dropdown Menu Parts
+- `eva-dropdown-menu-item` (`role="menuitem"`)
+- `eva-dropdown-menu-separator` (`role="separator"`)
+- `eva-dropdown-menu-label` (non-interactive label)
+
+#### Context Menu Parts
+- `eva-context-menu-item` (same semantics as dropdown item)
+
+#### Menubar Parts
+- `eva-menubar-menu` (menu grouping)
+- `eva-menubar-item` (`role="menuitem"`)
+
+#### Sheet / Drawer / Dialog Parts
+- `eva-sheet-header` / `eva-drawer-header` / `eva-dialog-header`
+- `eva-sheet-title` / `eva-dialog-title` (label)
+- `eva-sheet-description` / `eva-dialog-description` (describedby)
+- `eva-sheet-footer` / `eva-dialog-footer`
+
+#### Card Parts
+- `eva-card-header`, `eva-card-title`, `eva-card-description`, `eva-card-content`, `eva-card-footer`
+
+#### Table Parts
+- `eva-table-header`, `eva-table-body`, `eva-table-row`, `eva-table-head`, `eva-table-cell`
+
+#### Breadcrumb Parts
+- `eva-breadcrumb-list`, `eva-breadcrumb-item`, `eva-breadcrumb-link`, `eva-breadcrumb-page`, `eva-breadcrumb-separator`
+
+#### Collapsible Parts
+- `eva-collapsible-trigger`, `eva-collapsible-content`
+
+#### Avatar Parts
+- `eva-avatar-image`, `eva-avatar-fallback`
+
+#### Miscellaneous
+- `eva-skip-link` (skip navigation anchor)
+- `eva-page-shell` (application layout wrapper)
+- `eva-container` (spacing/layout utility)
+- `eva-program-card` (program data presentation)
+- `eva-hero-banner` (large banner region)
+- `eva-language-switcher` (emits `change` with `{ locale }`)
+- `eva-gc-header` / `eva-gc-footer` (themed structural wrappers)
+- `eva-gc-button` (GC variant of button)
+- `eva-chat-panel` / `eva-chat-message` (chat UI elements)
+- `eva-test-element` (internal/testing only)
 
 **Example:**
 ```html

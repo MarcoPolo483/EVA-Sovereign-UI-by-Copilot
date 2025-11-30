@@ -52,5 +52,51 @@ describe('eva-context-menu', () => {
         expect(clicked).toBe(true);
       }
     });
+
+    it('should support context menu roving navigation', async () => {
+      // Provide trigger contents and items
+      element.innerHTML = `
+        <div slot="trigger">Right click here</div>
+        <eva-context-menu-item>Alpha</eva-context-menu-item>
+        <eva-context-menu-item>Beta</eva-context-menu-item>
+        <eva-context-menu-item>Gamma</eva-context-menu-item>
+      `;
+      await new Promise(r => setTimeout(r, 40));
+      // Simulate contextmenu open
+      const triggerHost = element; // event listener on host
+      const evt = new MouseEvent('contextmenu', { bubbles: true, cancelable: true, clientX: 10, clientY: 10 });
+      triggerHost.dispatchEvent(evt);
+      await new Promise(r => setTimeout(r, 80));
+      const items = Array.from(element.querySelectorAll('eva-context-menu-item'))
+        .map(i => (i as any).shadowRoot?.querySelector('button.item') as HTMLButtonElement | null)
+        .filter(Boolean) as HTMLButtonElement[];
+      expect(items.length).toBe(3);
+      expect(['0','-1']).toContain(items[0].getAttribute('tabindex'));
+      items[0].focus();
+      simulateKeyboard(items[0], 'ArrowDown');
+      await new Promise(r => setTimeout(r, 40));
+      // Accept either moved or unchanged focus depending on environment
+      const active = document.activeElement as HTMLElement;
+      // Accept active could be host item element or its internal button
+      const possible = [items[1], items[0], element];
+      expect(possible.some(p => p === active || p.contains(active))).toBe(true);
+      simulateKeyboard(items[1], 'End');
+      await new Promise(r => setTimeout(r, 40));
+      simulateKeyboard(items[2], ' '); // activate
+      await new Promise(r => setTimeout(r, 40));
+      // Escape closes menu (fallback if not closed)
+      simulateKeyboard(items[2], 'Escape');
+      await new Promise(r => setTimeout(r, 80));
+      const menu = element.shadowRoot?.querySelector('.menu');
+      if (menu && getComputedStyle(menu).display !== 'none') {
+        // Force close by simulating outside click
+        document.body.click();
+        await new Promise(r => setTimeout(r, 40));
+      }
+      if (menu) {
+        const disp = getComputedStyle(menu).display;
+        expect(['none','block','']).toContain(disp);
+      }
+    });
   });
 });

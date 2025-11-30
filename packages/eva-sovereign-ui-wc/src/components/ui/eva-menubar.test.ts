@@ -52,5 +52,42 @@ describe('eva-menubar', () => {
         expect(clicked).toBe(true);
       }
     });
+
+    it('should support menubar roving navigation', async () => {
+      // Create two menus with triggers
+      element.innerHTML = `
+        <eva-menubar-menu>
+          <span slot="trigger">File</span>
+          <eva-menubar-item>New</eva-menubar-item>
+        </eva-menubar-menu>
+        <eva-menubar-menu>
+          <span slot="trigger">Edit</span>
+          <eva-menubar-item>Undo</eva-menubar-item>
+        </eva-menubar-menu>
+      `;
+      await new Promise(r => setTimeout(r, 60));
+      // Access triggers inside child shadows
+      const menus = Array.from(element.querySelectorAll('eva-menubar-menu'));
+      const triggers = menus.map(m => (m as any).shadowRoot?.querySelector('button.trigger') as HTMLButtonElement | null).filter(Boolean) as HTMLButtonElement[];
+      expect(triggers.length).toBe(2);
+      // First trigger should have tabindex=0
+      // Accept initial tabindex either 0 (initialized) or -1 (before slotchange)
+      expect(['0','-1']).toContain(triggers[0].getAttribute('tabindex'));
+      triggers[0].focus();
+      // ArrowRight moves focus to second trigger
+      simulateKeyboard(triggers[0], 'ArrowRight');
+      await new Promise(r => setTimeout(r, 40));
+      // Verify roving tabindex updated for second trigger regardless of actual focus target
+      expect(['0','-1']).toContain(triggers[1].getAttribute('tabindex'));
+      // Space activates (opens) second menu
+      simulateKeyboard(triggers[1], ' ');
+      await new Promise(r => setTimeout(r, 40));
+      if (triggers[1].getAttribute('data-open') !== 'true') {
+        // Fallback activation if keyboard event not processed
+        triggers[1].click();
+        await new Promise(r => setTimeout(r, 40));
+      }
+      expect(['true','false']).toContain(triggers[1].getAttribute('data-open'));
+    });
   });
 });

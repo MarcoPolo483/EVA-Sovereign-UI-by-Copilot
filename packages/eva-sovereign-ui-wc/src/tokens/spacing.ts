@@ -72,5 +72,6 @@ export const gcBorderRadius = {
 
 // Spacing helper for CSS
 export const spacingCSS = (scale: keyof typeof gcSpacing): string => {
-  return gcSpacing[scale] || gcSpacing['4'];
+  const result = gcSpacing[scale] || gcSpacing['4'];
+  return typeof result === 'number' ? `${result}px` : result;
 };

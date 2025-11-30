@@ -122,7 +122,7 @@ export const sovereignColors = {
   },
 };
 
-export type SovereignProfile = keyof typeof sovereignColors;
+export type SovereignColorKey = keyof typeof sovereignColors;
 
 // Helper function to generate hover states using color-mix
 export const generateHoverColor = (baseColor: string, mixAmount: number = 10): string => {

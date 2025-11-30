@@ -116,6 +116,8 @@ export class EVACarousel extends EVABaseComponent {
         indicator.setAttribute('type', 'button');
         indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
         indicator.setAttribute('data-active', (i === this.currentIndex).toString());
+        indicator.setAttribute('tabindex', i === this.currentIndex ? '0' : '-1');
+        indicator.addEventListener('keydown', (e) => this.handleIndicatorKey(e as KeyboardEvent, i));
         indicator.addEventListener('click', () => this.goTo(i));
         indicatorsContainer.appendChild(indicator);
       }
@@ -124,7 +126,45 @@ export class EVACarousel extends EVABaseComponent {
     existing.forEach((el, i) => {
       el.setAttribute('data-active', (i === this.currentIndex).toString());
       el.setAttribute('aria-current', i === this.currentIndex ? 'true' : 'false');
+      el.setAttribute('tabindex', i === this.currentIndex ? '0' : '-1');
     });
+  }
+
+  private moveIndicatorFocus(targetIndex: number) {
+    const indicatorsContainer = this.shadow.querySelector('.indicators');
+    if (!indicatorsContainer) return;
+    const buttons = Array.from(indicatorsContainer.querySelectorAll<HTMLButtonElement>('.indicator'));
+    if (targetIndex < 0 || targetIndex >= buttons.length) return;
+    buttons.forEach((btn, i) => btn.setAttribute('tabindex', i === targetIndex ? '0' : '-1'));
+    buttons[targetIndex].focus();
+  }
+
+  private handleIndicatorKey(e: KeyboardEvent, index: number) {
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'Right':
+        e.preventDefault();
+        this.moveIndicatorFocus((index + 1) % this.totalItems);
+        break;
+      case 'ArrowLeft':
+      case 'Left':
+        e.preventDefault();
+        this.moveIndicatorFocus((index - 1 + this.totalItems) % this.totalItems);
+        break;
+      case 'Home':
+        e.preventDefault();
+        this.moveIndicatorFocus(0);
+        break;
+      case 'End':
+        e.preventDefault();
+        this.moveIndicatorFocus(this.totalItems - 1);
+        break;
+      case 'Enter':
+      case ' ': // Space
+        e.preventDefault();
+        this.goTo(index);
+        break;
+    }
   }
 
   private updateLiveRegion() {

@@ -127,6 +127,7 @@ export class EVAPagination extends EVABaseComponent {
     nav.setAttribute('role', 'navigation');
     nav.style.display = 'inline-flex';
     nav.style.gap = gcSpacing[2];
+    nav.addEventListener('keydown', (e) => this.handleKeydown(e as KeyboardEvent));
 
     const container = document.createElement('div');
     container.style.display = 'contents';
@@ -154,6 +155,9 @@ export class EVAPagination extends EVABaseComponent {
         pageBtn.setAttribute('data-active', (page === this.currentPage).toString());
         if (page === this.currentPage) {
           pageBtn.setAttribute('aria-current', 'page');
+          pageBtn.setAttribute('tabindex', '0');
+        } else {
+          pageBtn.setAttribute('tabindex', '-1');
         }
         pageBtn.addEventListener('click', () => this.handlePageClick(page));
         container.appendChild(pageBtn);
@@ -180,10 +184,57 @@ export class EVAPagination extends EVABaseComponent {
       if (page === this.currentPage) {
         btn.setAttribute('aria-current', 'page');
         btn.setAttribute('data-active', 'true');
+        btn.setAttribute('tabindex', '0');
       } else {
         btn.setAttribute('data-active', 'false');
+        btn.setAttribute('tabindex', '-1');
       }
     });
+  }
+
+  private handleKeydown(e: KeyboardEvent) {
+    const buttons = Array.from(this.shadow.querySelectorAll<HTMLButtonElement>('.button'))
+      .filter(b => !isNaN(parseInt(b.textContent || '', 10))); // numeric only
+    if (!buttons.length) return;
+    const currentIndex = buttons.findIndex(b => parseInt(b.textContent || '0', 10) === this.currentPage);
+    if (currentIndex === -1) return;
+    let targetIndex = currentIndex;
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'Right':
+        targetIndex = Math.min(buttons.length - 1, currentIndex + 1);
+        e.preventDefault();
+        break;
+      case 'ArrowLeft':
+      case 'Left':
+        targetIndex = Math.max(0, currentIndex - 1);
+        e.preventDefault();
+        break;
+      case 'Home':
+        targetIndex = 0;
+        e.preventDefault();
+        break;
+      case 'End':
+        targetIndex = buttons.length - 1;
+        e.preventDefault();
+        break;
+      case 'Enter':
+      case ' ': // Space activates current focused button
+        if (document.activeElement && document.activeElement.classList.contains('button')) {
+          const page = parseInt((document.activeElement as HTMLElement).textContent || '0', 10);
+          if (!isNaN(page)) {
+            this.handlePageClick(page);
+          }
+        }
+        e.preventDefault();
+        return; // Do not change focus separately
+      default:
+        return;
+    }
+    if (targetIndex !== currentIndex) {
+      buttons.forEach((b, i) => b.setAttribute('tabindex', i === targetIndex ? '0' : '-1'));
+      buttons[targetIndex].focus();
+    }
   }
 }
 

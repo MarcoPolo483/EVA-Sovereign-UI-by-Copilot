@@ -26,8 +26,9 @@ export class EVADrawer extends EVABaseComponent {
   connectedCallback() {
     super.connectedCallback();
     
-    this.shadow.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.isOpen) {
+    this.shadow.addEventListener('keydown', (e: Event) => {
+      const ke = e as KeyboardEvent;
+      if (ke.key === 'Escape' && this.isOpen) {
         this.close();
       }
     });

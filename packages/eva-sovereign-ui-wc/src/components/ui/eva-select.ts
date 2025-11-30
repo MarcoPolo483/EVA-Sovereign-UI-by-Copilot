@@ -208,7 +208,7 @@ export class EVASelectItem extends EVABaseComponent {
     this.shadow.addEventListener('click', () => {
       if (!this.getBoolAttr('disabled')) {
         const value = this.getAttr('value', '');
-        this.emit('select-item', { value }, { bubbles: true, composed: true });
+        this.emit('select-item', { value });
         
         const select = this.closest('eva-select');
         if (select) {

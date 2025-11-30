@@ -37,11 +37,92 @@ export class EVAMenubar extends EVABaseComponent {
     const menubar = document.createElement('div');
     menubar.className = 'menubar';
     menubar.setAttribute('role', 'menubar');
+    menubar.addEventListener('keydown', (e) => this.handleMenubarKeydown(e as KeyboardEvent));
     
     const slot = document.createElement('slot');
+    slot.addEventListener('slotchange', () => this.initializeMenubarRoving());
     menubar.appendChild(slot);
 
     this.shadow.appendChild(menubar);
+
+    // Initialize roving tabindex across menu triggers after slot distribution
+    requestAnimationFrame(() => this.initializeMenubarRoving());
+  }
+
+  private getMenuTriggers(): HTMLButtonElement[] {
+    return Array.from(this.querySelectorAll('eva-menubar-menu'))
+      .map(m => (m as any).shadowRoot?.querySelector('button.trigger') as HTMLButtonElement | null)
+      .filter(Boolean) as HTMLButtonElement[];
+  }
+
+  private initializeMenubarRoving() {
+    const triggers = this.getMenuTriggers();
+    if (!triggers.length) return;
+    triggers.forEach((t, i) => {
+      t.setAttribute('tabindex', i === 0 ? '0' : '-1');
+      t.setAttribute('role', 'menuitem');
+    });
+  }
+
+  private moveMenubarFocus(delta: number) {
+    const triggers = this.getMenuTriggers();
+    if (!triggers.length) return;
+    const currentIndex = triggers.findIndex(t => t === document.activeElement);
+    const targetIndex = currentIndex === -1 ? 0 : Math.min(Math.max(currentIndex + delta, 0), triggers.length - 1);
+    triggers.forEach((t, i) => t.setAttribute('tabindex', i === targetIndex ? '0' : '-1'));
+    triggers[targetIndex].focus();
+  }
+
+  private handleMenubarKeydown(e: KeyboardEvent) {
+    switch (e.key) {
+      case 'ArrowRight':
+      case 'Right':
+        this.moveMenubarFocus(1);
+        e.preventDefault();
+        break;
+      case 'ArrowLeft':
+      case 'Left':
+        this.moveMenubarFocus(-1);
+        e.preventDefault();
+        break;
+      case 'Home':
+        this.moveMenubarFocus(-9999);
+        e.preventDefault();
+        break;
+      case 'End':
+        this.moveMenubarFocus(9999);
+        e.preventDefault();
+        break;
+      case 'Enter':
+      case ' ': {
+        const el = document.activeElement as HTMLElement | null;
+        if (el && el.classList.contains('trigger')) {
+          el.click();
+          e.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowDown':
+      case 'Down': {
+        // If menu just opened, move focus into first item
+        const openMenu = Array.from(this.querySelectorAll('eva-menubar-menu'))
+          .find(m => (m as any).shadowRoot?.querySelector('button.trigger')?.getAttribute('data-open') === 'true');
+        if (openMenu) {
+          const firstItem = (openMenu as any).shadowRoot?.querySelector('div.content slot')
+            ? (openMenu as any).querySelector('eva-menubar-item') as HTMLElement | null
+            : null;
+          // We cannot directly access distributed nodes inside closed content until open; rely on item button focus
+          const itemButton = firstItem?.shadowRoot?.querySelector('button.item') as HTMLButtonElement | null;
+          if (itemButton) {
+            itemButton.focus();
+            e.preventDefault();
+          }
+        }
+        break;
+      }
+      default:
+        break;
+    }
   }
 }
 
@@ -128,6 +209,10 @@ export class EVAMenubarMenu extends EVABaseComponent {
     const trigger = document.createElement('button');
     trigger.className = 'trigger';
     trigger.setAttribute('data-open', this.isOpen.toString());
+    trigger.setAttribute('role', 'menuitem');
+    if (!trigger.hasAttribute('tabindex')) {
+      trigger.setAttribute('tabindex', '-1');
+    }
     trigger.addEventListener('click', () => this.toggle());
     
     const triggerSlot = document.createElement('slot');
@@ -136,6 +221,7 @@ export class EVAMenubarMenu extends EVABaseComponent {
 
     const content = document.createElement('div');
     content.className = 'content';
+    content.setAttribute('role', 'menu');
     const contentSlot = document.createElement('slot');
     content.appendChild(contentSlot);
 

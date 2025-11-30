@@ -168,10 +168,12 @@ export class EVADropdownMenu extends EVABaseComponent {
     if (this.isOpen) {
       const content = document.createElement('div');
       content.className = 'content';
+      content.setAttribute('role', 'menu');
+      content.addEventListener('keydown', (e) => this.handleMenuKeydown(e as KeyboardEvent));
       content.addEventListener('click', (e) => {
-        // Close menu when item clicked
+        // Close menu when item clicked (host element or inner .item div)
         const target = e.target as HTMLElement;
-        if (target.tagName === 'EVA-DROPDOWN-MENU-ITEM') {
+        if (target.closest('eva-dropdown-menu-item') || target.classList.contains('item')) {
           this.close();
         }
       });
@@ -182,7 +184,73 @@ export class EVADropdownMenu extends EVABaseComponent {
       this.shadow.appendChild(content);
       this.contentEl = content;
       
-      requestAnimationFrame(() => this.positionContent());
+      requestAnimationFrame(() => {
+        this.positionContent();
+        // Second frame to ensure item shadows rendered
+        requestAnimationFrame(() => this.initializeRovingItems());
+      });
+    }
+  }
+
+  private getMenuItemButtons(): HTMLElement[] {
+    return Array.from(this.querySelectorAll('eva-dropdown-menu-item'))
+      .map(i => (i as any).shadowRoot?.querySelector('.item') as HTMLElement | null)
+      .filter(Boolean) as HTMLElement[];
+  }
+
+  private initializeRovingItems() {
+    const items = this.getMenuItemButtons();
+    items.forEach((item, i) => {
+      item.setAttribute('tabindex', i === 0 ? '0' : '-1');
+      item.setAttribute('role', 'menuitem');
+    });
+    if (items[0]) items[0].focus();
+  }
+
+  private moveItemFocus(delta: number) {
+    const items = this.getMenuItemButtons();
+    if (!items.length) return;
+    const currentIndex = items.findIndex(i => i === document.activeElement);
+    const targetIndex = currentIndex === -1 ? 0 : Math.min(Math.max(currentIndex + delta, 0), items.length - 1);
+    items.forEach((i, idx) => i.setAttribute('tabindex', idx === targetIndex ? '0' : '-1'));
+    items[targetIndex].focus();
+  }
+
+  private handleMenuKeydown(e: KeyboardEvent) {
+    switch (e.key) {
+      case 'ArrowDown':
+      case 'Down':
+        this.moveItemFocus(1);
+        e.preventDefault();
+        break;
+      case 'ArrowUp':
+      case 'Up':
+        this.moveItemFocus(-1);
+        e.preventDefault();
+        break;
+      case 'Home':
+        this.moveItemFocus(-9999);
+        e.preventDefault();
+        break;
+      case 'End':
+        this.moveItemFocus(9999);
+        e.preventDefault();
+        break;
+      case 'Escape':
+        this.close();
+        e.preventDefault();
+        break;
+      case 'Enter':
+      case ' ': {
+        const el = document.activeElement as HTMLElement | null;
+        if (el && el.classList.contains('item')) {
+          el.click();
+          e.preventDefault();
+        }
+        break;
+      }
+      default:
+        break;
     }
   }
 }
@@ -200,7 +268,7 @@ export class EVADropdownMenuItem extends EVABaseComponent {
   private setupEventListeners() {
     this.shadow.addEventListener('click', () => {
       if (!this.getBoolAttr('disabled')) {
-        this.emit('select', {}, { bubbles: true, composed: true });
+        this.emit('select', {});
       }
     });
   }
@@ -264,6 +332,9 @@ export class EVADropdownMenuItem extends EVABaseComponent {
     const item = document.createElement('div');
     item.className = 'item';
     item.setAttribute('role', 'menuitem');
+    if (!item.hasAttribute('tabindex')) {
+      item.setAttribute('tabindex', '-1');
+    }
     
     if (this.getBoolAttr('disabled')) {
       item.setAttribute('disabled', '');

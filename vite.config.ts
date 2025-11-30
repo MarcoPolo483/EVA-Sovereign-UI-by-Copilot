@@ -21,10 +21,6 @@ export default defineConfig({
       fileName: (format) => `eva-sovereign-ui.${format}.js`,
     },
     rollupOptions: {
-      input: {
-        'esdc-demo': resolve(__dirname, 'apps/esdc-demo/index.html'),
-        'dev-kit-demo': resolve(__dirname, 'apps/dev-kit-demo/index.html'),
-      },
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === 'style.css') return 'eva-sovereign-ui.css';
@@ -33,7 +29,7 @@ export default defineConfig({
       },
     },
     sourcemap: true,
-    minify: 'terser',
+    minify: 'esbuild',
   },
   server: {
     port: 5173,

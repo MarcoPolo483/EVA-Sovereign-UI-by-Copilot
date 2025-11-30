@@ -93,7 +93,7 @@ export class EVATabsTrigger extends EVABaseComponent {
     this.shadow.addEventListener('click', () => {
       if (!this.getBoolAttr('disabled')) {
         const value = this.getAttr('value', '');
-        this.emit('tab-select', { value }, { bubbles: true, composed: true });
+        this.emit('tab-select', { value });
       }
     });
   }

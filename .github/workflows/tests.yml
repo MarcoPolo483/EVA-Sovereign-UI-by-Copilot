@@ -20,3 +20,13 @@ jobs:
         run: npm ci
       - name: Run tests (no skips enforced)
         run: node scripts/check-no-skips.mjs
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run visual regression tests
+        run: npm run test:vr:ci
+      - name: Build bundle
+        run: npm run build
+      - name: Bundle size guard
+        run: npm run size:guard
+      - name: Performance benchmark
+        run: npm run benchmark

@@ -95,7 +95,7 @@ export class EVAToggleGroupItem extends EVABaseComponent {
     this.shadow.addEventListener('click', () => {
       if (!this.getBoolAttr('disabled')) {
         const value = this.getAttr('value', '');
-        this.emit('toggle-item', { value }, { bubbles: true, composed: true });
+        this.emit('toggle-item', { value });
       }
     });
   }

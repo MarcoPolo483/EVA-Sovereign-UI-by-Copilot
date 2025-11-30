@@ -44,6 +44,9 @@ jobs:
       - name: Run linter
         run: npm run lint
         continue-on-error: true
+      - name: Run style lint
+        run: npm run lint:styles
+        continue-on-error: true
         
   build:
     name: Build
@@ -64,6 +67,14 @@ jobs:
         
       - name: Build project
         run: npm run build
+      - name: Generate status matrix
+        run: npm run status:matrix
+      - name: Upload status matrix
+        uses: actions/upload-artifact@v3
+        with:
+          name: completion-status
+          path: COMPLETION-STATUS.md
+          retention-days: 7
         
       - name: Check bundle size
         run: |

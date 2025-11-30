@@ -94,7 +94,7 @@ export class EVARadioGroupItem extends EVABaseComponent {
         const target = e.target as HTMLInputElement;
         if (target.checked) {
           const value = this.getAttr('value', '');
-          this.emit('radio-select', { value }, { bubbles: true, composed: true });
+          this.emit('radio-select', { value });
         }
       });
     }
