@@ -1,10 +1,18 @@
 /**
  * EVA Chat Message Component
- * Individual message bubble in chat
+ * Individual message bubble with Spark styling
+ * Features: elegant bubbles, smooth fade-in, modern colors
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcColors, gcTypography, gcSpacing } from '../../tokens';
+import { 
+  modernColors,
+  gcColors, 
+  gcTypography, 
+  gcSpacing,
+  shadows,
+  animations,
+} from '../../tokens';
 
 export class EVAChatMessage extends EVABaseComponent {
   static get observedAttributes() {
@@ -24,19 +32,25 @@ export class EVAChatMessage extends EVABaseComponent {
     this.shadow.appendChild(this.createStyles(`
       :host {
         display: block;
-        margin-bottom: ${gcSpacing.sm};
+        margin-bottom: ${gcSpacing[4]};
       }
 
       .message {
         display: flex;
         flex-direction: column;
-        max-width: 70%;
-        animation: fadeIn 0.3s ease;
+        max-width: 75%;
+        animation: ${animations.fadeIn.name} ${animations.fadeIn.duration} ease-out;
       }
 
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
+      @keyframes ${animations.fadeIn.name} {
+        from { 
+          opacity: 0; 
+          transform: translateY(0.5rem);
+        }
+        to { 
+          opacity: 1; 
+          transform: translateY(0);
+        }
       }
 
       .message.user {
@@ -49,32 +63,42 @@ export class EVAChatMessage extends EVABaseComponent {
       }
 
       .message-bubble {
-        padding: ${gcSpacing.sm};
-        border-radius: ${gcSpacing.xs};
+        padding: ${gcSpacing[3]} ${gcSpacing[4]};
+        border-radius: ${gcSpacing[3]};
         font-family: ${gcTypography.fontBody};
-        font-size: ${gcTypography.sizeBody};
-        line-height: ${gcTypography.lineHeight};
+        font-size: 0.875rem;
+        line-height: 1.5;
         white-space: pre-wrap;
+        word-wrap: break-word;
       }
 
       .message.user .message-bubble {
-        background: ${gcColors.accent};
-        color: ${gcColors.textWhite};
-        border-bottom-right-radius: 2px;
+        background: ${modernColors.primary};
+        color: ${modernColors.primaryForeground};
+        border-bottom-right-radius: ${gcSpacing[1]};
+        box-shadow: ${shadows.sm};
       }
 
       .message.assistant .message-bubble {
-        background: ${gcColors.background};
-        color: ${gcColors.text};
-        border: 1px solid ${gcColors.border};
-        border-bottom-left-radius: 2px;
+        background: ${modernColors.card};
+        color: ${modernColors.cardForeground};
+        border: 1px solid ${modernColors.border};
+        border-bottom-left-radius: ${gcSpacing[1]};
+        box-shadow: ${shadows.xs};
       }
 
       .message-meta {
-        font-size: ${gcTypography.sizeBodySmall};
-        color: ${gcColors.textLight};
-        margin-top: 4px;
-        padding: 0 ${gcSpacing.xs};
+        font-size: 0.75rem;
+        color: ${modernColors.mutedForeground};
+        margin-top: ${gcSpacing[1]};
+        padding: 0 ${gcSpacing[2]};
+      }
+      
+      /* Accessibility: Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .message {
+          animation: none;
+        }
       }
     `));
 

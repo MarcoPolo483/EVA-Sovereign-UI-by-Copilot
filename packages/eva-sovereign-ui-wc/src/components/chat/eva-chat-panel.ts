@@ -1,10 +1,18 @@
 /**
  * EVA Chat Panel Component
- * Complete chat interface with message history and input
+ * Complete chat interface with Spark's beautiful styling
+ * Features: oklch() colors, smooth scrolling, refined shadows, elegant message bubbles
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcColors, gcTypography, gcSpacing } from '../../tokens';
+import { 
+  modernColors,
+  gcColors, 
+  gcTypography, 
+  gcSpacing,
+  shadows,
+  transitions,
+} from '../../tokens';
 
 interface Message {
   id: string;
@@ -150,55 +158,82 @@ export class EVAChatPanel extends EVABaseComponent {
     this.shadow.appendChild(this.createStyles(`
       :host {
         display: block;
-        margin-top: ${gcSpacing.xxl};
+        margin-top: ${gcSpacing[16]};
       }
 
       .chat-panel {
         max-width: 800px;
         margin: 0 auto;
-        border: 2px solid ${gcColors.border};
-        border-radius: ${gcSpacing.xs};
-        background: ${gcColors.background};
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid ${modernColors.border};
+        border-radius: ${gcSpacing[3]};
+        background: ${modernColors.card};
+        box-shadow: ${shadows.md};
+        overflow: hidden;
       }
 
       .chat-header {
-        background: ${gcColors.accent};
-        color: ${gcColors.textWhite};
-        padding: ${gcSpacing.md};
+        background: ${modernColors.primary};
+        color: ${modernColors.primaryForeground};
+        padding: ${gcSpacing[4]};
         font-family: ${gcTypography.fontHeading};
-        font-size: ${gcTypography.sizeH4};
+        font-size: 1.375rem;
         font-weight: ${gcTypography.weightBold};
+        border-bottom: 1px solid color-mix(in srgb, ${modernColors.primary} 90%, black);
       }
 
       .chat-messages {
         height: 400px;
         overflow-y: auto;
-        padding: ${gcSpacing.md};
-        background: ${gcColors.backgroundGrey};
+        padding: ${gcSpacing[4]};
+        background: ${modernColors.muted};
+        scroll-behavior: smooth;
+      }
+      
+      .chat-messages::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      .chat-messages::-webkit-scrollbar-track {
+        background: ${modernColors.muted};
+      }
+      
+      .chat-messages::-webkit-scrollbar-thumb {
+        background: ${modernColors.border};
+        border-radius: 4px;
+      }
+      
+      .chat-messages::-webkit-scrollbar-thumb:hover {
+        background: color-mix(in srgb, ${modernColors.border} 80%, black);
       }
 
       .chat-form {
         display: flex;
-        gap: ${gcSpacing.sm};
-        padding: ${gcSpacing.md};
-        border-top: 1px solid ${gcColors.border};
+        gap: ${gcSpacing[3]};
+        padding: ${gcSpacing[4]};
+        border-top: 1px solid ${modernColors.border};
+        background: ${modernColors.card};
       }
 
       .chat-input {
         flex: 1;
-        padding: ${gcSpacing.inputPadding};
-        border: 2px solid ${gcColors.border};
-        border-radius: 4px;
+        padding: ${gcSpacing[3]};
+        border: 1px solid ${modernColors.input};
+        border-radius: ${gcSpacing[2]};
         font-family: ${gcTypography.fontBody};
-        font-size: ${gcTypography.sizeBody};
-        min-height: ${gcSpacing.touchTarget};
+        font-size: 0.875rem;
+        min-height: 2.5rem;
+        transition: ${transitions.all};
+        background: ${modernColors.background};
+      }
+
+      .chat-input:hover {
+        border-color: color-mix(in srgb, ${modernColors.input} 70%, black);
       }
 
       .chat-input:focus {
-        outline: 3px solid ${gcColors.focusOutline};
-        outline-offset: 0;
-        border-color: ${gcColors.focusOutline};
+        outline: none;
+        border-color: ${modernColors.ring};
+        box-shadow: 0 0 0 3px color-mix(in srgb, ${modernColors.ring} 20%, transparent);
       }
 
       .sr-only {
@@ -211,6 +246,17 @@ export class EVAChatPanel extends EVABaseComponent {
         clip: rect(0, 0, 0, 0);
         white-space: nowrap;
         border-width: 0;
+      }
+      
+      /* Accessibility: Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .chat-messages {
+          scroll-behavior: auto;
+        }
+        
+        .chat-input {
+          transition-duration: 0.01ms !important;
+        }
       }
     `));
 
@@ -251,7 +297,7 @@ export class EVAChatPanel extends EVABaseComponent {
     form.appendChild(this.inputField);
 
     const sendButton = document.createElement('eva-gc-button');
-    sendButton.setAttribute('variant', 'primary');
+    sendButton.setAttribute('variant', 'default');
     sendButton.setAttribute('type', 'submit');
     sendButton.textContent = this.t('chat.send');
     form.appendChild(sendButton);

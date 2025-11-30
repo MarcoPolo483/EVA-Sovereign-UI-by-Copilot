@@ -1,10 +1,17 @@
 /**
  * EVA Language Switcher Component
- * Toggle between available locales
+ * Toggle between locales with Spark's modern styling
+ * Features: oklch() colors, smooth transitions, enhanced focus states
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcColors, gcTypography, gcSpacing } from '../../tokens';
+import { 
+  modernColors,
+  gcColors, 
+  gcTypography, 
+  gcSpacing,
+  transitions,
+} from '../../tokens';
 import { i18n } from '../../i18n/i18n-service';
 
 export class EVALanguageSwitcher extends EVABaseComponent {
@@ -48,36 +55,45 @@ export class EVALanguageSwitcher extends EVABaseComponent {
 
       .switcher {
         display: flex;
-        gap: ${gcSpacing.xs};
+        gap: ${gcSpacing[2]};
         align-items: center;
       }
 
       .lang-button {
         font-family: ${gcTypography.fontBody};
-        font-size: ${gcTypography.sizeBodySmall};
-        font-weight: ${gcTypography.weightBold};
-        padding: ${gcSpacing.xs} ${gcSpacing.sm};
-        border: 2px solid ${gcColors.textWhite};
+        font-size: 0.875rem;
+        font-weight: 600;
+        padding: ${gcSpacing[2]} ${gcSpacing[3]};
+        border: 2px solid ${modernColors.primaryForeground};
         background: transparent;
-        color: ${gcColors.textWhite};
+        color: ${modernColors.primaryForeground};
         cursor: pointer;
-        border-radius: 4px;
+        border-radius: ${gcSpacing[1]};
         text-transform: uppercase;
-        min-height: ${gcSpacing.touchTargetSmall};
+        min-height: 2rem;
+        transition: ${transitions.all};
       }
 
       .lang-button:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: color-mix(in srgb, ${modernColors.primaryForeground} 10%, transparent);
+        transform: translateY(-1px);
       }
 
-      .lang-button:focus {
-        outline: 3px solid ${gcColors.focusOutline};
+      .lang-button:focus-visible {
+        outline: 3px solid ${modernColors.ring};
         outline-offset: 2px;
+        box-shadow: 0 0 0 3px color-mix(in srgb, ${modernColors.ring} 20%, transparent);
       }
 
       .lang-button[aria-current="true"] {
-        background: ${gcColors.textWhite};
-        color: ${gcColors.accent};
+        background: ${modernColors.primaryForeground};
+        color: ${modernColors.primary};
+        border-color: ${modernColors.primaryForeground};
+      }
+      
+      .lang-button[aria-current="true"]:hover {
+        background: color-mix(in srgb, ${modernColors.primaryForeground} 95%, ${modernColors.primary});
+        transform: none;
       }
 
       .sr-only {
@@ -90,6 +106,17 @@ export class EVALanguageSwitcher extends EVABaseComponent {
         clip: rect(0, 0, 0, 0);
         white-space: nowrap;
         border-width: 0;
+      }
+      
+      /* Accessibility: Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .lang-button {
+          transition-duration: 0.01ms !important;
+        }
+        
+        .lang-button:hover {
+          transform: none;
+        }
       }
     `));
 

@@ -1,10 +1,19 @@
 /**
  * EVA Skip Link Component
- * Accessibility navigation - visually hidden until focused
+ * Accessibility navigation with Spark styling
+ * Features: smooth slide-in animation, enhanced focus state, oklch() colors
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcColors, gcTypography, gcSpacing } from '../../tokens';
+import { 
+  modernColors,
+  gcColors, 
+  gcTypography, 
+  gcSpacing,
+  shadows,
+  transitions,
+  animations,
+} from '../../tokens';
 
 export class EVASkipLink extends EVABaseComponent {
   static get observedAttributes() {
@@ -42,24 +51,50 @@ export class EVASkipLink extends EVABaseComponent {
       }
 
       .skip-link {
-        position: absolute;
+        position: fixed;
         left: -9999px;
-        z-index: 999;
-        padding: ${gcSpacing.sm} ${gcSpacing.md};
-        background: ${gcColors.accent};
-        color: ${gcColors.textWhite};
+        top: ${gcSpacing[2]};
+        z-index: 9999;
+        padding: ${gcSpacing[3]} ${gcSpacing[6]};
+        background: ${modernColors.accent};
+        color: ${modernColors.accentForeground};
         font-family: ${gcTypography.fontBody};
-        font-size: ${gcTypography.sizeBody};
-        font-weight: ${gcTypography.weightBold};
-        text-decoration: underline;
-        border-radius: 0 0 4px 4px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: ${gcSpacing[2]};
+        box-shadow: ${shadows.lg};
+        transition: ${transitions.all};
       }
 
       .skip-link:focus {
-        left: ${gcSpacing.sm};
-        top: ${gcSpacing.sm};
-        outline: 3px solid ${gcColors.focusOutline};
+        left: ${gcSpacing[2]};
+        outline: 3px solid ${modernColors.ring};
         outline-offset: 2px;
+        animation: ${animations.slideInFromTop.name} ${animations.slideInFromTop.duration} ${transitions.easeInOut};
+        box-shadow: ${shadows.xl}, 0 0 0 3px color-mix(in srgb, ${modernColors.ring} 20%, transparent);
+      }
+      
+      @keyframes ${animations.slideInFromTop.name} {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      
+      /* Accessibility: Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .skip-link {
+          transition-duration: 0.01ms !important;
+        }
+        
+        .skip-link:focus {
+          animation: none;
+        }
       }
     `));
 

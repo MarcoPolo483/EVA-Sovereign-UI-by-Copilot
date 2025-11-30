@@ -1,10 +1,11 @@
 /**
  * EVA Container Component
- * Content wrapper with max-width enforcement (GC requirement: 65ch)
+ * Content wrapper with Spark styling
+ * Features: responsive padding, max-width enforcement, modern spacing
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcLayout, gcSpacing } from '../../tokens';
+import { gcLayout, gcSpacing, modernColors } from '../../tokens';
 
 export class EVAContainer extends EVABaseComponent {
   static get observedAttributes() {
@@ -23,12 +24,25 @@ export class EVAContainer extends EVABaseComponent {
     this.shadow.appendChild(this.createStyles(`
       :host {
         display: block;
+        width: 100%;
       }
 
       .container {
         max-width: ${maxWidth};
         margin: 0 auto;
-        padding: ${gcSpacing.lg} ${gcSpacing.containerPadding};
+        padding: ${gcSpacing[8]} ${gcSpacing[4]};
+      }
+      
+      @media (max-width: 768px) {
+        .container {
+          padding: ${gcSpacing[6]} ${gcSpacing[4]};
+        }
+      }
+      
+      @media (max-width: 640px) {
+        .container {
+          padding: ${gcSpacing[4]} ${gcSpacing[4]};
+        }
       }
     `));
 

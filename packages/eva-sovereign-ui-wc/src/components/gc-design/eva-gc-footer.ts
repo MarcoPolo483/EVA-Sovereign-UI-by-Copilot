@@ -1,10 +1,17 @@
 /**
  * EVA GC Footer Component
- * Official Government of Canada footer with legal text and links
+ * Official Government of Canada footer with Spark styling
+ * Features: oklch() colors, smooth link transitions, enhanced spacing
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcColors, gcTypography, gcSpacing } from '../../tokens';
+import { 
+  modernColors,
+  gcColors, 
+  gcTypography, 
+  gcSpacing,
+  transitions,
+} from '../../tokens';
 import { getProfile } from '../../tokens/sovereign-profiles';
 
 export class EVAGCFooter extends EVABaseComponent {
@@ -24,21 +31,23 @@ export class EVAGCFooter extends EVABaseComponent {
     this.shadow.appendChild(this.createStyles(`
       :host {
         display: block;
-        background: ${profile.colors.primary};
-        color: ${gcColors.textWhite};
+        background: ${modernColors.primary};
+        color: ${modernColors.primaryForeground};
         font-family: ${gcTypography.fontBody};
-        margin-top: ${gcSpacing.xxl};
+        margin-top: auto;
+        border-top: 1px solid color-mix(in srgb, ${modernColors.primaryForeground} 10%, transparent);
       }
 
       .footer-container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: ${gcSpacing.lg} ${gcSpacing.containerPadding};
+        padding: ${gcSpacing[8]} ${gcSpacing[4]};
       }
 
       .copyright {
-        font-size: ${gcTypography.sizeBodySmall};
-        margin: 0 0 ${gcSpacing.md} 0;
+        font-size: 0.875rem;
+        margin: 0 0 ${gcSpacing[4]} 0;
+        color: color-mix(in srgb, ${modernColors.primaryForeground} 90%, transparent);
       }
 
       .links {
@@ -47,7 +56,7 @@ export class EVAGCFooter extends EVABaseComponent {
         margin: 0;
         display: flex;
         flex-wrap: wrap;
-        gap: ${gcSpacing.md};
+        gap: ${gcSpacing[6]};
       }
 
       .links li {
@@ -55,24 +64,39 @@ export class EVAGCFooter extends EVABaseComponent {
       }
 
       .links a {
-        color: ${gcColors.textWhite};
+        color: ${modernColors.primaryForeground};
         text-decoration: underline;
-        font-size: ${gcTypography.sizeBodySmall};
+        text-underline-offset: 4px;
+        font-size: 0.875rem;
+        transition: ${transitions.colors};
       }
 
       .links a:hover {
         text-decoration: none;
+        color: color-mix(in srgb, ${modernColors.primaryForeground} 80%, transparent);
       }
 
-      .links a:focus {
-        outline: 3px solid ${gcColors.focusOutline};
-        outline-offset: 2px;
+      .links a:focus-visible {
+        outline: 3px solid ${modernColors.ring};
+        outline-offset: 3px;
+        border-radius: ${gcSpacing[1]};
       }
 
       @media (max-width: 768px) {
+        .footer-container {
+          padding: ${gcSpacing[6]} ${gcSpacing[4]};
+        }
+        
         .links {
           flex-direction: column;
-          gap: ${gcSpacing.sm};
+          gap: ${gcSpacing[3]};
+        }
+      }
+      
+      /* Accessibility: Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .links a {
+          transition-duration: 0.01ms !important;
         }
       }
     `));
