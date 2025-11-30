@@ -2,13 +2,13 @@ export type Locale = 'en-CA' | 'fr-CA'
 
 type TranslationKey =
     | 'app.name'
-    | 'hero.title'
+    | 'language.en
     | 'hero.description'
     | 'language.english'
     | 'language.french'
     | 'language.switcher.label'
     | 'demo.controls'
-    | 'demo.profile'
+    | 'quick.actions
     | 'demo.language'
     | 'quick.actions.title'
     | 'quick.actions.myAccount'
@@ -20,48 +20,48 @@ type TranslationKey =
     | 'quick.actions.documents'
     | 'quick.actions.documents.desc'
     | 'chat.title'
-    | 'chat.subtitle'
+
     | 'chat.placeholder'
-    | 'chat.welcome'
+        'app.name': 
     | 'chat.send'
-    | 'chat.voice'
+        'language.
     | 'footer.copyright'
-    | 'footer.privacy'
+        'demo.controls
     | 'footer.terms'
-    | 'footer.accessibility'
+        'quick.actions.title
 
-type Translations = Record<Locale, Record<TranslationKey, string>>
+    },
 
-const translations: Translations = {
-    'en-CA': {
-        'app.name': 'Government Portal',
-        'hero.title': 'Welcome to the Government Portal',
-        'hero.description': 'Access your services and information securely',
-        'language.english': 'English',
-        'language.french': 'Français',
-        'language.switcher.label': 'Language',
-        'demo.controls': 'Demo Controls',
-        'demo.profile': 'Sovereign Profile',
-        'demo.language': 'Language',
-        'quick.actions.title': 'Quick Actions',
-        'quick.actions.myAccount': 'My Account',
-        'quick.actions.myAccount.desc': 'View and manage your account settings',
-        'quick.actions.applications': 'Applications',
-        'quick.actions.applications.desc': 'Track your applications',
-        'quick.actions.payments': 'Payments',
-        'quick.actions.payments.desc': 'Make a payment or view history',
-        'quick.actions.documents': 'Documents',
-        'quick.actions.documents.desc': 'Access your documents and forms',
-        'chat.title': 'Ask EVA',
-        'chat.subtitle': 'Ask me questions about government services',
-        'chat.placeholder': 'Type your question here...',
-        'chat.welcome': 'Hello! How can I help you today?',
-        'chat.send': 'Send',
-        'chat.voice': 'Voice input is not yet implemented',
-        'footer.copyright': '© 2024 Government Portal. All rights reserved.',
-        'footer.privacy': 'Privacy',
-        'footer.terms': 'Terms of Service',
-        'footer.accessibility': 'Accessibility'
+        'hero.description': 'Accédez
+        'langu
+        'demo.controls': 'Contrôles de d
+        'demo.language': 'Langue',
+        'quick.actions.myAccount': 'Mon compte',
+        'quick.actions.applications': 
+        'quick.actions.payments': 'Pai
+        'quick.actions.documents': 'Documents'
+        'chat.title': 'Demander à EVA',
+        'chat.placeholder': 'Tapez votre que
+        'chat.send': 'Envoyer',
+        'footer.copyright': '© 2024 Portail gou
+        'footer.terms': 'Conditions d\'utilisati
+    }
+
+    private currentLocale: Locale = 'en-CA'
+    setLocale(locale: Locale) {
+        document.documentElement.lang = locale
+
+        return this.currentLocale
+
+        const translation = translations[this.currentLocale]?.[key as 
+            return key
+        return translation
+}
+export const i18nService = new I18nService()
+
+
+
+
     },
     'fr-CA': {
         'app.name': 'Portail gouvernemental',
