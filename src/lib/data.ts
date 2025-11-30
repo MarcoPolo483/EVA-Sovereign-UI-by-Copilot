@@ -1,34 +1,34 @@
 export interface CSSSnippet {
   id: string
   name: string
-  description: str
+  category: string
   description: string
   tags: string[]
   code: string
 }
 
+export interface ColorPalette {
+  id: string
+  name: string
+  category: string
   description: string
-    name: st
-    oklch: str
-  }[]
-
-  id: strin
-  category: stri
-  tags: string[
-  css: string
+  colors: {
+    name: string
+    hex: string
     rgb: string
+    oklch: string
   }[]
 }
 
 export interface StyleTemplate {
   id: string
   name: string
-  {
+  category: string
   description: string
   tags: string[]
   html: string
   css: string
- 
+}
 
 export interface GraphicElement {
   id: string
@@ -37,347 +37,293 @@ export interface GraphicElement {
   description: string
   svg: string
   customizable: boolean
- 
+}
 
 export const cssSnippets: CSSSnippet[] = [
   {
     id: 'flex-center',
     name: 'Flex Center',
-  grid-template-columns:
-}`,
+    category: 'Flexbox',
+    description: 'Center content horizontally and vertically',
+    tags: ['flexbox', 'center', 'alignment'],
+    code: `.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}`
   },
-    id: 'fade-in
+  {
+    id: 'grid-responsive',
+    name: 'Responsive Grid',
+    category: 'Grid',
+    description: 'Auto-fit responsive grid layout',
+    tags: ['grid', 'responsive', 'layout'],
+    code: `.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}`
+  },
+  {
+    id: 'fade-in',
+    name: 'Fade In Animation',
     category: 'Animation',
-    code: `@keyframes 
-   
-  to {
-  }
-  {
-  animation: fadeIn 0.3
-    description: 'Smooth fade i
-  {
-    name: 'Slide Up Animation',
-    tags: ['animation', 'sl
+    description: 'Smooth fade in effect',
+    tags: ['animation', 'fade', 'transition'],
+    code: `@keyframes fadeIn {
   from {
     opacity: 0;
-  to {
-   
-}
-.sli
-  {
-  },
-    id: 'gradient-border
-    category: 'Borders',
-    code: `.gradient-border {
-  background: linear
-}
-.gradient-border::before 
-  position: 
-  b
-}`,
-  },
-  {
-    category: 'Typogr
-    code: `.truncate {
-  text-overflow: elli
-}`,
-  },
-    id: 'smooth-
-    category: 'Shadows',
-    code: `.
-   
-    0 4px 8px 0 rgba(0, 0, 0, 0.03);
-    
-  {
-export const color
-    id: 'gc-official',
-    category: 'Government'
-    colors: [
-      { name: 'GC Red', hex: '
-      { 
-    ]
-  {
-    na
-    description
-   
- 
-
-  },
-    id: 'sunset-warmth',
-}`,
-    colors: [
-  },
-   
-    ]
-  {
-    name: 'Forest Fresh',
-    description: 'Earthy greens and browns',
-      { name: 'Forest', hex: '#
-      { 
-      { name: 'Mint', hex: '#D1F
-  },
-   
-    ca
-    colors: [
-      { name: '
-   
- 
-
-    name: '
-    description: 'Sophisticated gra
-   
-    description: 'Element slides up while fading in'
-  },
   }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}`
+  },
+  {
+    id: 'slide-up',
+    name: 'Slide Up Animation',
+    category: 'Animation',
+    description: 'Element slides up while fading in',
+    tags: ['animation', 'slide', 'transition'],
+    code: `@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease-out;
+}`
+  },
+  {
     id: 'gradient-border',
     name: 'Gradient Border',
-    id: 'gc-btn-primary'
+    category: 'Borders',
+    description: 'Create a gradient border effect',
     tags: ['border', 'gradient', 'effect'],
-    description: 'Canada.ca p
-    html: '<button cla
+    code: `.gradient-border {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 2px;
+  border-radius: 12px;
 }
 
 .gradient-border::before {
-  transition: 
+  content: '';
   position: absolute;
-.gc-btn-prima
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
   background: white;
   border-radius: 10px;
-}`,
-  outline-offset: 2px;
+}`
   },
   {
     id: 'truncate-text',
     name: 'Truncate Text',
     category: 'Typography',
+    description: 'Single line text with ellipsis',
     tags: ['text', 'overflow', 'ellipsis'],
     code: `.truncate {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
-    description: 'Single line text with ellipsis'
-}
-  f
+}`
+  },
+  {
     id: 'smooth-shadow',
     name: 'Smooth Shadow',
     category: 'Shadows',
+    description: 'Layered smooth shadow effect',
     tags: ['shadow', 'depth', 'elevation'],
     code: `.smooth-shadow {
   box-shadow: 
     0 1px 2px 0 rgba(0, 0, 0, 0.05),
     0 2px 4px 0 rgba(0, 0, 0, 0.04),
     0 4px 8px 0 rgba(0, 0, 0, 0.03);
+}`
   }
-    description: 'Layered smooth shadow effect'
-  c
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    id: 'forest-fresh',
-
-    category: 'Natural',
-
-    colors: [
-
-
-
-
-
-    ]
-
-  {
-
-    name: 'Lavender Dream',
-
-
-
-
-
-
-
-
-
-
-
-
-
-    category: 'Neutral',
-
-
-
-
-
-
-
-    ]
-
 ]
 
+export const colorPalettes: ColorPalette[] = [
+  {
+    id: 'gc-official',
+    name: 'Government of Canada',
+    category: 'Government',
+    description: 'Official GC brand colors',
+    colors: [
+      { name: 'GC Red', hex: '#AF3C43', rgb: 'rgb(175, 60, 67)', oklch: 'oklch(0.50 0.12 15)' },
+      { name: 'GC Blue', hex: '#26374A', rgb: 'rgb(38, 55, 74)', oklch: 'oklch(0.30 0.04 240)' },
+      { name: 'GC Yellow', hex: '#F9C642', rgb: 'rgb(249, 198, 66)', oklch: 'oklch(0.85 0.15 90)' },
+      { name: 'GC White', hex: '#FFFFFF', rgb: 'rgb(255, 255, 255)', oklch: 'oklch(1 0 0)' },
+      { name: 'GC Black', hex: '#000000', rgb: 'rgb(0, 0, 0)', oklch: 'oklch(0 0 0)' }
+    ]
+  },
+  {
+    id: 'sunset-warmth',
+    name: 'Sunset Warmth',
+    category: 'Vibrant',
+    description: 'Warm sunset-inspired palette',
+    colors: [
+      { name: 'Sunset Orange', hex: '#FF6B35', rgb: 'rgb(255, 107, 53)', oklch: 'oklch(0.68 0.20 35)' },
+      { name: 'Coral Pink', hex: '#F7931E', rgb: 'rgb(247, 147, 30)', oklch: 'oklch(0.75 0.18 55)' },
+      { name: 'Golden Yellow', hex: '#FDC830', rgb: 'rgb(253, 200, 48)', oklch: 'oklch(0.85 0.16 85)' },
+      { name: 'Peach', hex: '#FFB88C', rgb: 'rgb(255, 184, 140)', oklch: 'oklch(0.82 0.12 50)' }
+    ]
+  },
+  {
+    id: 'forest-fresh',
+    name: 'Forest Fresh',
+    category: 'Natural',
+    description: 'Earthy greens and browns',
+    colors: [
+      { name: 'Forest', hex: '#2D5016', rgb: 'rgb(45, 80, 22)', oklch: 'oklch(0.35 0.10 130)' },
+      { name: 'Sage', hex: '#87A96B', rgb: 'rgb(135, 169, 107)', oklch: 'oklch(0.68 0.08 125)' },
+      { name: 'Mint', hex: '#D1F2A5', rgb: 'rgb(209, 242, 165)', oklch: 'oklch(0.92 0.12 120)' },
+      { name: 'Earth Brown', hex: '#8B7355', rgb: 'rgb(139, 115, 85)', oklch: 'oklch(0.55 0.06 60)' }
+    ]
+  },
+  {
+    id: 'lavender-dream',
+    name: 'Lavender Dream',
+    category: 'Pastel',
+    description: 'Soft purple and lavender tones',
+    colors: [
+      { name: 'Deep Lavender', hex: '#9B59B6', rgb: 'rgb(155, 89, 182)', oklch: 'oklch(0.55 0.15 300)' },
+      { name: 'Soft Lavender', hex: '#C39BD3', rgb: 'rgb(195, 155, 211)', oklch: 'oklch(0.72 0.10 300)' },
+      { name: 'Lilac', hex: '#E8DAEF', rgb: 'rgb(232, 218, 239)', oklch: 'oklch(0.88 0.04 300)' },
+      { name: 'Cream', hex: '#F4ECF7', rgb: 'rgb(244, 236, 247)', oklch: 'oklch(0.94 0.02 300)' }
+    ]
+  },
+  {
+    id: 'modern-gray',
+    name: 'Modern Gray',
+    category: 'Neutral',
+    description: 'Sophisticated gray scale',
+    colors: [
+      { name: 'Charcoal', hex: '#2C3E50', rgb: 'rgb(44, 62, 80)', oklch: 'oklch(0.30 0.02 240)' },
+      { name: 'Slate', hex: '#7F8C8D', rgb: 'rgb(127, 140, 141)', oklch: 'oklch(0.58 0.01 220)' },
+      { name: 'Silver', hex: '#BDC3C7', rgb: 'rgb(189, 195, 199)', oklch: 'oklch(0.78 0.01 240)' },
+      { name: 'Cloud', hex: '#ECF0F1', rgb: 'rgb(236, 240, 241)', oklch: 'oklch(0.94 0.005 240)' }
+    ]
+  }
+]
 
-
+export const styleTemplates: StyleTemplate[] = [
+  {
     id: 'gc-btn-primary',
-
+    name: 'GC Primary Button',
     category: 'GC Components',
     description: 'Canada.ca primary button styling',
-
-
+    tags: ['button', 'primary', 'government'],
+    html: '<button class="gc-btn-primary">Submit</button>',
     css: `.gc-btn-primary {
-
+  background: oklch(0.50 0.12 15);
   color: oklch(1 0 0);
-
-
-
-
-
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  cursor: pointer;
   transition: background 0.2s;
 }
 
 .gc-btn-primary:hover {
-
+  background: oklch(0.45 0.12 15);
 }
 
 .gc-btn-primary:focus-visible {
-
-
-
+  outline: 3px solid oklch(0.85 0.15 90);
+  outline-offset: 2px;
+}`
   },
-
+  {
     id: 'gc-btn-secondary',
-
+    name: 'GC Secondary Button',
     category: 'GC Components',
     description: 'Canada.ca secondary button styling',
-
-
+    tags: ['button', 'secondary', 'government'],
+    html: '<button class="gc-btn-secondary">Cancel</button>',
     css: `.gc-btn-secondary {
-
-
-
-
-
-
+  background: transparent;
+  color: oklch(0.30 0.04 240);
+  padding: 0.75rem 1.5rem;
+  border: 2px solid oklch(0.30 0.04 240);
+  border-radius: 0.25rem;
+  font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .gc-btn-secondary:hover {
-
+  background: oklch(0.95 0.01 240);
 }
 
-
-
-  outline-offset: 2px;
-
-  },
-
-    id: 'gc-alert-success',
-
-    category: 'GC Components',
-    description: 'Canada.ca success alert pattern',
-
-
-
-
-
-
-
-
-
-}
-
-
-  display: block;
-
-
-}`
-
-  {
-
-    name: 'GC Input Field',
-
-
-    tags: ['input', 'form', 'government'],
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-.gc-input {
-
-  padding: 0.75rem;
-
-  border-radius: 0.25rem;
-
-
-
-
-
+.gc-btn-secondary:focus-visible {
   outline: 3px solid oklch(0.85 0.15 90);
   outline-offset: 2px;
-
+}`
   },
+  {
+    id: 'gc-alert-success',
+    name: 'GC Success Alert',
+    category: 'GC Components',
+    description: 'Canada.ca success alert pattern',
+    tags: ['alert', 'success', 'government'],
+    html: '<div class="gc-alert-success"><strong>Success:</strong> Your form has been submitted.</div>',
+    css: `.gc-alert-success {
+  background: oklch(0.95 0.08 140);
+  border-left: 4px solid oklch(0.55 0.15 140);
+  padding: 1rem;
+  margin: 1rem 0;
+}
 
+.gc-alert-success strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}`
+  },
+  {
+    id: 'gc-input',
+    name: 'GC Input Field',
+    category: 'GC Forms',
+    description: 'Canada.ca input field styling',
+    tags: ['input', 'form', 'government'],
+    html: '<input type="text" class="gc-input" placeholder="Enter text">',
+    css: `.gc-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid oklch(0.70 0.01 240);
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+.gc-input:focus {
+  border-color: oklch(0.30 0.04 240);
+  outline: 3px solid oklch(0.85 0.15 90);
+  outline-offset: 2px;
+}`
+  },
+  {
     id: 'glass-card',
-
+    name: 'Glass Card',
     category: 'Cards',
-
+    description: 'Modern glassmorphism card',
     tags: ['card', 'glass', 'modern'],
-
-
-
-
-
+    html: '<div class="glass-card"><h3>Glass Card</h3><p>Beautiful glassmorphism effect</p></div>',
+    css: `.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 1rem;
   padding: 2rem;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
