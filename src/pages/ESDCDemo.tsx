@@ -6,7 +6,7 @@ import { ProgramCard } from '@/components/eva/ProgramCard';
 import { EVAChat } from '@/components/eva/EVAChat';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Briefcase, UserCircle, CurrencyDollar, MagnifyingGlass, ListChecks } from '@phosphor-icons/react';
+import { Briefcase, UserCircle, CurrencyDollar, MagnifyingGlass, ListChecks, Layout } from '@phosphor-icons/react';
 import { useI18n } from '@/lib/i18n/use-i18n';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
@@ -17,7 +17,11 @@ type ProgramDetails = {
   icon: string;
 };
 
-export function ESDCDemo() {
+interface ESDCDemoProps {
+  onNavigateToTemplates?: () => void;
+}
+
+export function ESDCDemo({ onNavigateToTemplates }: ESDCDemoProps = {}) {
   const { locale, setLocale, t } = useI18n();
   const [selectedProgram, setSelectedProgram] = useState<ProgramDetails | null>(null);
 
@@ -76,11 +80,24 @@ export function ESDCDemo() {
       </a>
 
       <GCHeader appName={t('esdc.title')} profile="canada_gc">
-        <LanguageSwitcher
-          currentLocale={locale}
-          availableLocales={availableLocales}
-          onLocaleChange={setLocale}
-        />
+        <div className="flex items-center gap-3">
+          {onNavigateToTemplates && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onNavigateToTemplates}
+              className="flex items-center gap-2"
+            >
+              <Layout size={18} weight="duotone" />
+              <span className="hidden sm:inline">Templates</span>
+            </Button>
+          )}
+          <LanguageSwitcher
+            currentLocale={locale}
+            availableLocales={availableLocales}
+            onLocaleChange={setLocale}
+          />
+        </div>
       </GCHeader>
 
       <main id="main-content" className="flex-1">

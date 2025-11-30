@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Buildings } from '@phosphor-icons/react';
 import { 
   GCBasicTemplate,
   GCFormTemplate,
@@ -14,7 +15,11 @@ import {
   GCComponentsShowcase
 } from '@/components/gc/templates';
 
-export function GCTemplatesDemo() {
+interface GCTemplatesDemoProps {
+  onNavigateToESDC?: () => void;
+}
+
+export function GCTemplatesDemo({ onNavigateToESDC }: GCTemplatesDemoProps = {}) {
   const [selectedTemplate, setSelectedTemplate] = useState('components');
 
   const templates = [
@@ -43,6 +48,17 @@ export function GCTemplatesDemo() {
                 Production-ready page templates following Government of Canada standards
               </p>
             </div>
+            {onNavigateToESDC && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={onNavigateToESDC}
+                className="flex items-center gap-2"
+              >
+                <Buildings size={18} weight="duotone" />
+                <span className="hidden sm:inline">ESDC Demo</span>
+              </Button>
+            )}
           </div>
           
           <div className="flex gap-2 overflow-x-auto pb-2">
