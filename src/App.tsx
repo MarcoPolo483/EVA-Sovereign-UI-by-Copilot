@@ -21,6 +21,7 @@ function App() {
 
     useEffect(() => {
         i18nService.setLocale(currentLocale)
+        document.documentElement.lang = currentLocale
     }, [currentLocale])
 
     useEffect(() => {
@@ -36,19 +37,27 @@ function App() {
 
     return (
         <div className="min-h-screen bg-background">
-            <div className="fixed top-4 right-4 z-50 bg-card/95 backdrop-blur-sm p-4 rounded-lg shadow-lg border border-border min-w-[220px]">
+            <div 
+                className="fixed top-4 right-4 z-50 bg-card/95 backdrop-blur-sm p-4 rounded-lg shadow-lg border border-border min-w-[220px]"
+                role="region"
+                aria-label={i18nService.t('demo.controls')}
+            >
                 <h3 className="text-sm font-semibold mb-3 text-foreground">
                     🎨 {i18nService.t('demo.controls')}
                 </h3>
                 
                 <div className="mb-4">
-                    <label className="block text-xs font-medium mb-2 text-muted-foreground">
+                    <label 
+                        htmlFor="profile-selector"
+                        className="block text-xs font-medium mb-2 text-muted-foreground"
+                    >
                         {i18nService.t('demo.profile')}
                     </label>
                     <select
+                        id="profile-selector"
                         value={currentProfile}
                         onChange={(e) => setProfile(e.target.value as SovereignProfileId)}
-                        className="w-full px-3 py-2 border-2 border-input rounded bg-background text-foreground text-sm cursor-pointer focus:outline-none focus:border-primary"
+                        className="w-full px-3 py-2 border-2 border-input rounded bg-background text-foreground text-sm cursor-pointer focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     >
                         {Object.entries(sovereignProfiles).map(([id, prof]) => (
                             <option key={id} value={id}>
@@ -59,13 +68,18 @@ function App() {
                 </div>
                 
                 <div>
-                    <label className="block text-xs font-medium mb-2 text-muted-foreground">
+                    <label 
+                        className="block text-xs font-medium mb-2 text-muted-foreground"
+                        id="demo-language-label"
+                    >
                         {i18nService.t('demo.language')}
                     </label>
-                    <EVALanguageSwitcher 
-                        currentLocale={currentLocale}
-                        onLanguageChange={handleLanguageChange}
-                    />
+                    <div aria-labelledby="demo-language-label">
+                        <EVALanguageSwitcher 
+                            currentLocale={currentLocale}
+                            onLanguageChange={handleLanguageChange}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -83,20 +97,32 @@ function App() {
                     />
                 }
                 footer={
-                    <div className="flex justify-between items-center flex-wrap gap-4 text-sm text-muted-foreground">
+                    <nav 
+                        className="flex justify-between items-center flex-wrap gap-4 text-sm text-muted-foreground"
+                        aria-label="Footer navigation"
+                    >
                         <div>{i18nService.t('footer.copyright')}</div>
                         <div className="flex gap-6 flex-wrap">
-                            <a href="#" className="text-primary hover:underline">
+                            <a 
+                                href="#privacy" 
+                                className="text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+                            >
                                 {i18nService.t('footer.privacy')}
                             </a>
-                            <a href="#" className="text-primary hover:underline">
+                            <a 
+                                href="#terms" 
+                                className="text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+                            >
                                 {i18nService.t('footer.terms')}
                             </a>
-                            <a href="#" className="text-primary hover:underline">
+                            <a 
+                                href="#accessibility" 
+                                className="text-primary hover:underline focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded"
+                            >
                                 {i18nService.t('footer.accessibility')}
                             </a>
                         </div>
-                    </div>
+                    </nav>
                 }
             >
                 <EVAHeroBanner 

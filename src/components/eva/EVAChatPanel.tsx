@@ -34,17 +34,19 @@ export function EVAChatPanel() {
         },
     ])
     const [inputValue, setInputValue] = useState('')
+    const [isSending, setIsSending] = useState(false)
     const scrollAreaRef = useRef<HTMLDivElement>(null)
+    const messagesEndRef = useRef<HTMLDivElement>(null)
+    const inputRef = useRef<HTMLInputElement>(null)
 
     useEffect(() => {
-        if (scrollAreaRef.current) {
-            scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight
-        }
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
     }, [messages])
 
-    const handleSendMessage = () => {
-        if (!inputValue.trim()) return
+    const handleSendMessage = async () => {
+        if (!inputValue.trim() || isSending) return
 
+        setIsSending(true)
         const userMessage: Message = {
             id: Date.now().toString(),
             sender: 'user',
@@ -63,11 +65,13 @@ export function EVAChatPanel() {
                 timestamp: new Date(),
             }
             setMessages((prev) => [...prev, botMessage])
+            setIsSending(false)
+            inputRef.current?.focus()
         }, 1000)
     }
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault()
             handleSendMessage()
         }
@@ -75,14 +79,16 @@ export function EVAChatPanel() {
 
     const handleVoiceInput = () => {
         console.log('Voice input requested')
-        alert(i18nService.t('chat.voice'))
     }
 
     return (
         <Card className="flex flex-col h-[600px]">
             <CardHeader className="border-b border-border">
                 <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold">
+                    <div 
+                        className="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold"
+                        aria-hidden="true"
+                    >
                         EVA
                     </div>
                     <div>
@@ -98,7 +104,14 @@ export function EVAChatPanel() {
 
             <CardContent className="flex-1 p-0 overflow-hidden">
                 <ScrollArea className="h-full p-4">
-                    <div ref={scrollAreaRef} className="space-y-4">
+                    <div 
+                        ref={scrollAreaRef} 
+                        className="space-y-4"
+                        role="log"
+                        aria-label={i18nService.t('chat.messageList')}
+                        aria-live="polite"
+                        aria-atomic="false"
+                    >
                         {messages.map((message) => (
                             <div
                                 key={message.id}
@@ -112,43 +125,72 @@ export function EVAChatPanel() {
                                             ? 'bg-primary text-primary-foreground'
                                             : 'bg-muted text-foreground'
                                     }`}
+                                    role={message.sender === 'bot' ? 'article' : undefined}
+                                    aria-label={message.sender === 'bot' ? 'EVA response' : undefined}
                                 >
                                     <p className="text-sm">{message.text}</p>
-                                    <span className="text-xs opacity-70 mt-1 block">
+                                    <time 
+                                        className="text-xs opacity-70 mt-1 block"
+                                        dateTime={message.timestamp.toISOString()}
+                                    >
                                         {message.timestamp.toLocaleTimeString([], {
                                             hour: '2-digit',
                                             minute: '2-digit',
                                         })}
-                                    </span>
+                                    </time>
                                 </div>
                             </div>
                         ))}
+                        <div ref={messagesEndRef} />
                     </div>
                 </ScrollArea>
             </CardContent>
 
             <CardFooter className="border-t border-border p-4">
-                <div className="flex gap-2 w-full">
+                <form 
+                    className="flex gap-2 w-full"
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                        handleSendMessage()
+                    }}
+                    aria-label="Send message to EVA"
+                >
                     <Button
+                        type="button"
                         variant="outline"
                         size="icon"
                         onClick={handleVoiceInput}
                         aria-label={i18nService.t('chat.voice')}
+                        disabled={isSending}
                     >
-                        <Microphone size={20} />
+                        <Microphone size={20} aria-hidden="true" />
                     </Button>
                     <Input
+                        ref={inputRef}
+                        id="chat-input"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         onKeyDown={handleKeyDown}
                         placeholder={i18nService.t('chat.placeholder')}
                         className="flex-1"
+                        disabled={isSending}
+                        aria-label={i18nService.t('chat.placeholder')}
+                        autoComplete="off"
                     />
-                    <Button onClick={handleSendMessage} disabled={!inputValue.trim()}>
-                        <PaperPlaneRight size={20} />
+                    <Button 
+                        type="submit"
+                        disabled={!inputValue.trim() || isSending}
+                        aria-label={isSending ? i18nService.t('chat.sending') : i18nService.t('chat.send')}
+                    >
+                        <PaperPlaneRight size={20} aria-hidden="true" />
                         <span className="ml-2">{i18nService.t('chat.send')}</span>
                     </Button>
-                </div>
+                </form>
+                {isSending && (
+                    <div className="sr-only" role="status" aria-live="polite">
+                        {i18nService.t('chat.sending')}
+                    </div>
+                )}
             </CardFooter>
         </Card>
     )

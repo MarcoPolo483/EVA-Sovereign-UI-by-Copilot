@@ -4,6 +4,8 @@ export type TranslationKey =
     | 'app.name'
     | 'hero.title'
     | 'hero.description'
+    | 'header.skipToContent'
+    | 'header.navigation'
     | 'language.english'
     | 'language.french'
     | 'language.switcher.label'
@@ -25,6 +27,8 @@ export type TranslationKey =
     | 'chat.welcome'
     | 'chat.send'
     | 'chat.voice'
+    | 'chat.messageList'
+    | 'chat.sending'
     | 'footer.copyright'
     | 'footer.privacy'
     | 'footer.terms'
@@ -35,9 +39,11 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'app.name': 'Government Portal',
         'hero.title': 'Welcome to the Government Portal',
         'hero.description': 'Access your services and information securely',
+        'header.skipToContent': 'Skip to main content',
+        'header.navigation': 'Main navigation',
         'language.english': 'English',
         'language.french': 'Français',
-        'language.switcher.label': 'Language',
+        'language.switcher.label': 'Switch language',
         'demo.controls': 'Demo Controls',
         'demo.profile': 'Sovereign Profile',
         'demo.language': 'Language',
@@ -55,7 +61,9 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'chat.placeholder': 'Type your question here...',
         'chat.welcome': 'Hello! How can I help you today?',
         'chat.send': 'Send',
-        'chat.voice': 'Voice input not yet implemented',
+        'chat.voice': 'Use voice input',
+        'chat.messageList': 'Conversation messages',
+        'chat.sending': 'Sending message...',
         'footer.copyright': '© 2024 Government Portal. All rights reserved.',
         'footer.privacy': 'Privacy',
         'footer.terms': 'Terms of Use',
@@ -65,9 +73,11 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'app.name': 'Portail gouvernemental',
         'hero.title': 'Bienvenue au portail gouvernemental',
         'hero.description': 'Accédez à vos services et informations en toute sécurité',
+        'header.skipToContent': 'Passer au contenu principal',
+        'header.navigation': 'Navigation principale',
         'language.english': 'English',
         'language.french': 'Français',
-        'language.switcher.label': 'Langue',
+        'language.switcher.label': 'Changer de langue',
         'demo.controls': 'Contrôles de démo',
         'demo.profile': 'Profil souverain',
         'demo.language': 'Langue',
@@ -85,7 +95,9 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'chat.placeholder': 'Tapez votre question ici...',
         'chat.welcome': 'Bonjour! Comment puis-je vous aider aujourd\'hui?',
         'chat.send': 'Envoyer',
-        'chat.voice': 'L\'entrée vocale n\'est pas encore implémentée',
+        'chat.voice': 'Utiliser l\'entrée vocale',
+        'chat.messageList': 'Messages de conversation',
+        'chat.sending': 'Envoi du message...',
         'footer.copyright': '© 2024 Portail gouvernemental. Tous droits réservés.',
         'footer.privacy': 'Confidentialité',
         'footer.terms': 'Conditions d\'utilisation',

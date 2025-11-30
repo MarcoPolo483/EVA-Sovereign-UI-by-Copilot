@@ -10,9 +10,12 @@ export function EVAHeroBanner({ titleKey, descriptionKey }: EVAHeroBannerProps) 
     useLocaleChange()
     
     return (
-        <section className="bg-primary text-primary-foreground rounded-lg p-8 mb-8 shadow-lg">
+        <section 
+            className="bg-primary text-primary-foreground rounded-lg p-8 mb-8 shadow-lg"
+            aria-labelledby="hero-title"
+        >
             <div className="max-w-3xl">
-                <h2 className="text-3xl font-bold mb-4">
+                <h2 id="hero-title" className="text-3xl font-bold mb-4">
                     {i18nService.t(titleKey)}
                 </h2>
                 <p className="text-lg opacity-95">
