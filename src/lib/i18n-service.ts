@@ -1,11 +1,12 @@
 export type Locale = 'en-CA' | 'fr-CA'
 
-type TranslationKey = 
+export type TranslationKey = 
     | 'app.name'
     | 'hero.title'
     | 'hero.description'
     | 'header.skipToMain'
     | 'header.nav'
+    | 'header.navigation'
     | 'language.english'
     | 'language.french'
     | 'language.switcher'
@@ -14,9 +15,13 @@ type TranslationKey =
     | 'demo.language'
     | 'quick.actions.title'
     | 'quick.actions.myAccount'
+    | 'quick.actions.myAccount.description'
     | 'quick.actions.applications'
+    | 'quick.actions.applications.description'
     | 'quick.actions.payments'
+    | 'quick.actions.payments.description'
     | 'quick.actions.documents'
+    | 'quick.actions.documents.description'
     | 'chat.title'
     | 'chat.subtitle'
     | 'chat.welcome'
@@ -37,6 +42,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'hero.description': 'Access your government services and information in one place',
         'header.skipToMain': 'Skip to main content',
         'header.nav': 'Main navigation',
+        'header.navigation': 'Main navigation',
         'language.english': 'English',
         'language.french': 'Français',
         'language.switcher': 'Language toggle',
@@ -45,9 +51,13 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'demo.language': 'Language',
         'quick.actions.title': 'Quick Actions',
         'quick.actions.myAccount': 'My Account',
+        'quick.actions.myAccount.description': 'View and manage your profile',
         'quick.actions.applications': 'Applications',
+        'quick.actions.applications.description': 'Track your application status',
         'quick.actions.payments': 'Payments',
+        'quick.actions.payments.description': 'View payment history',
         'quick.actions.documents': 'Documents',
+        'quick.actions.documents.description': 'Access your documents',
         'chat.title': 'Ask EVA',
         'chat.subtitle': 'AI Assistant',
         'chat.welcome': 'Hello! How can I help you today?',
@@ -67,6 +77,7 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'hero.description': 'Accédez à vos services et informations gouvernementaux en un seul endroit',
         'header.skipToMain': 'Passer au contenu principal',
         'header.nav': 'Navigation principale',
+        'header.navigation': 'Navigation principale',
         'language.english': 'English',
         'language.french': 'Français',
         'language.switcher': 'Sélecteur de langue',
@@ -75,9 +86,13 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'demo.language': 'Langue',
         'quick.actions.title': 'Actions rapides',
         'quick.actions.myAccount': 'Mon compte',
+        'quick.actions.myAccount.description': 'Voir et gérer votre profil',
         'quick.actions.applications': 'Applications',
+        'quick.actions.applications.description': 'Suivre l\'état de vos demandes',
         'quick.actions.payments': 'Paiements',
+        'quick.actions.payments.description': 'Voir l\'historique des paiements',
         'quick.actions.documents': 'Documents',
+        'quick.actions.documents.description': 'Accéder à vos documents',
         'chat.title': 'Demandez à EVA',
         'chat.subtitle': 'Assistant IA',
         'chat.welcome': 'Bonjour! Comment puis-je vous aider aujourd\'hui?',

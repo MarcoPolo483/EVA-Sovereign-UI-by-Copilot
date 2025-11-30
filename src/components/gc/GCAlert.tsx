@@ -1,15 +1,15 @@
 import { Info, Warning, CheckCircle, XCircle, X } from "@phosphor-icons/react"
+import { cn } from "@/lib/utils"
 
+export type GCAlertVariant = "info" | "success" | "warning" | "danger"
 
+interface GCAlertProps {
   variant?: GCAlertVariant
-
+  title?: string
+  children: React.ReactNode
+  dismissible?: boolean
   onDismiss?: () => void
-}
-const variantSty
-    container: "bg-blue-50 
-    IconComponent: Info
-  success: {
-    icon: "text-gree
+  className?: string
 }
 
 const variantStyles = {
@@ -46,37 +46,31 @@ export function GCAlert({
   const styles = variantStyles[variant]
   const Icon = styles.IconComponent
 
-          
-         
-          )}
-            {childre
-        </div>
-          <button
-            class
-        
-     
+  return (
+    <div 
+      className={cn(
+        "border-l-4 p-4 rounded-sm flex gap-3 relative",
+        styles.container,
+        className
+      )}
+      role="alert"
+    >
+      <Icon className={cn("flex-shrink-0", styles.icon)} size={24} weight="fill" />
+      <div className="flex-1">
+        {title && (
+          <div className="font-bold mb-1">{title}</div>
+        )}
+        <div>{children}</div>
       </div>
+      {dismissible && onDismiss && (
+        <button
+          onClick={onDismiss}
+          className="flex-shrink-0 hover:opacity-70 transition-opacity"
+          aria-label="Dismiss alert"
+        >
+          <X size={20} />
+        </button>
+      )}
+    </div>
   )
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

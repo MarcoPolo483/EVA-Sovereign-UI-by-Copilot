@@ -42,6 +42,7 @@ function App() {
 
   const toggleFavorite = (id: string) => {
     setFavorites((current) => {
+      if (!current) return [id]
       if (current.includes(id)) {
         return current.filter((fav) => fav !== id)
       }
@@ -194,7 +195,7 @@ function App() {
                   <CSSSnippetCard
                     key={snippet.id}
                     snippet={snippet}
-                    isFavorite={favorites.includes(snippet.id)}
+                    isFavorite={favorites?.includes(snippet.id) || false}
                     isCopied={copiedId === snippet.id}
                     onCopy={() => copyToClipboard(snippet.code, snippet.id, snippet.name)}
                     onToggleFavorite={() => toggleFavorite(snippet.id)}
@@ -217,7 +218,7 @@ function App() {
                   <ColorPaletteCard
                     key={palette.id}
                     palette={palette}
-                    isFavorite={favorites.includes(palette.id)}
+                    isFavorite={favorites?.includes(palette.id) || false}
                     onCopyColor={(color, format) => copyToClipboard(color, `${palette.id}-${format}`, format.toUpperCase())}
                     onCopyPalette={(text) => copyToClipboard(text, palette.id, palette.name)}
                     onToggleFavorite={() => toggleFavorite(palette.id)}
@@ -241,7 +242,7 @@ function App() {
                   <StyleTemplateCard
                     key={template.id}
                     template={template}
-                    isFavorite={favorites.includes(template.id)}
+                    isFavorite={favorites?.includes(template.id) || false}
                     isCopied={copiedId === template.id}
                     onCopy={() => copyToClipboard(template.css, template.id, template.name)}
                     onToggleFavorite={() => toggleFavorite(template.id)}
@@ -264,7 +265,7 @@ function App() {
                   <GraphicElementCard
                     key={element.id}
                     element={element}
-                    isFavorite={favorites.includes(element.id)}
+                    isFavorite={favorites?.includes(element.id) || false}
                     isCopied={copiedId === element.id}
                     onCopy={() => copyToClipboard(element.svg, element.id, element.name)}
                     onToggleFavorite={() => toggleFavorite(element.id)}
