@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GCHeader } from '@/components/eva/GCHeader';
 import { GCFooter } from '@/components/eva/GCFooter';
 import { LanguageSwitcher } from '@/components/eva/LanguageSwitcher';
@@ -18,6 +18,12 @@ export function DeveloperKitDemo() {
   const [currentProfile, setCurrentProfile] = useState<ProfileId>('canada_gc');
 
   const profile = sovereignProfiles[currentProfile];
+
+  useEffect(() => {
+    if (!profile.availableLocales.includes(locale)) {
+      setLocale(profile.defaultLocale);
+    }
+  }, [currentProfile]);
 
   return (
     <div className="min-h-screen flex flex-col bg-background">

@@ -87,7 +87,7 @@ export const sovereignProfiles: Record<string, SovereignProfile> = {
       { label: 'GOV.UK', url: 'https://www.gov.uk' },
     ],
     defaultLocale: 'en-GB',
-    availableLocales: ['en-GB', 'cy-GB'],
+    availableLocales: ['en-GB'],
   },
   
   australia_gov: {
@@ -131,7 +131,7 @@ export const sovereignProfiles: Record<string, SovereignProfile> = {
       { label: 'Govt.nz', url: 'https://www.govt.nz' },
     ],
     defaultLocale: 'en-NZ',
-    availableLocales: ['en-NZ', 'mi-NZ'],
+    availableLocales: ['en-NZ'],
   },
   
   spain_gov: {
