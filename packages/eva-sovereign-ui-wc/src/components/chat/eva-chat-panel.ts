@@ -42,8 +42,9 @@ export class EVAChatPanel extends EVABaseComponent {
       this.handleSend();
     });
 
-    this.shadow.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
+    this.shadow.addEventListener('keydown', (e: Event) => {
+      const keyEvent = e as KeyboardEvent;
+      if (keyEvent.key === 'Enter' && !keyEvent.shiftKey) {
         const target = e.target as HTMLElement;
         if (target.tagName === 'INPUT') {
           e.preventDefault();
