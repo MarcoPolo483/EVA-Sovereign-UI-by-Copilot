@@ -19,6 +19,13 @@ import {
 } from '@/components/gc';
 import { GCBasicTemplate } from './GCBasicTemplate';
 import { GCFormTemplate } from './GCFormTemplate';
+import { GCServiceTemplate } from './GCServiceTemplate';
+import { GCTopicTemplate } from './GCTopicTemplate';
+import { GCCalculatorTemplate } from './GCCalculatorTemplate';
+import { GCChecklistTemplate } from './GCChecklistTemplate';
+import { GCContactTemplate } from './GCContactTemplate';
+import { GCNewsTemplate } from './GCNewsTemplate';
+import { GCDashboardTemplate } from './GCDashboardTemplate';
 import { CheckCircle, Copy } from '@phosphor-icons/react';
 import { toast } from 'sonner';
 
@@ -483,20 +490,98 @@ export function GCComponentsShowcase() {
               <CardDescription>Complete page layouts following GC Design System patterns</CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="space-y-4">
-                <div className="border rounded-lg p-6 bg-muted/10">
-                  <h3 className="text-xl font-bold mb-2">Basic Page Template</h3>
-                  <p className="text-muted-foreground mb-4">Standard content page with proper typography and structure</p>
-                  <div className="border rounded-lg bg-background p-6 max-h-[600px] overflow-y-auto">
-                    <GCBasicTemplate />
-                  </div>
+              <p className="text-base text-muted-foreground">
+                Choose from 10 production-ready page templates designed for common government service patterns. Each template includes proper accessibility, bilingual support, and follows official GC design standards.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Basic Page</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Standard content page with proper typography and structure</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
                 </div>
 
-                <div className="border rounded-lg p-6 bg-muted/10">
-                  <h3 className="text-xl font-bold mb-2">Application Form Template</h3>
-                  <p className="text-muted-foreground mb-4">Complete form with validation and accessibility features</p>
-                  <div className="border rounded-lg bg-background p-6 max-h-[600px] overflow-y-auto">
-                    <GCFormTemplate />
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Application Form</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Complete form with validation and accessibility features</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Service Page</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Service description with eligibility, how to apply, and FAQ</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Topic Page</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Topic navigation with service cards and most requested links</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Calculator Tool</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Interactive calculator for pension estimates and benefits</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Checklist/Wizard</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Multi-step eligibility checker with progress tracking</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Contact Page</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Contact information organized by channel (phone, online, in-person)</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">News & Updates</h3>
+                  <p className="text-sm text-muted-foreground mb-3">News articles with filtering, search, and pagination</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Dashboard</h3>
+                  <p className="text-sm text-muted-foreground mb-3">User dashboard for My Service Canada Account</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+
+                <div className="border rounded-lg p-4 hover:border-primary transition-colors">
+                  <h3 className="text-lg font-bold mb-2">Components Showcase</h3>
+                  <p className="text-sm text-muted-foreground mb-3">Interactive demo of all GC Design System components</p>
+                  <GCButton variant="link" size="small">View template</GCButton>
+                </div>
+              </div>
+
+              <div className="bg-muted/30 rounded-lg p-6 mt-6">
+                <h4 className="font-bold text-lg mb-3">Template Features</h4>
+                <div className="grid md:grid-cols-2 gap-3 text-sm">
+                  <div className="flex items-start gap-2">
+                    <CheckCircle size={18} weight="fill" className="text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>WCAG 2.1 Level AA compliant</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle size={18} weight="fill" className="text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Fully responsive design</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle size={18} weight="fill" className="text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Bilingual-ready architecture</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle size={18} weight="fill" className="text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Keyboard navigation support</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle size={18} weight="fill" className="text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Semantic HTML structure</span>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <CheckCircle size={18} weight="fill" className="text-green-600 flex-shrink-0 mt-0.5" />
+                    <span>Official GC design tokens</span>
                   </div>
                 </div>
               </div>
