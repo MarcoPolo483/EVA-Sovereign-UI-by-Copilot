@@ -1,10 +1,11 @@
 /**
  * EVA Page Shell Component
- * Semantic page structure with header, main, and footer slots
+ * Semantic page structure with Spark styling
+ * Features: modern layout, oklch() colors, flex-based structure
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcColors, gcTypography } from '../../tokens';
+import { modernColors, gcTypography } from '../../tokens';
 
 export class EVAPageShell extends EVABaseComponent {
   protected render(): void {
@@ -16,8 +17,8 @@ export class EVAPageShell extends EVABaseComponent {
         flex-direction: column;
         min-height: 100vh;
         font-family: ${gcTypography.fontBody};
-        color: ${gcColors.text};
-        background: ${gcColors.background};
+        color: ${modernColors.foreground};
+        background: ${modernColors.background};
       }
 
       header {
@@ -27,10 +28,16 @@ export class EVAPageShell extends EVABaseComponent {
       main {
         flex: 1 0 auto;
         padding: 0;
+        scroll-margin-top: 4rem;
+      }
+      
+      main:focus {
+        outline: none;
       }
 
       footer {
         flex-shrink: 0;
+        margin-top: auto;
       }
     `));
 
@@ -43,6 +50,7 @@ export class EVAPageShell extends EVABaseComponent {
     const main = document.createElement('main');
     main.id = 'main-content';
     main.setAttribute('role', 'main');
+    main.setAttribute('tabindex', '-1');
     const mainSlot = document.createElement('slot');
     main.appendChild(mainSlot);
     this.shadow.appendChild(main);

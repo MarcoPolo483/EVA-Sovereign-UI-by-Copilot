@@ -1,10 +1,18 @@
 /**
  * EVA Program Card Component
- * Card for displaying ESDC programs
+ * Card for ESDC programs with Spark styling
+ * Features: modern shadows, smooth hover, enhanced focus states
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcColors, gcTypography, gcSpacing } from '../../tokens';
+import { 
+  modernColors,
+  gcColors, 
+  gcTypography, 
+  gcSpacing,
+  shadows,
+  transitions,
+} from '../../tokens';
 
 export class EVAProgramCard extends EVABaseComponent {
   static get observedAttributes() {
@@ -29,55 +37,76 @@ export class EVAProgramCard extends EVABaseComponent {
     this.shadow.appendChild(this.createStyles(`
       :host {
         display: block;
-      }
-
-      .card {
-        background: ${gcColors.background};
-        border: 2px solid ${gcColors.border};
-        border-radius: ${gcSpacing.xs};
-        padding: ${gcSpacing.cardPadding};
-        transition: all 0.2s ease;
-        text-decoration: none;
-        display: block;
         height: 100%;
       }
 
-      .card:hover {
-        border-color: ${gcColors.linkBlue};
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transform: translateY(-2px);
+      .card {
+        background: ${modernColors.card};
+        border: 1px solid ${modernColors.border};
+        border-radius: ${gcSpacing[3]};
+        padding: ${gcSpacing[6]};
+        transition: ${transitions.all};
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        box-shadow: ${shadows.sm};
       }
 
-      .card:focus {
-        outline: 3px solid ${gcColors.focusOutline};
+      .card:hover {
+        border-color: ${modernColors.primary};
+        box-shadow: ${shadows.lg};
+        transform: translateY(-4px);
+      }
+
+      .card:focus-visible {
+        outline: 3px solid ${modernColors.ring};
         outline-offset: 2px;
+        box-shadow: ${shadows.lg}, 0 0 0 3px color-mix(in srgb, ${modernColors.ring} 20%, transparent);
       }
 
       .icon {
-        font-size: 48px;
-        margin-bottom: ${gcSpacing.sm};
+        font-size: 3rem;
+        margin-bottom: ${gcSpacing[4]};
         display: block;
+        line-height: 1;
       }
 
       .title {
         font-family: ${gcTypography.fontHeading};
-        font-size: ${gcTypography.sizeH3};
+        font-size: 1.5rem;
         font-weight: ${gcTypography.weightBold};
-        color: ${gcColors.linkBlue};
-        margin: 0 0 ${gcSpacing.sm} 0;
+        color: ${modernColors.primary};
+        margin: 0 0 ${gcSpacing[3]} 0;
+        line-height: 1.3;
+        transition: ${transitions.colors};
       }
 
       .description {
         font-family: ${gcTypography.fontBody};
-        font-size: ${gcTypography.sizeBody};
-        color: ${gcColors.text};
-        line-height: ${gcTypography.lineHeight};
+        font-size: 0.875rem;
+        color: ${modernColors.mutedForeground};
+        line-height: 1.6;
         margin: 0;
+        flex: 1;
       }
 
       .card:hover .title {
-        color: ${gcColors.linkHover};
+        color: color-mix(in srgb, ${modernColors.primary} 85%, black);
         text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+      
+      /* Accessibility: Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .card,
+        .title {
+          transition-duration: 0.01ms !important;
+        }
+        
+        .card:hover {
+          transform: none;
+        }
       }
     `));
 
