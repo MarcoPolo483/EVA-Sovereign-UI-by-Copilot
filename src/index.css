@@ -1,1 +1,79 @@
 /* This is where custom CSS goes */
+
+.eva-theme-canada_gc_intranet {
+  --primary: oklch(0.45 0.12 250);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.50 0.20 25);
+  --secondary-foreground: oklch(0.98 0 0);
+  --accent: oklch(0.55 0.15 150);
+  --accent-foreground: oklch(0.98 0 0);
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.20 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.20 0 0);
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --border: oklch(0.88 0 0);
+  --input: oklch(0.88 0 0);
+  --ring: oklch(0.45 0.12 250);
+}
+
+.eva-theme-uk_gov_internal {
+  --primary: oklch(0.30 0.08 260);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.45 0.12 340);
+  --secondary-foreground: oklch(0.98 0 0);
+  --accent: oklch(0.50 0.15 120);
+  --accent-foreground: oklch(0.98 0 0);
+  --background: oklch(0.96 0 0);
+  --foreground: oklch(0.18 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0 0);
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.42 0 0);
+  --border: oklch(0.86 0 0);
+  --input: oklch(0.86 0 0);
+  --ring: oklch(0.30 0.08 260);
+}
+
+.eva-theme-us_gov_internal {
+  --primary: oklch(0.40 0.15 230);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.48 0.18 15);
+  --secondary-foreground: oklch(0.98 0 0);
+  --accent: oklch(0.52 0.12 140);
+  --accent-foreground: oklch(0.98 0 0);
+  --background: oklch(0.97 0 0);
+  --foreground: oklch(0.22 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.46 0 0);
+  --border: oklch(0.87 0 0);
+  --input: oklch(0.87 0 0);
+  --ring: oklch(0.40 0.15 230);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only:focus,
+.sr-only:not-sr-only {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
