@@ -1,4 +1,4 @@
-export type SovereignProfileId = 'canada_gc_intranet' | 'uk_gov_internal' | 'us_gov_internal'
+export type SovereignProfileId = 'canada_gc_intranet' | 'uk_gov_internal' | 'us_gov_internal' | 'australia_gov_internal' | 'new_zealand_gov_internal'
 
 export interface SovereignProfile {
     id: SovereignProfileId
@@ -48,6 +48,30 @@ export const sovereignProfiles: Record<SovereignProfileId, SovereignProfile> = {
             accent: 'oklch(0.52 0.12 140)',
             background: 'oklch(0.97 0 0)',
             foreground: 'oklch(0.22 0 0)',
+        },
+    },
+    australia_gov_internal: {
+        id: 'australia_gov_internal',
+        name: 'Australian Government',
+        description: 'Australian Government design system adaptation',
+        colors: {
+            primary: 'oklch(0.35 0.10 245)',
+            secondary: 'oklch(0.58 0.16 35)',
+            accent: 'oklch(0.48 0.14 165)',
+            background: 'oklch(0.99 0 0)',
+            foreground: 'oklch(0.19 0 0)',
+        },
+    },
+    new_zealand_gov_internal: {
+        id: 'new_zealand_gov_internal',
+        name: 'New Zealand Government',
+        description: 'New Zealand Government design system adaptation',
+        colors: {
+            primary: 'oklch(0.28 0.09 255)',
+            secondary: 'oklch(0.52 0.14 20)',
+            accent: 'oklch(0.45 0.13 155)',
+            background: 'oklch(0.98 0 0)',
+            foreground: 'oklch(0.17 0 0)',
         },
     },
 }
