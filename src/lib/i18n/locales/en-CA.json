@@ -75,6 +75,9 @@
     "apply": "Apply now",
     "english": "English",
     "french": "Français",
+    "spanish": "Español",
+    "italian": "Italiano",
+    "german": "Deutsch",
     "loading": "Loading...",
     "error": "An error occurred",
     "close": "Close"

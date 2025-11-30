@@ -1,4 +1,4 @@
-import { gcColors, usaColors, ukColors, australiaColors, nzColors } from './colors';
+import { gcColors, usaColors, ukColors, australiaColors, nzColors, spainColors, italyColors, germanyColors } from './colors';
 
 export interface SovereignProfile {
   id: string;
@@ -132,5 +132,71 @@ export const sovereignProfiles: Record<string, SovereignProfile> = {
     ],
     defaultLocale: 'en-NZ',
     availableLocales: ['en-NZ', 'mi-NZ'],
+  },
+  
+  spain_gov: {
+    id: 'spain_gov',
+    name: 'Gobierno de España',
+    nameShort: 'España',
+    flag: '🇪🇸',
+    colors: {
+      primary: spainColors.primary,
+      secondary: spainColors.secondary,
+      accent: spainColors.accent,
+      background: spainColors.background,
+      text: spainColors.text,
+    },
+    legalText: '© Gobierno de España',
+    links: [
+      { label: 'Privacidad', url: 'https://www.lamoncloa.gob.es/paginas/privacidad.aspx' },
+      { label: 'Accesibilidad', url: 'https://www.lamoncloa.gob.es/paginas/accesibilidad.aspx' },
+      { label: 'Administración.es', url: 'https://administracion.gob.es' },
+    ],
+    defaultLocale: 'es-ES',
+    availableLocales: ['es-ES', 'en-CA'],
+  },
+  
+  italy_gov: {
+    id: 'italy_gov',
+    name: 'Governo Italiano',
+    nameShort: 'Italia',
+    flag: '🇮🇹',
+    colors: {
+      primary: italyColors.primary,
+      secondary: italyColors.secondary,
+      accent: italyColors.accent,
+      background: italyColors.background,
+      text: italyColors.text,
+    },
+    legalText: '© Repubblica Italiana',
+    links: [
+      { label: 'Privacy', url: 'https://www.governo.it/it/privacy-policy' },
+      { label: 'Accessibilità', url: 'https://www.governo.it/it/accessibilita' },
+      { label: 'Governo.it', url: 'https://www.governo.it' },
+    ],
+    defaultLocale: 'it-IT',
+    availableLocales: ['it-IT', 'en-CA'],
+  },
+  
+  germany_gov: {
+    id: 'germany_gov',
+    name: 'Bundesregierung Deutschland',
+    nameShort: 'Deutschland',
+    flag: '🇩🇪',
+    colors: {
+      primary: germanyColors.primary,
+      secondary: germanyColors.secondary,
+      accent: germanyColors.accent,
+      background: germanyColors.background,
+      text: germanyColors.text,
+    },
+    legalText: '© Bundesrepublik Deutschland',
+    links: [
+      { label: 'Datenschutz', url: 'https://www.bundesregierung.de/breg-de/service/datenschutzhinweis' },
+      { label: 'Barrierefreiheit', url: 'https://www.bundesregierung.de/breg-de/service/erklaerung-zur-barrierefreiheit' },
+      { label: 'Bundesregierung.de', url: 'https://www.bundesregierung.de' },
+    ],
+    defaultLocale: 'de-DE',
+    availableLocales: ['de-DE', 'en-CA'],
   },
 };

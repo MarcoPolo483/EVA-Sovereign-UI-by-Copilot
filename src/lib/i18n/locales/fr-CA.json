@@ -75,6 +75,9 @@
     "apply": "Faire une demande",
     "english": "English",
     "french": "Français",
+    "spanish": "Español",
+    "italian": "Italiano",
+    "german": "Deutsch",
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",
     "close": "Fermer"

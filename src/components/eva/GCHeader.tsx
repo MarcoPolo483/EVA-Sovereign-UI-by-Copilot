@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 interface GCHeaderProps {
   appName: string;
-  profile?: 'canada_gc' | 'usa_gov' | 'uk_gov' | 'australia_gov' | 'nz_gov';
+  profile?: 'canada_gc' | 'usa_gov' | 'uk_gov' | 'australia_gov' | 'nz_gov' | 'spain_gov' | 'italy_gov' | 'germany_gov';
   children?: ReactNode;
   className?: string;
 }
@@ -21,6 +21,12 @@ export function GCHeader({ appName, profile = 'canada_gc', children, className }
         return { flag: '🇦🇺', name: 'Australian Government' };
       case 'nz_gov':
         return { flag: '🇳🇿', name: 'New Zealand Government' };
+      case 'spain_gov':
+        return { flag: '🇪🇸', name: 'Gobierno de España' };
+      case 'italy_gov':
+        return { flag: '🇮🇹', name: 'Governo Italiano' };
+      case 'germany_gov':
+        return { flag: '🇩🇪', name: 'Bundesregierung Deutschland' };
       default:
         return { flag: '🇨🇦', name: 'Government of Canada' };
     }

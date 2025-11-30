@@ -2,9 +2,15 @@ import { useState, useEffect, useCallback } from 'react';
 import { i18nService } from './i18n-service';
 import enCA from './locales/en-CA.json';
 import frCA from './locales/fr-CA.json';
+import esES from './locales/es-ES.json';
+import itIT from './locales/it-IT.json';
+import deDE from './locales/de-DE.json';
 
 i18nService.setTranslations('en-CA', enCA);
 i18nService.setTranslations('fr-CA', frCA);
+i18nService.setTranslations('es-ES', esES);
+i18nService.setTranslations('it-IT', itIT);
+i18nService.setTranslations('de-DE', deDE);
 
 export function useI18n() {
   const [locale, setLocaleState] = useState(i18nService.getLocale());

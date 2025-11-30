@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 interface GCFooterProps {
-  profile?: 'canada_gc' | 'usa_gov' | 'uk_gov' | 'australia_gov' | 'nz_gov';
+  profile?: 'canada_gc' | 'usa_gov' | 'uk_gov' | 'australia_gov' | 'nz_gov' | 'spain_gov' | 'italy_gov' | 'germany_gov';
   legalText?: string;
   links?: Array<{ label: string; url: string }>;
   className?: string;
@@ -53,6 +53,30 @@ export function GCFooter({ profile = 'canada_gc', legalText, links, className }:
           links: [
             { label: 'Privacy', url: 'https://www.govt.nz/privacy' },
             { label: 'Accessibility', url: 'https://www.govt.nz/accessibility' },
+          ]
+        };
+      case 'spain_gov':
+        return {
+          legal: '© Gobierno de España',
+          links: [
+            { label: 'Privacidad', url: 'https://www.lamoncloa.gob.es/paginas/privacidad.aspx' },
+            { label: 'Accesibilidad', url: 'https://www.lamoncloa.gob.es/paginas/accesibilidad.aspx' },
+          ]
+        };
+      case 'italy_gov':
+        return {
+          legal: '© Repubblica Italiana',
+          links: [
+            { label: 'Privacy', url: 'https://www.governo.it/it/privacy-policy' },
+            { label: 'Accessibilità', url: 'https://www.governo.it/it/accessibilita' },
+          ]
+        };
+      case 'germany_gov':
+        return {
+          legal: '© Bundesrepublik Deutschland',
+          links: [
+            { label: 'Datenschutz', url: 'https://www.bundesregierung.de/breg-de/service/datenschutzhinweis' },
+            { label: 'Barrierefreiheit', url: 'https://www.bundesregierung.de/breg-de/service/erklaerung-zur-barrierefreiheit' },
           ]
         };
       default:

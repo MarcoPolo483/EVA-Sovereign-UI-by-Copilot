@@ -39,3 +39,27 @@ export const nzColors = {
   background: '#ffffff',
   text: '#333333',
 };
+
+export const spainColors = {
+  primary: '#c60b1e',
+  secondary: '#ffc400',
+  accent: '#c60b1e',
+  background: '#ffffff',
+  text: '#2b2b2b',
+};
+
+export const italyColors = {
+  primary: '#009246',
+  secondary: '#ce2b37',
+  accent: '#009246',
+  background: '#ffffff',
+  text: '#1a1a1a',
+};
+
+export const germanyColors = {
+  primary: '#000000',
+  secondary: '#dd0000',
+  accent: '#ffce00',
+  background: '#ffffff',
+  text: '#2d2d2d',
+};
