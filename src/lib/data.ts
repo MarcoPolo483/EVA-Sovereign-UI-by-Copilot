@@ -1,7 +1,7 @@
 export interface CSSSnippet {
-  id: string
-  name: string
-  category: string
+  name: stri
+  tags: string
+  description: str
   tags: string[]
   code: string
   description: string
@@ -34,25 +34,25 @@ export interface GraphicElement {
   id: string
   name: string
   category: string
-  svg: string
-  customizable: boolean
-  description: string
-}
-
-export const cssSnippets: CSSSnippet[] = [
-  {
+export const 
     id: 'flex-center',
-    name: 'Flex Center',
+    category: 'Flexbo
+ 
+
+}`,
+  }
+    id: 'flex-between'
     category: 'Flexbox',
-    tags: ['layout', 'centering', 'flex'],
     code: `.container {
+  justify-content: space-between;
+}`,
   display: flex;
   justify-content: center;
   align-items: center;
 }`,
     description: 'Center content both horizontally and vertically'
-  },
-  {
+    
+  d
     id: 'flex-between',
     name: 'Flex Space Between',
     category: 'Flexbox',
@@ -120,28 +120,28 @@ export const cssSnippets: CSSSnippet[] = [
     description: 'Smooth fade in effect for elements'
   },
   {
-    id: 'slide-up',
-    name: 'Slide Up Animation',
-    category: 'Animation',
-    tags: ['animation', 'transform', 'entrance'],
-    code: `@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.slide-up {
-  animation: slideUp 0.4s ease-out;
-}`,
-    description: 'Element slides up from below while fading in'
   },
-  {
     id: 'truncate',
+    category: 'Typography'
+    code: `.truncate {
+  overflow: hidden;
+}`,
+  },
+    id: 'line-c
+   
+    co
+  -webkit-line-clamp: 3;
+  overflow: hid
+   
+ 
+
+    tags: [
+  box-shadow: 
+   
+}
+.car
+   
+}`,
     name: 'Text Truncate',
     category: 'Typography',
     tags: ['text', 'overflow', 'ellipsis'],
@@ -152,7 +152,7 @@ export const cssSnippets: CSSSnippet[] = [
 }`,
     description: 'Truncate overflowing text with ellipsis'
   },
-  {
+  b
     id: 'line-clamp',
     name: 'Multi-line Clamp',
     category: 'Typography',
@@ -287,156 +287,156 @@ export const colorPalettes: ColorPalette[] = [
     ]
   },
   {
-    id: 'neon-cyber',
-    name: 'Neon Cyber',
-    category: 'Vibrant',
-    description: 'Electric colors for tech and gaming',
-    colors: [
-      { name: 'Primary', hex: '#00FF9F', oklch: 'oklch(0.88 0.20 165)', rgb: 'rgb(0, 255, 159)' },
-      { name: 'Secondary', hex: '#00E4FF', oklch: 'oklch(0.85 0.15 205)', rgb: 'rgb(0, 228, 255)' },
-      { name: 'Accent', hex: '#D600FF', oklch: 'oklch(0.60 0.30 310)', rgb: 'rgb(214, 0, 255)' },
-      { name: 'Background', hex: '#0A0E1A', oklch: 'oklch(0.10 0.01 250)', rgb: 'rgb(10, 14, 26)' },
-      { name: 'Text', hex: '#F0F4FF', oklch: 'oklch(0.96 0.01 250)', rgb: 'rgb(240, 244, 255)' }
-    ]
-  }
-]
-
-export const styleTemplates: StyleTemplate[] = [
-  {
-    id: 'modern-button',
-    name: 'Modern Button',
-    category: 'Buttons',
-    tags: ['button', 'interactive', 'modern'],
-    description: 'Contemporary button with smooth transitions',
-    html: '<button class="modern-btn">Click Me</button>',
-    css: `.modern-btn {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  color: white;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.modern-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.modern-btn:active {
-  transform: translateY(0);
 }`
-  },
   {
-    id: 'glass-card',
     name: 'Glass Card',
-    category: 'Cards',
     tags: ['card', 'glass', 'modern'],
-    description: 'Glassmorphism card with backdrop blur',
-    html: '<div class="glass-card"><h3>Card Title</h3><p>Card content goes here</p></div>',
-    css: `.glass-card {
+    html: '<d
   padding: 2rem;
-  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 1rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
-
 .glass-card h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-  font-weight: 600;
+  fon
 }
+.
 
-.glass-card p {
-  margin: 0;
-  color: rgba(0, 0, 0, 0.7);
-}`
   },
-  {
-    id: 'floating-input',
-    name: 'Floating Label Input',
+   
     category: 'Forms',
-    tags: ['input', 'form', 'animated'],
-    description: 'Input with animated floating label',
-    html: '<div class="input-wrapper"><input type="text" class="floating-input" placeholder=" " id="email"><label for="email" class="floating-label">Email</label></div>',
-    css: `.input-wrapper {
-  position: relative;
+    description: 'Input wi
+    css: `.input-wrapper
   margin: 1rem 0;
-}
 
-.floating-input {
   width: 100%;
-  padding: 1rem;
   font-size: 1rem;
-  border: 2px solid #e2e8f0;
   border-radius: 0.5rem;
-  outline: none;
-  transition: border-color 0.3s;
-}
+  transition: bord
 
-.floating-input:focus {
-  border-color: #667eea;
-}
+  border-color:
 
-.floating-label {
-  position: absolute;
-  left: 1rem;
+  position: abs
   top: 1rem;
-  color: #64748b;
-  pointer-events: none;
-  transition: all 0.3s ease;
+  pointer-events: 
 }
-
 .floating-input:focus ~ .floating-label,
-.floating-input:not(:placeholder-shown) ~ .floating-label {
-  top: -0.5rem;
-  left: 0.75rem;
-  font-size: 0.75rem;
-  color: #667eea;
-  background: white;
-  padding: 0 0.25rem;
+ 
+
+  background: white
 }`
-  },
   {
-    id: 'gradient-card',
-    name: 'Gradient Card',
-    category: 'Cards',
-    tags: ['card', 'gradient', 'colorful'],
-    description: 'Card with animated gradient background',
-    html: '<div class="gradient-card"><h3>Feature Title</h3><p>Feature description</p></div>',
-    css: `.gradient-card {
+ 
+
+    html: '<div clas
   padding: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 1rem;
-  color: white;
-  position: relative;
-  overflow: hidden;
+  
+  po
 }
-
-.gradient-card::before {
-  content: '';
+.gradient-card::befor
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 100%);
-  opacity: 0;
+  background: linear-g
   transition: opacity 0.3s;
-}
 
-.gradient-card:hover::before {
   opacity: 1;
-}
 
-.gradient-card h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
+  margin: 0 0 0.
   font-weight: 600;
+
+  margin: 0;
+}`
+  {
+ 
+
+    html: '<span
+  display: inline-blo
+  font-size: 0.875re
+  color: white;
+ 
+
+.pill-badge.suc
 }
+.pill-badge.warning {
+}
+.pil
+}`
+  {
+    name: 'Neumorphic Card',
+    tags: ['card', 'ne
+    html: '<div class="neumorphic-card">
+  padding: 2rem;
+  border-radius: 1.5rem;
+    9px 9px 16px rgba(163,
+}
+.neumorphic-card 
+ 
+
+.neumorphic-card 
+  color: #666;
+  }
+
+  {
+    name: 'Wave Divider'
+    customizable
+    svg: `<svg viewBox="0 0 1200
+<
+
+    name: 'Organic Blob
+    customizable: true,
+ 
+
+  {
+    name: 'Dots Patte
+    customiza
+    svg: `<s
+    <pattern id="
+    </pattern>
+  <rect width="100" height="
+ 
+
+    category: 'Dividers',
+    description: 'Downward pointing arrow divider',
+  <path d="M649
+  },
+    id: 'triangle-pat
+    category: 'Pa
+    description: 'Ge
+  <defs>
+  
+    
+  <
+  },
+    id: 'curve-divider',
+    category: 'Divider
+    description: 'Elegant curve for section
+  <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200
+  },
+    id: 'blob-2',
+    category: 'S
+    description: 'Flowing organic shape',
+  <path fill="currentC
+  },
+    id: 'grid-pattern
+    category: 'Patt
+ 
+
+      <path d="M 20 0 L 
+  </defs>
+</svg>`
+]
+export const categories = {
+  colors: ['P
+  graphics: ['Dividers', 'S
+
+
+
+
+
+
+
+
+
+
+
 
 .gradient-card p {
   margin: 0;
