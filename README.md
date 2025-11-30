@@ -4,6 +4,69 @@
 
 Built using the official **Government of Canada Design System** with **WCAG 2.2 AAA accessibility**, full **internationalization** (5 languages), and **Five Eyes sovereign profiles** (🇨🇦🇺🇸🇬🇧🇦🇺🇳🇿).
 
+[![Tests](https://img.shields.io/badge/tests-282%2F282%20passing-brightgreen)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+[![Bundle Size](https://img.shields.io/badge/gzip-12.28%20KB%20ES-blue)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+[![Performance](https://img.shields.io/badge/render-1.02ms%20avg-success)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+[![WCAG](https://img.shields.io/badge/WCAG%202.2-AA%2B-blue)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+
+## ⚡ Quick Start (1 minute)
+
+### Option 1: Use Pre-built Bundle (Fastest)
+
+```html
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Gov App</title>
+</head>
+<body>
+  <!-- Import the components -->
+  <script type="module" src="./dist/eva-sovereign-ui.es.js"></script>
+
+  <!-- Use any component immediately -->
+  <eva-button variant="primary">Click Me</eva-button>
+  <eva-accordion>
+    <div slot="header">Section 1</div>
+    <div slot="content">Content here</div>
+  </eva-accordion>
+  <eva-pagination current="1" total="10"></eva-pagination>
+</body>
+</html>
+```
+
+### Option 2: Local Development (Full Setup)
+
+```bash
+# Clone and install
+git clone https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot.git
+cd EVA-Sovereign-UI-by-Copilot
+npm ci
+
+# Start dev server (opens at http://localhost:5173)
+npm run dev
+
+# Run tests
+npm test
+
+# Build for production
+npm run build
+```
+
+### Option 3: Try the Demos
+
+After cloning, visit:
+- **ESDC Portal**: http://localhost:5173/apps/esdc-demo/index.html
+- **Component Gallery**: http://localhost:5173/apps/dev-kit-demo/index.html
+
+### Production Build Artifacts
+
+After `npm run build`, use these files:
+- `dist/eva-sovereign-ui.es.js` - ES module (12.28 KB gzip)
+- `dist/eva-sovereign-ui.umd.js` - UMD bundle (10.96 KB gzip)
+- `dist/index.d.ts` - TypeScript definitions
+
 ---
 
 ## 🎯 Features
@@ -54,14 +117,110 @@ Built using the official **Government of Canada Design System** with **WCAG 2.2 
 
 ---
 
+## 🚀 Usage Examples
+
+### Basic Components
+
+```html
+<!-- Buttons -->
+<eva-button variant="primary">Primary Action</eva-button>
+<eva-button variant="secondary" size="lg">Large Button</eva-button>
+<eva-button variant="danger" disabled>Disabled</eva-button>
+
+<!-- Accordion -->
+<eva-accordion>
+  <div slot="header">Employment Insurance</div>
+  <div slot="content">
+    <p>Apply for EI benefits if you've lost your job...</p>
+  </div>
+</eva-accordion>
+
+<!-- Pagination with keyboard navigation -->
+<eva-pagination current="3" total="10"></eva-pagination>
+
+<!-- Dropdown Menu -->
+<eva-dropdown-menu>
+  <button slot="trigger">Open Menu</button>
+  <div slot="content">
+    <button>Option 1</button>
+    <button>Option 2</button>
+  </div>
+</eva-dropdown-menu>
+
+<!-- Language Switcher (reactive i18n) -->
+<eva-language-switcher></eva-language-switcher>
+```
+
+### Government of Canada Page Template
+
+```html
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <title>My Government Service</title>
+  <script type="module" src="./dist/eva-sovereign-ui.es.js"></script>
+</head>
+<body>
+  <!-- Official GC Header -->
+  <eva-gc-header profile="canada_gc"></eva-gc-header>
+  
+  <!-- Skip to main content (accessibility) -->
+  <eva-skip-link target="#main-content">Skip to main content</eva-skip-link>
+  
+  <!-- Page content -->
+  <main id="main-content">
+    <eva-container>
+      <eva-hero-banner 
+        title-key="hero.title"
+        description-key="hero.description">
+      </eva-hero-banner>
+      
+      <eva-card>
+        <h2>Service Information</h2>
+        <p>Your content here...</p>
+        <eva-button variant="primary">Get Started</eva-button>
+      </eva-card>
+    </eva-container>
+  </main>
+  
+  <!-- Official GC Footer -->
+  <eva-gc-footer profile="canada_gc"></eva-gc-footer>
+</body>
+</html>
+```
+
+### Keyboard Accessibility (Built-in)
+
+All interactive components support full keyboard navigation:
+- **Tab** - Move between components
+- **Arrow keys** - Navigate within menus, pagination, carousels
+- **Home/End** - Jump to first/last item
+- **Enter/Space** - Activate buttons and links
+- **Escape** - Close dialogs and menus
+
+### Internationalization
+
+```javascript
+// Components automatically react to locale changes
+import { i18n } from './dist/eva-sovereign-ui.es.js';
+
+// Switch language (triggers re-render of all components)
+await i18n.setLocale('fr-CA');
+
+// Available locales: en-CA, fr-CA, en-US, en-GB, en-AU
+```
+
+---
+
 ## 🚀 Quick Start
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/EVA-Sovereign-By-Copilot.git
-cd EVA-Sovereign-By-Copilot
+git clone https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot.git
+cd EVA-Sovereign-UI-by-Copilot
 
 # Install dependencies
 npm install

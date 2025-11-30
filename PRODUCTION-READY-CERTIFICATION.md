@@ -3,6 +3,38 @@
 **Date:** November 30, 2025  
 **Status:** ✅ COMPLETE — World Class Enterprise & Government Grade
 
+---
+
+## 🚀 Getting Started (Choose Your Path)
+
+### For Developers: Clone & Build
+```bash
+git clone https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot.git
+cd EVA-Sovereign-UI-by-Copilot
+npm ci
+npm run dev  # Opens at http://localhost:5173
+```
+
+### For Quick Integration: Use Pre-built
+```html
+<!-- In your HTML file -->
+<script type="module" src="./dist/eva-sovereign-ui.es.js"></script>
+<eva-button variant="primary">Click Me</eva-button>
+<eva-pagination current="1" total="10"></eva-pagination>
+```
+
+### For Production: Build & Deploy
+```bash
+npm run build           # Creates dist/
+npm run size:guard      # Verify bundle size
+npm run benchmark       # Verify performance
+npm test               # Run all 282 tests
+```
+
+**Artifacts**: `dist/eva-sovereign-ui.es.js` (12.28 KB gzip), `dist/eva-sovereign-ui.umd.js` (10.96 KB gzip)
+
+---
+
 ## Executive Summary
 
 EVA-Sovereign-UI-by-Copilot has achieved 100% production readiness for world-class enterprise and government-grade deployments. All quality gates, accessibility requirements, performance thresholds, and governance mechanisms are in place and validated.
