@@ -1,11 +1,11 @@
 export type Locale = 'en-CA' | 'fr-CA'
 
+export type TranslationKey =
+    | 'app.name'
     | 'hero.title'
-    | 'language.
-    | 'language.sw
-    | 'demo.profile'
-    | 'quick.actions.tit
-    | 'quick.actions.my
+    | 'hero.description'
+    | 'language.english'
+    | 'language.french'
     | 'language.switcher.label'
     | 'demo.controls'
     | 'demo.profile'
@@ -14,21 +14,21 @@ export type Locale = 'en-CA' | 'fr-CA'
     | 'quick.actions.myAccount'
     | 'quick.actions.myAccount.desc'
     | 'quick.actions.applications'
-const translations: Record<Locale, Reco
-        'app.name': 'Governmen
-        'hero.description': 'Access
-        'language.french': 'Fra
-        'demo.controls': 'Demo Contr
-        'demo.lang
-        'quick.action
-        'quick.actions.a
-        'quick.actio
-        'quick.ac
-        'chat.titl
-        'chat.placeholde
-        'chat.send': '
-        'footer.copy
-        'footer.terms': 'Ter
+    | 'quick.actions.applications.desc'
+    | 'quick.actions.payments'
+    | 'quick.actions.payments.desc'
+    | 'quick.actions.documents'
+    | 'quick.actions.documents.desc'
+    | 'chat.title'
+    | 'chat.subtitle'
+    | 'chat.placeholder'
+    | 'chat.welcome'
+    | 'chat.send'
+    | 'chat.voice'
+    | 'footer.copyright'
+    | 'footer.privacy'
+    | 'footer.terms'
+    | 'footer.accessibility'
 
 const translations: Record<Locale, Record<TranslationKey, string>> = {
     'en-CA': {
@@ -62,56 +62,51 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'footer.accessibility': 'Accessibility'
     },
     'fr-CA': {
+        'app.name': 'Portail gouvernemental',
+        'hero.title': 'Bienvenue au portail gouvernemental',
+        'hero.description': 'Accédez à vos services et informations en toute sécurité',
+        'language.english': 'English',
+        'language.french': 'Français',
+        'language.switcher.label': 'Langue',
+        'demo.controls': 'Contrôles de démo',
+        'demo.profile': 'Profil souverain',
+        'demo.language': 'Langue',
+        'quick.actions.title': 'Actions rapides',
+        'quick.actions.myAccount': 'Mon compte',
+        'quick.actions.myAccount.desc': 'Voir et gérer les paramètres de votre compte',
+        'quick.actions.applications': 'Applications',
+        'quick.actions.applications.desc': 'Suivre vos demandes',
+        'quick.actions.payments': 'Paiements',
+        'quick.actions.payments.desc': 'Effectuer un paiement ou voir l\'historique',
+        'quick.actions.documents': 'Documents',
+        'quick.actions.documents.desc': 'Accéder à vos documents et formulaires',
+        'chat.title': 'Demandez à EVA',
+        'chat.subtitle': 'Posez-moi des questions sur les services gouvernementaux',
+        'chat.placeholder': 'Tapez votre question ici...',
+        'chat.welcome': 'Bonjour! Comment puis-je vous aider aujourd\'hui?',
+        'chat.send': 'Envoyer',
+        'chat.voice': 'L\'entrée vocale n\'est pas encore implémentée',
+        'footer.copyright': '© 2024 Portail gouvernemental. Tous droits réservés.',
+        'footer.privacy': 'Confidentialité',
+        'footer.terms': 'Conditions d\'utilisation',
+        'footer.accessibility': 'Accessibilité'
+    }
+}
 
+class I18nService {
+    private currentLocale: Locale = 'en-CA'
 
+    setLocale(locale: Locale) {
+        this.currentLocale = locale
+    }
 
+    getLocale(): Locale {
+        return this.currentLocale
+    }
 
+    t(key: TranslationKey): string {
+        return translations[this.currentLocale][key] || key
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const i18nService = new I18nService()

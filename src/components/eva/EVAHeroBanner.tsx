@@ -1,9 +1,9 @@
-import { i18nService } from '@/lib/i18n-service'
+import { i18nService, type TranslationKey } from '@/lib/i18n-service'
 import { useLocaleChange } from '@/hooks/use-locale-change'
 
 interface EVAHeroBannerProps {
-    titleKey: string
-    descriptionKey: string
+    titleKey: TranslationKey
+    descriptionKey: TranslationKey
 }
 
 export function EVAHeroBanner({ titleKey, descriptionKey }: EVAHeroBannerProps) {

@@ -1,12 +1,12 @@
-import { i18nService } from '@/lib/i18n-service'
+import { i18nService, type TranslationKey } from '@/lib/i18n-service'
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { User, FileText, CreditCard, FolderOpen, type Icon as PhosphorIcon } from '@phosphor-icons/react'
 import { useLocaleChange } from '@/hooks/use-locale-change'
 
 interface QuickAction {
     id: string
-    titleKey: string
-    descriptionKey: string
+    titleKey: TranslationKey
+    descriptionKey: TranslationKey
     icon: PhosphorIcon
 }
 

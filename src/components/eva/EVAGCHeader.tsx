@@ -1,10 +1,10 @@
 import { type ReactNode } from 'react'
-import { i18nService } from '@/lib/i18n-service'
+import { i18nService, type TranslationKey } from '@/lib/i18n-service'
 import { type SovereignProfileId } from '@/lib/sovereign-profiles'
 import { useLocaleChange } from '@/hooks/use-locale-change'
 
 interface EVAGCHeaderProps {
-    appNameKey: string
+    appNameKey: TranslationKey
     profile: SovereignProfileId
     actions?: ReactNode
 }
