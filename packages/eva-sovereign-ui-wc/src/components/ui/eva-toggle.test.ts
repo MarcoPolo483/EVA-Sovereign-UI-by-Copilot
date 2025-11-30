@@ -42,14 +42,15 @@ describe('eva-toggle', () => {
   });
 
   describe('Events', () => {
-    it.skip('should handle user interactions', async () => {
-      const button = shadowQuery<HTMLButtonElement>(element, 'button');
+    it('should handle user interactions', async () => {
+      const button = shadowQuery<HTMLButtonElement>(element, 'button.toggle');
+      let toggled = false;
+      element.addEventListener('toggle', () => { toggled = true; });
       if (button) {
-        let clicked = false;
-        element.addEventListener('click', () => { clicked = true; });
         simulateClick(button);
-        await new Promise(resolve => setTimeout(resolve, 10));
-        expect(clicked).toBe(true);
+        await new Promise(r => setTimeout(r, 25));
+        expect(toggled).toBe(true);
+        expect(button.getAttribute('aria-pressed')).toBe('true');
       }
     });
   });

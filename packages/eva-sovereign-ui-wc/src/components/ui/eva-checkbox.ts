@@ -15,9 +15,10 @@ import {
 export class EVACheckbox extends EVABaseComponent {
   private checked = false;
   private inputEl?: HTMLInputElement;
+  private labelId?: string;
 
   static get observedAttributes() {
-    return ['checked', 'disabled', 'value', 'name'];
+    return ['checked', 'disabled', 'value', 'name', 'label'];
   }
 
   attributeChangedCallback() {
@@ -136,12 +137,17 @@ export class EVACheckbox extends EVABaseComponent {
 
     const wrapper = document.createElement('div');
     wrapper.className = 'checkbox-wrapper';
+    wrapper.style.display = 'inline-flex';
+    wrapper.style.alignItems = 'center';
+    wrapper.style.gap = gcSpacing[2];
 
     const input = document.createElement('input');
     input.type = 'checkbox';
     input.className = 'checkbox';
     input.checked = this.checked;
     input.disabled = this.getBoolAttr('disabled');
+    const inputId = `chk-${Math.random().toString(36).slice(2)}`;
+    input.id = inputId;
     
     const name = this.getAttr('name', '');
     const value = this.getAttr('value', '');
@@ -175,6 +181,23 @@ export class EVACheckbox extends EVABaseComponent {
     visual.appendChild(indicator);
 
     wrapper.appendChild(visual);
+
+    const labelText = this.getAttr('label', '');
+    if (labelText) {
+      this.labelId = this.labelId || `chk-label-${Math.random().toString(36).slice(2)}`;
+      const labelEl = document.createElement('label');
+      labelEl.id = this.labelId;
+      labelEl.htmlFor = inputId;
+      labelEl.textContent = labelText;
+      labelEl.style.fontSize = '0.75rem';
+      labelEl.style.fontWeight = '500';
+      labelEl.style.cursor = 'pointer';
+      wrapper.appendChild(labelEl);
+      visual.setAttribute('aria-labelledby', this.labelId);
+    } else {
+      visual.removeAttribute('aria-labelledby');
+      this.labelId = undefined;
+    }
 
     this.shadow.appendChild(wrapper);
     this.inputEl = input;

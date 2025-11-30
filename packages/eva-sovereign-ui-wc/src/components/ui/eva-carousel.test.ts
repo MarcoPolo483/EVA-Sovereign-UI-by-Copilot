@@ -42,14 +42,20 @@ describe('eva-carousel', () => {
   });
 
   describe('Events', () => {
-    it.skip('should handle user interactions', async () => {
-      const button = shadowQuery<HTMLButtonElement>(element, 'button');
-      if (button) {
-        let clicked = false;
-        element.addEventListener('click', () => { clicked = true; });
-        simulateClick(button);
-        await new Promise(resolve => setTimeout(resolve, 10));
-        expect(clicked).toBe(true);
+    it('should handle user interactions', async () => {
+      // Add items for interaction
+      element.innerHTML = `
+        <eva-carousel-item><div>Slide 1</div></eva-carousel-item>
+        <eva-carousel-item><div>Slide 2</div></eva-carousel-item>
+      `;
+      await new Promise(r => setTimeout(r, 50));
+      const nextBtn = shadowQuery<HTMLButtonElement>(element, '.nav-button.next');
+      let changed = false;
+      element.addEventListener('change', () => { changed = true; });
+      if (nextBtn) {
+        simulateClick(nextBtn);
+        await new Promise(r => setTimeout(r, 50));
+        expect(changed).toBe(true);
       }
     });
   });

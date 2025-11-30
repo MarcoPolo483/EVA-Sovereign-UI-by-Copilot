@@ -42,14 +42,19 @@ describe('eva-pagination', () => {
   });
 
   describe('Events', () => {
-    it.skip('should handle user interactions', async () => {
-      const button = shadowQuery<HTMLButtonElement>(element, 'button');
-      if (button) {
-        let clicked = false;
-        element.addEventListener('click', () => { clicked = true; });
-        simulateClick(button);
-        await new Promise(resolve => setTimeout(resolve, 10));
-        expect(clicked).toBe(true);
+    it('should handle user interactions', async () => {
+      element.setAttribute('total', '5');
+      await new Promise(r => setTimeout(r, 10));
+      // Click second page button (page number 2)
+      const page2Btn = Array.from(element.shadowRoot?.querySelectorAll('.button') || [])
+        .find(btn => btn.textContent === '2') as HTMLButtonElement | undefined;
+      let changed = false;
+      element.addEventListener('change', () => { changed = true; });
+      if (page2Btn) {
+        simulateClick(page2Btn);
+        await new Promise(r => setTimeout(r, 25));
+        expect(changed).toBe(true);
+        expect(element.getAttribute('current')).toBe('2');
       }
     });
   });

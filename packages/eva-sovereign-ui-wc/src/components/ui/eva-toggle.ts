@@ -19,32 +19,34 @@ export class EVAToggle extends EVABaseComponent {
   private pressed = false;
 
   static get observedAttributes() {
-    return ['pressed', 'variant', 'size', 'disabled'];
+    return ['variant', 'size', 'disabled'];
   }
 
-  attributeChangedCallback() {
-    this.pressed = this.getBoolAttr('pressed');
-    this.render();
+  attributeChangedCallback(name: string) {
+    if (name === 'variant' || name === 'size' || name === 'disabled') {
+      this.render();
+    }
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.setupButton();
+    // Initial render already sets up button; event listener bound in render
   }
 
-  private setupButton() {
-    this.shadow.addEventListener('click', () => {
-      if (!this.getBoolAttr('disabled')) {
-        this.pressed = !this.pressed;
-        if (this.pressed) {
-          this.setAttribute('pressed', '');
-        } else {
-          this.removeAttribute('pressed');
-        }
-        this.emit('toggle', { pressed: this.pressed });
-        this.render();
-      }
-    });
+  private handlePress() {
+    if (this.getBoolAttr('disabled')) return;
+    this.pressed = !this.pressed;
+    if (this.pressed) {
+      this.setAttribute('pressed', '');
+    } else {
+      this.removeAttribute('pressed');
+    }
+    const button = this.shadow.querySelector('.toggle');
+    if (button) {
+      button.setAttribute('data-pressed', this.pressed.toString());
+      button.setAttribute('aria-pressed', this.pressed.toString());
+    }
+    this.emit('toggle', { pressed: this.pressed });
   }
 
   protected render(): void {
@@ -152,6 +154,13 @@ export class EVAToggle extends EVABaseComponent {
     button.setAttribute('data-variant', variant);
     button.setAttribute('data-pressed', this.pressed.toString());
     button.setAttribute('aria-pressed', this.pressed.toString());
+    button.addEventListener('click', () => this.handlePress());
+    button.addEventListener('keydown', (e) => {
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        this.handlePress();
+      }
+    });
     
     if (this.getBoolAttr('disabled')) {
       button.disabled = true;

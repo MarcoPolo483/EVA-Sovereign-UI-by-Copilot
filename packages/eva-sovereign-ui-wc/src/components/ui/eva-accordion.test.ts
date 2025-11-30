@@ -7,6 +7,17 @@ describe('eva-accordion', () => {
 
   beforeEach(async () => {
     accordion = await createComponent('eva-accordion');
+    accordion.innerHTML = `
+      <eva-accordion-item>
+        <span slot="trigger">Item 1</span>
+        <div>Content 1</div>
+      </eva-accordion-item>
+      <eva-accordion-item>
+        <span slot="trigger">Item 2</span>
+        <div>Content 2</div>
+      </eva-accordion-item>
+    `;
+    await new Promise(r => setTimeout(r, 0));
   });
 
   describe('Rendering', () => {
@@ -15,58 +26,41 @@ describe('eva-accordion', () => {
     });
 
     it('should support multiple items', async () => {
-      accordion.innerHTML = `
-        <div slot="item-1-trigger">Item 1</div>
-        <div slot="item-1-content">Content 1</div>
-        <div slot="item-2-trigger">Item 2</div>
-        <div slot="item-2-content">Content 2</div>
-      `;
-      await new Promise(resolve => setTimeout(resolve, 0));
-      expect(accordion.children.length).toBeGreaterThan(0);
+      const items = accordion.querySelectorAll('eva-accordion-item');
+      expect(items.length).toBe(2);
     });
   });
 
   describe('Interaction', () => {
-    it.skip('should expand/collapse on click', async () => {
-      accordion.innerHTML = `
-        <button slot="item-1-trigger">Item 1</button>
-        <div slot="item-1-content">Content 1</div>
-      `;
-      await new Promise(resolve => setTimeout(resolve, 0));
-
-      const trigger = accordion.querySelector('[slot="item-1-trigger"]') as HTMLElement;
+    it('should expand/collapse on click', async () => {
+      const firstItem = accordion.querySelector('eva-accordion-item') as HTMLElement;
+      const trigger = firstItem.shadowRoot?.querySelector('.trigger') as HTMLElement;
       trigger.click();
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
+      await new Promise(r => setTimeout(r, 50));
       expect(trigger.getAttribute('aria-expanded')).toBe('true');
+      trigger.click();
+      await new Promise(r => setTimeout(r, 50));
+      expect(trigger.getAttribute('aria-expanded')).toBe('false');
     });
 
-    it.skip('should support keyboard navigation', async () => {
-      accordion.innerHTML = `
-        <button slot="item-1-trigger">Item 1</button>
-        <div slot="item-1-content">Content 1</div>
-      `;
-      await new Promise(resolve => setTimeout(resolve, 0));
-
-      const trigger = accordion.querySelector('[slot="item-1-trigger"]') as HTMLElement;
+    it('should support keyboard activation', async () => {
+      const firstItem = accordion.querySelector('eva-accordion-item') as HTMLElement;
+      const trigger = firstItem.shadowRoot?.querySelector('.trigger') as HTMLElement;
       simulateKeyboard(trigger, 'Enter');
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
+      await new Promise(r => setTimeout(r, 50));
       expect(trigger.getAttribute('aria-expanded')).toBe('true');
     });
   });
 
   describe('Accessibility', () => {
-    it.skip('should have proper ARIA attributes', async () => {
-      accordion.innerHTML = `
-        <button slot="item-1-trigger">Item 1</button>
-        <div slot="item-1-content">Content 1</div>
-      `;
-      await new Promise(resolve => setTimeout(resolve, 0));
-
-      const trigger = accordion.querySelector('[slot="item-1-trigger"]') as HTMLElement;
+    it('should have proper ARIA attributes', async () => {
+      const firstItem = accordion.querySelector('eva-accordion-item') as HTMLElement;
+      const trigger = firstItem.shadowRoot?.querySelector('.trigger') as HTMLElement;
       expect(trigger.getAttribute('aria-controls')).toBeTruthy();
-      expect(trigger.getAttribute('aria-expanded')).toBeTruthy();
+      expect(trigger.getAttribute('aria-expanded')).toBe('false');
+      trigger.click();
+      await new Promise(r => setTimeout(r, 50));
+      expect(trigger.getAttribute('aria-expanded')).toBe('true');
     });
   });
 });

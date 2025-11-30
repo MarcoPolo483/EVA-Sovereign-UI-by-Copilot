@@ -6,6 +6,12 @@ describe('eva-accordion', () => {
 
   beforeEach(() => {
     accordion = document.createElement('eva-accordion');
+    accordion.innerHTML = `
+      <eva-accordion-item>
+        <span slot="trigger">Section 1</span>
+        <div>Content 1</div>
+      </eva-accordion-item>
+    `;
     document.body.appendChild(accordion);
   });
 
@@ -16,51 +22,54 @@ describe('eva-accordion', () => {
     });
 
     it('should start collapsed', () => {
-      expect(accordion.hasAttribute('open')).toBe(false);
+      const item = accordion.querySelector('eva-accordion-item');
+      expect(item?.hasAttribute('open')).toBe(false);
     });
   });
 
   describe('Interaction', () => {
-    it.skip('should toggle open state', () => {
-      const trigger = accordion.shadowRoot?.querySelector('[role="button"]');
-      trigger?.dispatchEvent(new Event('click'));
-      expect(accordion.hasAttribute('open')).toBe(true);
-      
-      trigger?.dispatchEvent(new Event('click'));
-      expect(accordion.hasAttribute('open')).toBe(false);
+    it('should toggle open state', () => {
+      const item = accordion.querySelector('eva-accordion-item') as HTMLElement;
+      const trigger = item.shadowRoot?.querySelector('.trigger') as HTMLElement;
+      trigger.click();
+      expect(item.hasAttribute('open')).toBe(true);
+      trigger.click();
+      expect(item.hasAttribute('open')).toBe(false);
     });
 
-    it.skip('should emit toggle event', () => {
+    it('should emit toggle event', () => {
       let toggled = false;
       accordion.addEventListener('accordion-toggle', () => {
         toggled = true;
       });
-      
-      const trigger = accordion.shadowRoot?.querySelector('[role="button"]');
-      trigger?.dispatchEvent(new Event('click'));
+      const item = accordion.querySelector('eva-accordion-item') as HTMLElement;
+      const trigger = item.shadowRoot?.querySelector('.trigger') as HTMLElement;
+      trigger.click();
       expect(toggled).toBe(true);
     });
   });
 
   describe('Accessibility', () => {
-    it.skip('should have proper ARIA attributes', () => {
-      const trigger = accordion.shadowRoot?.querySelector('[role="button"]');
-      expect(trigger?.hasAttribute('aria-expanded')).toBe(true);
+    it('should have proper ARIA attributes', () => {
+      const item = accordion.querySelector('eva-accordion-item') as HTMLElement;
+      const trigger = item.shadowRoot?.querySelector('.trigger') as HTMLElement;
+      expect(trigger.getAttribute('aria-expanded')).toBe('false');
+      expect(trigger.getAttribute('aria-controls')).toBeTruthy();
     });
 
-    it.skip('should update aria-expanded on toggle', () => {
-      const trigger = accordion.shadowRoot?.querySelector('[role="button"]');
-      expect(trigger?.getAttribute('aria-expanded')).toBe('false');
-      
-      trigger?.dispatchEvent(new Event('click'));
-      expect(trigger?.getAttribute('aria-expanded')).toBe('true');
+    it('should update aria-expanded on toggle', () => {
+      const item = accordion.querySelector('eva-accordion-item') as HTMLElement;
+      const trigger = item.shadowRoot?.querySelector('.trigger') as HTMLElement;
+      expect(trigger.getAttribute('aria-expanded')).toBe('false');
+      trigger.click();
+      expect(trigger.getAttribute('aria-expanded')).toBe('true');
     });
 
-    it.skip('should support keyboard navigation', () => {
-      const trigger = accordion.shadowRoot?.querySelector('[role="button"]');
-      const enterEvent = new KeyboardEvent('keydown', { key: 'Enter' });
-      trigger?.dispatchEvent(enterEvent);
-      expect(accordion.hasAttribute('open')).toBe(true);
+    it('should support keyboard activation', () => {
+      const item = accordion.querySelector('eva-accordion-item') as HTMLElement;
+      const trigger = item.shadowRoot?.querySelector('.trigger') as HTMLElement;
+      trigger.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+      expect(item.hasAttribute('open')).toBe(true);
     });
   });
 });

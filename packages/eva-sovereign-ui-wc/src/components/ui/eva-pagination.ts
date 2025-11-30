@@ -31,6 +31,8 @@ export class EVAPagination extends EVABaseComponent {
     this.currentPage = page;
     this.setAttribute('current', page.toString());
     this.emit('change', { page });
+    // Update aria states without full re-render to allow test to observe
+    this.updateAriaCurrent();
   }
 
   private getPageNumbers(): (number | 'ellipsis')[] {
@@ -133,7 +135,7 @@ export class EVAPagination extends EVABaseComponent {
 
     // Page numbers
     const pages = this.getPageNumbers();
-    pages.forEach((page, index) => {
+    pages.forEach((page) => {
       if (page === 'ellipsis') {
         const ellipsis = document.createElement('span');
         ellipsis.className = 'ellipsis';
@@ -144,6 +146,9 @@ export class EVAPagination extends EVABaseComponent {
         pageBtn.className = 'button';
         pageBtn.textContent = page.toString();
         pageBtn.setAttribute('data-active', (page === this.currentPage).toString());
+        if (page === this.currentPage) {
+          pageBtn.setAttribute('aria-current', 'page');
+        }
         pageBtn.addEventListener('click', () => this.handlePageClick(page));
         container.appendChild(pageBtn);
       }
@@ -158,6 +163,20 @@ export class EVAPagination extends EVABaseComponent {
     container.appendChild(nextBtn);
 
     this.shadow.appendChild(container);
+  }
+
+  private updateAriaCurrent() {
+    const buttons = this.shadow.querySelectorAll('.button');
+    buttons.forEach(btn => {
+      btn.removeAttribute('aria-current');
+      const page = parseInt(btn.textContent || '0', 10);
+      if (page === this.currentPage) {
+        btn.setAttribute('aria-current', 'page');
+        btn.setAttribute('data-active', 'true');
+      } else {
+        btn.setAttribute('data-active', 'false');
+      }
+    });
   }
 }
 

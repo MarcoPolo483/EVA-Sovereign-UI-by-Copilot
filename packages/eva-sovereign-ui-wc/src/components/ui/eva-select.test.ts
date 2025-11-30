@@ -42,14 +42,24 @@ describe('eva-select', () => {
   });
 
   describe('Events', () => {
-    it.skip('should handle user interactions', async () => {
-      const button = shadowQuery<HTMLButtonElement>(element, 'button');
-      if (button) {
-        let clicked = false;
-        element.addEventListener('click', () => { clicked = true; });
-        simulateClick(button);
-        await new Promise(resolve => setTimeout(resolve, 10));
-        expect(clicked).toBe(true);
+    it('should handle user interactions', async () => {
+      // Provide items
+      element.innerHTML = `
+        <eva-select-item value="one">One</eva-select-item>
+        <eva-select-item value="two">Two</eva-select-item>
+      `;
+      await new Promise(r => setTimeout(r, 25));
+      const trigger = shadowQuery<HTMLButtonElement>(element, '.trigger');
+      let changed = false;
+      element.addEventListener('change', () => { changed = true; });
+      if (trigger) {
+        simulateClick(trigger); // open
+        await new Promise(r => setTimeout(r, 25));
+        const firstItem = element.querySelector('eva-select-item');
+        firstItem?.shadowRoot?.querySelector('.item')?.dispatchEvent(new Event('click', { bubbles: true, composed: true }));
+        await new Promise(r => setTimeout(r, 50));
+        expect(changed).toBe(true);
+        expect(element.getAttribute('value')).toBe('one');
       }
     });
   });

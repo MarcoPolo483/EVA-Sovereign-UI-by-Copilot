@@ -60,35 +60,33 @@ export class EVAAccordion extends EVABaseComponent {
 }
 
 export class EVAAccordionItem extends EVABaseComponent {
-  private open = false;
+  private isOpen = false;
+  private triggerEl?: HTMLButtonElement;
+  private contentEl?: HTMLDivElement;
+  private panelId?: string;
 
   connectedCallback() {
     super.connectedCallback();
-    this.setupEventListeners();
-  }
-
-  private setupEventListeners() {
-    this.shadow.addEventListener('click', (e) => {
-      const target = e.target as HTMLElement;
-      if (target.classList.contains('trigger')) {
-        this.toggle();
-      }
-    });
+    // Base component renders; we ensure ARIA after initial render
   }
 
   public open() {
     if (!this.isOpen) {
       this.isOpen = true;
-      this.render();
+      this.setAttribute('open', '');
       this.emit('toggle', { open: true });
+      this.emit('accordion-toggle', { open: true });
+      this.updateUI();
     }
   }
 
   public close() {
     if (this.isOpen) {
       this.isOpen = false;
-      this.render();
+      this.removeAttribute('open');
       this.emit('toggle', { open: false });
+      this.emit('accordion-toggle', { open: false });
+      this.updateUI();
     }
   }
 
@@ -102,7 +100,10 @@ export class EVAAccordionItem extends EVABaseComponent {
 
   protected render(): void {
     this.shadow.innerHTML = '';
-    
+    const accordionId = this.getAttribute('accordion-id') || Math.random().toString(36).slice(2);
+    this.panelId = `panel-${accordionId}`;
+    const triggerId = `trigger-${accordionId}`;
+
     this.shadow.appendChild(this.createStyles(`
       :host {
         display: block;
@@ -215,8 +216,11 @@ export class EVAAccordionItem extends EVABaseComponent {
 
     const trigger = document.createElement('button');
     trigger.className = 'trigger';
+    trigger.id = triggerId;
     trigger.setAttribute('aria-expanded', this.isOpen.toString());
+    trigger.setAttribute('aria-controls', this.panelId);
     trigger.setAttribute('type', 'button');
+    trigger.setAttribute('role', 'button');
 
     const triggerSlot = document.createElement('slot');
     triggerSlot.name = 'trigger';
@@ -232,7 +236,15 @@ export class EVAAccordionItem extends EVABaseComponent {
 
     const content = document.createElement('div');
     content.className = 'content';
+    content.id = this.panelId;
     content.setAttribute('data-state', this.isOpen ? 'open' : 'closed');
+    content.setAttribute('role', 'region');
+    content.setAttribute('aria-labelledby', triggerId);
+    if (!this.isOpen) {
+      content.setAttribute('hidden', '');
+    } else {
+      content.removeAttribute('hidden');
+    }
     content.style.height = this.isOpen ? 'auto' : '0';
 
     const contentInner = document.createElement('div');
@@ -242,8 +254,49 @@ export class EVAAccordionItem extends EVABaseComponent {
     content.appendChild(contentInner);
 
     this.shadow.appendChild(content);
-    this.contentEl = content;
+    this.contentEl = content as HTMLDivElement;
     this.triggerEl = trigger;
+
+    // Event listeners (rebound each render to fresh elements)
+    trigger.addEventListener('click', () => this.toggle());
+    trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.toggle();
+      }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const parent = this.parentElement as EVAAccordion | null;
+        if (!parent) return;
+        const items = parent.querySelectorAll('eva-accordion-item');
+        const triggers: HTMLElement[] = [];
+        items.forEach(i => {
+          const t = (i as EVAAccordionItem).shadowRoot?.querySelector('.trigger');
+          if (t) triggers.push(t as HTMLElement);
+        });
+        const currentIndex = triggers.indexOf(trigger);
+        if (currentIndex !== -1) {
+          const nextIndex = e.key === 'ArrowDown' ? currentIndex + 1 : currentIndex - 1;
+          if (triggers[nextIndex]) {
+            (triggers[nextIndex] as HTMLElement).focus();
+          }
+        }
+      }
+    });
+  }
+
+  private updateUI() {
+    if (!this.triggerEl || !this.contentEl) return;
+    this.triggerEl.setAttribute('aria-expanded', this.isOpen.toString());
+    if (this.isOpen) {
+      this.contentEl.setAttribute('data-state', 'open');
+      this.contentEl.removeAttribute('hidden');
+      this.contentEl.style.height = 'auto';
+    } else {
+      this.contentEl.setAttribute('data-state', 'closed');
+      this.contentEl.setAttribute('hidden', '');
+      this.contentEl.style.height = '0';
+    }
   }
 }
 

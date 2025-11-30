@@ -42,14 +42,15 @@ describe('eva-calendar', () => {
   });
 
   describe('Events', () => {
-    it.skip('should handle user interactions', async () => {
-      const button = shadowQuery<HTMLButtonElement>(element, 'button');
-      if (button) {
-        let clicked = false;
-        element.addEventListener('click', () => { clicked = true; });
-        simulateClick(button);
-        await new Promise(resolve => setTimeout(resolve, 10));
-        expect(clicked).toBe(true);
+    it('should handle user interactions', async () => {
+      const dayButton = shadowQuery<HTMLButtonElement>(element, '.day');
+      let changed = false;
+      element.addEventListener('change', () => { changed = true; });
+      if (dayButton) {
+        simulateClick(dayButton);
+        await new Promise(r => setTimeout(r, 25));
+        expect(changed).toBe(true);
+        expect(element.getAttribute('value')).toBeTruthy();
       }
     });
   });
