@@ -19,7 +19,7 @@ export function EVALanguageSwitcher({ currentLocale, onLanguageChange }: EVALang
         <button
             onClick={toggleLanguage}
             className="px-3 py-1.5 text-sm font-medium border-2 border-current rounded hover:bg-primary/10 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-            aria-label={`${i18nService.t('language.switcher.label')} (${i18nService.t('language.switcher.label')}: ${currentLangLabel})`}
+            aria-label={`${i18nService.t('language.switcher')} (${i18nService.t('language.switcher')}: ${currentLangLabel})`}
             lang={currentLocale === 'en-CA' ? 'fr-CA' : 'en-CA'}
         >
             {currentLangLabel}

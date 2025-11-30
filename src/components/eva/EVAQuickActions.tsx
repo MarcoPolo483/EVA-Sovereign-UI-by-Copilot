@@ -14,25 +14,25 @@ const quickActions: QuickAction[] = [
     {
         id: 'my-account',
         titleKey: 'quick.actions.myAccount',
-        descriptionKey: 'quick.actions.myAccount.desc',
+        descriptionKey: 'quick.actions.myAccount.description',
         icon: User,
     },
     {
         id: 'applications',
         titleKey: 'quick.actions.applications',
-        descriptionKey: 'quick.actions.applications.desc',
+        descriptionKey: 'quick.actions.applications.description',
         icon: FileText,
     },
     {
         id: 'payments',
         titleKey: 'quick.actions.payments',
-        descriptionKey: 'quick.actions.payments.desc',
+        descriptionKey: 'quick.actions.payments.description',
         icon: CreditCard,
     },
     {
         id: 'documents',
         titleKey: 'quick.actions.documents',
-        descriptionKey: 'quick.actions.documents.desc',
+        descriptionKey: 'quick.actions.documents.description',
         icon: FolderOpen,
     },
 ]

@@ -18,7 +18,7 @@ export function EVAGCHeader({ appNameKey, actions }: EVAGCHeaderProps) {
                 href="#main-content"
                 className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:px-4 focus:py-2 focus:bg-accent focus:text-accent-foreground focus:rounded focus:shadow-lg"
             >
-                {i18nService.t('header.skipToContent')}
+                {i18nService.t('header.skipToMain')}
             </a>
             <header className="bg-primary text-primary-foreground shadow-md" role="banner">
                 <div className="container mx-auto px-4">
