@@ -12,7 +12,8 @@ import {
   GCContactTemplate,
   GCNewsTemplate,
   GCDashboardTemplate,
-  GCComponentsShowcase
+  GCComponentsShowcase,
+  GCCSSShortcutsTemplate
 } from '@/components/gc/templates';
 
 interface GCTemplatesDemoProps {
@@ -24,6 +25,7 @@ export function GCTemplatesDemo({ onNavigateToESDC }: GCTemplatesDemoProps = {})
 
   const templates = [
     { id: 'components', label: 'Components', component: GCComponentsShowcase },
+    { id: 'css-shortcuts', label: 'CSS Shortcuts', component: GCCSSShortcutsTemplate },
     { id: 'basic', label: 'Basic Page', component: GCBasicTemplate },
     { id: 'form', label: 'Application Form', component: GCFormTemplate },
     { id: 'service', label: 'Service Page', component: GCServiceTemplate },

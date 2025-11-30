@@ -8,3 +8,4 @@ export { GCChecklistTemplate } from './GCChecklistTemplate';
 export { GCContactTemplate } from './GCContactTemplate';
 export { GCNewsTemplate } from './GCNewsTemplate';
 export { GCDashboardTemplate } from './GCDashboardTemplate';
+export { GCCSSShortcutsTemplate } from './GCCSSShortcutsTemplate';
