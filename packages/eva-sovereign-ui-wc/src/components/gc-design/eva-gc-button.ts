@@ -1,16 +1,26 @@
 /**
  * EVA GC Button Component
- * Government of Canada button with 6 official variants
+ * Government of Canada button with enhanced Spark styling
+ * Features: oklch() colors, smooth transitions, modern shadows
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { gcColors, gcTypography, gcSpacing } from '../../tokens';
+import { 
+  modernColors, 
+  gcColors, 
+  gcTypography, 
+  gcSpacing,
+  shadows,
+  transitions,
+  generateHoverColor,
+} from '../../tokens';
 
-export type ButtonVariant = 'supertask' | 'primary' | 'secondary' | 'danger' | 'link' | 'contextual-signin';
+export type ButtonVariant = 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
+export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
 
 export class EVAGCButton extends EVABaseComponent {
   static get observedAttributes() {
-    return ['variant', 'disabled', 'loading'];
+    return ['variant', 'size', 'disabled', 'loading'];
   }
 
   attributeChangedCallback() {
@@ -18,7 +28,8 @@ export class EVAGCButton extends EVABaseComponent {
   }
 
   protected render(): void {
-    const variant = this.getAttr('variant', 'primary') as ButtonVariant;
+    const variant = this.getAttr('variant', 'default') as ButtonVariant;
+    const size = this.getAttr('size', 'default') as ButtonSize;
     const disabled = this.getBoolAttr('disabled');
     const loading = this.getBoolAttr('loading');
 
@@ -30,109 +41,161 @@ export class EVAGCButton extends EVABaseComponent {
       }
 
       button {
-        font-family: ${gcTypography.fontBody};
-        font-size: ${gcTypography.sizeBody};
-        font-weight: ${gcTypography.weightBold};
-        padding: ${gcSpacing.buttonPadding};
-        border: 2px solid transparent;
-        border-radius: ${gcSpacing.unit / 2}px;
-        cursor: pointer;
-        min-height: ${gcSpacing.touchTarget};
-        transition: all 0.2s ease;
-        text-decoration: none;
+        /* Base styles */
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        gap: ${gcSpacing.xs};
+        justify-center: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+        border-radius: ${gcSpacing[2]};
+        font-family: ${gcTypography.fontBody};
+        font-size: 0.875rem;
+        font-weight: ${gcTypography.weightNormal};
+        transition: ${transitions.all};
+        cursor: pointer;
+        border: 1px solid transparent;
+        outline: none;
+        
+        /* Disabled state */
+        &:disabled {
+          pointer-events: none;
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+        
+        /* SVG handling */
+        & svg {
+          pointer-events: none;
+          width: 1rem;
+          height: 1rem;
+          flex-shrink: 0;
+        }
+        
+        /* Focus visible state (WCAG 2.2) */
+        &:focus-visible {
+          outline: 3px solid ${modernColors.ring};
+          outline-offset: 3px;
+          border-color: ${modernColors.ring};
+          box-shadow: 0 0 0 3px color-mix(in srgb, ${modernColors.ring} 20%, transparent);
+        }
+        
+        /* Invalid state */
+        &[aria-invalid="true"] {
+          box-shadow: 0 0 0 3px color-mix(in srgb, ${modernColors.destructive} 20%, transparent);
+          border-color: ${modernColors.destructive};
+        }
       }
 
-      button:focus {
-        outline: 3px solid ${gcColors.focusOutline};
-        outline-offset: 2px;
+      /* Default variant - Primary blue */
+      button.default {
+        background: ${modernColors.primary};
+        color: ${modernColors.primaryForeground};
+        box-shadow: ${shadows.xs};
+      }
+      
+      button.default:hover:not(:disabled) {
+        background: ${generateHoverColor(modernColors.primary, 10)};
       }
 
-      button:disabled {
-        cursor: not-allowed;
-        opacity: 0.6;
+      /* Destructive variant - Red */
+      button.destructive {
+        background: ${modernColors.destructive};
+        color: ${modernColors.destructiveForeground};
+        box-shadow: ${shadows.xs};
+      }
+      
+      button.destructive:hover:not(:disabled) {
+        background: ${generateHoverColor(modernColors.destructive, 10)};
+      }
+      
+      button.destructive:focus-visible {
+        box-shadow: 0 0 0 3px color-mix(in srgb, ${modernColors.destructive} 20%, transparent);
       }
 
-      /* Supertask variant */
-      button.supertask {
-        background: ${gcColors.linkBlue};
-        color: ${gcColors.textWhite};
-        border-color: ${gcColors.linkBlue};
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      /* Outline variant */
+      button.outline {
+        border: 1px solid ${modernColors.border};
+        background: ${modernColors.background};
+        box-shadow: ${shadows.xs};
       }
-
-      button.supertask:hover:not(:disabled) {
-        background: ${gcColors.linkHover};
-        border-color: ${gcColors.linkHover};
-      }
-
-      /* Primary variant */
-      button.primary {
-        background: ${gcColors.accent};
-        color: ${gcColors.textWhite};
-        border-color: ${gcColors.accent};
-      }
-
-      button.primary:hover:not(:disabled) {
-        background: ${gcColors.accentLight};
-        border-color: ${gcColors.accentLight};
+      
+      button.outline:hover:not(:disabled) {
+        background: ${modernColors.accent};
+        color: ${modernColors.accentForeground};
       }
 
       /* Secondary variant */
       button.secondary {
-        background: ${gcColors.background};
-        color: ${gcColors.accent};
-        border-color: ${gcColors.accent};
+        background: ${modernColors.secondary};
+        color: ${modernColors.secondaryForeground};
+        box-shadow: ${shadows.xs};
       }
-
+      
       button.secondary:hover:not(:disabled) {
-        background: ${gcColors.backgroundGrey};
+        background: ${generateHoverColor(modernColors.secondary, 20)};
       }
 
-      /* Danger variant */
-      button.danger {
-        background: ${gcColors.errorRed};
-        color: ${gcColors.textWhite};
-        border-color: ${gcColors.errorRed};
-      }
-
-      button.danger:hover:not(:disabled) {
-        background: #b50000;
-        border-color: #b50000;
+      /* Ghost variant - Transparent */
+      button.ghost:hover:not(:disabled) {
+        background: ${modernColors.accent};
+        color: ${modernColors.accentForeground};
       }
 
       /* Link variant */
       button.link {
-        background: transparent;
-        color: ${gcColors.linkBlue};
-        border-color: transparent;
+        color: ${modernColors.primary};
         text-decoration: underline;
-        padding: ${gcSpacing.xs} ${gcSpacing.sm};
+        text-underline-offset: 4px;
       }
-
+      
       button.link:hover:not(:disabled) {
-        color: ${gcColors.linkHover};
         text-decoration: none;
       }
 
-      /* Contextual signin variant */
-      button.contextual-signin {
-        background: ${gcColors.successGreen};
-        color: ${gcColors.textWhite};
-        border-color: ${gcColors.successGreen};
+      /* Size variants */
+      button.size-default {
+        height: 2.25rem;
+        padding: 0.5rem 1rem;
+      }
+      
+      button.size-default:has(svg) {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+      }
+      
+      button.size-sm {
+        height: 2rem;
+        border-radius: ${gcSpacing[2]};
+        gap: 0.375rem;
+        padding: 0 0.75rem;
+      }
+      
+      button.size-sm:has(svg) {
+        padding-left: 0.625rem;
+        padding-right: 0.625rem;
+      }
+      
+      button.size-lg {
+        height: 2.5rem;
+        border-radius: ${gcSpacing[2]};
+        padding: 0 1.5rem;
+      }
+      
+      button.size-lg:has(svg) {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      
+      button.size-icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
       }
 
-      button.contextual-signin:hover:not(:disabled) {
-        background: #1e6600;
-        border-color: #1e6600;
-      }
-
+      /* Loading spinner */
       .spinner {
-        width: 16px;
-        height: 16px;
+        width: 1rem;
+        height: 1rem;
         border: 2px solid currentColor;
         border-top-color: transparent;
         border-radius: 50%;
@@ -142,10 +205,32 @@ export class EVAGCButton extends EVABaseComponent {
       @keyframes spin {
         to { transform: rotate(360deg); }
       }
+      
+      /* Accessibility: Reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        button {
+          transition-duration: 0.01ms !important;
+        }
+        
+        .spinner {
+          animation-duration: 0.01ms !important;
+        }
+      }
+      
+      /* High contrast mode */
+      @media (prefers-contrast: high) {
+        button {
+          border-width: 2px;
+        }
+        
+        button:focus-visible {
+          outline-width: 4px;
+        }
+      }
     `));
 
     const button = document.createElement('button');
-    button.className = variant;
+    button.className = `${variant} size-${size}`;
     button.disabled = disabled || loading;
     button.setAttribute('type', 'button');
 
@@ -165,3 +250,4 @@ export class EVAGCButton extends EVABaseComponent {
 }
 
 customElements.define('eva-gc-button', EVAGCButton);
+
