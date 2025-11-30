@@ -1,35 +1,35 @@
 export type Locale = 'en-CA' | 'fr-CA'
 
-    | 'hero.title'
-    | 'header.na
+export type TranslationKey =
+    | 'app.name'
     | 'hero.title'
     | 'hero.description'
     | 'header.navigation'
     | 'header.skipToMain'
+    | 'language.english'
+    | 'language.french'
+    | 'language.switcher'
+    | 'demo.controls'
     | 'demo.profile'
-    | 'quick.actions.ti
-    | 'quick.actions.myAc
-    | 'quick.actions.
-    | 'quick.actions
-    | 'quick.actions.
+    | 'demo.language'
+    | 'quick.actions.title'
+    | 'quick.actions.myAccount'
+    | 'quick.actions.myAccount.description'
+    | 'quick.actions.applications'
+    | 'quick.actions.applications.description'
+    | 'quick.actions.payments'
+    | 'quick.actions.payments.description'
+    | 'quick.actions.documents'
+    | 'quick.actions.documents.description'
+    | 'chat.title'
     | 'chat.subtitle'
+    | 'chat.welcome'
     | 'chat.placeholder'
+    | 'chat.send'
+    | 'chat.sending'
     | 'chat.voice'
     | 'chat.messageList'
-    | 'footer.privacy'
-    | 'footer.accessibility'
-const translations: Record<Locale, Record<
-        'app.name': 'Government
-        'hero.description': 'Access your go
-        'header.sk
-        'language.fre
-        'demo.contro
-        'demo.language':
-        'quick.ac
-        'quick.act
-        'quick.actio
-        'quick.actions.d
-        'chat.title': 'A
+    | 'footer.copyright'
     | 'footer.privacy'
     | 'footer.terms'
     | 'footer.accessibility'
@@ -61,64 +61,64 @@ const translations: Record<Locale, Record<TranslationKey, string>> = {
         'chat.welcome': 'Hello! How can I help you today?',
         'chat.placeholder': 'Type your question here...',
         'chat.send': 'Send',
+        'chat.sending': 'Sending...',
         'chat.voice': 'Voice input',
-        'chat.title': 'Demandez à EVA
-        'chat.welcome': 'Bonjour! Comment puis-je vo
+        'chat.messageList': 'Chat message history',
+        'footer.copyright': '© 2024 Government Portal. All rights reserved.',
+        'footer.privacy': 'Privacy Policy',
+        'footer.terms': 'Terms of Use',
+        'footer.accessibility': 'Accessibility',
+    },
+    'fr-CA': {
+        'app.name': 'Portail gouvernemental',
+        'hero.title': 'Bienvenue au Portail des services gouvernementaux',
+        'hero.description': 'Accédez à vos services et informations gouvernementaux en un seul endroit',
+        'header.navigation': 'Navigation principale',
+        'header.skipToMain': 'Passer au contenu principal',
+        'language.english': 'English',
+        'language.french': 'Français',
+        'language.switcher': 'Sélecteur de langue',
+        'demo.controls': 'Contrôles de démonstration',
+        'demo.profile': 'Profil gouvernemental',
+        'demo.language': 'Langue',
+        'quick.actions.title': 'Actions rapides',
+        'quick.actions.myAccount': 'Mon compte',
+        'quick.actions.myAccount.description': 'Voir et gérer les paramètres de votre compte',
+        'quick.actions.applications': 'Applications',
+        'quick.actions.applications.description': 'Suivre l\'état de votre demande',
+        'quick.actions.payments': 'Paiements',
+        'quick.actions.payments.description': 'Voir l\'historique des paiements et effectuer des paiements',
+        'quick.actions.documents': 'Documents',
+        'quick.actions.documents.description': 'Accéder à vos documents gouvernementaux',
+        'chat.title': 'Demandez à EVA',
+        'chat.subtitle': 'Votre assistant IA',
+        'chat.welcome': 'Bonjour! Comment puis-je vous aider aujourd\'hui?',
+        'chat.placeholder': 'Tapez votre question ici...',
         'chat.send': 'Envoyer',
-        'chat.sending': 'Envoi en co
-        'footer.copyright': '© 2024 Portail
-        'footer.terms': 'Conditions d\'utilisati
+        'chat.sending': 'Envoi en cours...',
+        'chat.voice': 'Saisie vocale',
+        'chat.messageList': 'Historique des messages de discussion',
+        'footer.copyright': '© 2024 Portail gouvernemental. Tous droits réservés.',
+        'footer.privacy': 'Politique de confidentialité',
+        'footer.terms': 'Conditions d\'utilisation',
+        'footer.accessibility': 'Accessibilité',
     }
+}
 
+class I18nService {
     private currentLocale: Locale = 'en-CA'
+
     setLocale(locale: Locale) {
+        this.currentLocale = locale
     }
+
     getLocale(): Locale {
+        return this.currentLocale
     }
+
     t(key: TranslationKey): string {
+        return translations[this.currentLocale][key] || translations['en-CA'][key] || key
     }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export const i18nService = new I18nService()
