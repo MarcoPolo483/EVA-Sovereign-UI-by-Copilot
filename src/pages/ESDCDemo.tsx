@@ -6,7 +6,7 @@ import { ProgramCard } from '@/components/eva/ProgramCard';
 import { EVAChat } from '@/components/eva/EVAChat';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Briefcase, UserCircle, CurrencyDollar, MagnifyingGlass, ListChecks, Layout } from '@phosphor-icons/react';
+import { Briefcase, UserCircle, CurrencyDollar, MagnifyingGlass, ListChecks, Layout, Globe } from '@phosphor-icons/react';
 import { useI18n } from '@/lib/i18n/use-i18n';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
@@ -19,9 +19,10 @@ type ProgramDetails = {
 
 interface ESDCDemoProps {
   onNavigateToTemplates?: () => void;
+  onNavigateToFiveEyes?: () => void;
 }
 
-export function ESDCDemo({ onNavigateToTemplates }: ESDCDemoProps = {}) {
+export function ESDCDemo({ onNavigateToTemplates, onNavigateToFiveEyes }: ESDCDemoProps = {}) {
   const { locale, setLocale, t } = useI18n();
   const [selectedProgram, setSelectedProgram] = useState<ProgramDetails | null>(null);
 
@@ -81,6 +82,17 @@ export function ESDCDemo({ onNavigateToTemplates }: ESDCDemoProps = {}) {
 
       <GCHeader appName={t('esdc.title')} profile="canada_gc">
         <div className="flex items-center gap-3">
+          {onNavigateToFiveEyes && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onNavigateToFiveEyes}
+              className="flex items-center gap-2"
+            >
+              <Globe size={18} weight="duotone" />
+              <span className="hidden sm:inline">Five Eyes</span>
+            </Button>
+          )}
           {onNavigateToTemplates && (
             <Button
               variant="outline"
