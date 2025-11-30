@@ -67,9 +67,10 @@ const fiveEyesCountries: CountryConfig[] = [
 
 interface FiveEyesDemoProps {
   onNavigateToESDC?: () => void;
+  onNavigateToGuide?: () => void;
 }
 
-export function FiveEyesDemo({ onNavigateToESDC }: FiveEyesDemoProps = {}) {
+export function FiveEyesDemo({ onNavigateToESDC, onNavigateToGuide }: FiveEyesDemoProps = {}) {
   const { locale, setLocale, t, formatDate, formatNumber, formatCurrency } = useI18n();
   const [selectedCountry, setSelectedCountry] = useKV<SovereignProfileId>('five-eyes-country', 'canada_gc_intranet');
   const [persistedLocale, setPersistedLocale] = useKV<string>('five-eyes-locale', 'en-CA');
@@ -131,6 +132,17 @@ export function FiveEyesDemo({ onNavigateToESDC }: FiveEyesDemoProps = {}) {
 
       <GCHeader appName="Five Eyes Alliance Demo" profile={currentCountry.gcProfile}>
         <div className="flex items-center gap-3">
+          {onNavigateToGuide && (
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onNavigateToGuide}
+              className="flex items-center gap-2"
+            >
+              <Layout size={18} weight="duotone" />
+              <span className="hidden sm:inline">Compliance Guide</span>
+            </Button>
+          )}
           {onNavigateToESDC && (
             <Button
               variant="outline"
