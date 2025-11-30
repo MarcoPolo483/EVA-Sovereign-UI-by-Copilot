@@ -5,7 +5,7 @@
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { 
+import {
   modernColors,
   gcSpacing,
   shadows,
@@ -16,20 +16,35 @@ export class EVACarousel extends EVABaseComponent {
   private currentIndex = 0;
   private totalItems = 0;
   private autoAdvanceInterval?: number;
+  private liveRegion?: HTMLElement;
+  private mutationObserver?: MutationObserver;
 
   static get observedAttributes() {
-    return ['auto-advance'];
+    return ['auto-advance', 'label'];
   }
 
   connectedCallback() {
     super.connectedCallback();
-    
+
+    // Observe light DOM changes (adding/removing slides)
+    this.mutationObserver = new MutationObserver(() => {
+      this.updateItems();
+      this.updateIndicators();
+      this.updateLiveRegion();
+    });
+    this.mutationObserver.observe(this, { childList: true });
+
     const autoAdvance = parseInt(this.getAttr('auto-advance', '0'), 10);
     if (autoAdvance > 0) {
       this.autoAdvanceInterval = window.setInterval(() => {
         this.next();
       }, autoAdvance);
     }
+
+    // Initial sync
+    this.updateItems();
+    this.updateIndicators();
+    this.updateLiveRegion();
   }
 
   disconnectedCallback() {
@@ -37,12 +52,21 @@ export class EVACarousel extends EVABaseComponent {
     if (this.autoAdvanceInterval) {
       clearInterval(this.autoAdvanceInterval);
     }
+    if (this.mutationObserver) {
+      this.mutationObserver.disconnect();
+    }
   }
 
   private updateItems() {
     const items = this.querySelectorAll('eva-carousel-item');
     this.totalItems = items.length;
-
+    if (this.totalItems === 0) {
+      return;
+    }
+    // Clamp current index in case items removed
+    if (this.currentIndex >= this.totalItems) {
+      this.currentIndex = this.totalItems - 1;
+    }
     items.forEach((item, index) => {
       if (index === this.currentIndex) {
         item.setAttribute('active', '');
@@ -50,31 +74,71 @@ export class EVACarousel extends EVABaseComponent {
         item.removeAttribute('active');
       }
     });
-
-    this.render();
   }
 
   private previous() {
+    if (this.totalItems === 0) return;
     this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
     this.updateItems();
+    this.updateIndicators();
+    this.updateLiveRegion();
     this.emit('change', { index: this.currentIndex });
   }
 
   private next() {
+    if (this.totalItems === 0) return;
     this.currentIndex = (this.currentIndex + 1) % this.totalItems;
     this.updateItems();
+    this.updateIndicators();
+    this.updateLiveRegion();
     this.emit('change', { index: this.currentIndex });
   }
 
   private goTo(index: number) {
+    if (index < 0 || index >= this.totalItems) return;
     this.currentIndex = index;
     this.updateItems();
+    this.updateIndicators();
+    this.updateLiveRegion();
     this.emit('change', { index: this.currentIndex });
+  }
+
+  private updateIndicators() {
+    const indicatorsContainer = this.shadow.querySelector('.indicators');
+    if (!indicatorsContainer) return;
+    const existing = indicatorsContainer.querySelectorAll('.indicator');
+    // Rebuild if count mismatch
+    if (existing.length !== this.totalItems) {
+      indicatorsContainer.innerHTML = '';
+      for (let i = 0; i < this.totalItems; i++) {
+        const indicator = document.createElement('button');
+        indicator.className = 'indicator';
+        indicator.setAttribute('type', 'button');
+        indicator.setAttribute('aria-label', `Go to slide ${i + 1}`);
+        indicator.setAttribute('data-active', (i === this.currentIndex).toString());
+        indicator.addEventListener('click', () => this.goTo(i));
+        indicatorsContainer.appendChild(indicator);
+      }
+      return;
+    }
+    existing.forEach((el, i) => {
+      el.setAttribute('data-active', (i === this.currentIndex).toString());
+      el.setAttribute('aria-current', i === this.currentIndex ? 'true' : 'false');
+    });
+  }
+
+  private updateLiveRegion() {
+    if (!this.liveRegion) return;
+    if (this.totalItems === 0) {
+      this.liveRegion.textContent = '';
+      return;
+    }
+    this.liveRegion.textContent = `Slide ${this.currentIndex + 1} of ${this.totalItems}`;
   }
 
   protected render(): void {
     this.shadow.innerHTML = '';
-    
+
     this.shadow.appendChild(this.createStyles(`
       :host {
         display: block;
@@ -151,10 +215,18 @@ export class EVACarousel extends EVABaseComponent {
         width: 1.5rem;
         border-radius: 0.25rem;
       }
+      .live-region {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
     `));
-
     const carousel = document.createElement('div');
     carousel.className = 'carousel';
+    carousel.setAttribute('aria-roledescription', 'carousel');
+    carousel.setAttribute('aria-label', this.getAttr('label', 'Carousel'));
 
     const itemsContainer = document.createElement('div');
     itemsContainer.className = 'items';
@@ -163,34 +235,34 @@ export class EVACarousel extends EVABaseComponent {
 
     const prevBtn = document.createElement('button');
     prevBtn.className = 'nav-button prev';
+    prevBtn.type = 'button';
+    prevBtn.setAttribute('aria-label', 'Previous slide');
     prevBtn.textContent = '‹';
     prevBtn.addEventListener('click', () => this.previous());
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'nav-button next';
+    nextBtn.type = 'button';
+    nextBtn.setAttribute('aria-label', 'Next slide');
     nextBtn.textContent = '›';
     nextBtn.addEventListener('click', () => this.next());
 
     const indicators = document.createElement('div');
     indicators.className = 'indicators';
 
-    for (let i = 0; i < this.totalItems; i++) {
-      const indicator = document.createElement('button');
-      indicator.className = 'indicator';
-      indicator.setAttribute('data-active', (i === this.currentIndex).toString());
-      indicator.addEventListener('click', () => this.goTo(i));
-      indicators.appendChild(indicator);
-    }
+    // Indicators initially empty; will be built after mutation observer runs
+
+    this.liveRegion = document.createElement('div');
+    this.liveRegion.className = 'live-region';
+    this.liveRegion.setAttribute('aria-live', 'polite');
 
     carousel.appendChild(itemsContainer);
     carousel.appendChild(prevBtn);
     carousel.appendChild(nextBtn);
     carousel.appendChild(indicators);
+    carousel.appendChild(this.liveRegion);
 
     this.shadow.appendChild(carousel);
-
-    // Update after render
-    setTimeout(() => this.updateItems(), 0);
   }
 }
 

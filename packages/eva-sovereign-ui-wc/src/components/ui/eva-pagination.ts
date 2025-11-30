@@ -122,6 +122,12 @@ export class EVAPagination extends EVABaseComponent {
       }
     `));
 
+    const nav = document.createElement('nav');
+    nav.setAttribute('aria-label', 'Pagination');
+    nav.setAttribute('role', 'navigation');
+    nav.style.display = 'inline-flex';
+    nav.style.gap = gcSpacing[2];
+
     const container = document.createElement('div');
     container.style.display = 'contents';
 
@@ -162,7 +168,8 @@ export class EVAPagination extends EVABaseComponent {
     nextBtn.addEventListener('click', () => this.handlePageClick(this.currentPage + 1));
     container.appendChild(nextBtn);
 
-    this.shadow.appendChild(container);
+    nav.appendChild(container);
+    this.shadow.appendChild(nav);
   }
 
   private updateAriaCurrent() {

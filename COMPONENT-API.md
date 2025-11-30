@@ -107,25 +107,39 @@ Individual toggle within a toggle group.
 Text input field with multiple types.
 
 **Attributes:**
+ - Landmark navigation wrapper (`role="navigation"`, `aria-label="Pagination"`)
+ - Active page annotated with `aria-current="page"`
 - `type`: `"text"` | `"email"` | `"password"` | `"number"` | `"file"` (default: `"text"`)
 - `placeholder`: string
-- `value`: string
+**Attributes:**
+- `auto-advance`: number (milliseconds, 0 = disabled)
+- `label`: string (accessible name announced for the carousel region, default: `"Carousel"`)
 - `disabled`: boolean
-- `required`: boolean
-
-**Events:**
-- `input`: Native input event
+**Features:**
+- Previous/next buttons (`aria-label="Previous slide"` / `"Next slide"`)
+- Indicator dots (each button gets `aria-label="Go to slide N"`, current slide marked with `aria-current="true"`)
+- Auto-advance (optional)
+- Keyboard navigation
+- Screen reader live announcement (`aria-live="polite"` region: "Slide X of Y")
+- Structural `aria-roledescription="carousel"` and `aria-label` for overall container
 - `change`: Native change event
 
 **Example:**
 ```html
 <eva-input type="email" placeholder="Enter email"></eva-input>
+**Accessibility:**
+- Dynamically generated label and error message IDs
+- Error state exposes `aria-invalid="true"` and associates helper text via `aria-describedby`
+- Label associated via `aria-labelledby` when present
 ```
 
 ---
 
 ### eva-textarea
 
+**Accessibility:**
+- Internal input is associated with external label using `for`/`id`
+- Component sets `aria-labelledby` to ensure proper announcement
 Multi-line text input.
 
 **Attributes:**
