@@ -60,9 +60,7 @@ export class EVAAccordion extends EVABaseComponent {
 }
 
 export class EVAAccordionItem extends EVABaseComponent {
-  private isOpen = false;
-  private contentEl?: HTMLDivElement;
-  private triggerEl?: HTMLButtonElement;
+  private open = false;
 
   connectedCallback() {
     super.connectedCallback();

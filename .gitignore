@@ -31,3 +31,6 @@ pids
 .devcontainer/
 
 .spark-workbench-id
+
+*storybook.log
+storybook-static

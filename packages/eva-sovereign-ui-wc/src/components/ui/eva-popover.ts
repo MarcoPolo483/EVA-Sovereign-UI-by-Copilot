@@ -5,14 +5,11 @@
  */
 
 import { EVABaseComponent } from '../../utils/base-component';
-import { 
+import {
   modernColors,
   gcSpacing,
   shadows,
-  transitions,
-} from '../../tokens';
-
-export class EVAPopover extends EVABaseComponent {
+} from '../../tokens';export class EVAPopover extends EVABaseComponent {
   private isOpen = false;
   private triggerEl?: HTMLElement;
   private contentEl?: HTMLDivElement;
