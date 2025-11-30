@@ -1,4 +1,5 @@
 import { expect } from 'vitest';
+import axe from 'axe-core';
 
 /**
  * Wait for a custom element to be defined and upgraded
@@ -36,10 +37,47 @@ export async function createComponent<T extends HTMLElement>(
 
 /**
  * Run axe accessibility tests on an element
+ * Validates WCAG 2.2 Level AA compliance
  */
-export async function testAccessibility(element: HTMLElement): Promise<void> {
-  // Temporary no-op to unblock test suite; replace with @axe-core/dom integration
-  expect(element).toBeTruthy();
+export async function testAccessibility(
+  element: HTMLElement,
+  options: {
+    rules?: Record<string, { enabled: boolean }>;
+    includedImpacts?: Array<'minor' | 'moderate' | 'serious' | 'critical'>;
+  } = {}
+): Promise<void> {
+  const results = await axe.run(element, {
+    runOnly: {
+      type: 'tag',
+      values: ['wcag2a', 'wcag2aa', 'wcag22aa', 'best-practice'],
+    },
+    rules: options.rules || {},
+  });
+
+  // Filter violations by impact level
+  const includedImpacts = options.includedImpacts || ['moderate', 'serious', 'critical'];
+  const violations = results.violations.filter(violation =>
+    includedImpacts.includes(violation.impact as any)
+  );
+
+  if (violations.length > 0) {
+    const violationMessages = violations.map(violation => {
+      const nodes = violation.nodes.map(node => {
+        return `  - ${node.html}\n    ${node.failureSummary}`;
+      }).join('\n');
+
+      return `
+${violation.id} (${violation.impact}): ${violation.description}
+Help: ${violation.helpUrl}
+Affected nodes:
+${nodes}
+`;
+    }).join('\n');
+
+    throw new Error(`Accessibility violations found:\n${violationMessages}`);
+  }
+
+  expect(violations).toHaveLength(0);
 }
 
 /**
