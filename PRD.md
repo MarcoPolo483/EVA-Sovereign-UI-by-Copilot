@@ -1,188 +1,138 @@
 # Planning Guide
 
-EVA-Sovereign-UI is a standards-based web components design system that provides accessible, internationalized UI components following Government of Canada design patterns, with extensible "sovereign profiles" for public-sector UX across Five Eyes countries.
+A developer-focused toolkit providing instant access to CSS shortcuts, color palette templates, reusable styles, and graphic elements to accelerate frontend development workflows.
 
-**Experience Qualities**:
-1. **Trustworthy** - Government services demand clarity, reliability, and institutional confidence through consistent, professional design patterns
-2. **Accessible** - WCAG 2.1 AA compliance ensures inclusive access for all citizens regardless of ability or assistive technology
-3. **Adaptable** - Sovereign profiles allow the same component library to serve different national design systems while maintaining quality standards
+**Experience Qualities**: 
+1. **Efficient** - Quick copy-paste functionality with zero friction, allowing developers to grab what they need and move on.
+2. **Organized** - Logical categorization and search that makes finding the right snippet or resource feel intuitive.
+3. **Practical** - Real-world, production-ready code and assets that work immediately without modification.
 
 **Complexity Level**: Light Application (multiple features with basic state)
-  - The demo showcases interactive web components with state management (language switching, theme toggling), but focuses on demonstration rather than full application functionality
+- Multiple organized sections (CSS shortcuts, color palettes, styles, graphics) with filtering, search, and copy functionality, plus user preferences for favorites and theme selection.
 
 ## Essential Features
 
-### Accessibility Implementation ✅ COMPLETED
-- **Functionality**: WCAG 2.1 AA compliant accessibility features including keyboard navigation, screen reader support, and semantic HTML
-- **Purpose**: Ensure inclusive access for all citizens regardless of ability or assistive technology
-- **Trigger**: Always active, respects user preferences (reduced motion, high contrast)
-- **Progression**: Component mount → semantic structure rendered → ARIA attributes applied → keyboard/screen reader accessible
-- **Success criteria**: 
-  - All interactive elements keyboard accessible
-  - Skip to main content link functional
-  - Proper ARIA labels and landmarks
-  - Screen reader announcements for dynamic content
-  - Focus management and visible focus indicators
-  - Reduced motion and high contrast support
-  - Color contrast ratios meet WCAG AA standards
-  - HTML lang attribute updates with locale changes
+**CSS Shortcuts Browser**
+- Functionality: Displays categorized CSS snippets (flexbox, grid, animations, typography, shadows, borders) with syntax highlighting and copy button
+- Purpose: Eliminates the need to memorize or look up common CSS patterns
+- Trigger: User selects a category or searches for a specific pattern
+- Progression: Browse categories → View snippet with preview → Click copy → Visual confirmation → Snippet in clipboard
+- Success criteria: Users can find and copy any common CSS pattern in under 5 seconds
 
-### Web Components Library
-- **Functionality**: Standards-based Custom Elements with Shadow DOM encapsulation
-- **Purpose**: Framework-agnostic components usable in any web application
-- **Trigger**: Component registration on script load
-- **Progression**: Script import → component registration → declarative HTML usage → shadow DOM rendering
-- **Success criteria**: Components render correctly, accept attributes, emit events, and work without framework dependencies
+**Color Palette Templates**
+- Functionality: Pre-built color schemes with hex/rgb/oklch values, showing colors in context with contrast ratios
+- Purpose: Provides ready-to-use, accessible color combinations for rapid prototyping
+- Trigger: User browses palette categories (professional, vibrant, pastel, monochrome) or searches by mood
+- Progression: Select palette category → View color schemes with previews → Click individual color or entire palette → Copy values → Visual confirmation
+- Success criteria: All palettes meet WCAG AA contrast requirements; users can copy individual colors or entire palettes
 
-### Internationalization System
-- **Functionality**: Key-based translation lookup supporting en-CA and fr-CA
-- **Purpose**: Bilingual support required for Canadian government services
-- **Trigger**: Language switcher interaction or programmatic locale change
-- **Progression**: User clicks language toggle → event emission → locale update → component re-render with new translations
-- **Success criteria**: All text content updates instantly when language changes, no page reload required
+**Style Templates**
+- Functionality: Complete component styles (buttons, cards, forms, modals) as ready-to-use CSS classes
+- Purpose: Jumpstart UI development with polished, consistent component styles
+- Trigger: User selects component type from library
+- Progression: Browse components → Preview live example → View CSS code → Copy to clipboard → Apply to project
+- Success criteria: Each template works standalone without dependencies; includes hover/focus/active states
 
-### Sovereign Profile Theming
-- **Functionality**: CSS custom property-based themes for different government design systems
-- **Purpose**: Allow same component library to match Canada GC, UK Gov, and other national styles
-- **Trigger**: Profile selection in demo controls
-- **Progression**: Profile selector change → theme class update → CSS variables swap → visual refresh
-- **Success criteria**: Visual appearance matches government design guidelines for selected profile
-
-### GC Header Component
-- **Functionality**: Government of Canada standard header with bilingual title
-- **Purpose**: Consistent branding and navigation entry point
-- **Trigger**: Component mount in page
-- **Progression**: Component added to DOM → i18n title lookup → themed header render
-- **Success criteria**: Displays official GC visual identity, accessible, translatable
-
-### Page Shell Component
-- **Functionality**: Semantic layout structure with header/main/footer slots
-- **Purpose**: Enforce consistent page structure and landmark regions
-- **Trigger**: Component mount as page wrapper
-- **Progression**: Component added → slots defined → child content distributed → semantic HTML structure
-- **Success criteria**: Screen readers announce proper landmarks, content flows correctly
-
-### Hero Banner Component
-- **Functionality**: Prominent call-to-action area with title and description
-- **Purpose**: Direct user attention to primary page purpose or action
-- **Trigger**: Component mount with i18n keys
-- **Progression**: Component added → keys parsed → translations loaded → styled banner render
-- **Success criteria**: Text translates, proper heading hierarchy, visually prominent
-
-### Language Switcher Component
-- **Functionality**: EN/FR toggle button
-- **Purpose**: Allow users to switch interface language per government bilingual requirements
-- **Trigger**: User click on language option
-- **Progression**: Click → event dispatch → global locale update → all components re-render
-- **Success criteria**: Single click switches all text, current language visually indicated
-
-### Quick Actions Component
-- **Functionality**: Grid of actionable cards or buttons
-- **Purpose**: Provide shortcuts to common government service tasks
-- **Trigger**: Component mount with configuration
-- **Progression**: Component added → config parsed → action cards rendered → keyboard navigation enabled
-- **Success criteria**: Fully keyboard accessible, screen reader friendly, clear action labels
-
-### Chat Panel Component
-- **Functionality**: Message list with input field for conversational interface
-- **Purpose**: Demonstrate EVA-style AI assistant integration pattern
-- **Trigger**: Component mount and user message submission
-- **Progression**: User types message → submit → message added to list → simulated bot response → scroll to bottom
-- **Success criteria**: Messages display chronologically, accessible form, auto-scroll works
+**Graphic Elements Library**
+- Functionality: SVG patterns, shapes, dividers, and decorative elements with customization options
+- Purpose: Add visual interest without leaving the development environment or searching asset sites
+- Trigger: User browses graphic categories (patterns, dividers, shapes, icons)
+- Progression: Select category → Preview element → Adjust colors/size if applicable → Copy SVG code → Paste into project
+- Success criteria: All SVGs are optimized and accessible; color customization works in real-time
 
 ## Edge Case Handling
 
-- **Missing Translations**: Fall back to English if translation key not found, log warning
-- **Invalid Profile**: Default to Canada GC profile if unknown profile specified
-- **Component Nesting**: Shadow DOM prevents style leakage, slots handle content distribution properly
-- **Browser Support**: Graceful degradation message for browsers without Custom Elements support
-- **Focus Management**: Trap focus in modal-like components, restore on close
-- **Empty States**: Show helpful messages when components have no content/config
+- **Empty search results**: Display helpful suggestions for similar terms or show popular items from that category
+- **Copy failure**: Provide fallback manual selection with clear visual boundaries around code blocks
+- **Browser compatibility**: Gracefully indicate when CSS features require vendor prefixes or have limited support
+- **Mobile users**: Optimize touch targets and provide mobile-friendly code viewing with horizontal scroll
+- **Favorites overflow**: Implement pagination or grouping when user saves many items
 
 ## Design Direction
 
-The design should feel authoritative, accessible, and service-oriented - reflecting government institutional trust while remaining modern and user-friendly. A minimal interface prioritizes clarity and task completion over decoration, with generous whitespace and clear visual hierarchy appropriate for both public citizens and internal civil service users.
+The design should feel professional, efficient, and developer-centric—like a well-organized workshop where every tool has its place. Favor a clean, minimal interface that prioritizes content visibility and quick scanning, with subtle interactions that feel snappy and responsive rather than decorative.
 
 ## Color Selection
 
-Analogous color scheme with institutional blues and neutrals
-- Blue communicates trust, stability, and official government authority
-- Used for primary actions and branding elements with supporting neutral grays
+Custom palette - A sophisticated developer tool aesthetic with muted, high-contrast colors that reduce eye strain during extended use while maintaining clear visual hierarchy.
 
-**Canada GC Intranet Profile:**
-- **Primary Color**: GC Blue (oklch(0.45 0.12 250)) - Official Government of Canada brand blue, communicates authority and trust
-- **Secondary Colors**: 
-  - GC Red (oklch(0.50 0.20 25)) - Canadian flag red for accents and important notices
-  - Neutral Gray (oklch(0.55 0.01 250)) - Supporting color for secondary UI elements
-- **Accent Color**: Action Blue (oklch(0.55 0.15 250)) - Interactive element highlighting
-- **Foreground/Background Pairings**:
-  - Background (White oklch(0.99 0 0)): Text (Dark Gray oklch(0.25 0.01 250)) - Ratio 12.5:1 ✓
-  - Primary (GC Blue oklch(0.45 0.12 250)): White text (oklch(0.99 0 0)) - Ratio 7.8:1 ✓
-  - Secondary (GC Red oklch(0.50 0.20 25)): White text (oklch(0.99 0 0)) - Ratio 6.2:1 ✓
-  - Accent (Action Blue oklch(0.55 0.15 250)): White text (oklch(0.99 0 0)) - Ratio 4.9:1 ✓
-  - Card (Light Gray oklch(0.97 0 0)): Text (Dark Gray oklch(0.25 0.01 250)) - Ratio 12.2:1 ✓
-
-**UK Gov Profile:**
-- **Primary Color**: Gov.UK Green (oklch(0.35 0.10 180)) - Distinctive UK government identity
-- **Secondary Colors**: Similar neutral approach with UK-specific accent colors
+- **Primary Color**: Deep slate blue `oklch(0.35 0.06 250)` - Communicates technical precision and trustworthiness, used for primary actions and interactive elements
+- **Secondary Colors**: Soft purple `oklch(0.55 0.08 285)` for secondary actions and complementary elements, creating visual interest without overwhelming
+- **Accent Color**: Vibrant cyan `oklch(0.65 0.15 200)` for success states, highlights, and copy confirmations—draws attention exactly when needed
+- **Foreground/Background Pairings**: 
+  - Background (Light Gray `oklch(0.98 0 0)`): Dark charcoal text `oklch(0.25 0 0)` - Ratio 12.8:1 ✓
+  - Card (White `oklch(1 0 0)`): Dark charcoal text `oklch(0.25 0 0)` - Ratio 13.5:1 ✓
+  - Primary (Deep Slate `oklch(0.35 0.06 250)`): White text `oklch(1 0 0)` - Ratio 10.2:1 ✓
+  - Secondary (Soft Purple `oklch(0.55 0.08 285)`): White text `oklch(1 0 0)` - Ratio 5.8:1 ✓
+  - Accent (Vibrant Cyan `oklch(0.65 0.15 200)`): Dark text `oklch(0.25 0 0)` - Ratio 6.2:1 ✓
+  - Muted (Cool Gray `oklch(0.95 0.005 250)`): Medium gray text `oklch(0.50 0.01 250)` - Ratio 6.8:1 ✓
 
 ## Font Selection
 
-Typefaces should convey institutional credibility and maximum readability for diverse audiences including users with reading difficulties, chosen fonts should be system fonts or widely available for performance.
+Clean, technical typography that mirrors code editor aesthetics while maintaining excellent readability—Inter for UI elements combined with JetBrains Mono for code snippets to create familiar, developer-friendly typography.
 
-- **Typographic Hierarchy**:
-  - H1 (Page Title): system-ui Bold/36px/tight leading, used sparingly for main page heading
-  - H2 (Section Heading): system-ui SemiBold/28px/normal leading, major content sections
-  - H3 (Component Heading): system-ui SemiBold/22px/normal leading, component-level headings
-  - Body Text: system-ui Regular/16px/relaxed leading, main content and descriptions
-  - Small Text: system-ui Regular/14px/relaxed leading, metadata and supporting information
-  - Button Text: system-ui SemiBold/16px/normal leading, all actionable elements
+- **Typographic Hierarchy**: 
+  - H1 (Section Titles): Inter SemiBold/32px/tight tracking (-0.02em)
+  - H2 (Category Headers): Inter SemiBold/24px/normal tracking
+  - H3 (Component Names): Inter Medium/18px/normal tracking
+  - Body (Descriptions): Inter Regular/15px/relaxed leading (1.6)
+  - Code (Snippets): JetBrains Mono Regular/14px/normal leading (1.5)
+  - Labels (Metadata): Inter Medium/13px/wide tracking (0.02em) uppercase
 
 ## Animations
 
-Animations should be purposeful and subtle, primarily for state feedback and spatial continuity - motion reduces uncertainty about interface responses but must respect prefers-reduced-motion for accessibility.
+Subtle, performance-focused animations that provide feedback without slowing workflow—emphasizing instant response over decorative flourishes, like a well-tuned IDE.
 
-- **Purposeful Meaning**: Minimal motion conveys government professionalism, small transitions confirm actions (button press, language switch), avoid decorative animation
-- **Hierarchy of Movement**: Focus state changes deserve subtle transitions, language/theme switching gets smooth fade, chat messages ease in from bottom
+- **Purposeful Meaning**: Quick fade-ins for copied confirmations (checkmark icons), smooth color transitions on hover states, and gentle scale effects on cards to communicate interactivity
+- **Hierarchy of Movement**: Primary focus on copy confirmation feedback (most important user action), secondary on category switching and filtering, minimal on decorative elements
 
 ## Component Selection
 
-- **Components**: Custom Web Components built with Shadow DOM for:
-  - `<eva-gc-header>` - Government header bar with branding
-  - `<eva-page-shell>` - Semantic page structure with slots
-  - `<eva-hero-banner>` - Call-to-action area
-  - `<eva-language-switcher>` - EN/FR toggle
-  - `<eva-quick-actions>` - Action card grid
-  - `<eva-chat-panel>` - Message interface with input
-  - `<eva-button>` - Base button component
+- **Components**: 
+  - Tabs (Shadcn) for main navigation between CSS/Colors/Styles/Graphics with subtle underline indicator
+  - Card (Shadcn) for displaying individual snippets and templates with slight elevation on hover
+  - Input (Shadcn) for search functionality with clear button
+  - Button (Shadcn) for copy actions—primary variant with icon
+  - Badge (Shadcn) for category tags and feature labels (e.g., "CSS3", "Responsive", "Animated")
+  - Dialog (Shadcn) for expanded preview of complex components
+  - Tooltip (Shadcn) for showing full color values on hover
+  - Separator (Shadcn) for visual organization between sections
+  - ScrollArea (Shadcn) for code blocks that might overflow
 
 - **Customizations**: 
-  - Shadow DOM with CSS custom properties for theming
-  - Slot-based content distribution
-  - Event-driven communication between components
-  - Attribute-based configuration with i18n key support
+  - Syntax highlighted code blocks using custom component with line numbers
+  - Color swatch grid component with click-to-copy functionality
+  - SVG preview component with live customization controls
+  - Favorites toggle button component with heart icon and animation
 
 - **States**: 
-  - Buttons: default, hover, focus (visible outline), active, disabled (reduced opacity)
-  - Inputs: default, focus (blue ring), error (red border), disabled
-  - Language switcher: current language highlighted with bold weight and underline
-  - Theme selector: selected profile indicated with checkmark
+  - Buttons: Default (subtle shadow), Hover (lift + shadow increase), Active (scale down), Copied (green checkmark + background color shift for 1.5s)
+  - Cards: Rest (flat), Hover (subtle lift + border color change), Selected (persistent border highlight)
+  - Search input: Empty (placeholder visible), Focused (border accent color + subtle glow), Filled (clear button appears)
+  - Copy buttons: Show icon only on card hover, success state replaces copy icon with check
 
 - **Icon Selection**: 
-  - Minimal icon use, leveraging unicode symbols and CSS for basic indicators
-  - Language icon: 🌐 globe
-  - Chat send: → arrow
-  - Microphone: 🎤 for voice option
+  - Copy (phosphor) for copy-to-clipboard actions
+  - Check (phosphor) for confirmation states
+  - MagnifyingGlass (phosphor) for search
+  - Heart (phosphor) for favorites toggle
+  - Code (phosphor) for CSS shortcuts section
+  - Palette (phosphor) for colors section
+  - PaintBrush (phosphor) for styles section
+  - Shapes (phosphor) for graphics section
+  - X (phosphor) for clearing search/closing dialogs
 
 - **Spacing**: 
-  - Design tokens define: --spacing-xs (4px), --spacing-sm (8px), --spacing-md (16px), --spacing-lg (24px), --spacing-xl (32px), --spacing-2xl (48px)
-  - Component padding: --spacing-md to --spacing-lg
-  - Section gaps: --spacing-xl to --spacing-2xl
-  - Consistent 8px grid system
+  - Consistent 16px (gap-4) between cards in grid
+  - 24px (gap-6) between major sections
+  - 8px (gap-2) for inline elements (badges, small buttons)
+  - 32px (px-8) horizontal padding in main container
+  - 48px (py-12) vertical padding for section breaks
 
 - **Mobile**: 
-  - Mobile-first Shadow DOM styles
-  - Header: simplified at <768px, possible hamburger for menu
-  - Quick actions: single column stack on mobile, 2-3 column grid on tablet+
-  - Chat panel: full-width on mobile, max-width container on desktop
-  - Text scales proportionally, touch targets minimum 44×44px
+  - Stack tabs vertically as dropdown select on mobile (<768px)
+  - Switch from 3-column grid to single column on mobile
+  - Make code blocks horizontally scrollable with touch momentum
+  - Increase copy button size to 44x44px minimum touch target
+  - Position search bar sticky at top on scroll
+  - Use sheet component instead of dialog for mobile previews
