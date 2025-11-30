@@ -1,18 +1,12 @@
 export const gcColors = {
-  linkBlue: '#2
-  linkVisited: '#7834b
-  errorRed: '#d3080c',
+  linkBlue: '#284162',
   linkVisited: '#7834bc',
-  accent: '#26374A',
   errorRed: '#d3080c',
+  accent: '#26374A',
   h1Bar: '#A62A1E',
-export const usaColor
-  secondary: '#0071bc',
-  background: '#f
+  background: '#ffffff',
+  text: '#333333',
 };
-export const ukColors
-  secondary: '#007
-  
 
 export const usaColors = {
   primary: '#112e51',
@@ -28,6 +22,22 @@ export const ukColors = {
   accent: '#d4351c',
   background: '#ffffff',
   text: '#0b0c0c',
+};
+
+export const australiaColors = {
+  primary: '#00698f',
+  secondary: '#f56b00',
+  accent: '#78be20',
+  background: '#ffffff',
+  text: '#313131',
+};
+
+export const nzColors = {
+  primary: '#0057a3',
+  secondary: '#009639',
+  accent: '#e20074',
+  background: '#ffffff',
+  text: '#333333',
 };
 
 
