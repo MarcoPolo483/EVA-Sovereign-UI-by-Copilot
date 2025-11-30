@@ -6,31 +6,30 @@ type TranslationKey =
     | 'hero.description'
     | 'language.english'
     | 'language.french'
-    | 'language.switcher.label'
-    | 'demo.controls'
     | 'demo.profile'
-    | 'demo.language'
-    | 'quick.actions.title'
-    | 'quick.actions.myAccount'
-    | 'quick.actions.myAccount.desc'
-    | 'quick.actions.applications'
-    | 'quick.actions.applications.desc'
-    | 'quick.actions.payments'
-    | 'quick.actions.payments.desc'
-    | 'quick.actions.documents'
-    | 'quick.actions.documents.desc'
-    | 'chat.title'
+    | 'quick.actions.
+    | 'quick.actions
+    | 'quick.actions.
+    | 'quick.actions.paymen
+    | 'quick.actions.documents.
     | 'chat.subtitle'
-    | 'chat.placeholder'
     | 'chat.welcome'
-    | 'chat.send'
     | 'chat.voice'
-    | 'footer.copyright'
     | 'footer.privacy'
-    | 'footer.terms'
     | 'footer.accessibility'
+type Translations = Record<Loca
+const translations: Translations = {
+        'app.name'
+        'hero.descrip
+        'language.french
+        'demo.con
+        'demo.lang
+        'quick.actions.m
+        'quick.actions
+        'quick.actio
+        'quick.actions.docum
 
-type Translations = Record<Locale, Record<TranslationKey, string>>
+        'chat.placeholder': 'Type your question here...',
 
 const translations: Translations = {
     'en-CA': {
@@ -55,7 +54,66 @@ const translations: Translations = {
         'chat.title': 'Ask EVA',
         'chat.subtitle': 'Ask me questions about government services',
         'chat.placeholder': 'Type your question here...',
-        'chat.welcome': 'Hello! How can I assist you today?',
+        'chat.send': 'Send',
+        'chat.voice': 'Voice input is not yet implemented',
+        'footer.copyright': '© 2024 Government Portal. All rights reserved.',
+        'footer.privacy': 'Privacy',
+        'footer.terms': 'Terms of Service',
+        'footer.accessibility': 'Accessibility'
+    },
+    'fr-CA': {
+        'app.name': 'Portail gouvernemental',
+        'hero.title': 'Bienvenue au Portail gouvernemental',
+        'hero.description': 'Accédez à vos services et informations en toute sécurité',
+        'language.english': 'English',
+        'language.french': 'Français',
+        'language.switcher.label': 'Langue',
+        'demo.controls': 'Contrôles de démonstration',
+        'demo.profile': 'Profil souverain',
+        'demo.language': 'Langue',
+        'quick.actions.title': 'Actions rapides',
+        'quick.actions.myAccount': 'Mon compte',
+        'quick.actions.myAccount.desc': 'Voir et gérer les paramètres de votre compte',
+        'quick.actions.applications': 'Demandes',
+        'quick.actions.applications.desc': 'Suivre vos demandes',
+        'quick.actions.payments': 'Paiements',
+        'quick.actions.payments.desc': 'Effectuer un paiement ou voir l\'historique',
+        'quick.actions.documents': 'Documents',
+        'quick.actions.documents.desc': 'Accéder à vos documents et formulaires',
+        'chat.title': 'Demander à EVA',
+        'chat.subtitle': 'Posez-moi des questions sur les services gouvernementaux',
+        'chat.placeholder': 'Tapez votre question ici...',
+        'chat.send': 'Envoyer',
+        'chat.voice': 'L\'entrée vocale n\'est pas encore implémentée',
+        'footer.copyright': '© 2024 Portail gouvernemental. Tous droits réservés.',
+        'footer.privacy': 'Confidentialité',
+        'footer.terms': 'Conditions d\'utilisation',
+        'footer.accessibility': 'Accessibilité'
+    }
+}
+
+class I18nService {
+    private currentLocale: Locale = 'en-CA'
+
+    setLocale(locale: Locale) {
+        this.currentLocale = locale
+        document.documentElement.lang = locale
+    }
+
+    getLocale(): Locale {
+        return this.currentLocale
+    }
+
+    t(key: TranslationKey): string {
+        const translation = translations[this.currentLocale]?.[key]
+        if (!translation) {
+            return key
+        }
+        return translation
+    }
+}
+
+export const i18nService = new I18nService()
         'chat.send': 'Send',
         'chat.voice': 'Voice input is not yet implemented',
         'footer.copyright': '© 2024 Government Portal. All rights reserved.',
