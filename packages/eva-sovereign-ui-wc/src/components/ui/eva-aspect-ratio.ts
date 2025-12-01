@@ -16,8 +16,25 @@ export class EVAAspectRatio extends EVABaseComponent {
   }
 
   protected render(): void {
-    const ratio = parseFloat(this.getAttr('ratio', '16/9').replace('/', '/'));
-    const percentage = (1 / ratio) * 100;
+    const ratioAttr = this.getAttr('ratio', '16/9');
+    let numerator: number;
+    let denominator: number;
+    if (ratioAttr.includes('/')) {
+      const [a, b] = ratioAttr.split('/');
+      numerator = parseFloat(a);
+      denominator = parseFloat(b);
+      if (!numerator || isNaN(numerator)) numerator = 16;
+      if (!denominator || isNaN(denominator)) denominator = 9;
+    } else {
+      numerator = parseFloat(ratioAttr);
+      if (!numerator || isNaN(numerator)) {
+        numerator = 16;
+        denominator = 9;
+      } else {
+        denominator = 1;
+      }
+    }
+    const percentage = (denominator / numerator) * 100;
 
     this.shadow.innerHTML = '';
     

@@ -14,6 +14,8 @@ import {
 
 export class EVAContextMenu extends EVABaseComponent {
   private isOpen = false;
+  private lastX?: number;
+  private lastY?: number;
 
   connectedCallback() {
     super.connectedCallback();
@@ -21,8 +23,11 @@ export class EVAContextMenu extends EVABaseComponent {
     this.addEventListener('contextmenu', (e) => {
       e.preventDefault();
       this.isOpen = true;
-      this.positionMenu(e.clientX, e.clientY);
+      this.lastX = e.clientX;
+      this.lastY = e.clientY;
       this.render();
+      // Position after new DOM is created
+      requestAnimationFrame(() => this.positionMenu(this.lastX!, this.lastY!));
     });
 
     document.addEventListener('click', () => {
@@ -129,7 +134,14 @@ export class EVAContextMenu extends EVABaseComponent {
   private moveFocus(delta: number) {
     const items = this.getItemButtons();
     if (!items.length) return;
-    const cur = items.findIndex(i => i === document.activeElement);
+    let cur = items.findIndex(i => i === document.activeElement);
+    if (cur === -1) {
+      const active = document.activeElement as HTMLElement | null;
+      const fallback = active?.shadowRoot?.querySelector('button.item') as HTMLButtonElement | null;
+      if (fallback) {
+        cur = items.findIndex(i => i === fallback);
+      }
+    }
     const target = cur === -1 ? 0 : Math.min(Math.max(cur + delta, 0), items.length - 1);
     items.forEach((b, i) => b.setAttribute('tabindex', i === target ? '0' : '-1'));
     items[target].focus();
@@ -152,7 +164,11 @@ export class EVAContextMenu extends EVABaseComponent {
         this.isOpen = false; this.render(); e.preventDefault(); break;
       case 'Enter':
       case ' ': {
-        const el = document.activeElement as HTMLElement | null;
+        let el = document.activeElement as HTMLElement | null;
+        if (el && !el.classList.contains('item')) {
+          const fallback = el.shadowRoot?.querySelector('button.item') as HTMLElement | null;
+          if (fallback) el = fallback;
+        }
         if (el && el.classList.contains('item')) {
           el.click();
           e.preventDefault();

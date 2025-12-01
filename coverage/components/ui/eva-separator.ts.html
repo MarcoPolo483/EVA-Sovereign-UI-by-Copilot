@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/3</span>
+                <span class='fraction'>2/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -137,7 +137,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -145,13 +145,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,17 +168,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * EVA Separator Component
  * Visual divider with Spark styling
@@ -195,20 +195,20 @@ import {
 export type SeparatorOrientation = 'horizontal' | 'vertical';
 &nbsp;
 export class EVASeparator extends EVABaseComponent {
-  static get <span class="fstat-no" title="function not covered" >observedAttributes() {</span>
-<span class="cstat-no" title="statement not covered" >    return ['orientation'];</span>
+  static get observedAttributes() {
+    return ['orientation'];
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  attributeChangedCallback() {</span>
 <span class="cstat-no" title="statement not covered" >    this.render();</span>
   }
 &nbsp;
-  protected <span class="fstat-no" title="function not covered" >render(): void {</span>
-    const orientation = <span class="cstat-no" title="statement not covered" >this.getAttr('orientation', 'horizontal') as SeparatorOrientation;</span>
+  protected render(): void {
+    const orientation = this.getAttr('orientation', 'horizontal') as SeparatorOrientation;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.shadow.innerHTML = '';</span>
+    this.shadow.innerHTML = '';
     
-<span class="cstat-no" title="statement not covered" >    this.shadow.appendChild(this.createStyles(`</span>
+    this.shadow.appendChild(this.createStyles(`
       :host {
         display: block;
       }
@@ -229,17 +229,17 @@ export class EVASeparator extends EVABaseComponent {
       }
     `));
 &nbsp;
-    const separator = <span class="cstat-no" title="statement not covered" >document.createElement('div');</span>
-<span class="cstat-no" title="statement not covered" >    separator.className = 'separator';</span>
-<span class="cstat-no" title="statement not covered" >    separator.setAttribute('role', 'separator');</span>
-<span class="cstat-no" title="statement not covered" >    separator.setAttribute('data-orientation', orientation);</span>
-<span class="cstat-no" title="statement not covered" >    separator.setAttribute('aria-orientation', orientation);</span>
+    const separator = document.createElement('div');
+    separator.className = 'separator';
+    separator.setAttribute('role', 'separator');
+    separator.setAttribute('data-orientation', orientation);
+    separator.setAttribute('aria-orientation', orientation);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    this.shadow.appendChild(separator);</span>
+    this.shadow.appendChild(separator);
   }
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >customElements.define('eva-separator', EVASeparator);</span>
+customElements.define('eva-separator', EVASeparator);
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -247,7 +247,7 @@ export class EVASeparator extends EVABaseComponent {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-12-01T14:30:27.131Z
+                at 2025-12-02T10:20:24.127Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

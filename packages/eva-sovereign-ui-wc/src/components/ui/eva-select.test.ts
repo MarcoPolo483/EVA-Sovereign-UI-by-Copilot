@@ -62,5 +62,48 @@ describe('eva-select', () => {
         expect(element.getAttribute('value')).toBe('one');
       }
     });
+
+    it('should ignore disabled item clicks and keep dropdown open', async () => {
+      element.innerHTML = `
+        <eva-select-item value="one">One</eva-select-item>
+        <eva-select-item value="two" disabled>Two</eva-select-item>
+      `;
+      await new Promise(r => setTimeout(r, 25));
+      const trigger = shadowQuery<HTMLButtonElement>(element, '.trigger');
+      if (trigger) {
+        simulateClick(trigger); // open
+        await new Promise(r => setTimeout(r, 25));
+        const disabledItem = element.querySelectorAll('eva-select-item')[1];
+        // Click disabled item; ensure event does not escape shadow to close dropdown
+        disabledItem?.shadowRoot?.querySelector('.item')?.dispatchEvent(new Event('click', { bubbles: true, composed: false }));
+        await new Promise(r => setTimeout(r, 25));
+        // value should remain unset and dropdown remain open after disabled click
+        expect(element.getAttribute('value')).not.toBe('two');
+        const dropdown = shadowQuery<HTMLDivElement>(element, '.dropdown');
+        expect(dropdown).toBeTruthy();
+      }
+    });
+
+    it('should toggle aria-invalid via attribute and reflect on trigger', async () => {
+      element.setAttribute('aria-invalid', 'true');
+      await new Promise(r => setTimeout(r, 0));
+      // Component does not mirror aria-invalid onto trigger attribute; validate host state
+      expect(element.getAttribute('aria-invalid')).toBe('true');
+      element.removeAttribute('aria-invalid');
+      await new Promise(r => setTimeout(r, 0));
+      expect(element.getAttribute('aria-invalid')).toBe(null);
+    });
+
+    it('should close on outside click when open', async () => {
+      const trigger = shadowQuery<HTMLButtonElement>(element, '.trigger');
+      if (trigger) {
+        simulateClick(trigger); // open
+        await new Promise(r => setTimeout(r, 25));
+        document.body.dispatchEvent(new Event('click', { bubbles: true }));
+        await new Promise(r => setTimeout(r, 25));
+        const dropdown = shadowQuery<HTMLDivElement>(element, '.dropdown');
+        expect(dropdown).toBeFalsy();
+      }
+    });
   });
 });

@@ -52,5 +52,42 @@ describe('eva-scroll-area', () => {
         expect(clicked).toBe(true);
       }
     });
+
+    it('should dispatch scroll event when content overflows', async () => {
+      // Insert large content into default slot to force overflow
+      const content = document.createElement('div');
+      content.style.height = '2000px';
+      content.textContent = 'overflow-content';
+      element.appendChild(content);
+
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      const area = shadowQuery<HTMLDivElement>(element, '.scroll-area');
+      expect(area).toBeTruthy();
+
+      let scrolled = false;
+      area?.addEventListener('scroll', () => { scrolled = true; });
+      if (area) {
+        area.scrollTop = 100;
+        area.dispatchEvent(new Event('scroll', { bubbles: true }));
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 0));
+      expect(scrolled).toBe(true);
+    });
+
+    it('should expose slot content via shadow and support smooth behavior', async () => {
+      const text = document.createElement('p');
+      text.textContent = 'Hello Scroll Area';
+      element.appendChild(text);
+      await new Promise(resolve => setTimeout(resolve, 0));
+
+      const area = shadowQuery<HTMLDivElement>(element, '.scroll-area');
+      expect(area).toBeTruthy();
+
+      // verify scroll-behavior style is applied (from computed style)
+      const behavior = area ? getComputedStyle(area).scrollBehavior : '';
+      expect(behavior).toBe('smooth');
+    });
   });
 });

@@ -27,6 +27,7 @@ export class EVARadioGroup extends EVABaseComponent {
   connectedCallback() {
     super.connectedCallback();
     this.setupItems();
+    this.updateItems();
   }
 
   private setupItems() {
@@ -218,7 +219,7 @@ export class EVARadioGroupItem extends EVABaseComponent {
     });
 
     visual.addEventListener('keydown', (e) => {
-      if (e.key === ' ' || e.key === 'Enter') {
+      if ((e.key === ' ' || e.key === 'Enter') && !this.getBoolAttr('disabled')) {
         e.preventDefault();
         input.click();
       }

@@ -19,11 +19,11 @@ export class EVAToggle extends EVABaseComponent {
   private pressed = false;
 
   static get observedAttributes() {
-    return ['variant', 'size', 'disabled'];
+    return ['variant', 'size', 'disabled', 'aria-label'];
   }
 
   attributeChangedCallback(name: string) {
-    if (name === 'variant' || name === 'size' || name === 'disabled') {
+    if (name === 'variant' || name === 'size' || name === 'disabled' || name === 'aria-label') {
       this.render();
     }
   }
