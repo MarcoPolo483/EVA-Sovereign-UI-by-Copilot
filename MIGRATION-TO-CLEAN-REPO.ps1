@@ -191,7 +191,7 @@ foreach ($file in $filesToDelete) {
     $fullPath = Join-Path $targetRepo $file
     if (Test-Path $fullPath) {
         if (-not $DryRun) {
-            Remove-Item -Path $fullPath -Force
+            [System.IO.File]::Delete($fullPath)
             Write-Host "   ✅ Deleted: $file" -ForegroundColor Green
         } else {
             Write-Host "   [DRY RUN] Would delete: $file" -ForegroundColor Yellow
