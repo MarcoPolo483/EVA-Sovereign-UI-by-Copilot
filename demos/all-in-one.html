@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EVA Sovereign UI — All-in-One</title>
+  <link rel="stylesheet" href="./shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .toc{display:flex;flex-wrap:wrap;gap:8px}
+    .toc a{padding:6px 10px;border:1px solid #d8dde3;border-radius:999px;background:#fff;text-decoration:none;color:#26374A}
+    .subhead{margin:8px 0 6px;color:#4b5563}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">All-in-One Gallery</div>
+        <nav class="nav">
+          <a href="./index.html">All Demos</a>
+          <a href="#overview">Overview</a>
+          <a href="#foundations">Foundations</a>
+          <a href="#navigation">Navigation</a>
+          <a href="#forms">Forms</a>
+          <a href="#feedback">Feedback</a>
+          <a href="#content">Content & Data</a>
+          <a href="#files">Files & Viz</a>
+          <a href="#i18n">i18n & CMS</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="section">
+        <h1>EVA Sovereign UI — All-in-One</h1>
+        <div class="controls" style="margin-top:8px">
+          <label class="control">Theme profile
+            <select id="profile" class="control">
+              <option value="canada_gc">🇨🇦 GC</option>
+              <option value="usa_gov">🇺🇸 USA</option>
+              <option value="uk_gov">🇬🇧 UK</option>
+              <option value="australia_gov">🇦🇺 Australia</option>
+              <option value="nz_gov">🇳🇿 New Zealand</option>
+            </select>
+          </label>
+          <eva-gc-language-switcher include="en-CA,fr-CA,en-US,es-US,en-GB,cy-GB,en-AU,en-NZ,mi-NZ" url-mode="none"></eva-gc-language-switcher>
+        </div>
+        <div class="toc" style="margin-top:10px">
+          <a href="#overview">Overview</a>
+          <a href="#foundations">Foundations</a>
+          <a href="#navigation">Navigation</a>
+          <a href="#forms">Forms</a>
+          <a href="#feedback">Feedback</a>
+          <a href="#content">Content & Data</a>
+          <a href="#files">Files & Viz</a>
+          <a href="#i18n">i18n & CMS</a>
+        </div>
+      </div>
+
+      <div id="overview" class="section">
+        <h2>Overview & Kitchen Sink</h2>
+        <div class="grid">
+          <eva-gc-button>Default</eva-gc-button>
+          <eva-gc-button variant="primary">Primary</eva-gc-button>
+          <eva-gc-button variant="secondary">Secondary</eva-gc-button>
+          <eva-gc-button variant="danger">Danger</eva-gc-button>
+          <eva-gc-button variant="link">Link</eva-gc-button>
+          <eva-gc-button size="icon"><span class="sr-only">Close</span><span slot="icon">✕</span></eva-gc-button>
+          <eva-gc-button loading variant="primary">Loading</eva-gc-button>
+          <eva-gc-button disabled>Disabled</eva-gc-button>
+        </div>
+        <div class="grid" style="margin-top:10px">
+          <eva-gc-breadcrumbs>
+            <a href="#">Home</a>
+            <a href="#">Section</a>
+            <span>Current</span>
+          </eva-gc-breadcrumbs>
+          <eva-gc-tag>Tag</eva-gc-tag>
+          <eva-gc-card title="Service Card"><p>Helpful description of a program or service.</p></eva-gc-card>
+          <eva-gc-pagination total="100" current="5" page-size="10"></eva-gc-pagination>
+          <eva-gc-tabs>
+            <div slot="tab" data-label="Tab 1">Content 1</div>
+            <div slot="tab" data-label="Tab 2">Content 2</div>
+          </eva-gc-tabs>
+        </div>
+      </div>
+
+      <div id="foundations" class="section">
+        <h2>Foundations & Theming</h2>
+        <div class="subhead">Color tokens</div>
+        <div class="grid">
+          <div class="section"><div style="height:40px;background:var(--eva-surface,#fff)"></div><div class="subhead">--eva-surface</div></div>
+          <div class="section"><div style="height:40px;background:var(--eva-text,#111)"></div><div class="subhead">--eva-text</div></div>
+          <div class="section"><div style="height:40px;background:var(--eva-primary,#26374A)"></div><div class="subhead">--eva-primary</div></div>
+          <div class="section"><div style="height:40px;background:var(--eva-accent,#2b8a3e)"></div><div class="subhead">--eva-accent</div></div>
+          <div class="section"><div style="height:40px;background:var(--eva-muted,#eef2f6)"></div><div class="subhead">--eva-muted</div></div>
+        </div>
+        <div class="subhead" style="margin-top:10px">Typography</div>
+        <div>
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <p>Body text paragraph with normal contrast.</p>
+        </div>
+      </div>
+
+      <div id="navigation" class="section">
+        <h2>Navigation & Shell</h2>
+        <eva-gc-header id="hdr" profile="canada_gc" app-name-key="demo.nav.title"></eva-gc-header>
+        <div style="margin:12px 0">
+          <eva-gc-breadcrumbs>
+            <a href="#">Home</a>
+            <a href="#">Section</a>
+            <span>Current Page</span>
+          </eva-gc-breadcrumbs>
+        </div>
+        <eva-gc-navigation>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Contact</a>
+        </eva-gc-navigation>
+        <div class="grid" style="margin-top:10px">
+          <eva-gc-tabs>
+            <div slot="tab" data-label="Overview">Shell overview</div>
+            <div slot="tab" data-label="Details">More details</div>
+          </eva-gc-tabs>
+          <eva-gc-pagination total="75" current="3" page-size="10"></eva-gc-pagination>
+        </div>
+        <eva-gc-footer id="ftr" profile="canada_gc" style="margin-top:12px"></eva-gc-footer>
+      </div>
+
+      <div id="forms" class="section">
+        <h2>Forms & Validation</h2>
+        <div class="grid">
+          <div>
+            <eva-gc-label for="name" required>Full Name</eva-gc-label>
+            <eva-gc-input id="name" type="text" required></eva-gc-input>
+          </div>
+          <div>
+            <eva-gc-label for="email">Email</eva-gc-label>
+            <eva-gc-input id="email" type="email" helper-text="We will never share it"></eva-gc-input>
+          </div>
+          <div>
+            <eva-gc-label for="pwd">Password</eva-gc-label>
+            <eva-gc-input id="pwd" type="password" aria-describedby="hint"></eva-gc-input>
+            <div id="hint" class="code">Minimum 8 characters</div>
+          </div>
+          <div>
+            <eva-gc-label for="email-err">Email (error)</eva-gc-label>
+            <eva-gc-input id="email-err" type="email" error="Invalid email" aria-invalid="true"></eva-gc-input>
+          </div>
+        </div>
+        <form id="demo-form" style="margin-top:10px;display:grid;gap:10px">
+          <div class="grid">
+            <div>
+              <eva-gc-label for="f1" required>Field 1</eva-gc-label>
+              <eva-gc-input id="f1" required></eva-gc-input>
+            </div>
+            <div>
+              <eva-gc-label for="f2">Field 2</eva-gc-label>
+              <eva-gc-input id="f2"></eva-gc-input>
+            </div>
+          </div>
+          <div class="controls">
+            <eva-gc-button type="submit" variant="primary">Submit</eva-gc-button>
+            <eva-gc-button type="button" variant="secondary" id="reset">Reset</eva-gc-button>
+          </div>
+        </form>
+      </div>
+
+      <div id="feedback" class="section">
+        <h2>Feedback & Overlays</h2>
+        <div class="grid">
+          <eva-gc-alert variant="info" title="Info">Informational message.</eva-gc-alert>
+          <eva-gc-alert variant="success" title="Success">Success message.</eva-gc-alert>
+          <eva-gc-alert variant="warning" title="Warning">Warning message.</eva-gc-alert>
+          <eva-gc-alert variant="error" title="Error">Error message.</eva-gc-alert>
+        </div>
+        <div class="controls" style="margin-top:10px">
+          <eva-gc-button id="open-modal" variant="primary">Open Modal</eva-gc-button>
+        </div>
+        <eva-gc-modal id="modal" title="Example Modal">
+          <p>This is modal content with proper focus management.</p>
+        </eva-gc-modal>
+      </div>
+
+      <div id="content" class="section">
+        <h2>Content & Data Display</h2>
+        <div class="grid">
+          <eva-gc-card title="Benefits for seniors"><p>Programs and services to support seniors.</p></eva-gc-card>
+          <eva-gc-card title="Employment Programs" href="#"><p>Find a program that matches your skills.</p></eva-gc-card>
+          <eva-gc-tag>Default Tag</eva-gc-tag>
+          <eva-gc-tag removable>Removable Tag</eva-gc-tag>
+        </div>
+        <div class="grid" style="margin-top:10px">
+          <eva-gc-data-table id="tbl"></eva-gc-data-table>
+          <eva-gc-timeline id="tl"></eva-gc-timeline>
+        </div>
+      </div>
+
+      <div id="files" class="section">
+        <h2>Files, Media & Data Viz</h2>
+        <eva-gc-file-upload accept="image/*" max-size="5242880"></eva-gc-file-upload>
+        <div class="grid" style="margin-top:10px">
+          <eva-gc-chart id="chart" type="bar" title="Quarterly Results" show-data-table></eva-gc-chart>
+          <figure>
+            <img src="https://picsum.photos/800/200" alt="Sample landscape" style="width:100%;height:auto;border-radius:8px;border:1px solid #e2e5e9" />
+            <figcaption>Responsive image with descriptive alt text.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div id="i18n" class="section">
+        <h2>i18n, CMS & Templates</h2>
+        <div class="controls">
+          <eva-gc-language-switcher include="en-CA,fr-CA" url-mode="prefix"></eva-gc-language-switcher>
+          <eva-gc-language-switcher include="en-CA,fr-CA,en-GB,en-US" url-mode="none"></eva-gc-language-switcher>
+        </div>
+        <p class="subhead">CMS static fallback loader</p>
+        <div class="controls">
+          <eva-gc-button id="load-en" variant="secondary">Load EN content</eva-gc-button>
+          <eva-gc-button id="load-fr" variant="secondary">Load FR content</eva-gc-button>
+        </div>
+        <pre id="cms-out" class="code" style="margin-top:8px">Click to load content…</pre>
+        <p class="subhead">Template gallery (descriptive)</p>
+        <div class="grid">
+          <div class="section"><h3>Service — Apply</h3><p>Steps, checklist, CTA.</p></div>
+          <div class="section"><h3>Form Page</h3><p>Label/input patterns with validation.</p></div>
+          <div class="section"><h3>Search Results</h3><p>Filters, list, empty/error states.</p></div>
+          <div class="section"><h3>Content Page</h3><p>TOC, anchors, next/previous nav.</p></div>
+          <div class="section"><h3>Confirmation</h3><p>Transaction summary and next steps.</p></div>
+          <div class="section"><h3>Error Pages</h3><p>404/500 with recovery actions.</p></div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner">© EVA Sovereign UI</div></footer>
+  </div>
+
+  <script type="module" src="/packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script>
+    // Profile switch updates header/footer profile if present
+    document.getElementById('profile').addEventListener('change', function(e){
+      var p = e.target.value;
+      var els = document.querySelectorAll('eva-gc-header, eva-gc-footer');
+      els.forEach(function(el){ el.setAttribute('profile', p); });
+    });
+
+    // Forms: submit/reset
+    document.getElementById('demo-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      alert('Submitted (demo)');
+    });
+    document.getElementById('reset').addEventListener('click', function(){
+      var form = document.getElementById('demo-form');
+      if (form && typeof form.reset === 'function') form.reset();
+    });
+
+    // Modal open
+    document.getElementById('open-modal').addEventListener('click', function(){
+      document.getElementById('modal').setAttribute('open','');
+    });
+
+    // Bind data table and timeline
+    var table = document.getElementById('tbl');
+    if (table) {
+      table.columns = [
+        { key: 'name', label: 'Name' },
+        { key: 'email', label: 'Email' },
+        { key: 'role', label: 'Role' }
+      ];
+      table.data = [
+        { name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+        { name: 'Jane Smith', email: 'jane@example.com', role: 'User' }
+      ];
+    }
+    var tl = document.getElementById('tl');
+    if (tl) {
+      tl.items = [
+        { id: '1', date: '2024-01-01', title: 'Apply', status: 'completed' },
+        { id: '2', date: '2024-02-01', title: 'Review', status: 'current' },
+        { id: '3', date: '2024-03-01', title: 'Decision', status: 'upcoming' }
+      ];
+    }
+
+    // Chart data
+    var chart = document.getElementById('chart');
+    if (chart) {
+      chart.data = { labels: ['Q1','Q2','Q3','Q4'], datasets: [{ label:'Total', data:[120,180,150,220] }] };
+    }
+
+    // CMS static loader
+    async function load(path){
+      var res = await fetch(path); if(!res.ok) throw new Error(String(res.status));
+      return res.json();
+    }
+    document.getElementById('load-en').addEventListener('click', async function(){
+      var out = document.getElementById('cms-out');
+      try { var data = await load('/content/en/welcome.json'); out.textContent = JSON.stringify(data,null,2); }
+      catch(e){ out.textContent = 'Not found'; }
+    });
+    document.getElementById('load-fr').addEventListener('click', async function(){
+      var out = document.getElementById('cms-out');
+      try { var data = await load('/content/fr/welcome.json'); out.textContent = JSON.stringify(data,null,2); }
+      catch(e){ out.textContent = 'Not found'; }
+    });
+  </script>
+</body>
+</html>

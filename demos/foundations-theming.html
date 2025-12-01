@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Foundations & Theming</title>
+  <link rel="stylesheet" href="./shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+    .swatch{border:1px solid #e2e5e9;border-radius:8px;overflow:hidden;background:#fff}
+    .swatch .chip{height:48px}
+    .swatch .meta{padding:8px;font-size:12px;color:#4b5563}
+    .grid-guide{display:grid;grid-template-columns:repeat(12,1fr);gap:8px;background:repeating-linear-gradient(90deg,#f8fafc,#f8fafc 1fr,#eef2f7 1fr,#eef2f7 calc(1fr + 8px));padding:8px;border-radius:8px;border:1px solid #e2e5e9}
+    .grid-guide > div{background:#fff;border:1px dashed #c9d2df;border-radius:6px;min-height:56px}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">Foundations & Theming</div>
+        <nav class="nav">
+          <a href="./index.html">All Demos</a>
+          <a href="./overview.html">Overview</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="section">
+        <h2>Theme Profiles</h2>
+        <div class="controls">
+          <label class="control">Profile
+            <select id="profile" class="control">
+              <option value="canada_gc">🇨🇦 GC</option>
+              <option value="usa_gov">🇺🇸 USA</option>
+              <option value="uk_gov">🇬🇧 UK</option>
+              <option value="australia_gov">🇦🇺 Australia</option>
+              <option value="nz_gov">🇳🇿 New Zealand</option>
+            </select>
+          </label>
+          <eva-gc-language-switcher include="en-CA,fr-CA,en-GB,en-US,en-AU,en-NZ" url-mode="none"></eva-gc-language-switcher>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Color Tokens</h2>
+        <div class="swatches">
+          <div class="swatch"><div class="chip" style="background:var(--eva-surface,#fff)"></div><div class="meta">--eva-surface</div></div>
+          <div class="swatch"><div class="chip" style="background:var(--eva-text,#111)"></div><div class="meta">--eva-text</div></div>
+          <div class="swatch"><div class="chip" style="background:var(--eva-primary,#26374A)"></div><div class="meta">--eva-primary</div></div>
+          <div class="swatch"><div class="chip" style="background:var(--eva-accent,#2b8a3e)"></div><div class="meta">--eva-accent</div></div>
+          <div class="swatch"><div class="chip" style="background:var(--eva-muted,#eef2f6)"></div><div class="meta">--eva-muted</div></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Typography</h2>
+        <div>
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <p>Body text paragraph with normal contrast.</p>
+          <small>Small text</small>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Layout Grid</h2>
+        <div class="grid-guide">
+          <div></div><div></div><div></div><div></div><div></div><div></div>
+          <div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner">© EVA Sovereign UI</div></footer>
+  </div>
+  <script type="module" src="/packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script type="module">
+    const setProfile = (p)=>{
+      document.querySelectorAll('eva-gc-header, eva-gc-footer').forEach(el=>el.setAttribute('profile',p));
+    };
+    document.getElementById('profile').addEventListener('change',e=>setProfile(e.target.value));
+  </script>
+</body>
+</html>

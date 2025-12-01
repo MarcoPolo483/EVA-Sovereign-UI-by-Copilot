@@ -1,63 +1,127 @@
 {
   "auditReportVersion": 2,
   "vulnerabilities": {
-    "@eslint/plugin-kit": {
-      "name": "@eslint/plugin-kit",
-      "severity": "low",
+    "@cyclonedx/cyclonedx-library": {
+      "name": "@cyclonedx/cyclonedx-library",
+      "severity": "critical",
       "isDirect": false,
       "via": [
-        {
-          "source": 1106734,
-          "name": "@eslint/plugin-kit",
-          "dependency": "@eslint/plugin-kit",
-          "title": "@eslint/plugin-kit is vulnerable to Regular Expression Denial of Service attacks through ConfigCommentParser",
-          "url": "https://github.com/advisories/GHSA-xffm-g5w8-qvg7",
-          "severity": "low",
-          "cwe": [
-            "CWE-1333"
-          ],
-          "cvss": {
-            "score": 0,
-            "vectorString": null
-          },
-          "range": "<0.3.4"
-        }
+        "libxmljs2",
+        "xmlbuilder2"
       ],
-      "effects": [],
-      "range": "<0.3.4",
+      "effects": [
+        "@cyclonedx/cyclonedx-npm"
+      ],
+      "range": "<=9.0.0",
       "nodes": [
-        "node_modules/@eslint/plugin-kit"
+        "node_modules/@cyclonedx/cyclonedx-library"
       ],
-      "fixAvailable": true
+      "fixAvailable": false
     },
-    "brace-expansion": {
-      "name": "brace-expansion",
-      "severity": "low",
+    "@cyclonedx/cyclonedx-npm": {
+      "name": "@cyclonedx/cyclonedx-npm",
+      "severity": "critical",
+      "isDirect": true,
+      "via": [
+        "@cyclonedx/cyclonedx-library",
+        "xmlbuilder2"
+      ],
+      "effects": [],
+      "range": "*",
+      "nodes": [
+        "node_modules/@cyclonedx/cyclonedx-npm"
+      ],
+      "fixAvailable": false
+    },
+    "@semantic-release/npm": {
+      "name": "@semantic-release/npm",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "npm"
+      ],
+      "effects": [
+        "semantic-release"
+      ],
+      "range": "11.0.0 - 12.0.2",
+      "nodes": [
+        "node_modules/@semantic-release/npm"
+      ],
+      "fixAvailable": {
+        "name": "@semantic-release/npm",
+        "version": "13.1.2",
+        "isSemVerMajor": true
+      }
+    },
+    "esbuild": {
+      "name": "esbuild",
+      "severity": "moderate",
       "isDirect": false,
       "via": [
         {
-          "source": 1105443,
-          "name": "brace-expansion",
-          "dependency": "brace-expansion",
-          "title": "brace-expansion Regular Expression Denial of Service vulnerability",
-          "url": "https://github.com/advisories/GHSA-v6h2-p8h4-qcjw",
-          "severity": "low",
+          "source": 1102341,
+          "name": "esbuild",
+          "dependency": "esbuild",
+          "title": "esbuild enables any website to send any requests to the development server and read the response",
+          "url": "https://github.com/advisories/GHSA-67mh-4wv8-2f99",
+          "severity": "moderate",
           "cwe": [
-            "CWE-400"
+            "CWE-346"
           ],
           "cvss": {
-            "score": 3.1,
-            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:N/I:N/A:L"
+            "score": 5.3,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:H/I:N/A:N"
           },
-          "range": ">=1.0.0 <=1.1.11"
+          "range": "<=0.24.2"
         }
       ],
-      "effects": [],
-      "range": "1.0.0 - 1.1.11",
-      "nodes": [
-        "node_modules/brace-expansion"
+      "effects": [
+        "vite"
       ],
-      "fixAvailable": true
+      "range": "<=0.24.2",
+      "nodes": [
+        "node_modules/esbuild"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "7.2.6",
+        "isSemVerMajor": true
+      }
+    },
+    "glob": {
+      "name": "glob",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1109842,
+          "name": "glob",
+          "dependency": "glob",
+          "title": "glob CLI: Command injection via -c/--cmd executes matches with shell:true",
+          "url": "https://github.com/advisories/GHSA-5j98-mcp5-4vw2",
+          "severity": "high",
+          "cwe": [
+            "CWE-78"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H"
+          },
+          "range": ">=10.2.0 <10.5.0"
+        }
+      ],
+      "effects": [
+        "npm"
+      ],
+      "range": "10.2.0 - 10.4.5",
+      "nodes": [
+        "node_modules/npm/node_modules/glob"
+      ],
+      "fixAvailable": {
+        "name": "@semantic-release/npm",
+        "version": "13.1.2",
+        "isSemVerMajor": true
+      }
     },
     "js-yaml": {
       "name": "js-yaml",
@@ -65,7 +129,7 @@
       "isDirect": false,
       "via": [
         {
-          "source": 1109802,
+          "source": 1109801,
           "name": "js-yaml",
           "dependency": "js-yaml",
           "title": "js-yaml has prototype pollution in merge (<<)",
@@ -78,33 +142,139 @@
             "score": 5.3,
             "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N"
           },
-          "range": ">=4.0.0 <4.1.1"
+          "range": "<3.14.2"
         }
       ],
-      "effects": [],
-      "range": "4.0.0 - 4.1.0",
-      "nodes": [
-        "node_modules/js-yaml"
+      "effects": [
+        "xmlbuilder2"
       ],
-      "fixAvailable": true
+      "range": "<3.14.2",
+      "nodes": [
+        "node_modules/xmlbuilder2/node_modules/js-yaml"
+      ],
+      "fixAvailable": false
+    },
+    "libxmljs2": {
+      "name": "libxmljs2",
+      "severity": "critical",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1100657,
+          "name": "libxmljs2",
+          "dependency": "libxmljs2",
+          "title": "libxmljs2 vulnerable to type confusion when parsing specially crafted XML",
+          "url": "https://github.com/advisories/GHSA-78h3-pg4x-j8cv",
+          "severity": "critical",
+          "cwe": [
+            "CWE-843"
+          ],
+          "cvss": {
+            "score": 8.1,
+            "vectorString": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H"
+          },
+          "range": "<=0.35.0"
+        }
+      ],
+      "effects": [
+        "@cyclonedx/cyclonedx-library"
+      ],
+      "range": "<=0.35.0",
+      "nodes": [
+        "node_modules/libxmljs2"
+      ],
+      "fixAvailable": false
+    },
+    "npm": {
+      "name": "npm",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        "glob"
+      ],
+      "effects": [
+        "@semantic-release/npm"
+      ],
+      "range": "7.21.0 - 8.5.4 || 9.6.6 - 11.6.0",
+      "nodes": [
+        "node_modules/npm"
+      ],
+      "fixAvailable": {
+        "name": "@semantic-release/npm",
+        "version": "13.1.2",
+        "isSemVerMajor": true
+      }
+    },
+    "semantic-release": {
+      "name": "semantic-release",
+      "severity": "high",
+      "isDirect": true,
+      "via": [
+        "@semantic-release/npm"
+      ],
+      "effects": [],
+      "range": "22.0.0-beta.1 - 25.0.0-beta.1",
+      "nodes": [
+        "node_modules/semantic-release"
+      ],
+      "fixAvailable": {
+        "name": "semantic-release",
+        "version": "25.0.2",
+        "isSemVerMajor": true
+      }
+    },
+    "vite": {
+      "name": "vite",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        "esbuild"
+      ],
+      "effects": [],
+      "range": "0.11.0 - 6.1.6",
+      "nodes": [
+        "node_modules/vite"
+      ],
+      "fixAvailable": {
+        "name": "vite",
+        "version": "7.2.6",
+        "isSemVerMajor": true
+      }
+    },
+    "xmlbuilder2": {
+      "name": "xmlbuilder2",
+      "severity": "moderate",
+      "isDirect": false,
+      "via": [
+        "js-yaml"
+      ],
+      "effects": [
+        "@cyclonedx/cyclonedx-library",
+        "@cyclonedx/cyclonedx-npm"
+      ],
+      "range": "2.3.0 - 3.1.1",
+      "nodes": [
+        "node_modules/xmlbuilder2"
+      ],
+      "fixAvailable": false
     }
   },
   "metadata": {
     "vulnerabilities": {
       "info": 0,
-      "low": 2,
-      "moderate": 1,
-      "high": 0,
-      "critical": 0,
-      "total": 3
+      "low": 0,
+      "moderate": 4,
+      "high": 4,
+      "critical": 3,
+      "total": 11
     },
     "dependencies": {
-      "prod": 283,
-      "dev": 170,
-      "optional": 84,
-      "peer": 19,
+      "prod": 1,
+      "dev": 1574,
+      "optional": 231,
+      "peer": 40,
       "peerOptional": 0,
-      "total": 523
+      "total": 1574
     }
   }
 }

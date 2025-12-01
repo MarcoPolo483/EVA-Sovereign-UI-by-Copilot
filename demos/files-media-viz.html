@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Files, Media & Data Viz</title>
+  <link rel="stylesheet" href="./shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">Files, Media & Data Viz</div>
+        <nav class="nav">
+          <a href="./index.html">All Demos</a>
+          <a href="./overview.html">Overview</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="section">
+        <h2>File Upload</h2>
+        <eva-gc-file-upload accept="image/*" max-size="5242880"></eva-gc-file-upload>
+      </div>
+
+      <div class="section">
+        <h2>Chart</h2>
+        <eva-gc-chart id="chart" type="bar" title="Quarterly Results" show-data-table></eva-gc-chart>
+      </div>
+
+      <div class="section">
+        <h2>Media</h2>
+        <figure>
+          <img src="https://picsum.photos/800/200" alt="Sample landscape" style="width:100%;height:auto;border-radius:8px;border:1px solid #e2e5e9" />
+          <figcaption>Responsive image with descriptive alt text.</figcaption>
+        </figure>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner">© EVA Sovereign UI</div></footer>
+  </div>
+  <script type="module" src="/packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script>
+    const chart = document.getElementById('chart');
+    chart.data = {
+      labels: ['Q1','Q2','Q3','Q4'],
+      datasets: [{ label: 'Total', data: [120, 180, 150, 220] }]
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EVA GC Language Switcher Demo</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 2rem; }
+      section { margin: 1.5rem 0; padding: 1rem; border: 1px solid #eee; border-radius: 8px; }
+      header { display:flex; gap:1rem; align-items:center; justify-content: space-between; }
+      nav { display:flex; gap:.75rem; align-items:center; }
+      .row { display:flex; gap:2rem; flex-wrap:wrap; }
+      .card { flex: 1 1 320px; border:1px solid #eee; border-radius:8px; padding:1rem; }
+    </style>
+    <script type="module" src="/packages/eva-sovereign-ui-wc/src/components/gc-design/eva-gc-language-switcher.ts"></script>
+    <script type="module">
+      import { i18n } from '/packages/eva-sovereign-ui-wc/src/i18n/i18n-service.ts';
+      // Preload a couple of locales for faster switching
+      i18n.loadLocale('en-CA');
+      i18n.loadLocale('fr-CA');
+      i18n.loadLocale('es-US');
+      window.i18n = i18n;
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>Language Switcher - Examples</h1>
+      <eva-gc-language-switcher></eva-gc-language-switcher>
+    </header>
+
+    <section>
+      <h2>Default (all locales)</h2>
+      <p>Lists all supported locales from the library and updates URL with <code>/<em>lang</em>/</code> prefix.</p>
+      <eva-gc-language-switcher url-mode="prefix"></eva-gc-language-switcher>
+    </section>
+
+    <section>
+      <h2>Include Subset (Canada only)</h2>
+      <p>Restrict to English and French (Canada):</p>
+      <eva-gc-language-switcher include="en-CA,fr-CA" url-mode="prefix"></eva-gc-language-switcher>
+    </section>
+
+    <section>
+      <h2>No URL Mode (emit event only)</h2>
+      <p>Use <code>url-mode="none"</code> to avoid navigation; handle <code>locale-change</code> event in your app.</p>
+      <div class="row">
+        <div class="card">
+          <eva-gc-language-switcher id="no-url" url-mode="none"></eva-gc-language-switcher>
+          <p id="status">Current locale: <strong>en-CA</strong></p>
+        </div>
+      </div>
+      <script type="module">
+        const sw = document.getElementById('no-url');
+        const status = document.getElementById('status');
+        sw.addEventListener('locale-change', (e) => {
+          status.innerHTML = `Current locale: <strong>${e.detail.locale}</strong>`;
+        });
+      </script>
+    </section>
+
+    <section>
+      <h2>Preselected Locale (Spanish - US)</h2>
+      <p>Programmatically set locale at startup.</p>
+      <div class="row">
+        <div class="card">
+          <button id="set-es">Set to es-US</button>
+          <eva-gc-language-switcher id="es-demo" url-mode="none"></eva-gc-language-switcher>
+        </div>
+      </div>
+      <script type="module">
+        document.getElementById('set-es').addEventListener('click', async () => {
+          await window.i18n.setLocale('es-US');
+        });
+      </script>
+    </section>
+  </body>
+  </html>

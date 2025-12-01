@@ -1,0 +1,101 @@
+{
+  "esdc": {
+    "title": "Empleo y Desarrollo Social de Canadá",
+    "shortTitle": "EDSC",
+    "hero": {
+      "title": "Construyendo una fuerza laboral calificada, adaptable e inclusiva",
+      "description": "Acceda a servicios de empleo, beneficios y programas de apoyo"
+    },
+    "programs": {
+      "title": "Programas y Servicios",
+      "ei": {
+        "title": "Seguro de Desempleo",
+        "description": "Asistencia financiera temporal mientras busca trabajo o mejora sus habilidades",
+        "icon": "💼"
+      },
+      "oas": {
+        "title": "Seguridad para Personas Mayores",
+        "description": "Pago mensual para personas mayores de 65 años",
+        "icon": "🧓"
+      },
+      "cpp": {
+        "title": "Plan de Pensiones de Canadá",
+        "description": "Programa de pensión de jubilación contributiva",
+        "icon": "💰"
+      }
+    },
+    "services": {
+      "jobSearch": {
+        "title": "Búsqueda de Empleo",
+        "description": "Encuentre oportunidades de empleo en los Estados Unidos"
+      },
+      "benefitsFinder": {
+        "title": "Buscador de Beneficios",
+        "description": "Descubra los beneficios para los que puede ser elegible"
+      }
+    }
+  },
+  "chat": {
+    "title": "Pregunte a EVA",
+    "placeholder": "¿Cómo puedo ayudarle hoy?",
+    "send": "Enviar",
+    "voice": "Entrada de voz",
+    "thinking": "Pensando...",
+    "welcome": "¡Hola! Soy EVA, su asistente de servicios gubernamentales. ¿Cómo puedo ayudarle hoy?"
+  },
+  "nav": {
+    "skipToContent": "Saltar al contenido principal",
+    "home": "Inicio",
+    "programs": "Programas",
+    "services": "Servicios",
+    "about": "Acerca de"
+  },
+  "footer": {
+    "copyright": "Un sitio web oficial del gobierno de los Estados Unidos",
+    "privacy": "Privacidad",
+    "terms": "Términos y condiciones",
+    "accessibility": "Accesibilidad",
+    "usaGov": "USA.gov"
+  },
+  "accessibility": {
+    "loading": "Cargando...",
+    "close": "Cerrar",
+    "open": "Abrir",
+    "menu": "Menú",
+    "search": "Buscar",
+    "language": "Selección de idioma"
+  },
+  "language": {
+    "en": "English",
+    "es": "Español",
+    "switchTo": "Cambiar a",
+    "current": "Idioma actual"
+  },
+  "devkit": {
+    "title": "Kit de Desarrollo EVA-Sovereign-UI",
+    "subtitle": "Biblioteca de componentes y escaparate",
+    "gallery": "Galería de Componentes",
+    "themes": "Selección de Tema",
+    "a11y": "Características de Accesibilidad",
+    "i18n": "Internacionalización",
+    "integration": "Ejemplos de Integración"
+  },
+  "common": {
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "finish": "Finalizar",
+    "required": "Requerido",
+    "optional": "Opcional",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información",
+    "learnMore": "Más información"
+  }
+}

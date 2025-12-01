@@ -1,0 +1,101 @@
+{
+  "esdc": {
+    "title": "Te Umanga Mahi me te Whanaketanga Hapori o Kānata",
+    "shortTitle": "EDSC",
+    "hero": {
+      "title": "Te hanga i tētahi kaimahi mohio, urutau, āhuru mōwai",
+      "description": "Whakauru ki ngā ratonga mahi, ngā painga me ngā kaupapa tautoko"
+    },
+    "programs": {
+      "title": "Ngā Kaupapa me ngā Ratonga",
+      "ei": {
+        "title": "Āwhina Mahi",
+        "description": "Āwhina pūtea mo te wā poto i a koe e rapu mahi ana, e whakapai ake ana i ō pūkenga rānei",
+        "icon": "💼"
+      },
+      "oas": {
+        "title": "Haumarutanga Kaumātua",
+        "description": "Utu o ia marama mō ngā kaumātua 65 tau me runga ake",
+        "icon": "🧓"
+      },
+      "cpp": {
+        "title": "Mahere Penihana o Kānata",
+        "description": "Kaupapa penihana whakatā whakapau",
+        "icon": "💰"
+      }
+    },
+    "services": {
+      "jobSearch": {
+        "title": "Rapunga Mahi",
+        "description": "Kimihia ngā whai mahi puta noa i Aotearoa"
+      },
+      "benefitsFinder": {
+        "title": "Kimi Painga",
+        "description": "Kitea ko ēhea ngā painga tika mōu"
+      }
+    }
+  },
+  "chat": {
+    "title": "Pātai ki a EVA",
+    "placeholder": "Me pēhea taku āwhina i a koe i tēnei rā?",
+    "send": "Tuku",
+    "voice": "Tāuru reo",
+    "thinking": "E whakaaro ana...",
+    "welcome": "Kia ora! Ko EVA ahau, tō kaiawhina ratonga kāwanatanga. Me pēhea taku āwhina i a koe i tēnei rā?"
+  },
+  "nav": {
+    "skipToContent": "Pekepeke ki te ihirangi matua",
+    "home": "Kāinga",
+    "programmes": "Ngā Kaupapa",
+    "services": "Ngā Ratonga",
+    "about": "Mō"
+  },
+  "footer": {
+    "copyright": "© Te mana o te Karauna",
+    "privacy": "Tūmataiti",
+    "terms": "Ngā tikanga me ngā āhuatanga",
+    "accessibility": "Wāteatanga",
+    "govNz": "govt.nz"
+  },
+  "accessibility": {
+    "loading": "E uta ana...",
+    "close": "Kati",
+    "open": "Huaki",
+    "menu": "Tahua",
+    "search": "Rapu",
+    "language": "Kōwhiringa reo"
+  },
+  "language": {
+    "en": "English",
+    "mi": "Te Reo Māori",
+    "switchTo": "Huri ki",
+    "current": "Reo o nāianei"
+  },
+  "devkit": {
+    "title": "Taputapu Kaiwhakawhanake EVA-Sovereign-UI",
+    "subtitle": "Whare pukapuka waahanga me te whakaaturanga",
+    "gallery": "Whare Whakaaturanga Waahanga",
+    "themes": "Kōwhiringa Kaupapa",
+    "a11y": "Āhuatanga Wāteatanga",
+    "i18n": "Whakaaotearoatanga",
+    "integration": "Tauira Whakaurunga"
+  },
+  "common": {
+    "submit": "Tuku",
+    "cancel": "Whakakore",
+    "save": "Tiaki",
+    "delete": "Mukua",
+    "edit": "Whakatika",
+    "back": "Hoki",
+    "next": "Panuku",
+    "previous": "O mua",
+    "finish": "Whakaoti",
+    "required": "E hiahiatia ana",
+    "optional": "Kōwhiringa",
+    "error": "Hapa",
+    "success": "Angitu",
+    "warning": "Whakatūpato",
+    "info": "Pārongo",
+    "learnMore": "Ako atu"
+  }
+}

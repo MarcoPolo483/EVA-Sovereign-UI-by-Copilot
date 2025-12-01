@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Content & Data Display</title>
+  <link rel="stylesheet" href="./shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">Content & Data Display</div>
+        <nav class="nav">
+          <a href="./index.html">All Demos</a>
+          <a href="./overview.html">Overview</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="section">
+        <h2>Cards & Tags</h2>
+        <div class="grid">
+          <eva-gc-card title="Benefits for seniors"><p>Programs and services to support seniors.</p></eva-gc-card>
+          <eva-gc-card title="Employment Programs" href="#"><p>Find a program that matches your skills.</p></eva-gc-card>
+          <eva-gc-tag>Default Tag</eva-gc-tag>
+          <eva-gc-tag removable>Removable Tag</eva-gc-tag>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Table</h2>
+        <eva-gc-data-table id="tbl"></eva-gc-data-table>
+      </div>
+
+      <div class="section">
+        <h2>Timeline</h2>
+        <eva-gc-timeline id="tl"></eva-gc-timeline>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner">© EVA Sovereign UI</div></footer>
+  </div>
+  <script type="module" src="/packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script>
+    const table = document.getElementById('tbl');
+    table.columns = [
+      { key: 'name', label: 'Name' },
+      { key: 'email', label: 'Email' },
+      { key: 'role', label: 'Role' }
+    ];
+    table.data = [
+      { name: 'John Doe', email: 'john@example.com', role: 'Admin' },
+      { name: 'Jane Smith', email: 'jane@example.com', role: 'User' }
+    ];
+
+    const tl = document.getElementById('tl');
+    tl.items = [
+      { id: '1', date: '2024-01-01', title: 'Apply', status: 'completed' },
+      { id: '2', date: '2024-02-01', title: 'Review', status: 'current' },
+      { id: '3', date: '2024-03-01', title: 'Decision', status: 'upcoming' }
+    ];
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navigation & Shell</title>
+  <link rel="stylesheet" href="./shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">Navigation & Shell</div>
+        <nav class="nav">
+          <a href="./index.html">All Demos</a>
+          <a href="./overview.html">Overview</a>
+          <a href="./forms-validation.html">Forms</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="section">
+        <h2>Header, Breadcrumbs, Footer</h2>
+        <eva-gc-header id="hdr" profile="canada_gc" app-name-key="demo.nav.title"></eva-gc-header>
+        <div style="margin:12px 0">
+          <eva-gc-breadcrumbs>
+            <a href="#">Home</a>
+            <a href="#">Section</a>
+            <span>Current Page</span>
+          </eva-gc-breadcrumbs>
+        </div>
+        <eva-gc-footer id="ftr" profile="canada_gc"></eva-gc-footer>
+      </div>
+
+      <div class="section">
+        <h2>Main Navigation</h2>
+        <eva-gc-navigation>
+          <a href="#">Home</a>
+          <a href="#">About</a>
+          <a href="#">Services</a>
+          <a href="#">Contact</a>
+        </eva-gc-navigation>
+      </div>
+
+      <div class="section">
+        <h2>Tabs & Pagination</h2>
+        <div class="grid">
+          <eva-gc-tabs>
+            <div slot="tab" data-label="Overview">Shell overview</div>
+            <div slot="tab" data-label="Details">More details</div>
+          </eva-gc-tabs>
+          <eva-gc-pagination total="75" current="3" page-size="10"></eva-gc-pagination>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Language Switcher</h2>
+        <p>Prefix mode updates the URL, none mode emits an event only.</p>
+        <div class="controls">
+          <eva-gc-language-switcher include="en-CA,fr-CA,en-GB,en-US" url-mode="none"></eva-gc-language-switcher>
+          <eva-gc-language-switcher include="en-CA,fr-CA" url-mode="prefix"></eva-gc-language-switcher>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner">© EVA Sovereign UI</div></footer>
+  </div>
+  <script type="module" src="/packages/eva-sovereign-ui-wc/src/index.ts"></script>
+</body>
+</html>

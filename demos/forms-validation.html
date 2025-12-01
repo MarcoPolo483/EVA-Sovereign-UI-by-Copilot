@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Forms & Validation</title>
+  <link rel="stylesheet" href="./shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    .form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+    form{display:grid;gap:10px}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">Forms & Validation</div>
+        <nav class="nav">
+          <a href="./index.html">All Demos</a>
+          <a href="./overview.html">Overview</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="section">
+        <h2>Inputs & Labels</h2>
+        <div class="form-grid">
+          <div>
+            <eva-gc-label for="name" required>Full Name</eva-gc-label>
+            <eva-gc-input id="name" type="text" required></eva-gc-input>
+          </div>
+          <div>
+            <eva-gc-label for="email">Email</eva-gc-label>
+            <eva-gc-input id="email" type="email" helper-text="We will never share it"></eva-gc-input>
+          </div>
+          <div>
+            <eva-gc-label for="pwd">Password</eva-gc-label>
+            <eva-gc-input id="pwd" type="password" aria-describedby="hint"></eva-gc-input>
+            <div id="hint" class="code">Minimum 8 characters</div>
+          </div>
+          <div>
+            <eva-gc-label for="email-err">Email (error)</eva-gc-label>
+            <eva-gc-input id="email-err" type="email" error="Invalid email" aria-invalid="true"></eva-gc-input>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h2>Form Layouts</h2>
+        <form id="demo-form">
+          <div class="form-grid">
+            <div>
+              <eva-gc-label for="f1" required>Field 1</eva-gc-label>
+              <eva-gc-input id="f1" required></eva-gc-input>
+            </div>
+            <div>
+              <eva-gc-label for="f2">Field 2</eva-gc-label>
+              <eva-gc-input id="f2"></eva-gc-input>
+            </div>
+          </div>
+          <div class="controls">
+            <eva-gc-button type="submit" variant="primary">Submit</eva-gc-button>
+            <eva-gc-button type="button" variant="secondary" id="reset">Reset</eva-gc-button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner">© EVA Sovereign UI</div></footer>
+  </div>
+  <script type="module" src="/packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script type="module">
+    document.getElementById('demo-form').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      alert('Submitted (demo)');
+    });
+    document.getElementById('reset').addEventListener('click', ()=>{
+      const form = document.getElementById('demo-form');
+      if (form && typeof (form).reset === 'function') (form).reset();
+    });
+  </script>
+</body>
+</html>

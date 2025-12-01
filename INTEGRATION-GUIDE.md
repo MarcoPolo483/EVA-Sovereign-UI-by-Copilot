@@ -288,6 +288,58 @@ i18nService.setTranslations('es-US', esUS);
 availableLocales: ['en-CA', 'fr-CA', 'es-US']
 ```
 
+### Web Component Language Switcher (Non-React)
+
+For pure Web Components usage, include the GC language switcher in your header or toolbar:
+
+```html
+<eva-gc-language-switcher include="en-CA,fr-CA,en-US" url-mode="none"></eva-gc-language-switcher>
+```
+
+- `include`: comma-separated locales to show (defaults to all supported by the i18n service)
+- `url-mode`:
+  - `prefix` (default): updates the current pathname to include the language prefix (`/en`, `/fr`, etc.)
+  - `none`: does not navigate; instead dispatches `locale-change`
+
+Listen for changes when `url-mode="none"`:
+
+```html
+<script type="module">
+  document.querySelector('eva-gc-language-switcher')?.addEventListener('locale-change', (e) => {
+    console.log('Locale changed:', e.detail.locale);
+    // update your app's state/store as needed
+  });
+</script>
+```
+
+### CMS Adapter (Demo/Static Fallback)
+
+The in-memory CMS adapter supports per-locale JSON content with URL prefixing.
+
+Key methods:
+- `setLocale(locale: string)`: persists and notifies subscribers
+- `getLocale(): string`: returns current locale (e.g., `en-CA`)
+- `getAvailableLocales(): string[]`: list of supported locales
+- `buildUrl(prefix: string, path: string)`: constructs `/en/...` paths
+- `parseLocaleFromPath(pathname: string)`: extracts locale from URL (if prefixed)
+- `fetchContent(path: string)`: fetches JSON content from `/content/<lang>/<path>.json` with static fallback
+
+Example: load welcome content with static fallback
+
+```ts
+import { cms } from '@/i18n/cms-adapter';
+
+await cms.setLocale('en-CA');
+const data = await cms.fetchContent('welcome');
+console.log(data.title);
+```
+
+Static files live under `/public/content/<lang>/*.json` (e.g., `/public/content/en/welcome.json`).
+
+Notes:
+- When using URL prefix mode, `parseLocaleFromPath(window.location.pathname)` will keep UI and routing in sync.
+- For SPAs, pair `locale-change` with your router to update route segments.
+
 ## Theming and Customization
 
 ### Using Sovereign Profiles

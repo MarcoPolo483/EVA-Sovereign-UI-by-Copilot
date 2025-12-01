@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feedback & Overlays</title>
+  <link rel="stylesheet" href="./shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">Feedback & Overlays</div>
+        <nav class="nav">
+          <a href="./index.html">All Demos</a>
+          <a href="./overview.html">Overview</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="section">
+        <h2>Alert Variants</h2>
+        <div class="grid">
+          <eva-gc-alert variant="info" title="Info">Informational message.</eva-gc-alert>
+          <eva-gc-alert variant="success" title="Success">Success message.</eva-gc-alert>
+          <eva-gc-alert variant="warning" title="Warning">Warning message.</eva-gc-alert>
+          <eva-gc-alert variant="error" title="Error">Error message.</eva-gc-alert>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Modal Dialog</h2>
+        <div class="controls">
+          <eva-gc-button id="open-modal" variant="primary">Open Modal</eva-gc-button>
+        </div>
+        <eva-gc-modal id="modal" title="Example Modal">
+          <p>This is modal content with proper focus management.</p>
+        </eva-gc-modal>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner">© EVA Sovereign UI</div></footer>
+  </div>
+  <script type="module" src="/packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script>
+    document.getElementById('open-modal').addEventListener('click', ()=>{
+      document.getElementById('modal').setAttribute('open','');
+    });
+  </script>
+</body>
+</html>

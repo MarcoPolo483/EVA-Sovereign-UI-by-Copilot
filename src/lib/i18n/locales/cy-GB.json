@@ -1,0 +1,82 @@
+{
+  "esdc": {
+    "title": "Cyflogaeth a Datblygiad Cymdeithasol Canada",
+    "titleShort": "EDSC",
+    "hero": {
+      "title": "Adeiladu gweithlu medrus, hyblyg a chynhwysol",
+      "description": "Cael mynediad at wasanaethau cyflogaeth, budd-daliadau a rhaglenni cymorth sy'n helpu pobl i lwyddo"
+    },
+    "programs": {
+      "title": "Rhaglenni a Gwasanaethau",
+      "ei": {
+        "title": "Yswiriant Cyflogaeth",
+        "titleShort": "YC",
+        "description": "Cymorth ariannol dros dro wrth i chi chwilio am waith neu uwchraddio'ch sgiliau",
+        "details": "Mae Yswiriant Cyflogaeth (YC) yn darparu cymorth incwm dros dro i bobl ddi-waith tra'u bod yn chwilio am waith neu'n uwchraddio eu sgiliau. Mae budd-daliadau rheolaidd ar gael i unigolion sy'n colli eu swydd heb fai arnyn nhw ac sydd wedi cronni digon o oriau yswiriadwy."
+      },
+      "oas": {
+        "title": "Diogelwch Henoed",
+        "titleShort": "DH",
+        "description": "Taliad misol i bobl hŷn 65 oed a hŷn",
+        "details": "Mae Diogelwch Henoed (DH) yn daliad misol sydd ar gael i'r rhan fwyaf o bobl 65 oed neu'n hŷn. Nid oes angen i chi fod wedi gweithio i dderbyn DH. Mae'r swm rydych chi'n ei dderbyn yn dibynnu ar ba mor hir rydych chi wedi byw ar ôl 18 oed."
+      },
+      "cpp": {
+        "title": "Cynllun Pensiwn Canada",
+        "titleShort": "CPC",
+        "description": "Rhaglen pensiwn ymddeol cyfrannu i weithwyr",
+        "details": "Mae Cynllun Pensiwn Canada (CPC) yn raglen yswiriant cymdeithasol sy'n seiliedig ar enillion ac yn gyfrannu. Mae'n ffurfio un rhan o system incwm ymddeol Canada. Mae CPC yn darparu budd-daliadau ymddeol, anabledd a goroeswyr sylfaenol."
+      }
+    },
+    "services": {
+      "jobSearch": {
+        "title": "Chwilio am Swydd",
+        "description": "Dod o hyd i gyfleoedd cyflogaeth ledled y wlad gyda Banc Swyddi",
+        "details": "Banc Swyddi yw gwasanaeth cyflogaeth cenedlaethol. Chwiliwch filoedd o swyddi, archwiliwch dueddiadau'r farchnad lafur, a chael mynediad at offer cynllunio gyrfa i'ch helpu i ddod o hyd i'ch cyfle nesaf."
+      },
+      "benefitsFinder": {
+        "title": "Canfyddwr Budd-daliadau",
+        "description": "Darganfod pa fudd-daliadau a gwasanaethau llywodraeth y gallech fod yn gymwys ar eu cyfer",
+        "details": "Atebwch ychydig o gwestiynau syml i gael rhestr bersonol o fudd-daliadau a gwasanaethau ffederal, taleithiol a thiriogaethol y gallech fod yn gymwys i'w derbyn."
+      }
+    }
+  },
+  "chat": {
+    "title": "Gofyn i EVA",
+    "subtitle": "Cynorthwyydd Rhithwir Cyflogaeth",
+    "placeholder": "Sut gallaf eich helpu heddiw?",
+    "send": "Anfon",
+    "voice": "Mewnbwn llais",
+    "thinking": "Mae EVA yn meddwl...",
+    "suggestedTopics": "Pynciau a awgrymir:",
+    "topics": {
+      "ei": "Yswiriant Cyflogaeth",
+      "oas": "Diogelwch Henoed",
+      "cpp": "Cynllun Pensiwn Canada",
+      "jobs": "Dod o hyd i swydd"
+    }
+  },
+  "navigation": {
+    "skipToMain": "Neidio i'r prif gynnwys",
+    "home": "Hafan",
+    "programs": "Rhaglenni",
+    "services": "Gwasanaethau",
+    "about": "Ynghylch",
+    "contact": "Cysylltu"
+  },
+  "footer": {
+    "copyright": "© Hawlfraint y Goron",
+    "privacy": "Preifatrwydd",
+    "terms": "Telerau ac amodau",
+    "accessibility": "Hygyrchedd",
+    "govUk": "GOV.UK"
+  },
+  "common": {
+    "learnMore": "Dysgu mwy",
+    "apply": "Gwneud cais nawr",
+    "english": "English",
+    "welsh": "Cymraeg",
+    "loading": "Llwytho...",
+    "error": "Digwyddodd gwall",
+    "close": "Cau"
+  }
+}

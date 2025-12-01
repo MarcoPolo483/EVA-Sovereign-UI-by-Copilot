@@ -1,0 +1,82 @@
+{
+  "esdc": {
+    "title": "Te Umanga Mahi me te Whanaketanga Hapori o Kānata",
+    "titleShort": "EDSC",
+    "hero": {
+      "title": "Te hanga i tētahi kaimahi mohio, urutau, āhuru mōwai",
+      "description": "Whakauru ki ngā ratonga mahi, ngā painga me ngā kaupapa tautoko e āwhina ana i ngā tāngata kia angitu"
+    },
+    "programs": {
+      "title": "Ngā Kaupapa me ngā Ratonga",
+      "ei": {
+        "title": "Āwhina Mahi",
+        "titleShort": "ĀM",
+        "description": "Āwhina pūtea mo te wā poto i a koe e rapu mahi ana, e whakapai ake ana i ō pūkenga rānei",
+        "details": "Ko te Āwhina Mahi (ĀM) he whakarato tautoko moni wā poto ki ngā tāngata kore mahi i a rātou e rapu mahi ana, e whakapai ake ana i ō rātou pūkenga rānei. Ka wātea ngā painga auau ki ngā tāngata ka ngaro tō rātou mahi ehara i te hē o rātou ake, kua kohikohi hoki ngā haora ārai e tika ana."
+      },
+      "oas": {
+        "title": "Haumarutanga Kaumātua",
+        "titleShort": "HK",
+        "description": "Utu o ia marama mō ngā kaumātua 65 tau me runga ake",
+        "details": "Ko te Haumarutanga Kaumātua (HK) he utu ia marama e wātea ana ki te nuinga o ngā tāngata 65 tau, neke atu rānei. Kāore koe i te hiahia kia mahi kia whiwhi i te HK. Ko te moni ka whiwhi koe ka whakawhirinaki ki te roa o tō noho i muri i te 18 tau."
+      },
+      "cpp": {
+        "title": "Mahere Penihana o Kānata",
+        "titleShort": "MPK",
+        "description": "Kaupapa penihana whakatā whakapau mō ngā kaimahi",
+        "details": "Ko te Mahere Penihana o Kānata (MPK) he kaupapa ārai pāpori whakapau, e hāngai ana ki ngā whiwhinga. Ko tētahi wāhi o te pūnaha whiwhinga whakatā o Kānata. Ka whakarato te MPK i ngā painga matua o te whakatā, hauātanga me te oranga."
+      }
+    },
+    "services": {
+      "jobSearch": {
+        "title": "Rapunga Mahi",
+        "description": "Kimihia ngā whai mahi puta noa i te motu ki te Pēke Mahi",
+        "details": "Ko te Pēke Mahi te ratonga mahi ā-motu. Rapua ngā mano mahi, tūhurahia ngā ia o te mākete kaimahi, me te uru atu ki ngā taputapu whakamahere mahi hei āwhina i a koe ki te kimi i tō whai hou."
+      },
+      "benefitsFinder": {
+        "title": "Kimi Painga",
+        "description": "Kitea ko ēhea ngā painga me ngā ratonga kāwanatanga e tika ana mōu",
+        "details": "Whakautua ētahi pātai ngāwari kia whiwhi rārangi whaiaro o ngā painga me ngā ratonga ā-motu, ā-rohe, ā-rohe hoki e tika ana kia whiwhi koe."
+      }
+    }
+  },
+  "chat": {
+    "title": "Pātai ki a EVA",
+    "subtitle": "Kaiawhina Mahi Mariko",
+    "placeholder": "Me pēhea taku āwhina i a koe i tēnei rā?",
+    "send": "Tuku",
+    "voice": "Tāuru reo",
+    "thinking": "E whakaaro ana a EVA...",
+    "suggestedTopics": "Ngā kaupapa tūtohu:",
+    "topics": {
+      "ei": "Āwhina Mahi",
+      "oas": "Haumarutanga Kaumātua",
+      "cpp": "Mahere Penihana o Kānata",
+      "jobs": "Te kimi mahi"
+    }
+  },
+  "navigation": {
+    "skipToMain": "Pekepeke ki te ihirangi matua",
+    "home": "Kāinga",
+    "programs": "Ngā Kaupapa",
+    "services": "Ngā Ratonga",
+    "about": "Mō",
+    "contact": "Whakapā"
+  },
+  "footer": {
+    "copyright": "© Te mana o te Karauna",
+    "privacy": "Tūmataiti",
+    "terms": "Ngā tikanga me ngā āhuatanga",
+    "accessibility": "Wāteatanga",
+    "govNz": "govt.nz"
+  },
+  "common": {
+    "learnMore": "Ako atu",
+    "apply": "Tono ināianei",
+    "english": "English",
+    "maori": "Te Reo Māori",
+    "loading": "E uta ana...",
+    "error": "I puta he hapa",
+    "close": "Kati"
+  }
+}

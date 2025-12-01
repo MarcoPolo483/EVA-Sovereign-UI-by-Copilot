@@ -1,0 +1,33 @@
+name: Dependency Audit
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch: {}
+
+jobs:
+  npm-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Run npm audit (JSON)
+        run: npm audit --json > security-audit.json || true
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-audit.json
+          path: security-audit.json
+      - name: Fail on critical advisories
+        run: |
+          $audit = Get-Content security-audit.json | ConvertFrom-Json
+          $criticalCount = 0
+          if ($audit.vulnerabilities) { $criticalCount = $audit.vulnerabilities.critical }
+          if ($criticalCount -gt 0) { Write-Error "Critical vulnerabilities found: $criticalCount" }

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Overview & Kitchen Sink</title>
+  <link rel="stylesheet" href="./shared.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">Overview & Kitchen Sink</div>
+        <nav class="nav">
+          <a href="./index.html">All Demos</a>
+          <a href="./foundations-theming.html">Foundations</a>
+          <a href="./navigation-shell.html">Navigation</a>
+          <a href="./forms-validation.html">Forms</a>
+        </nav>
+      </div>
+    </header>
+    <main class="main">
+      <div class="section">
+        <div class="controls">
+          <label class="control">Theme profile
+            <select id="profile" class="control">
+              <option value="canada_gc">🇨🇦 GC</option>
+              <option value="usa_gov">🇺🇸 USA</option>
+              <option value="uk_gov">🇬🇧 UK</option>
+              <option value="australia_gov">🇦🇺 Australia</option>
+              <option value="nz_gov">🇳🇿 New Zealand</option>
+            </select>
+          </label>
+          <eva-gc-language-switcher id="lang" include="en-CA,fr-CA,en-GB,en-US,en-AU,en-NZ,es-US,cy-GB,mi-NZ" url-mode="none"></eva-gc-language-switcher>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Buttons</h2>
+        <div class="grid">
+          <eva-gc-button>Default</eva-gc-button>
+          <eva-gc-button variant="primary">Primary</eva-gc-button>
+          <eva-gc-button variant="secondary">Secondary</eva-gc-button>
+          <eva-gc-button variant="danger">Danger</eva-gc-button>
+          <eva-gc-button variant="link">Link</eva-gc-button>
+          <eva-gc-button size="icon"><span class="sr-only">Close</span><span slot="icon">✕</span></eva-gc-button>
+          <eva-gc-button loading variant="primary">Loading</eva-gc-button>
+          <eva-gc-button disabled>Disabled</eva-gc-button>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Content & Navigation</h2>
+        <div class="grid">
+          <eva-gc-breadcrumbs>
+            <a href="#">Home</a>
+            <a href="#">Section</a>
+            <span>Current</span>
+          </eva-gc-breadcrumbs>
+          <eva-gc-tag>Tag</eva-gc-tag>
+          <eva-gc-card title="Service Card">
+            <p>Helpful description of a program or service.</p>
+          </eva-gc-card>
+          <eva-gc-pagination total="100" current="5" page-size="10"></eva-gc-pagination>
+          <eva-gc-tabs>
+            <div slot="tab" data-label="Tab 1">Content 1</div>
+            <div slot="tab" data-label="Tab 2">Content 2</div>
+          </eva-gc-tabs>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>Status & Feedback</h2>
+        <div class="grid">
+          <eva-gc-alert variant="info" title="Information">This is informative.</eva-gc-alert>
+          <eva-gc-alert variant="success" title="Success">Operation completed.</eva-gc-alert>
+          <eva-gc-alert variant="warning" title="Warning">Be cautious.</eva-gc-alert>
+          <eva-gc-alert variant="error" title="Error">Something failed.</eva-gc-alert>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"><div class="footer-inner">© EVA Sovereign UI</div></footer>
+  </div>
+  <script type="module" src="/packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script type="module">
+    const headerEls = () => Array.from(document.querySelectorAll('eva-gc-header, eva-gc-footer'));
+    document.getElementById('profile').addEventListener('change', (e) => {
+      const profile = e.target.value;
+      headerEls().forEach(el => el.setAttribute('profile', profile));
+    });
+  </script>
+</body>
+</html>
