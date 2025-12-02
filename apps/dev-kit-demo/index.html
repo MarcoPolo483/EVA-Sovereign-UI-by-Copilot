@@ -443,6 +443,122 @@ export function MyTabs() {
   );
 }</pre>
       </section>
+
+      <!-- Table -->
+      <section class="component-demo">
+        <h2 class="demo-title">Table</h2>
+        <eva-table>
+          <eva-table-header>
+            <eva-table-row>
+              <eva-table-head>Name</eva-table-head>
+              <eva-table-head>Role</eva-table-head>
+              <eva-table-head>Status</eva-table-head>
+            </eva-table-row>
+          </eva-table-header>
+          <eva-table-body>
+            <eva-table-row>
+              <eva-table-cell>Ada Lovelace</eva-table-cell>
+              <eva-table-cell>Analyst</eva-table-cell>
+              <eva-table-cell>Active</eva-table-cell>
+            </eva-table-row>
+            <eva-table-row>
+              <eva-table-cell>Grace Hopper</eva-table-cell>
+              <eva-table-cell>Engineer</eva-table-cell>
+              <eva-table-cell>Active</eva-table-cell>
+            </eva-table-row>
+          </eva-table-body>
+        </eva-table>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-table&gt;
+  &lt;eva-table-header&gt;
+    &lt;eva-table-row&gt;
+      &lt;eva-table-head&gt;Name&lt;/eva-table-head&gt;
+      &lt;eva-table-head&gt;Role&lt;/eva-table-head&gt;
+      &lt;eva-table-head&gt;Status&lt;/eva-table-head&gt;
+    &lt;/eva-table-row&gt;
+  &lt;/eva-table-header&gt;
+  &lt;eva-table-body&gt;
+    &lt;eva-table-row&gt;
+      &lt;eva-table-cell&gt;Ada Lovelace&lt;/eva-table-cell&gt;
+      &lt;eva-table-cell&gt;Analyst&lt;/eva-table-cell&gt;
+      &lt;eva-table-cell&gt;Active&lt;/eva-table-cell&gt;
+    &lt;/eva-table-row&gt;
+    &lt;eva-table-row&gt;
+      &lt;eva-table-cell&gt;Grace Hopper&lt;/eva-table-cell&gt;
+      &lt;eva-table-cell&gt;Engineer&lt;/eva-table-cell&gt;
+      &lt;eva-table-cell&gt;Active&lt;/eva-table-cell&gt;
+    &lt;/eva-table-row&gt;
+  &lt;/eva-table-body&gt;
+&lt;/eva-table&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVATable, EVATableHeader, EVATableBody, EVATableRow, EVATableHead, EVATableCell } from '@eva-suite/sovereign-ui-react';
+
+export function MyTable() {
+  return (
+    &lt;EVATable&gt;
+      &lt;EVATableHeader&gt;
+        &lt;EVATableRow&gt;
+          &lt;EVATableHead&gt;Name&lt;/EVATableHead&gt;
+          &lt;EVATableHead&gt;Role&lt;/EVATableHead&gt;
+          &lt;EVATableHead&gt;Status&lt;/EVATableHead&gt;
+        &lt;/EVATableRow&gt;
+      &lt;/EVATableHeader&gt;
+      &lt;EVATableBody&gt;
+        &lt;EVATableRow&gt;
+          &lt;EVATableCell&gt;Ada Lovelace&lt;/EVATableCell&gt;
+          &lt;EVATableCell&gt;Analyst&lt;/EVATableCell&gt;
+          &lt;EVATableCell&gt;Active&lt;/EVATableCell&gt;
+        &lt;/EVATableRow&gt;
+        &lt;EVATableRow&gt;
+          &lt;EVATableCell&gt;Grace Hopper&lt;/EVATableCell&gt;
+          &lt;EVATableCell&gt;Engineer&lt;/EVATableCell&gt;
+          &lt;EVATableCell&gt;Active&lt;/EVATableCell&gt;
+        &lt;/EVATableRow&gt;
+      &lt;/EVATableBody&gt;
+    &lt;EVATable&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Card -->
+      <section class="component-demo">
+        <h2 class="demo-title">Card</h2>
+        <eva-card style="max-width:460px; display:block;">
+          <eva-card-header>
+            <eva-card-title>Service Canada</eva-card-title>
+            <eva-card-description>Find government services and benefits</eva-card-description>
+          </eva-card-header>
+          <eva-card-content>
+            <p style="padding: 8px 0;">Use this card to highlight key services. Supports headings, description, and content areas.</p>
+          </eva-card-content>
+        </eva-card>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-card&gt;
+  &lt;eva-card-header&gt;
+    &lt;eva-card-title&gt;Service Canada&lt;/eva-card-title&gt;
+    &lt;eva-card-description&gt;Find government services and benefits&lt;/eva-card-description&gt;
+  &lt;/eva-card-header&gt;
+  &lt;eva-card-content&gt;...&lt;/eva-card-content&gt;
+&lt;/eva-card&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVACard, EVACardHeader, EVACardTitle, EVACardDescription, EVACardContent } from '@eva-suite/sovereign-ui-react';
+
+export function MyCard() {
+  return (
+    &lt;EVACard style={{ maxWidth: 460, display: 'block' }}&gt;
+      &lt;EVACardHeader&gt;
+        &lt;EVACardTitle&gt;Service Canada&lt;/EVACardTitle&gt;
+        &lt;EVACardDescription&gt;Find government services and benefits&lt;/EVACardDescription&gt;
+      &lt;/EVACardHeader&gt;
+      &lt;EVACardContent&gt;...&lt;/EVACardContent&gt;
+    &lt;/EVACard&gt;
+  );
+}</pre>
+      </section>
       
       <!-- Accessibility Features -->
       <section class="component-demo">
