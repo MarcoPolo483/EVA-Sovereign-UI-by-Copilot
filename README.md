@@ -70,6 +70,8 @@ npm run build
 
 EVA-Sovereign-UI includes **two official production-ready demos**:
 
+Tip — Demo Launcher: You can also open the root `index.html` in this repo for a friendly launcher page linking to both demos and key docs.
+
 #### 🏛️ ESDC Portal Demo (`apps/esdc-demo/`)
 Full-scale Employment and Social Development Canada portal demonstration.
 
