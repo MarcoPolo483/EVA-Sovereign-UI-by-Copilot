@@ -1,5 +1,17 @@
-// Angular integration placeholder for EVA-Sovereign-UI
-import '@eva-suite/sovereign-ui';
+// Export module
+export { EVASovereignUIModule } from './lib/eva-sovereign-ui.module';
 
-// Future: NgModule with CUSTOM_ELEMENTS_SCHEMA and wrapper components
-export const version = '0.1.0';
+// Export directives
+export {
+  EVAInputDirective,
+  EVATextareaDirective,
+  EVACheckboxDirective,
+  EVASwitchDirective,
+  EVASelectDirective,
+  EVARadioGroupDirective,
+  EVASliderDirective,
+  EVAInputOTPDirective
+} from './lib/directives';
+
+// Version
+export const version = '1.0.0';

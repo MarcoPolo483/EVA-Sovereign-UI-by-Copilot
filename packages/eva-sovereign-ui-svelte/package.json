@@ -1,22 +1,33 @@
 {
   "name": "@eva-suite/sovereign-ui-svelte",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Svelte wrappers for EVA-Sovereign-UI Web Components",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist", "README.md"],
+  "svelte": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "svelte": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "build": "tsup src/index.ts --format cjs,esm --dts --external @eva-suite/sovereign-ui --external svelte --external svelte/internal",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch --external @eva-suite/sovereign-ui --external svelte --external svelte/internal",
+    "test": "echo \"No tests yet\"",
     "lint": "tsc --noEmit"
   },
   "peerDependencies": {
-    "svelte": "^4.0.0 || ^5.0.0",
-    "@eva-suite/sovereign-ui": "^1.0.0"
+    "@eva-suite/sovereign-ui": "^1.0.0",
+    "svelte": "^4.0.0 || ^5.0.0"
   },
   "peerDependenciesMeta": {
     "@eva-suite/sovereign-ui": {
@@ -24,11 +35,23 @@
     }
   },
   "devDependencies": {
+    "@types/node": "^20.10.6",
     "svelte": "^4.2.0",
-    "@types/node": "^20.9.0",
-    "typescript": "^5.3.3",
     "tsup": "^8.0.1",
-    "vitest": "^4.0.5"
+    "typescript": "^5.3.3"
   },
-  "license": "MIT"
+  "keywords": [
+    "svelte",
+    "web-components",
+    "eva-suite",
+    "government",
+    "accessibility"
+  ],
+  "author": "EVA Suite Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eva-suite/EVA-Sovereign-UI-by-Copilot.git",
+    "directory": "packages/eva-sovereign-ui-svelte"
+  }
 }

@@ -1,22 +1,32 @@
 {
   "name": "@eva-suite/sovereign-ui-vue",
-  "version": "0.1.0",
-  "description": "Vue 3 wrappers & plugin for EVA-Sovereign-UI Web Components",
+  "version": "1.0.0",
+  "description": "Vue 3 wrappers for EVA-Sovereign-UI Web Components",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist", "README.md"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "tsup src/index.ts --format cjs,esm --dts --external @eva-suite/sovereign-ui --external vue",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch --external @eva-suite/sovereign-ui --external vue",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "tsc --noEmit"
   },
   "peerDependencies": {
-    "vue": "^3.4.0",
-    "@eva-suite/sovereign-ui": "^1.0.0"
+    "@eva-suite/sovereign-ui": "^1.0.0",
+    "vue": "^3.3.0"
   },
   "peerDependenciesMeta": {
     "@eva-suite/sovereign-ui": {
@@ -24,11 +34,25 @@
     }
   },
   "devDependencies": {
-    "vue": "^3.4.0",
-    "@types/node": "^20.9.0",
-    "typescript": "^5.3.3",
+    "@types/node": "^20.10.6",
     "tsup": "^8.0.1",
-    "vitest": "^4.0.5"
+    "typescript": "^5.3.3",
+    "vitest": "^4.0.5",
+    "vue": "^3.4.0"
   },
-  "license": "MIT"
+  "keywords": [
+    "vue",
+    "vue3",
+    "web-components",
+    "eva-suite",
+    "government",
+    "accessibility"
+  ],
+  "author": "EVA Suite Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eva-suite/EVA-Sovereign-UI-by-Copilot.git",
+    "directory": "packages/eva-sovereign-ui-vue"
+  }
 }

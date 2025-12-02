@@ -1,21 +1,32 @@
 {
   "name": "@eva-suite/sovereign-ui-angular",
-  "version": "0.1.0",
-  "description": "Angular wrappers & module for EVA-Sovereign-UI Web Components",
+  "version": "1.0.0",
+  "description": "Angular wrappers for EVA-Sovereign-UI Web Components",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist", "README.md"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "build": "tsup src/index.ts --format cjs,esm --dts --external @angular/core --external @angular/common --external @angular/forms --external @eva-suite/sovereign-ui",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch --external @angular/core --external @angular/common --external @angular/forms --external @eva-suite/sovereign-ui",
+    "test": "echo \"No tests yet\"",
     "lint": "tsc --noEmit"
   },
   "peerDependencies": {
+    "@angular/common": "^15.0.0 || ^16.0.0 || ^17.0.0",
     "@angular/core": "^15.0.0 || ^16.0.0 || ^17.0.0",
+    "@angular/forms": "^15.0.0 || ^16.0.0 || ^17.0.0",
     "@eva-suite/sovereign-ui": "^1.0.0"
   },
   "peerDependenciesMeta": {
@@ -24,10 +35,25 @@
     }
   },
   "devDependencies": {
-    "@types/node": "^20.9.0",
-    "typescript": "^5.3.3",
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@angular/forms": "^17.0.0",
+    "@types/node": "^20.10.6",
     "tsup": "^8.0.1",
-    "vitest": "^4.0.5"
+    "typescript": "^5.2.2"
   },
-  "license": "MIT"
+  "keywords": [
+    "angular",
+    "web-components",
+    "eva-suite",
+    "government",
+    "accessibility"
+  ],
+  "author": "EVA Suite Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eva-suite/EVA-Sovereign-UI-by-Copilot.git",
+    "directory": "packages/eva-sovereign-ui-angular"
+  }
 }

@@ -1,21 +1,24 @@
-// Vue plugin placeholder for EVA-Sovereign-UI
-import '@eva-suite/sovereign-ui';
-import { App } from 'vue';
+// Export all components
+export * from './components';
 
-export interface SovereignUIVueOptions {
-  autoRegister?: boolean;
-}
+// Export utilities
+export { createComponent, createEVAPlugin } from './utils';
 
-export function createSovereignUIPlugin(options: SovereignUIVueOptions = {}) {
-  return {
-    install(app: App) {
-      // Placeholder: future component wrapper registration
-      if (options.autoRegister) {
-        // e.g., app.component('EVAAccordion', EVAAccordion);
-      }
-    }
-  };
-}
+// Re-export components for plugin
+import * as components from './components';
 
-// Placeholder export for future wrappers
-export const version = '0.1.0';
+// Create and export plugin
+export const EVASovereignUI = {
+  install(app: any) {
+    // Register Vue components globally
+    Object.entries(components).forEach(([name, component]) => {
+      app.component(name, component);
+    });
+  }
+};
+
+// Export default plugin
+export default EVASovereignUI;
+
+// Version
+export const version = '1.0.0';
