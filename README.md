@@ -1,29 +1,24 @@
 # EVA-Sovereign-UI by GitHub Copilot
 
+[![Version](https://img.shields.io/github/v/release/MarcoPolo483/EVA-Sovereign-UI-by-Copilot?label=version)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/releases)
+[![CI](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/ci.yml/badge.svg)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/ci.yml)
+[![Release](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/release.yml/badge.svg)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/release.yml)
+[![CodeQL](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/codeql.yml/badge.svg)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/codeql.yml)
+[![Lighthouse](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/lighthouse.yml/badge.svg)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/lighthouse.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Tests](https://img.shields.io/badge/tests-1046%2F1046%20passing-brightgreen)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+[![Coverage](https://img.shields.io/badge/coverage-84%25%20branches-brightgreen)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+[![WCAG 2.2 AAA](https://img.shields.io/badge/WCAG%202.2-AAA-blue)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+
 **Production-ready Web Components design system for government applications**
 
 Built using the official **Government of Canada Design System** with **WCAG 2.2 AAA accessibility**, full **internationalization** (5 languages), and **Five Eyes sovereign profiles** (🇨🇦🇺🇸🇬🇧🇦🇺🇳🇿).
 
-[![Tests](https://img.shields.io/badge/tests-1011%2F1011%20passing-brightgreen)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
-[![Coverage](https://img.shields.io/badge/coverage-84.01%25%20branches-brightgreen)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
-[![Bundle Size](https://img.shields.io/badge/gzip-12.28%20KB%20ES-blue)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
-[![Performance](https://img.shields.io/badge/render-1.02ms%20avg-success)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
-[![WCAG](https://img.shields.io/badge/WCAG%202.2-AA%2B-blue)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+## ⚡ Quick Start
 
-## ⚡ Quick Start (1 minute)
+**[📺 Live Demo](https://marcopolo483.github.io/EVA-Sovereign-UI-by-Copilot/)** • **[📖 Documentation](./docs/)** • **[🎨 Dev Kit Demo](./apps/dev-kit-demo/)** • **[🏛️ ESDC Demo](./apps/esdc-demo/)**
 
-<div align="left">
-
-![CI](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/ci.yml/badge.svg)
-![Release](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/release.yml/badge.svg)
-![SBOM](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/sbom.yml/badge.svg)
-![Audit](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/audit.yml/badge.svg)
-![CodeQL](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/codeql.yml/badge.svg)
-![Scorecard](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/actions/workflows/scorecard.yml/badge.svg)
-
-</div>
-
-### Option 1: Use Pre-built Bundle (Fastest)
+### Web Components
 
 ```html
 <!DOCTYPE html>
@@ -48,7 +43,32 @@ Built using the official **Government of Canada Design System** with **WCAG 2.2 
 </html>
 ```
 
-### Option 2: Local Development (Full Setup)
+### React Wrappers
+
+```bash
+npm install @eva-suite/sovereign-ui-react
+```
+
+```tsx
+import { EVAButton, EVAAccordion, EVAPagination } from '@eva-suite/sovereign-ui-react';
+
+function MyApp() {
+  return (
+    <>
+      <EVAButton variant="primary">Click Me</EVAButton>
+      <EVAAccordion type="single">
+        <EVAAccordionItem value="1">
+          <div slot="trigger">Section 1</div>
+          <div slot="content">Content here</div>
+        </EVAAccordionItem>
+      </EVAAccordion>
+      <EVAPagination current-page={1} total-pages={10} />
+    </>
+  );
+}
+```
+
+### Local Development
 
 ```bash
 # Clone and install
