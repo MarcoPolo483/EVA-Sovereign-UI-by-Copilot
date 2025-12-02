@@ -19,6 +19,15 @@ declare global {
       'eva-drawer': any;
       'eva-textarea': any;
       'eva-tooltip': any;
+      'eva-collapsible': any;
+      'eva-collapsible-trigger': any;
+      'eva-collapsible-content': any;
+      'eva-dropdown-menu': any;
+      'eva-dropdown-menu-item': any;
+      'eva-dropdown-menu-separator': any;
+      'eva-dropdown-menu-label': any;
+      'eva-context-menu': any;
+      'eva-context-menu-item': any;
       'eva-label': any;
       'eva-separator': any;
       'eva-accordion': any;

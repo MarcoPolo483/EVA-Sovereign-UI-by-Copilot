@@ -294,6 +294,77 @@ export function UserAvatar() {
   );
 }</pre>
       </section>
+
+      <!-- Collapsible -->
+      <section class="component-demo">
+        <h2 class="demo-title">Collapsible</h2>
+        <eva-collapsible>
+          <eva-collapsible-trigger>
+            <button class="theme-selector">Toggle Content</button>
+          </eva-collapsible-trigger>
+          <eva-collapsible-content>
+            <p style="padding: 8px 0;">Hidden content area.</p>
+          </eva-collapsible-content>
+        </eva-collapsible>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-collapsible&gt;
+  &lt;eva-collapsible-trigger&gt;
+    &lt;button&gt;Toggle Content&lt;/button&gt;
+  &lt;/eva-collapsible-trigger&gt;
+  &lt;eva-collapsible-content&gt;Hidden content&lt;/eva-collapsible-content&gt;
+&lt;/eva-collapsible&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVACollapsible, EVACollapsibleTrigger, EVACollapsibleContent } from '@eva-suite/sovereign-ui-react';
+
+export function MyCollapsible() {
+  return (
+    &lt;EVACollapsible&gt;
+      &lt;EVACollapsibleTrigger&gt;
+        &lt;button&gt;Toggle Content&lt;/button&gt;
+      &lt;/EVACollapsibleTrigger&gt;
+      &lt;EVACollapsibleContent&gt;Hidden content&lt;/EVACollapsibleContent&gt;
+    &lt;/EVACollapsible&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Dropdown Menu -->
+      <section class="component-demo">
+        <h2 class="demo-title">Dropdown Menu</h2>
+        <eva-dropdown-menu>
+          <button slot="trigger" class="theme-selector">Open Menu</button>
+          <eva-dropdown-menu-label>Actions</eva-dropdown-menu-label>
+          <eva-dropdown-menu-item>Item 1</eva-dropdown-menu-item>
+          <eva-dropdown-menu-separator></eva-dropdown-menu-separator>
+          <eva-dropdown-menu-item>Item 2</eva-dropdown-menu-item>
+        </eva-dropdown-menu>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-dropdown-menu&gt;
+  &lt;button slot="trigger"&gt;Open Menu&lt;/button&gt;
+  &lt;eva-dropdown-menu-label&gt;Actions&lt;/eva-dropdown-menu-label&gt;
+  &lt;eva-dropdown-menu-item&gt;Item 1&lt;/eva-dropdown-menu-item&gt;
+  &lt;eva-dropdown-menu-separator&gt;&lt;/eva-dropdown-menu-separator&gt;
+  &lt;eva-dropdown-menu-item&gt;Item 2&lt;/eva-dropdown-menu-item&gt;
+&lt;/eva-dropdown-menu&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVADropdownMenu, EVADropdownMenuItem, EVADropdownMenuSeparator, EVADropdownMenuLabel } from '@eva-suite/sovereign-ui-react';
+
+export function MyMenu() {
+  return (
+    &lt;EVADropdownMenu&gt;
+      &lt;button slot="trigger"&gt;Open Menu&lt;/button&gt;
+      &lt;EVADropdownMenuLabel&gt;Actions&lt;/EVADropdownMenuLabel&gt;
+      &lt;EVADropdownMenuItem&gt;Item 1&lt;/EVADropdownMenuItem&gt;
+      &lt;EVADropdownMenuSeparator /&gt;
+      &lt;EVADropdownMenuItem&gt;Item 2&lt;/EVADropdownMenuItem&gt;
+    &lt;/EVADropdownMenu&gt;
+  );
+}</pre>
+      </section>
       
       <!-- Accessibility Features -->
       <section class="component-demo">
