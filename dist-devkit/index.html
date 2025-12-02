@@ -680,6 +680,158 @@ export function MyContextMenu() {
   );
 }</pre>
       </section>
+
+      <!-- Alert Dialog -->
+      <section class="component-demo">
+        <h2 class="demo-title">Alert Dialog</h2>
+        <eva-alert-dialog>
+          <eva-alert-dialog-trigger>
+            <button class="theme-selector">Delete</button>
+          </eva-alert-dialog-trigger>
+          <eva-alert-dialog-content>
+            <eva-alert-dialog-header>
+              <eva-alert-dialog-title>Are you absolutely sure?</eva-alert-dialog-title>
+              <eva-alert-dialog-description>This action cannot be undone.</eva-alert-dialog-description>
+            </eva-alert-dialog-header>
+            <eva-alert-dialog-footer>
+              <eva-alert-dialog-cancel>Cancel</eva-alert-dialog-cancel>
+              <eva-alert-dialog-action>Confirm</eva-alert-dialog-action>
+            </eva-alert-dialog-footer>
+          </eva-alert-dialog-content>
+        </eva-alert-dialog>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-alert-dialog&gt;
+  &lt;eva-alert-dialog-trigger&gt;
+    &lt;button&gt;Delete&lt;/button&gt;
+  &lt;/eva-alert-dialog-trigger&gt;
+  &lt;eva-alert-dialog-content&gt;
+    &lt;eva-alert-dialog-header&gt;
+      &lt;eva-alert-dialog-title&gt;Are you absolutely sure?&lt;/eva-alert-dialog-title&gt;
+      &lt;eva-alert-dialog-description&gt;This action cannot be undone.&lt;/eva-alert-dialog-description&gt;
+    &lt;/eva-alert-dialog-header&gt;
+    &lt;eva-alert-dialog-footer&gt;
+      &lt;eva-alert-dialog-cancel&gt;Cancel&lt;/eva-alert-dialog-cancel&gt;
+      &lt;eva-alert-dialog-action&gt;Confirm&lt;/eva-alert-dialog-action&gt;
+    &lt;/eva-alert-dialog-footer&gt;
+  &lt;/eva-alert-dialog-content&gt;
+&lt;/eva-alert-dialog&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAAlertDialog, EVAAlertDialogTrigger, EVAAlertDialogContent, EVAAlertDialogHeader, EVAAlertDialogTitle, EVAAlertDialogDescription, EVAAlertDialogFooter, EVAAlertDialogCancel, EVAAlertDialogAction } from '@eva-suite/sovereign-ui-react';
+
+export function MyAlertDialog() {
+  return (
+    &lt;EVAAlertDialog&gt;
+      &lt;EVAAlertDialogTrigger&gt;
+        &lt;button&gt;Delete&lt;/button&gt;
+      &lt;/EVAAlertDialogTrigger&gt;
+      &lt;EVAAlertDialogContent&gt;
+        &lt;EVAAlertDialogHeader&gt;
+          &lt;EVAAlertDialogTitle&gt;Are you absolutely sure?&lt;/EVAAlertDialogTitle&gt;
+          &lt;EVAAlertDialogDescription&gt;This action cannot be undone.&lt;/EVAAlertDialogDescription&gt;
+        &lt;/EVAAlertDialogHeader&gt;
+        &lt;EVAAlertDialogFooter&gt;
+          &lt;EVAAlertDialogCancel&gt;Cancel&lt;/EVAAlertDialogCancel&gt;
+          &lt;EVAAlertDialogAction&gt;Confirm&lt;/EVAAlertDialogAction&gt;
+        &lt;/EVAAlertDialogFooter&gt;
+      &lt;/EVAAlertDialogContent&gt;
+    &lt;/EVAAlertDialog&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Hover Card -->
+      <section class="component-demo">
+        <h2 class="demo-title">Hover Card</h2>
+        <eva-hover-card>
+          <eva-hover-card-trigger>
+            <button class="theme-selector">Hover</button>
+          </eva-hover-card-trigger>
+          <eva-hover-card-content>
+            <p style="padding:8px 0;">Additional info on hover.</p>
+          </eva-hover-card-content>
+        </eva-hover-card>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-hover-card&gt;
+  &lt;eva-hover-card-trigger&gt;
+    &lt;button&gt;Hover&lt;/button&gt;
+  &lt;/eva-hover-card-trigger&gt;
+  &lt;eva-hover-card-content&gt;Additional info&lt;/eva-hover-card-content&gt;
+&lt;/eva-hover-card&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAHoverCard, EVAHoverCardTrigger, EVAHoverCardContent } from '@eva-suite/sovereign-ui-react';
+
+export function MyHoverCard() {
+  return (
+    &lt;EVAHoverCard&gt;
+      &lt;EVAHoverCardTrigger&gt;
+        &lt;button&gt;Hover&lt;/button&gt;
+      &lt;/EVAHoverCardTrigger&gt;
+      &lt;EVAHoverCardContent&gt;Additional info&lt;/EVAHoverCardContent&gt;
+    &lt;/EVAHoverCard&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Sheet -->
+      <section class="component-demo">
+        <h2 class="demo-title">Sheet</h2>
+        <eva-sheet>
+          <eva-sheet-trigger>
+            <button class="theme-selector">Open Sheet</button>
+          </eva-sheet-trigger>
+          <eva-sheet-content>
+            <eva-sheet-header>
+              <eva-sheet-title>Profile</eva-sheet-title>
+              <eva-sheet-description>Edit your profile settings here.</eva-sheet-description>
+            </eva-sheet-header>
+            <eva-sheet-footer>
+              <button class="theme-selector">Close</button>
+            </eva-sheet-footer>
+          </eva-sheet-content>
+        </eva-sheet>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-sheet&gt;
+  &lt;eva-sheet-trigger&gt;
+    &lt;button&gt;Open Sheet&lt;/button&gt;
+  &lt;/eva-sheet-trigger&gt;
+  &lt;eva-sheet-content&gt;
+    &lt;eva-sheet-header&gt;
+      &lt;eva-sheet-title&gt;Profile&lt;/eva-sheet-title&gt;
+      &lt;eva-sheet-description&gt;Edit your profile settings here.&lt;/eva-sheet-description&gt;
+    &lt;/eva-sheet-header&gt;
+    &lt;eva-sheet-footer&gt;
+      &lt;button&gt;Close&lt;/button&gt;
+    &lt;/eva-sheet-footer&gt;
+  &lt;/eva-sheet-content&gt;
+&lt;/eva-sheet&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVASheet, EVASheetTrigger, EVASheetContent, EVASheetHeader, EVASheetTitle, EVASheetDescription, EVASheetFooter } from '@eva-suite/sovereign-ui-react';
+
+export function MySheet() {
+  return (
+    &lt;EVASheet&gt;
+      &lt;EVASheetTrigger&gt;
+        &lt;button&gt;Open Sheet&lt;/button&gt;
+      &lt;/EVASheetTrigger&gt;
+      &lt;EVASheetContent&gt;
+        &lt;EVASheetHeader&gt;
+          &lt;EVASheetTitle&gt;Profile&lt;/EVASheetTitle&gt;
+          &lt;EVASheetDescription&gt;Edit your profile settings here.&lt;/EVASheetDescription&gt;
+        &lt;/EVASheetHeader&gt;
+        &lt;EVASheetFooter&gt;
+          &lt;button&gt;Close&lt;/button&gt;
+        &lt;/EVASheetFooter&gt;
+      &lt;/EVASheetContent&gt;
+    &lt;/EVASheet&gt;
+  );
+}</pre>
+      </section>
       
       <!-- Accessibility Features -->
       <section class="component-demo">
