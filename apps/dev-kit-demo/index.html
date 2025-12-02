@@ -559,6 +559,126 @@ export function MyCard() {
   );
 }</pre>
       </section>
+
+      <!-- Select -->
+      <section class="component-demo">
+        <h2 class="demo-title">Select</h2>
+        <eva-select style="min-width:200px; display:inline-block;">
+          <eva-select-item>Option A</eva-select-item>
+          <eva-select-item>Option B</eva-select-item>
+          <eva-select-item>Option C</eva-select-item>
+        </eva-select>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-select&gt;
+  &lt;eva-select-item&gt;Option A&lt;/eva-select-item&gt;
+  &lt;eva-select-item&gt;Option B&lt;/eva-select-item&gt;
+  &lt;eva-select-item&gt;Option C&lt;/eva-select-item&gt;
+&lt;/eva-select&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVASelect, EVASelectItem } from '@eva-suite/sovereign-ui-react';
+
+export function MySelect() {
+  return (
+    &lt;EVASelect&gt;
+      &lt;EVASelectItem&gt;Option A&lt;/EVASelectItem&gt;
+      &lt;EVASelectItem&gt;Option B&lt;/EVASelectItem&gt;
+      &lt;EVASelectItem&gt;Option C&lt;/EVASelectItem&gt;
+    &lt;/EVASelect&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Radio Group -->
+      <section class="component-demo">
+        <h2 class="demo-title">Radio Group</h2>
+        <eva-radio-group style="display:flex; gap:12px;">
+          <eva-radio-group-item>Yes</eva-radio-group-item>
+          <eva-radio-group-item>No</eva-radio-group-item>
+        </eva-radio-group>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-radio-group&gt;
+  &lt;eva-radio-group-item&gt;Yes&lt;/eva-radio-group-item&gt;
+  &lt;eva-radio-group-item&gt;No&lt;/eva-radio-group-item&gt;
+&lt;/eva-radio-group&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVARadioGroup, EVARadioGroupItem } from '@eva-suite/sovereign-ui-react';
+
+export function MyRadioGroup() {
+  return (
+    &lt;EVARadioGroup&gt;
+      &lt;EVARadioGroupItem&gt;Yes&lt;/EVARadioGroupItem&gt;
+      &lt;EVARadioGroupItem&gt;No&lt;/EVARadioGroupItem&gt;
+    &lt;/EVARadioGroup&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Toggle Group -->
+      <section class="component-demo">
+        <h2 class="demo-title">Toggle Group</h2>
+        <eva-toggle-group style="display:flex; gap:12px;">
+          <eva-toggle-group-item>A</eva-toggle-group-item>
+          <eva-toggle-group-item>B</eva-toggle-group-item>
+          <eva-toggle-group-item>C</eva-toggle-group-item>
+        </eva-toggle-group>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-toggle-group&gt;
+  &lt;eva-toggle-group-item&gt;A&lt;/eva-toggle-group-item&gt;
+  &lt;eva-toggle-group-item&gt;B&lt;/eva-toggle-group-item&gt;
+  &lt;eva-toggle-group-item&gt;C&lt;/eva-toggle-group-item&gt;
+&lt;/eva-toggle-group&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAToggleGroup, EVAToggleGroupItem } from '@eva-suite/sovereign-ui-react';
+
+export function MyToggleGroup() {
+  return (
+    &lt;EVAToggleGroup&gt;
+      &lt;EVAToggleGroupItem&gt;A&lt;/EVAToggleGroupItem&gt;
+      &lt;EVAToggleGroupItem&gt;B&lt;/EVAToggleGroupItem&gt;
+      &lt;EVAToggleGroupItem&gt;C&lt;/EVAToggleGroupItem&gt;
+    &lt;/EVAToggleGroup&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Context Menu -->
+      <section class="component-demo">
+        <h2 class="demo-title">Context Menu</h2>
+        <eva-context-menu>
+          <button slot="trigger" class="theme-selector">Right-click Me</button>
+          <eva-context-menu-item>Cut</eva-context-menu-item>
+          <eva-context-menu-item>Copy</eva-context-menu-item>
+          <eva-context-menu-item>Paste</eva-context-menu-item>
+        </eva-context-menu>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-context-menu&gt;
+  &lt;button slot="trigger"&gt;Right-click Me&lt;/button&gt;
+  &lt;eva-context-menu-item&gt;Cut&lt;/eva-context-menu-item&gt;
+  &lt;eva-context-menu-item&gt;Copy&lt;/eva-context-menu-item&gt;
+  &lt;eva-context-menu-item&gt;Paste&lt;/eva-context-menu-item&gt;
+&lt;/eva-context-menu&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAContextMenu, EVAContextMenuItem } from '@eva-suite/sovereign-ui-react';
+
+export function MyContextMenu() {
+  return (
+    &lt;EVAContextMenu&gt;
+      &lt;button slot="trigger"&gt;Right-click Me&lt;/button&gt;
+      &lt;EVAContextMenuItem&gt;Cut&lt;/EVAContextMenuItem&gt;
+      &lt;EVAContextMenuItem&gt;Copy&lt;/EVAContextMenuItem&gt;
+      &lt;EVAContextMenuItem&gt;Paste&lt;/EVAContextMenuItem&gt;
+    &lt;/EVAContextMenu&gt;
+  );
+}</pre>
+      </section>
       
       <!-- Accessibility Features -->
       <section class="component-demo">
