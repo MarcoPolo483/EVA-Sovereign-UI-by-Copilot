@@ -228,7 +228,7 @@ export class PerformanceDashboard {
           },
           tooltip: {
             callbacks: {
-              label: (context) => `${context.parsed.y.toFixed(0)} ms`,
+              label: (context) => `${context.parsed?.y?.toFixed(0) || 0} ms`,
             },
           },
         },
@@ -303,7 +303,7 @@ export class PerformanceDashboard {
           },
           tooltip: {
             callbacks: {
-              label: (context) => `${context.dataset.label}: ${context.parsed.y.toFixed(1)} KB`,
+              label: (context) => `${context.dataset.label}: ${context.parsed?.y?.toFixed(1) || 0} KB`,
             },
           },
         },

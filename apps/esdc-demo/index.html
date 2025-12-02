@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Employment and Social Development Canada | Emploi et Développement social Canada</title>
+  <title>Five Eyes Government Services Demo | Démonstration des services gouvernementaux Five Eyes</title>
   <style>
     * {
       margin: 0;
@@ -13,6 +13,64 @@
 
     body {
       font-family: "Noto Sans", sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+    }
+
+    .locale-selector {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 24px;
+      margin: 24px auto;
+      max-width: 1200px;
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    .locale-selector h2 {
+      font-family: 'Lato', sans-serif;
+      font-size: 28px;
+      margin-bottom: 16px;
+      color: #1a202c;
+      text-align: center;
+    }
+
+    .locale-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .locale-btn {
+      padding: 16px 24px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .locale-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-color: #667eea;
+    }
+
+    .locale-btn.active {
+      background: #667eea;
+      color: white;
+      border-color: #667eea;
+    }
+
+    .locale-flag {
+      font-size: 32px;
     }
 
     .program-grid {
@@ -26,6 +84,10 @@
       .program-grid {
         grid-template-columns: 1fr;
       }
+      
+      .locale-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +95,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  
+  <!-- Locale Selector -->
+  <div class="locale-selector">
+    <h2>🌍 Five Eyes Government Services Demo</h2>
+    <p style="text-align: center; color: #718096; margin-bottom: 16px;">
+      Experience government services across Canada, United States, United Kingdom, Australia, and New Zealand
+    </p>
+    <div class="locale-grid">
+      <button class="locale-btn active" data-locale="en-CA">
+        <span class="locale-flag">🇨🇦</span>
+        <span>Canada (EN)</span>
+        <small style="opacity: 0.7;">en-CA</small>
+      </button>
+      <button class="locale-btn" data-locale="fr-CA">
+        <span class="locale-flag">🇨🇦</span>
+        <span>Canada (FR)</span>
+        <small style="opacity: 0.7;">fr-CA</small>
+      </button>
+      <button class="locale-btn" data-locale="en-US">
+        <span class="locale-flag">🇺🇸</span>
+        <span>United States</span>
+        <small style="opacity: 0.7;">en-US</small>
+      </button>
+      <button class="locale-btn" data-locale="en-GB">
+        <span class="locale-flag">🇬🇧</span>
+        <span>United Kingdom</span>
+        <small style="opacity: 0.7;">en-GB</small>
+      </button>
+      <button class="locale-btn" data-locale="en-AU">
+        <span class="locale-flag">🇦🇺</span>
+        <span>Australia</span>
+        <small style="opacity: 0.7;">en-AU</small>
+      </button>
+      <button class="locale-btn" data-locale="en-NZ">
+        <span class="locale-flag">🇳🇿</span>
+        <span>New Zealand</span>
+        <small style="opacity: 0.7;">en-NZ</small>
+      </button>
+    </div>
+  </div>
   
   <!-- Skip link -->
   <eva-skip-link target="#main-content">Skip to main content</eva-skip-link>
@@ -42,11 +144,13 @@
     
     <!-- Header -->
     <eva-gc-header slot="header"
+      id="demo-header"
       app-name-key="esdc.title"
       profile="canada_gc">
       <eva-language-switcher slot="actions"
+        id="demo-lang-switcher"
         current-locale="en-CA"
-        available-locales='["en-CA", "fr-CA"]'>
+        available-locales='["en-CA", "fr-CA", "en-US", "en-GB", "en-AU", "en-NZ"]'>
       </eva-language-switcher>
     </eva-gc-header>
     
@@ -96,6 +200,106 @@
   </eva-page-shell>
   
   <!-- Load Web Components -->
-  <script type="module" src="../../packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script type="module">
+    import '@eva-suite/sovereign-ui';
+  </script>
+  
+  <!-- Locale Switching Logic -->
+  <script type="module">
+    // Get references to components
+    const langSwitcher = document.getElementById('demo-lang-switcher');
+    const localeButtons = document.querySelectorAll('.locale-btn');
+    
+    // Profile mapping for different countries
+    const profileMap = {
+      'en-CA': 'canada_gc',
+      'fr-CA': 'canada_gc',
+      'en-US': 'usa_gov',
+      'en-GB': 'uk_gov',
+      'en-AU': 'australia_gov',
+      'en-NZ': 'nz_govt'
+    };
+    
+    // Government names for each locale
+    const govNames = {
+      'en-CA': 'Government of Canada',
+      'fr-CA': 'Gouvernement du Canada',
+      'en-US': 'U.S. Government',
+      'en-GB': 'GOV.UK',
+      'en-AU': 'Australian Government',
+      'en-NZ': 'New Zealand Government'
+    };
+    
+    // Handle locale button clicks
+    localeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const newLocale = btn.dataset.locale;
+        
+        // Update active state
+        localeButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Update language switcher
+        if (langSwitcher) {
+          langSwitcher.setAttribute('current-locale', newLocale);
+          
+          // Emit locale change event
+          const event = new CustomEvent('locale-change', {
+            detail: { locale: newLocale },
+            bubbles: true,
+            composed: true
+          });
+          langSwitcher.dispatchEvent(event);
+        }
+        
+        // Update HTML lang attribute
+        document.documentElement.lang = newLocale;
+        
+        // Update header profile
+        const header = document.getElementById('demo-header');
+        if (header && profileMap[newLocale]) {
+          header.setAttribute('profile', profileMap[newLocale]);
+        }
+        
+        // Update page title
+        const countryName = govNames[newLocale] || 'Government Services';
+        document.title = `Five Eyes Demo - ${countryName}`;
+        
+        // Announce to screen readers
+        const announcement = document.createElement('div');
+        announcement.setAttribute('role', 'status');
+        announcement.setAttribute('aria-live', 'polite');
+        announcement.textContent = `Locale changed to ${btn.querySelector('span:nth-child(2)').textContent}`;
+        announcement.style.position = 'absolute';
+        announcement.style.left = '-10000px';
+        document.body.appendChild(announcement);
+        setTimeout(() => announcement.remove(), 1000);
+      });
+    });
+    
+    // Listen for language switcher events
+    if (langSwitcher) {
+      langSwitcher.addEventListener('locale-change', (e) => {
+        const newLocale = e.detail?.locale;
+        if (newLocale) {
+          // Update active button
+          localeButtons.forEach(btn => {
+            if (btn.dataset.locale === newLocale) {
+              btn.classList.add('active');
+            } else {
+              btn.classList.remove('active');
+            }
+          });
+        }
+      });
+    }
+    
+    // Initialize with default locale
+    const defaultLocale = 'en-CA';
+    document.documentElement.lang = defaultLocale;
+    if (langSwitcher) {
+      langSwitcher.setAttribute('current-locale', defaultLocale);
+    }
+  </script>
 </body>
 </html>
