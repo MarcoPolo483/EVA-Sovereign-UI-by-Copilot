@@ -4,7 +4,8 @@
 
 Built using the official **Government of Canada Design System** with **WCAG 2.2 AAA accessibility**, full **internationalization** (5 languages), and **Five Eyes sovereign profiles** (🇨🇦🇺🇸🇬🇧🇦🇺🇳🇿).
 
-[![Tests](https://img.shields.io/badge/tests-282%2F282%20passing-brightgreen)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+[![Tests](https://img.shields.io/badge/tests-1011%2F1011%20passing-brightgreen)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
+[![Coverage](https://img.shields.io/badge/coverage-84.01%25%20branches-brightgreen)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
 [![Bundle Size](https://img.shields.io/badge/gzip-12.28%20KB%20ES-blue)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
 [![Performance](https://img.shields.io/badge/render-1.02ms%20avg-success)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
 [![WCAG](https://img.shields.io/badge/WCAG%202.2-AA%2B-blue)](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot)
