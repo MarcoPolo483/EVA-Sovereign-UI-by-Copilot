@@ -1,9 +1,62 @@
 {
-  "@eva-suite/sovereign-ui@1.0.0": {
+  "@eva-suite/sovereign-ui@1.1.0": {
     "licenses": "MIT",
     "publisher": "EVA Suite",
     "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI",
     "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\LICENSE"
+  },
+  "@types/react-dom@19.2.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\@types\\react-dom",
+    "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\@types\\react-dom\\LICENSE"
+  },
+  "@types/react@19.2.7": {
+    "licenses": "MIT",
+    "repository": "https://github.com/DefinitelyTyped/DefinitelyTyped",
+    "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\@types\\react",
+    "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\@types\\react\\LICENSE"
+  },
+  "csstype@3.2.3": {
+    "licenses": "MIT",
+    "repository": "https://github.com/frenic/csstype",
+    "publisher": "Fredrik Nicol",
+    "email": "fredrik.nicol@gmail.com",
+    "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\csstype",
+    "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\csstype\\LICENSE"
+  },
+  "js-tokens@4.0.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/lydell/js-tokens",
+    "publisher": "Simon Lydell",
+    "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\js-tokens",
+    "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\js-tokens\\LICENSE"
+  },
+  "loose-envify@1.4.0": {
+    "licenses": "MIT",
+    "repository": "https://github.com/zertosh/loose-envify",
+    "publisher": "Andres Suarez",
+    "email": "zertosh@gmail.com",
+    "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\loose-envify",
+    "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\loose-envify\\LICENSE"
+  },
+  "react-dom@18.3.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebook/react",
+    "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\react-dom",
+    "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\react-dom\\LICENSE"
+  },
+  "react@18.3.1": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebook/react",
+    "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\react",
+    "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\react\\LICENSE"
+  },
+  "scheduler@0.23.2": {
+    "licenses": "MIT",
+    "repository": "https://github.com/facebook/react",
+    "path": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\scheduler",
+    "licenseFile": "C:\\Users\\marco\\Documents\\_AI Dev\\EVA Suite\\EVA-Sovereign-UI\\node_modules\\scheduler\\LICENSE"
   }
 }
 
