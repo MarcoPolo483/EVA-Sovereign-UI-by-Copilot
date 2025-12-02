@@ -13,5 +13,9 @@ export {
   EVAInputOTPDirective
 } from './lib/directives';
 
+// Export types
+export type * from './lib/types';
+
 // Version
-export const version = '1.0.0';
+export const version = '1.1.0';
+

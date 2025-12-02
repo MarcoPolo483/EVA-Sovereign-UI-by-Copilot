@@ -2,6 +2,22 @@
 
 Angular wrappers for EVA-Sovereign-UI Web Components, providing native Angular integration with reactive forms support, change detection, and TypeScript definitions.
 
+[![npm version](https://img.shields.io/npm/v/@eva-suite/sovereign-ui-angular.svg)](https://www.npmjs.com/package/@eva-suite/sovereign-ui-angular)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Features
+
+- ✅ **49 Components** - Complete suite of government-grade UI components
+- ✅ **Angular Forms** - Full support for template-driven and reactive forms
+- ✅ **ControlValueAccessor** - All form directives implement CVA interface
+- ✅ **Change Detection** - Seamless integration with Angular's change detection
+- ✅ **TypeScript** - Full type definitions with HTMLElementTagNameMap extensions
+- ✅ **Standalone Components** - Compatible with Angular 15+ standalone API
+- ✅ **SSR Compatible** - Works with Angular Universal server-side rendering
+- ✅ **WCAG 2.2 AA** - Full accessibility compliance
+- ✅ **Government Standards** - GC Design System and Five Eyes compliant
+- ✅ **Lightweight** - 8.91 KB CJS, 7.06 KB ESM (gzipped)
+
 ## Installation
 
 ```bash

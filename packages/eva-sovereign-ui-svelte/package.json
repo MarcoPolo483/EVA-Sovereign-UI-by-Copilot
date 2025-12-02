@@ -1,7 +1,7 @@
 {
   "name": "@eva-suite/sovereign-ui-svelte",
-  "version": "1.0.0",
-  "description": "Svelte wrappers for EVA-Sovereign-UI Web Components",
+  "version": "1.1.0",
+  "description": "Svelte 4/5 wrapper for EVA Sovereign UI - Complete 49 component suite with reactive actions",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

@@ -146,10 +146,26 @@ export const EVAInputOTP = createComponent('eva-input-otp', ['input', 'change'],
   event: 'input'
 });
 
+// Dialog Components (missing exports)
+export const EVADialogHeader = createComponent('eva-dialog-header', []);
+export const EVADialogFooter = createComponent('eva-dialog-footer', []);
+export const EVADialogTitle = createComponent('eva-dialog-title', []);
+export const EVADialogDescription = createComponent('eva-dialog-description', []);
+
+// Carousel Components
+export const EVACarouselItem = createComponent('eva-carousel-item', []);
+
+// Card Footer
+export const EVACardFooter = createComponent('eva-card-footer', []);
+
 // Custom Components
-export const EVAChatPanel = createComponent('eva-chat-panel', ['messageSubmit']);
+export const EVAChatPanel = createComponent('eva-chat-panel', ['messageSubmit', 'sendMessage']);
+export const EVAChatMessage = createComponent('eva-chat-message', []);
 export const EVAPageShell = createComponent('eva-page-shell', []);
 export const EVAContainer = createComponent('eva-container', []);
-export const EVASkipLinks = createComponent('eva-skip-links', []);
-export const EVAProgramCard = createComponent('eva-program-card', ['click']);
+export const EVASkipLink = createComponent('eva-skip-link', ['activate']);
+export const EVAProgramCard = createComponent('eva-program-card', ['click', 'navigate']);
 export const EVAHeroBanner = createComponent('eva-hero-banner', []);
+
+// Type exports for TypeScript users
+export type * from '../types';
