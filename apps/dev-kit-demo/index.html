@@ -276,13 +276,26 @@ export function MyInputOTP() {
             link="#oas">
           </eva-program-card>
         </div>
-        
-        <div class="code-example">&lt;eva-program-card
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-program-card
   title-key="esdc.programs.ei.title"
   description-key="esdc.programs.ei.description"
   icon="💼"
-  link="/programs/ei.html"&gt;
-&lt;/eva-program-card&gt;</div>
+  link="#ei"&gt;
+&lt;/eva-program-card&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAProgramCard } from '@eva-suite/sovereign-ui-react';
+
+export function Programs() {
+  return (
+    &lt;div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}&gt;
+      &lt;EVAProgramCard title-key="esdc.programs.ei.title" description-key="esdc.programs.ei.description" icon="💼" link="#ei" /&gt;
+      &lt;EVAProgramCard title-key="esdc.programs.oas.title" description-key="esdc.programs.oas.description" icon="🧓" link="#oas" /&gt;
+    &lt;/div&gt;
+  );
+}</pre>
       </section>
 
       <!-- Form Helpers (Label & Separator) -->

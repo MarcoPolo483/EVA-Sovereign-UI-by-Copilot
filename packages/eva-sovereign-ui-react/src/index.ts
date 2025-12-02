@@ -92,6 +92,13 @@ export { EVASkeleton } from './components/EVASkeleton';
 export { EVASlider } from './components/EVASlider';
 export { EVAToggle } from './components/EVAToggle';
 export { EVAInputOTP } from './components/EVAInputOTP';
+export { EVAButton } from './components/EVAButton';
+export { EVAPageShell } from './components/EVAPageShell';
+export { EVAContainer } from './components/EVAContainer';
+export { EVASkipLinks } from './components/EVASkipLinks';
+export { EVABreadcrumbs } from './components/EVABreadcrumbs';
+export { EVAProgramCard } from './components/EVAProgramCard';
+export { EVAHeroBanner } from './components/EVAHeroBanner';
 
 // Export types
 export type { EVAGCButtonProps } from './components/EVAGCButton';
@@ -184,5 +191,12 @@ export type { EVASkeletonProps } from './components/EVASkeleton';
 export type { EVASliderProps } from './components/EVASlider';
 export type { EVAToggleProps } from './components/EVAToggle';
 export type { EVAInputOTPProps } from './components/EVAInputOTP';
+export type { EVAButtonProps } from './components/EVAButton';
+export type { EVAPageShellProps } from './components/EVAPageShell';
+export type { EVAContainerProps } from './components/EVAContainer';
+export type { EVASkipLinksProps } from './components/EVASkipLinks';
+export type { EVABreadcrumbsProps } from './components/EVABreadcrumbs';
+export type { EVAProgramCardProps } from './components/EVAProgramCard';
+export type { EVAHeroBannerProps } from './components/EVAHeroBanner';
 
 export type * from './types';

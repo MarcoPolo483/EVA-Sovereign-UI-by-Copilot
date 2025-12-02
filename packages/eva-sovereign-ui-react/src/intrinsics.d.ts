@@ -93,6 +93,13 @@ declare global {
       'eva-slider': any;
       'eva-toggle': any;
       'eva-input-otp': any;
+      'eva-button': any;
+      'eva-page-shell': any;
+      'eva-container': any;
+      'eva-skip-links': any;
+      'eva-breadcrumbs': any;
+      'eva-program-card': any;
+      'eva-hero-banner': any;
     }
   }
 }
