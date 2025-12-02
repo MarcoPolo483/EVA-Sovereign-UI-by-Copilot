@@ -85,6 +85,13 @@ export { EVAAspectRatio } from './components/EVAAspectRatio';
 export { EVABadge } from './components/EVABadge';
 export { EVACalendar } from './components/EVACalendar';
 export { EVACarousel } from './components/EVACarousel';
+export { EVAPagination } from './components/EVAPagination';
+export { EVAProgress } from './components/EVAProgress';
+export { EVAScrollArea } from './components/EVAScrollArea';
+export { EVASkeleton } from './components/EVASkeleton';
+export { EVASlider } from './components/EVASlider';
+export { EVAToggle } from './components/EVAToggle';
+export { EVAInputOTP } from './components/EVAInputOTP';
 
 // Export types
 export type { EVAGCButtonProps } from './components/EVAGCButton';
@@ -170,5 +177,12 @@ export type { EVAAspectRatioProps } from './components/EVAAspectRatio';
 export type { EVABadgeProps } from './components/EVABadge';
 export type { EVACalendarProps } from './components/EVACalendar';
 export type { EVACarouselProps } from './components/EVACarousel';
+export type { EVAPaginationProps } from './components/EVAPagination';
+export type { EVAProgressProps } from './components/EVAProgress';
+export type { EVAScrollAreaProps } from './components/EVAScrollArea';
+export type { EVASkeletonProps } from './components/EVASkeleton';
+export type { EVASliderProps } from './components/EVASlider';
+export type { EVAToggleProps } from './components/EVAToggle';
+export type { EVAInputOTPProps } from './components/EVAInputOTP';
 
 export type * from './types';

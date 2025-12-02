@@ -86,6 +86,13 @@ declare global {
       'eva-badge': any;
       'eva-calendar': any;
       'eva-carousel': any;
+      'eva-pagination': any;
+      'eva-progress': any;
+      'eva-scroll-area': any;
+      'eva-skeleton': any;
+      'eva-slider': any;
+      'eva-toggle': any;
+      'eva-input-otp': any;
     }
   }
 }
