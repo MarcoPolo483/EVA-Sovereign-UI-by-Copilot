@@ -36,12 +36,18 @@ jobs:
       - name: Build ESDC Demo
         run: npm run build:esdc
 
+      - name: Build Storybook
+        run: npm run build-storybook
+
       - name: Create deployment structure
         run: |
           mkdir -p public
           cp -r dist-devkit/* public/
           mkdir -p public/esdc
           cp -r dist-esdc/* public/esdc/
+          mkdir -p public/storybook
+          cp -r storybook-static/* public/storybook/
+          cp public-index.html public/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

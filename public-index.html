@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVA Sovereign UI - Documentation & Demos</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      width: 100%;
+    }
+    
+    .header {
+      text-align: center;
+      color: white;
+      margin-bottom: 3rem;
+    }
+    
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .header p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+    }
+    
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .card {
+      background: white;
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    }
+    
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      color: #667eea;
+    }
+    
+    .card p {
+      color: #6b7280;
+      line-height: 1.6;
+      flex-grow: 1;
+    }
+    
+    .card-footer {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e7eb;
+      color: #667eea;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .card-footer::after {
+      content: '→';
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover .card-footer::after {
+      transform: translateX(4px);
+    }
+    
+    .footer {
+      text-align: center;
+      color: white;
+      margin-top: 3rem;
+      opacity: 0.8;
+    }
+    
+    .footer a {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    .badge {
+      display: inline-block;
+      background: #10b981;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎯 EVA Sovereign UI</h1>
+      <p>Enterprise-Grade Web Component Library</p>
+      <p style="margin-top: 0.5rem; font-size: 1rem;">WCAG 2.2 AAA • Government of Canada Design System • 1,046 Tests</p>
+    </div>
+    
+    <div class="cards">
+      <a href="./storybook/" class="card">
+        <div class="card-icon">📚</div>
+        <div class="badge">NEW</div>
+        <h2>Component Storybook</h2>
+        <p>
+          Interactive component documentation with live examples, accessibility checks, and usage guidelines. 
+          Explore all variants, test different states, and view component APIs.
+        </p>
+        <div class="card-footer">View Storybook</div>
+      </a>
+      
+      <a href="./" class="card">
+        <div class="card-icon">🧰</div>
+        <h2>Developer Kit</h2>
+        <p>
+          Comprehensive development toolkit featuring component playground, live editor, and integration examples. 
+          Test components in real-time with full customization options.
+        </p>
+        <div class="card-footer">Open Developer Kit</div>
+      </a>
+      
+      <a href="./esdc/" class="card">
+        <div class="card-icon">🏛️</div>
+        <h2>ESDC Demo</h2>
+        <p>
+          Employment and Social Development Canada themed demonstration. 
+          Showcases government-specific components with full GC Design System compliance and bilingual support.
+        </p>
+        <div class="card-footer">View ESDC Demo</div>
+      </a>
+    </div>
+    
+    <div class="footer">
+      <p>
+        <strong>EVA Sovereign UI v1.1.0</strong> • 
+        <a href="https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot" target="_blank" rel="noopener noreferrer">GitHub</a> • 
+        MIT Licensed
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.875rem;">
+        Built with Web Components, Vite, TypeScript, and Storybook
+      </p>
+    </div>
+  </div>
+</body>
+</html>
