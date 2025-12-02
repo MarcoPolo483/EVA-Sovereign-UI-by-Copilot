@@ -668,6 +668,41 @@ npm run size:guard
 
 ---
 
+## React Wrappers Usage
+
+Install React wrappers package and use thin adapters that map attributes→props and events→callbacks.
+
+```tsx
+import React from 'react';
+import { EVALabel, EVASeparator, EVAAccordion, EVAAccordionItem, EVAAvatar, EVAAvatarImage, EVAAvatarFallback } from '@eva-suite/sovereign-ui-react';
+
+export function Example() {
+  return (
+    <div>
+      <EVALabel htmlFor="email">Email Address</EVALabel>
+      <input id="email" type="email" />
+
+      <EVASeparator />
+
+      <EVAAccordion type="single" value="a1">
+        <EVAAccordionItem value="a1">
+          <div slot="trigger">Section 1</div>
+          <div slot="content">Content</div>
+        </EVAAccordionItem>
+      </EVAAccordion>
+
+      <EVAAvatar>
+        <EVAAvatarImage src="/avatar.jpg" />
+        <EVAAvatarFallback>JD</EVAAvatarFallback>
+      </EVAAvatar>
+    </div>
+  );
+}
+```
+
+See also: `apps/dev-kit-demo/index.html` for WC vs React code tabs per component.
+
+
 ## 🚢 Build & Deploy
 
 ### Development

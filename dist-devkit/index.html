@@ -41,6 +41,26 @@
       margin-top: 16px;
     }
 
+    .code-tabs {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .code-tab {
+      border: 1px solid #ccc;
+      background: #fff;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .code-tab.active {
+      background: #26374A;
+      color: #fff;
+      border-color: #26374A;
+    }
+    .code-example.hidden { display: none; }
+
     .button-grid {
       display: flex;
       flex-wrap: wrap;
@@ -58,7 +78,7 @@
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-BYEXcXvc.js"></script>
+  <script type="module" crossorigin src="/assets/index-Cyfj9sQL.js"></script>
 </head>
 <body>
   
@@ -150,6 +170,129 @@
   icon="💼"
   link="/programs/ei.html"&gt;
 &lt;/eva-program-card&gt;</div>
+      </section>
+
+      <!-- Form Helpers (Label & Separator) -->
+      <section class="component-demo">
+        <h2 class="demo-title">Form Helpers: Label & Separator</h2>
+        <div style="display:flex; flex-direction:column; gap:12px; max-width:460px;">
+          <div>
+            <eva-label for="demo-email">Email Address</eva-label>
+            <eva-input id="demo-email" type="email" placeholder="you@example.com"></eva-input>
+          </div>
+          <eva-separator></eva-separator>
+          <div>
+            <eva-label for="demo-notify">Notifications</eva-label>
+            <eva-switch id="demo-notify"></eva-switch>
+          </div>
+        </div>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-label for="email"&gt;Email Address&lt;/eva-label&gt;
+&lt;eva-input id="email" type="email" placeholder="you@example.com"&gt;&lt;/eva-input&gt;
+&lt;eva-separator&gt;&lt;/eva-separator&gt;
+&lt;eva-label for="notify"&gt;Notifications&lt;/eva-label&gt;
+&lt;eva-switch id="notify"&gt;&lt;/eva-switch&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVALabel, EVASeparator, EVAInput, EVASwitch } from '@eva-suite/sovereign-ui-react';
+
+export function FormHelpers() {
+  return (
+    &lt;div style={{ display: 'flex', flexDirection: 'column', gap: 12, maxWidth: 460 }}&gt;
+      &lt;div&gt;
+        &lt;EVALabel htmlFor="email"&gt;Email Address&lt;/EVALabel&gt;
+        &lt;EVAInput id="email" type="email" placeholder="you@example.com" /&gt;
+      &lt;/div&gt;
+      &lt;EVASeparator /&gt;
+      &lt;div&gt;
+        &lt;EVALabel htmlFor="notify"&gt;Notifications&lt;/EVALabel&gt;
+        &lt;EVASwitch id="notify" /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Accordion -->
+      <section class="component-demo">
+        <h2 class="demo-title">Accordion</h2>
+        <eva-accordion type="single" value="a1" style="max-width:600px;">
+          <eva-accordion-item value="a1">
+            <eva-accordion-trigger>Section 1</eva-accordion-trigger>
+            <eva-accordion-content>
+              <p style="padding: 8px 0;">Content for section one.</p>
+            </eva-accordion-content>
+          </eva-accordion-item>
+          <eva-accordion-item value="a2">
+            <eva-accordion-trigger>Section 2</eva-accordion-trigger>
+            <eva-accordion-content>
+              <p style="padding: 8px 0;">Content for section two.</p>
+            </eva-accordion-content>
+          </eva-accordion-item>
+        </eva-accordion>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-accordion type="single" value="a1"&gt;
+  &lt;eva-accordion-item value="a1"&gt;
+    &lt;eva-accordion-trigger&gt;Section 1&lt;/eva-accordion-trigger&gt;
+    &lt;eva-accordion-content&gt;Content&lt;/eva-accordion-content&gt;
+  &lt;/eva-accordion-item&gt;
+  &lt;eva-accordion-item value="a2"&gt;
+    &lt;eva-accordion-trigger&gt;Section 2&lt;/eva-accordion-trigger&gt;
+    &lt;eva-accordion-content&gt;Content&lt;/eva-accordion-content&gt;
+  &lt;/eva-accordion-item&gt;
+&lt;/eva-accordion&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAAccordion, EVAAccordionItem } from '@eva-suite/sovereign-ui-react';
+
+export function MyAccordion() {
+  return (
+    &lt;EVAAccordion type="single" value="a1"&gt;
+      &lt;EVAAccordionItem value="a1"&gt;
+        &lt;div slot="trigger"&gt;Section 1&lt;/div&gt;
+        &lt;div slot="content"&gt;Content&lt;/div&gt;
+      &lt;/EVAAccordionItem&gt;
+      &lt;EVAAccordionItem value="a2"&gt;
+        &lt;div slot="trigger"&gt;Section 2&lt;/div&gt;
+        &lt;div slot="content"&gt;Content&lt;/div&gt;
+      &lt;/EVAAccordionItem&gt;
+    &lt;/EVAAccordion&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Avatar -->
+      <section class="component-demo">
+        <h2 class="demo-title">Avatar</h2>
+        <div style="display:flex; gap:16px; align-items:center;">
+          <eva-avatar>
+            <eva-avatar-image src="https://i.pravatar.cc/64?img=3"></eva-avatar-image>
+            <eva-avatar-fallback>JD</eva-avatar-fallback>
+          </eva-avatar>
+          <eva-avatar>
+            <eva-avatar-fallback>AB</eva-avatar-fallback>
+          </eva-avatar>
+        </div>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-avatar&gt;
+  &lt;eva-avatar-image src="/path/avatar.jpg"&gt;&lt;/eva-avatar-image&gt;
+  &lt;eva-avatar-fallback&gt;JD&lt;/eva-avatar-fallback&gt;
+&lt;/eva-avatar&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAAvatar, EVAAvatarImage, EVAAvatarFallback } from '@eva-suite/sovereign-ui-react';
+
+export function UserAvatar() {
+  return (
+    &lt;EVAAvatar&gt;
+      &lt;EVAAvatarImage src="/path/avatar.jpg" /&gt;
+      &lt;EVAAvatarFallback&gt;JD&lt;/EVAAvatarFallback&gt;
+    &lt;/EVAAvatar&gt;
+  );
+}</pre>
       </section>
       
       <!-- Accessibility Features -->
