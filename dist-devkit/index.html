@@ -366,6 +366,85 @@ export function MyMenu() {
 }</pre>
       </section>
       
+      <!-- Menubar -->
+      <section class="component-demo">
+        <h2 class="demo-title">Menubar</h2>
+        <eva-menubar>
+          <eva-menubar-menu>
+            <eva-menubar-item>File</eva-menubar-item>
+            <eva-menubar-item>Edit</eva-menubar-item>
+            <eva-menubar-item>View</eva-menubar-item>
+          </eva-menubar-menu>
+        </eva-menubar>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-menubar&gt;
+  &lt;eva-menubar-menu&gt;
+    &lt;eva-menubar-item&gt;File&lt;/eva-menubar-item&gt;
+    &lt;eva-menubar-item&gt;Edit&lt;/eva-menubar-item&gt;
+    &lt;eva-menubar-item&gt;View&lt;/eva-menubar-item&gt;
+  &lt;/eva-menubar-menu&gt;
+&lt;/eva-menubar&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAMenubar, EVAMenubarMenu, EVAMenubarItem } from '@eva-suite/sovereign-ui-react';
+
+export function MyMenubar() {
+  return (
+    &lt;EVAMenubar&gt;
+      &lt;EVAMenubarMenu&gt;
+        &lt;EVAMenubarItem&gt;File&lt;/EVAMenubarItem&gt;
+        &lt;EVAMenubarItem&gt;Edit&lt;/EVAMenubarItem&gt;
+        &lt;EVAMenubarItem&gt;View&lt;/EVAMenubarItem&gt;
+      &lt;/EVAMenubarMenu&gt;
+    &lt;/EVAMenubar&gt;
+  );
+}</pre>
+      </section>
+
+      <!-- Tabs -->
+      <section class="component-demo">
+        <h2 class="demo-title">Tabs</h2>
+        <eva-tabs>
+          <eva-tabs-list>
+            <eva-tabs-trigger>Tab 1</eva-tabs-trigger>
+            <eva-tabs-trigger>Tab 2</eva-tabs-trigger>
+          </eva-tabs-list>
+          <eva-tabs-content>
+            <p style="padding: 8px 0;">Content for tab one.</p>
+          </eva-tabs-content>
+          <eva-tabs-content>
+            <p style="padding: 8px 0;">Content for tab two.</p>
+          </eva-tabs-content>
+        </eva-tabs>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-tabs&gt;
+  &lt;eva-tabs-list&gt;
+    &lt;eva-tabs-trigger&gt;Tab 1&lt;/eva-tabs-trigger&gt;
+    &lt;eva-tabs-trigger&gt;Tab 2&lt;/eva-tabs-trigger&gt;
+  &lt;/eva-tabs-list&gt;
+  &lt;eva-tabs-content&gt;Content for tab one.&lt;/eva-tabs-content&gt;
+  &lt;eva-tabs-content&gt;Content for tab two.&lt;/eva-tabs-content&gt;
+&lt;/eva-tabs&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVATabs, EVATabsList, EVATabsTrigger, EVATabsContent } from '@eva-suite/sovereign-ui-react';
+
+export function MyTabs() {
+  return (
+    &lt;EVATabs&gt;
+      &lt;EVATabsList&gt;
+        &lt;EVATabsTrigger&gt;Tab 1&lt;/EVATabsTrigger&gt;
+        &lt;EVATabsTrigger&gt;Tab 2&lt;/EVATabsTrigger&gt;
+      &lt;/EVATabsList&gt;
+      &lt;EVATabsContent&gt;Content for tab one.&lt;/EVATabsContent&gt;
+      &lt;EVATabsContent&gt;Content for tab two.&lt;/EVATabsContent&gt;
+    &lt;/EVATabs&gt;
+  );
+}</pre>
+      </section>
+      
       <!-- Accessibility Features -->
       <section class="component-demo">
         <h2 class="demo-title">Accessibility Features</h2>
