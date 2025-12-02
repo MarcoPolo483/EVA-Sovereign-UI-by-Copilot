@@ -1,0 +1,75 @@
+{
+  "name": "eva-sovereign-ui",
+  "displayName": "EVA Sovereign UI Snippets",
+  "description": "Code snippets and IntelliSense for EVA-Sovereign-UI components across React, Vue, Angular, and Svelte",
+  "version": "1.0.0",
+  "publisher": "eva-suite",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Snippets",
+    "Programming Languages"
+  ],
+  "keywords": [
+    "eva",
+    "sovereign",
+    "web components",
+    "react",
+    "vue",
+    "angular",
+    "svelte",
+    "government",
+    "gc design",
+    "accessibility"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot.git"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "javascript",
+        "path": "./snippets/eva-react.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/eva-react.json"
+      },
+      {
+        "language": "javascriptreact",
+        "path": "./snippets/eva-react.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./snippets/eva-react.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/eva-vue.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/eva-angular.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/eva-angular.json"
+      },
+      {
+        "language": "svelte",
+        "path": "./snippets/eva-svelte.json"
+      }
+    ]
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "vsce": "^2.15.0"
+  }
+}

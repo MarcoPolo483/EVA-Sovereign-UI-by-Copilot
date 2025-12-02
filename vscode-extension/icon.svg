@@ -1,0 +1,13 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="128" height="128" rx="16" fill="#26374A"/>
+  
+  <!-- EVA Letters -->
+  <text x="64" y="75" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#FFFFFF" text-anchor="middle">EVA</text>
+  
+  <!-- Maple Leaf Accent (simplified) -->
+  <path d="M64 20 L68 32 L76 28 L72 38 L82 38 L74 44 L78 54 L64 48 L50 54 L54 44 L46 38 L56 38 L52 28 L60 32 Z" fill="#FF0000"/>
+  
+  <!-- Government of Canada Color Bar -->
+  <rect x="16" y="96" width="96" height="8" rx="4" fill="#FF0000"/>
+</svg>

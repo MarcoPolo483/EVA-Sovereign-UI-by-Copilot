@@ -1,0 +1,67 @@
+{
+  "EVA Button": {
+    "prefix": "eva-button",
+    "body": [
+      "<eva-button",
+      "  variant=\"${1|primary,secondary,tertiary|}\"",
+      "  size=\"${2|default,large|}\"",
+      "  (click)=\"${3:handleClick}()\"",
+      ">",
+      "  ${4:Button Text}",
+      "</eva-button>"
+    ],
+    "description": "EVA Sovereign UI Button component"
+  },
+  "EVA Input with ngModel": {
+    "prefix": "eva-input",
+    "body": [
+      "<eva-input",
+      "  evaInput",
+      "  [(ngModel)]=\"${1:value}\"",
+      "  label=\"${2:Label}\"",
+      "  placeholder=\"${3:Placeholder}\"",
+      "></eva-input>"
+    ],
+    "description": "EVA Sovereign UI Input with ngModel"
+  },
+  "EVA Checkbox with ngModel": {
+    "prefix": "eva-checkbox",
+    "body": [
+      "<eva-checkbox",
+      "  evaCheckbox",
+      "  [(ngModel)]=\"${1:checked}\"",
+      "  label=\"${2:Label}\"",
+      "></eva-checkbox>"
+    ],
+    "description": "EVA Sovereign UI Checkbox with ngModel"
+  },
+  "EVA Select with ngModel": {
+    "prefix": "eva-select",
+    "body": [
+      "<eva-select",
+      "  evaSelect",
+      "  [(ngModel)]=\"${1:value}\"",
+      "  label=\"${2:Label}\"",
+      ">",
+      "  <option value=\"${3:value1}\">${4:Option 1}</option>",
+      "  <option value=\"${5:value2}\">${6:Option 2}</option>",
+      "</eva-select>"
+    ],
+    "description": "EVA Sovereign UI Select with ngModel"
+  },
+  "EVA Angular Module Import": {
+    "prefix": "eva-module-import",
+    "body": [
+      "import { EVASovereignUIModule } from '@eva-suite/sovereign-ui-angular';",
+      "",
+      "@NgModule({",
+      "  imports: [",
+      "    CommonModule,",
+      "    FormsModule,",
+      "    EVASovereignUIModule",
+      "  ]",
+      "})"
+    ],
+    "description": "Import EVA Sovereign UI Angular module"
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "EVA Button": {
+    "prefix": "eva-button",
+    "body": [
+      "<EVAButton",
+      "  variant=\"${1|primary,secondary,tertiary,ghost,danger|}\"",
+      "  size=\"${2|small,medium,large|}\"",
+      "  onClick={${3:handleClick}}",
+      ">",
+      "  ${4:Button Text}",
+      "</EVAButton>"
+    ],
+    "description": "EVA Sovereign UI Button component"
+  },
+  "EVA GC Button": {
+    "prefix": "eva-gc-button",
+    "body": [
+      "<EVAGCButton",
+      "  variant=\"${1|primary,secondary,tertiary|}\"",
+      "  size=\"${2|default,large|}\"",
+      "  onClick={${3:handleClick}}",
+      ">",
+      "  ${4:Button Text}",
+      "</EVAGCButton>"
+    ],
+    "description": "EVA Government of Canada Button component"
+  },
+  "EVA Input": {
+    "prefix": "eva-input",
+    "body": [
+      "<EVAInput",
+      "  label=\"${1:Label}\"",
+      "  value={${2:value}}",
+      "  onChange={${3:handleChange}}",
+      "  placeholder=\"${4:Placeholder}\"",
+      "  error=\"${5:}\"",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Input component"
+  },
+  "EVA Textarea": {
+    "prefix": "eva-textarea",
+    "body": [
+      "<EVATextarea",
+      "  label=\"${1:Label}\"",
+      "  value={${2:value}}",
+      "  onChange={${3:handleChange}}",
+      "  placeholder=\"${4:Placeholder}\"",
+      "  rows={${5:4}}",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Textarea component"
+  },
+  "EVA Checkbox": {
+    "prefix": "eva-checkbox",
+    "body": [
+      "<EVACheckbox",
+      "  label=\"${1:Label}\"",
+      "  checked={${2:checked}}",
+      "  onChange={${3:handleChange}}",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Checkbox component"
+  },
+  "EVA Radio Group": {
+    "prefix": "eva-radio-group",
+    "body": [
+      "<EVARadioGroup",
+      "  label=\"${1:Group Label}\"",
+      "  value={${2:value}}",
+      "  onChange={${3:handleChange}}",
+      ">",
+      "  <EVARadio value=\"${4:option1}\" label=\"${5:Option 1}\" />",
+      "  <EVARadio value=\"${6:option2}\" label=\"${7:Option 2}\" />",
+      "  <EVARadio value=\"${8:option3}\" label=\"${9:Option 3}\" />",
+      "</EVARadioGroup>"
+    ],
+    "description": "EVA Sovereign UI Radio Group component"
+  },
+  "EVA Select": {
+    "prefix": "eva-select",
+    "body": [
+      "<EVASelect",
+      "  label=\"${1:Label}\"",
+      "  value={${2:value}}",
+      "  onChange={${3:handleChange}}",
+      ">",
+      "  <option value=\"${4:value1}\">${5:Option 1}</option>",
+      "  <option value=\"${6:value2}\">${7:Option 2}</option>",
+      "  <option value=\"${8:value3}\">${9:Option 3}</option>",
+      "</EVASelect>"
+    ],
+    "description": "EVA Sovereign UI Select component"
+  },
+  "EVA Switch": {
+    "prefix": "eva-switch",
+    "body": [
+      "<EVASwitch",
+      "  label=\"${1:Label}\"",
+      "  checked={${2:checked}}",
+      "  onChange={${3:handleChange}}",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Switch component"
+  },
+  "EVA Slider": {
+    "prefix": "eva-slider",
+    "body": [
+      "<EVASlider",
+      "  label=\"${1:Label}\"",
+      "  value={${2:value}}",
+      "  min={${3:0}}",
+      "  max={${4:100}}",
+      "  step={${5:1}}",
+      "  onChange={${6:handleChange}}",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Slider component"
+  },
+  "EVA Dialog": {
+    "prefix": "eva-dialog",
+    "body": [
+      "<EVADialog",
+      "  open={${1:open}}",
+      "  onClose={${2:handleClose}}",
+      "  title=\"${3:Dialog Title}\"",
+      ">",
+      "  ${4:Dialog content}",
+      "</EVADialog>"
+    ],
+    "description": "EVA Sovereign UI Dialog component"
+  },
+  "EVA Alert": {
+    "prefix": "eva-alert",
+    "body": [
+      "<EVAAlert",
+      "  variant=\"${1|info,success,warning,error|}\"",
+      "  title=\"${2:Alert Title}\"",
+      "  dismissible={${3:true}}",
+      ">",
+      "  ${4:Alert message}",
+      "</EVAAlert>"
+    ],
+    "description": "EVA Sovereign UI Alert component"
+  },
+  "EVA Card": {
+    "prefix": "eva-card",
+    "body": [
+      "<EVACard",
+      "  title=\"${1:Card Title}\"",
+      "  subtitle=\"${2:Card Subtitle}\"",
+      ">",
+      "  ${3:Card content}",
+      "</EVACard>"
+    ],
+    "description": "EVA Sovereign UI Card component"
+  },
+  "EVA Tabs": {
+    "prefix": "eva-tabs",
+    "body": [
+      "<EVATabs value={${1:activeTab}} onChange={${2:handleChange}}>",
+      "  <EVATab value=\"${3:tab1}\" label=\"${4:Tab 1}\" />",
+      "  <EVATab value=\"${5:tab2}\" label=\"${6:Tab 2}\" />",
+      "  <EVATab value=\"${7:tab3}\" label=\"${8:Tab 3}\" />",
+      "</EVATabs>",
+      "",
+      "<EVATabPanel value={${1:activeTab}} tabValue=\"${3:tab1}\">",
+      "  ${9:Tab 1 content}",
+      "</EVATabPanel>",
+      "<EVATabPanel value={${1:activeTab}} tabValue=\"${5:tab2}\">",
+      "  ${10:Tab 2 content}",
+      "</EVATabPanel>",
+      "<EVATabPanel value={${1:activeTab}} tabValue=\"${7:tab3}\">",
+      "  ${11:Tab 3 content}",
+      "</EVATabPanel>"
+    ],
+    "description": "EVA Sovereign UI Tabs component"
+  },
+  "EVA Accordion": {
+    "prefix": "eva-accordion",
+    "body": [
+      "<EVAAccordion>",
+      "  <EVAAccordionItem title=\"${1:Section 1}\">",
+      "    ${2:Content 1}",
+      "  </EVAAccordionItem>",
+      "  <EVAAccordionItem title=\"${3:Section 2}\">",
+      "    ${4:Content 2}",
+      "  </EVAAccordionItem>",
+      "  <EVAAccordionItem title=\"${5:Section 3}\">",
+      "    ${6:Content 3}",
+      "  </EVAAccordionItem>",
+      "</EVAAccordion>"
+    ],
+    "description": "EVA Sovereign UI Accordion component"
+  },
+  "EVA Table": {
+    "prefix": "eva-table",
+    "body": [
+      "<EVATable",
+      "  data={${1:data}}",
+      "  columns={[",
+      "    { header: '${2:Column 1}', accessor: '${3:key1}' },",
+      "    { header: '${4:Column 2}', accessor: '${5:key2}' },",
+      "    { header: '${6:Column 3}', accessor: '${7:key3}' }",
+      "  ]}",
+      "  sortable={${8:true}}",
+      "  filterable={${9:true}}",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Table component"
+  },
+  "EVA Progress": {
+    "prefix": "eva-progress",
+    "body": [
+      "<EVAProgress",
+      "  value={${1:value}}",
+      "  max={${2:100}}",
+      "  label=\"${3:Progress Label}\"",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Progress component"
+  },
+  "EVA Spinner": {
+    "prefix": "eva-spinner",
+    "body": [
+      "<EVASpinner size=\"${1|small,medium,large|}\" label=\"${2:Loading...}\" />"
+    ],
+    "description": "EVA Sovereign UI Spinner component"
+  },
+  "EVA Badge": {
+    "prefix": "eva-badge",
+    "body": [
+      "<EVABadge variant=\"${1|default,primary,secondary,success,warning,error|}\">${2:Badge Text}</EVABadge>"
+    ],
+    "description": "EVA Sovereign UI Badge component"
+  },
+  "EVA Tooltip": {
+    "prefix": "eva-tooltip",
+    "body": [
+      "<EVATooltip content=\"${1:Tooltip text}\" placement=\"${2|top,bottom,left,right|}\">",
+      "  ${3:Trigger element}",
+      "</EVATooltip>"
+    ],
+    "description": "EVA Sovereign UI Tooltip component"
+  },
+  "EVA Breadcrumbs": {
+    "prefix": "eva-breadcrumbs",
+    "body": [
+      "<EVABreadcrumbs>",
+      "  <EVABreadcrumbItem href=\"${1:#}\">${2:Home}</EVABreadcrumbItem>",
+      "  <EVABreadcrumbItem href=\"${3:#}\">${4:Section}</EVABreadcrumbItem>",
+      "  <EVABreadcrumbItem>${5:Current Page}</EVABreadcrumbItem>",
+      "</EVABreadcrumbs>"
+    ],
+    "description": "EVA Sovereign UI Breadcrumbs component"
+  }
+}

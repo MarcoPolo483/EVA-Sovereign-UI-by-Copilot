@@ -1,0 +1,90 @@
+{
+  "EVA Button": {
+    "prefix": "eva-button",
+    "body": [
+      "<eva-button",
+      "  variant=\"${1|primary,secondary,tertiary,ghost,danger|}\"",
+      "  size=\"${2|small,medium,large|}\"",
+      "  @click=\"${3:handleClick}\"",
+      ">",
+      "  ${4:Button Text}",
+      "</eva-button>"
+    ],
+    "description": "EVA Sovereign UI Button component"
+  },
+  "EVA Input with v-model": {
+    "prefix": "eva-input",
+    "body": [
+      "<eva-input",
+      "  v-model=\"${1:value}\"",
+      "  label=\"${2:Label}\"",
+      "  placeholder=\"${3:Placeholder}\"",
+      "  :error=\"${4:error}\"",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Input with v-model"
+  },
+  "EVA Checkbox with v-model": {
+    "prefix": "eva-checkbox",
+    "body": [
+      "<eva-checkbox",
+      "  v-model=\"${1:checked}\"",
+      "  label=\"${2:Label}\"",
+      "/>"
+    ],
+    "description": "EVA Sovereign UI Checkbox with v-model"
+  },
+  "EVA Select with v-model": {
+    "prefix": "eva-select",
+    "body": [
+      "<eva-select",
+      "  v-model=\"${1:value}\"",
+      "  label=\"${2:Label}\"",
+      ">",
+      "  <option value=\"${3:value1}\">${4:Option 1}</option>",
+      "  <option value=\"${5:value2}\">${6:Option 2}</option>",
+      "</eva-select>"
+    ],
+    "description": "EVA Sovereign UI Select with v-model"
+  },
+  "EVA Dialog": {
+    "prefix": "eva-dialog",
+    "body": [
+      "<eva-dialog",
+      "  :open=\"${1:isOpen}\"",
+      "  @close=\"${2:handleClose}\"",
+      "  title=\"${3:Dialog Title}\"",
+      ">",
+      "  ${4:Dialog content}",
+      "</eva-dialog>"
+    ],
+    "description": "EVA Sovereign UI Dialog component"
+  },
+  "EVA Tabs": {
+    "prefix": "eva-tabs",
+    "body": [
+      "<eva-tabs v-model=\"${1:activeTab}\">",
+      "  <eva-tab value=\"${2:tab1}\" label=\"${3:Tab 1}\" />",
+      "  <eva-tab value=\"${4:tab2}\" label=\"${5:Tab 2}\" />",
+      "</eva-tabs>",
+      "",
+      "<eva-tab-panel :value=\"${1:activeTab}\" tab-value=\"${2:tab1}\">",
+      "  ${6:Tab 1 content}",
+      "</eva-tab-panel>"
+    ],
+    "description": "EVA Sovereign UI Tabs"
+  },
+  "EVA Vue Plugin Setup": {
+    "prefix": "eva-plugin-setup",
+    "body": [
+      "import { createApp } from 'vue';",
+      "import { createEVAPlugin } from '@eva-suite/sovereign-ui-vue';",
+      "import App from './App.vue';",
+      "",
+      "const app = createApp(App);",
+      "app.use(createEVAPlugin());",
+      "app.mount('#app');"
+    ],
+    "description": "EVA Sovereign UI Vue plugin setup"
+  }
+}
