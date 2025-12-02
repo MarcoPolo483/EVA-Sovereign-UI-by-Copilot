@@ -19,6 +19,13 @@ declare global {
       'eva-drawer': any;
       'eva-textarea': any;
       'eva-tooltip': any;
+      'eva-label': any;
+      'eva-separator': any;
+      'eva-accordion': any;
+      'eva-accordion-item': any;
+      'eva-avatar': any;
+      'eva-avatar-image': any;
+      'eva-avatar-fallback': any;
       'eva-breadcrumb': any;
       'eva-breadcrumb-list': any;
       'eva-breadcrumb-item': any;
