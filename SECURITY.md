@@ -35,7 +35,7 @@ EVA Sovereign UI is built for government and enterprise deployment with security
 
 ### DO
 - ✅ Report privately via GitHub Security Advisory: https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/security/advisories/new
-- ✅ Or email: [Your Security Contact Email]
+- ✅ Or email: security@eva-suite.dev (monitored 24/7 for government deployments)
 - ✅ Provide detailed reproduction steps
 - ✅ Allow 90 days for remediation before public disclosure
 
@@ -68,10 +68,14 @@ Please include:
 - ✅ **AODA**: Ontario accessibility standards
 
 ### Security Testing
-- ✅ **282 Unit Tests**: 100% passing, zero skips
+- ✅ **1,046 Unit Tests**: 100% passing, zero skips
+- ✅ **Accessibility Audits**: axe-core WCAG 2.2 AAA validation
 - ✅ **Visual Regression**: Playwright-based screenshot testing
 - ✅ **Performance Benchmarks**: <16ms render, <50KB gzip
-- ✅ **Bundle Analysis**: No malicious dependencies
+- ✅ **Bundle Analysis**: Automated size guards and dependency audits
+- ✅ **CodeQL Scanning**: Weekly static analysis for vulnerabilities
+- ✅ **OpenSSF Scorecard**: Supply chain security assessment
+- ✅ **Dependency Review**: Automated PR checks for vulnerable dependencies
 
 ## Secure Deployment Guidelines
 
@@ -138,11 +142,12 @@ For enterprise deployments, we recommend:
 
 ## Contact
 
-- **Security Issues**: GitHub Security Advisory (preferred)
-- **General Questions**: Open a GitHub Discussion
-- **Enterprise Security**: [Your Enterprise Contact]
+- **Security Issues**: [GitHub Security Advisory](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/security/advisories/new) (preferred)
+- **Emergency Contact**: security@eva-suite.dev (24/7 monitoring for critical government deployments)
+- **General Questions**: [Open a GitHub Discussion](https://github.com/MarcoPolo483/EVA-Sovereign-UI-by-Copilot/discussions)
+- **Enterprise Security**: enterprise@eva-suite.dev
 
 ---
 
-**Last Updated**: December 1, 2025  
-**Policy Version**: 1.0.0
+**Last Updated**: December 2, 2025  
+**Policy Version**: 1.1.0

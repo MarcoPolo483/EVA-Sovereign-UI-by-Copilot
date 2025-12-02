@@ -21,22 +21,28 @@ Thank you for contributing to EVA Sovereign UI. This project targets world-class
 
 CI enforces, in order:
 - No skipped tests (`scripts/check-no-skips.mjs`).
-- Unit tests (`vitest`).
+- Unit tests (`vitest`) - 1,046+ tests must pass.
 - Visual regression (`playwright`).
 - Performance benchmark (`scripts/perf-benchmark.mjs`).
 - Size guard (`scripts/size-guard.mjs`).
 - Build artifacts (`vite build`).
+- CodeQL security scanning.
+- Dependency review (PRs only).
+- Lighthouse performance/accessibility audits.
 - Semantic release (`release.yml`).
 
 ## Development Workflow
 
-1. `npm ci` then `npm run dev` for local development.
-2. Add/modify components in `src/components/**` using EVABaseComponent.
-3. Write unit tests in `tests/**`. For keyboard interactions, use provided test-utils.
-4. Run `npm test` locally; fix failures.
-5. Update docs: `COMPONENT-API.md`, `docs/THEMING-AND-TOKENS.md`.
-6. Commit using conventional messages.
-7. Open PR; ensure CI passes.
+1. `npm ci` then `npm run dev` (opens Dev Kit at http://localhost:5173).
+2. Add/modify components in `packages/eva-sovereign-ui-wc/src/components/**`.
+3. For React wrappers, add to `packages/eva-sovereign-ui-react/src/components/`.
+4. Write unit tests:
+   - WC: `packages/eva-sovereign-ui-wc/src/components/**/*.test.ts`
+   - React: `packages/eva-sovereign-ui-react/tests/*.spec.tsx`
+5. Run `npm test` locally; fix failures.
+6. Update docs: `COMPONENT-API.md`, Dev Kit demos (`apps/dev-kit-demo/index.html`).
+7. Commit using conventional messages (e.g., `feat(react): add EVATooltip wrapper`).
+8. Open PR; ensure all CI checks pass (may take 10-15 minutes).
 
 ## Release Process
 
