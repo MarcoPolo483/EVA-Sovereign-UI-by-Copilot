@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2025-12-02
+
+### Added
+- React wrapper library `@eva-suite/sovereign-ui-react` (forwardRef wrappers for all published Web Components)
+- 100% coverage of existing WC set with React components & prop typings
+- Global JSX intrinsic extensions for custom `eva-*` tags
+- Smoke test suites for each wrapper group (structure, misc UI, dialogs, navigation, form controls)
+- Dev Kit demo expansions: React vs WC code tabs for all components; added structural sections (Program Card, Hero Banner, Page Shell, Skip Links, Container, Breadcrumbs plural)
+- Additional structural/layout components: `eva-button`, `eva-page-shell`, `eva-container`, `eva-skip-links`, `eva-breadcrumbs`, `eva-program-card`, `eva-hero-banner` (already present in WC library; now wrapped for React)
+- Advanced interaction/status wrappers: Pagination, Progress, Scroll Area, Skeleton, Slider, Toggle, Input OTP
+- Overlay & dialog family wrappers: Alert Dialog, Hover Card, Sheet
+- Data & composition wrappers: Table (all parts), Card (all parts)
+- Navigation & menu wrappers: Menubar, Dropdown Menu, Context Menu, Tabs (List/Trigger/Content)
+- Form & control wrappers: Select Item, Radio Group (+Item), Toggle Group (+Item), Textarea, Label, Separator, Accordion (+Item)
+- Utility & feedback wrappers: Alert, Aspect Ratio, Badge, Calendar, Carousel, Tooltip, Avatar (+Image/Fallback), Collapsible (+Trigger/Content)
+
+### Changed
+- Updated documentation to reflect React usage patterns alongside Web Components
+- Extended demo gallery to show parallel React examples for rapid adoption
+
+### Internal
+- Minor build size increases tracked; bundle analysis remains within size guard thresholds
+- Known non-blocking warning about `types` export condition ordering retained for future refinement
+
 ## [1.0.0] - 2025-12-01
 
 ### Added
@@ -127,16 +151,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Planned for 1.1.0
+### Planned for 1.2.0
 - Additional complex components (command palette, form validation, resizable panels)
 - Storybook integration
 - VS Code extension for component snippets
 - Component generator CLI
 - Advanced theming system
-- React/Vue/Angular wrapper libraries
+- Vue/Angular/Svelte wrapper libraries
 
 ---
 
 ## Version History
 
 - **1.0.0** (2025-12-01) - Initial production release with 49 components (38 shadcn/ui + 11 custom), full testing, CI/CD, and documentation
+ - **1.1.0** (2025-12-02) - Added complete React wrapper library with structural, interactive, overlay, data, and utility components plus expanded Dev Kit demos

@@ -1,6 +1,6 @@
 {
   "name": "@eva-suite/sovereign-ui-react",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React wrappers for EVA-Sovereign-UI Web Components",
   "type": "module",
   "main": "./dist/index.js",

@@ -18,6 +18,11 @@
     "vue": "^3.4.0",
     "@eva-suite/sovereign-ui": "^1.0.0"
   },
+  "peerDependenciesMeta": {
+    "@eva-suite/sovereign-ui": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "vue": "^3.4.0",
     "@types/node": "^20.9.0",

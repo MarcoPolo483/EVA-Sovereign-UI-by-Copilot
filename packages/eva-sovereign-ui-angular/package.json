@@ -18,6 +18,11 @@
     "@angular/core": "^15.0.0 || ^16.0.0 || ^17.0.0",
     "@eva-suite/sovereign-ui": "^1.0.0"
   },
+  "peerDependenciesMeta": {
+    "@eva-suite/sovereign-ui": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@types/node": "^20.9.0",
     "typescript": "^5.3.3",

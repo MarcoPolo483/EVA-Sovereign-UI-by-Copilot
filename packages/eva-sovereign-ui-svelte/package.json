@@ -18,6 +18,11 @@
     "svelte": "^4.0.0 || ^5.0.0",
     "@eva-suite/sovereign-ui": "^1.0.0"
   },
+  "peerDependenciesMeta": {
+    "@eva-suite/sovereign-ui": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "svelte": "^4.2.0",
     "@types/node": "^20.9.0",
