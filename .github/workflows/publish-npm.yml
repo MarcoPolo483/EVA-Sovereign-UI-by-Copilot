@@ -1,0 +1,319 @@
+name: Release & Publish to NPM
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., 1.2.0)'
+        required: true
+        type: string
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  # Job 1: Validate Release
+  validate:
+    name: Validate Release
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get-version.outputs.version }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version
+        id: get-version
+        run: |
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
+          else
+            echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Validate version format
+        run: |
+          VERSION="${{ steps.get-version.outputs.version }}"
+          if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Invalid version format: $VERSION"
+            exit 1
+          fi
+
+      - name: Check if version exists
+        run: |
+          VERSION="${{ steps.get-version.outputs.version }}"
+          if git tag | grep -q "^v$VERSION$"; then
+            echo "Version v$VERSION already exists!"
+            exit 1
+          fi
+
+  # Job 2: Run Full Test Suite
+  test:
+    name: Full Test Suite
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run all tests
+        run: |
+          npm run lint
+          npm run test:coverage
+          npm run test:a11y
+        continue-on-error: false
+
+      - name: Check test results
+        run: |
+          echo "✅ All tests passed!"
+
+  # Job 3: Build All Packages
+  build:
+    name: Build Release Packages
+    needs: [validate, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build all packages
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-build
+          path: |
+            packages/eva-sovereign-ui-wc/dist/
+            packages/eva-sovereign-ui-react/dist/
+            packages/eva-sovereign-ui-vue/dist/
+            packages/eva-sovereign-ui-angular/dist/
+            packages/eva-sovereign-ui-svelte/dist/
+          retention-days: 90
+
+  # Job 4: Publish to NPM
+  publish-npm:
+    name: Publish to NPM
+    needs: [validate, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-build
+
+      - name: Update version
+        run: |
+          VERSION="${{ needs.validate.outputs.version }}"
+          npm version $VERSION --no-git-tag-version
+
+      - name: Publish @eva-suite/eva-sovereign-ui-wc
+        run: |
+          cd packages/eva-sovereign-ui-wc
+          npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @eva-suite/eva-sovereign-ui-react
+        run: |
+          cd packages/eva-sovereign-ui-react
+          npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @eva-suite/eva-sovereign-ui-vue
+        run: |
+          cd packages/eva-sovereign-ui-vue
+          npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @eva-suite/eva-sovereign-ui-angular
+        run: |
+          cd packages/eva-sovereign-ui-angular
+          npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Publish @eva-suite/eva-sovereign-ui-svelte
+        run: |
+          cd packages/eva-sovereign-ui-svelte
+          npm publish --access public --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  # Job 5: Create GitHub Release
+  create-release:
+    name: Create GitHub Release
+    needs: [validate, publish-npm]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        id: changelog
+        run: |
+          VERSION="${{ needs.validate.outputs.version }}"
+          
+          # Extract changelog for this version
+          CHANGELOG=$(sed -n "/## \[${VERSION}\]/,/## \[/p" CHANGELOG.md | sed '$d')
+          
+          if [ -z "$CHANGELOG" ]; then
+            CHANGELOG="Release v${VERSION}"
+          fi
+          
+          echo "changelog<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGELOG" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.validate.outputs.version }}
+          name: Release v${{ needs.validate.outputs.version }}
+          body: ${{ steps.changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # Job 6: Deploy to CDN
+  deploy-cdn:
+    name: Deploy to CDN
+    needs: [validate, publish-npm]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-build
+
+      - name: Prepare CDN package
+        run: |
+          VERSION="${{ needs.validate.outputs.version }}"
+          mkdir -p cdn
+          
+          # Copy main bundle
+          cp packages/eva-sovereign-ui-wc/dist/eva-sovereign-ui.es.js cdn/eva-sovereign-ui.js
+          cp packages/eva-sovereign-ui-wc/dist/eva-sovereign-ui.es.js "cdn/eva-sovereign-ui-${VERSION}.js"
+          
+          # Copy styles
+          cp packages/eva-sovereign-ui-wc/dist/style.css cdn/eva-sovereign-ui.css
+          cp packages/eva-sovereign-ui-wc/dist/style.css "cdn/eva-sovereign-ui-${VERSION}.css"
+
+      - name: Upload to CDN
+        run: |
+          echo "CDN files prepared in ./cdn/"
+          echo "Files should be uploaded to jsDelivr/unpkg via NPM package publication"
+          echo "Access via:"
+          echo "  - https://cdn.jsdelivr.net/npm/@eva-suite/eva-sovereign-ui-wc@${{ needs.validate.outputs.version }}/dist/eva-sovereign-ui.es.js"
+          echo "  - https://unpkg.com/@eva-suite/eva-sovereign-ui-wc@${{ needs.validate.outputs.version }}/dist/eva-sovereign-ui.es.js"
+
+  # Job 7: Update Documentation
+  update-docs:
+    name: Update Documentation
+    needs: [validate, create-release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Deploy Storybook
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
+          destination_dir: v${{ needs.validate.outputs.version }}
+
+  # Job 8: Notify Release
+  notify:
+    name: Notify Release
+    needs: [validate, publish-npm, create-release]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Check status
+        run: |
+          if [ "${{ needs.publish-npm.result }}" == "success" ] && [ "${{ needs.create-release.result }}" == "success" ]; then
+            echo "✅ Release v${{ needs.validate.outputs.version }} published successfully!"
+            echo ""
+            echo "📦 NPM Packages:"
+            echo "  - @eva-suite/eva-sovereign-ui-wc@${{ needs.validate.outputs.version }}"
+            echo "  - @eva-suite/eva-sovereign-ui-react@${{ needs.validate.outputs.version }}"
+            echo "  - @eva-suite/eva-sovereign-ui-vue@${{ needs.validate.outputs.version }}"
+            echo "  - @eva-suite/eva-sovereign-ui-angular@${{ needs.validate.outputs.version }}"
+            echo "  - @eva-suite/eva-sovereign-ui-svelte@${{ needs.validate.outputs.version }}"
+            echo ""
+            echo "🌐 CDN:"
+            echo "  - https://cdn.jsdelivr.net/npm/@eva-suite/eva-sovereign-ui-wc@${{ needs.validate.outputs.version }}"
+            echo "  - https://unpkg.com/@eva-suite/eva-sovereign-ui-wc@${{ needs.validate.outputs.version }}"
+          else
+            echo "❌ Release failed!"
+            exit 1
+          fi

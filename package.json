@@ -20,6 +20,8 @@
     "LICENSE",
     "custom-elements.json"
   ],
+  "jsdelivr": "./dist/eva-sovereign-ui.es.js",
+  "unpkg": "./dist/eva-sovereign-ui.umd.js",
   "scripts": {
     "dev": "npm run dev:devkit",
     "dev:devkit": "vite --config apps/dev-kit-demo/vite.config.ts",

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVA Sovereign UI - CDN Example</title>
+  
+  <!-- 
+    EVA Sovereign UI via jsDelivr CDN
+    This demonstrates using the component library without npm installation
+  -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui@1.1.0/dist/eva-sovereign-ui.es.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui@1.1.0/dist/style.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Lato', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, #2d5a8c 0%, #4a7ba7 100%);
+      color: white;
+      margin-bottom: 3rem;
+      border-radius: 8px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section h2 {
+      color: #2d5a8c;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      padding: 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      color: #2d5a8c;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .code {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      margin-top: 1rem;
+    }
+
+    .alert {
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+
+    .alert-info {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+      color: #1565c0;
+    }
+
+    .alert-success {
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+      color: #2e7d32;
+    }
+
+    footer {
+      margin-top: 4rem;
+      padding: 2rem 0;
+      text-align: center;
+      border-top: 1px solid #e0e0e0;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <!-- GC Header -->
+  <eva-gc-header>
+    <span slot="title">Government of Canada / Gouvernement du Canada</span>
+    <eva-language-switcher 
+      slot="language-toggle"
+      current-locale="en-CA"
+      available-locales='["en-CA", "fr-CA"]'
+    ></eva-language-switcher>
+  </eva-gc-header>
+
+  <div class="hero">
+    <h1>🇨🇦 EVA Sovereign UI - CDN Demo</h1>
+    <p>Production-ready Web Components for Government Applications</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+      Loaded from jsDelivr CDN - No build step required
+    </p>
+  </div>
+
+  <div class="container">
+    <!-- Installation Info -->
+    <section class="section">
+      <div class="alert alert-info">
+        <strong>📦 CDN Usage:</strong> This page loads EVA Sovereign UI directly from jsDelivr CDN. 
+        No npm installation or build step required - just add script and style tags!
+      </div>
+
+      <div class="code">
+&lt;!-- Add to your HTML head --&gt;
+&lt;script type="module" src="https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui@1.1.0/dist/eva-sovereign-ui.es.js"&gt;&lt;/script&gt;
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui@1.1.0/dist/style.css"&gt;
+
+&lt;!-- Then use components anywhere --&gt;
+&lt;eva-gc-button&gt;Click Me&lt;/eva-gc-button&gt;
+      </div>
+    </section>
+
+    <!-- GC Buttons -->
+    <section class="section">
+      <h2>Government of Canada Buttons</h2>
+      <div class="button-group">
+        <eva-gc-button>Primary Button</eva-gc-button>
+        <eva-gc-button variant="secondary">Secondary Button</eva-gc-button>
+        <eva-gc-button variant="danger">Danger Button</eva-gc-button>
+        <eva-gc-button disabled>Disabled Button</eva-gc-button>
+      </div>
+    </section>
+
+    <!-- Form Components -->
+    <section class="section">
+      <h2>Form Components</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Text Input</h3>
+          <div class="form-group">
+            <eva-label for="name">Full Name *</eva-label>
+            <eva-input 
+              id="name" 
+              placeholder="Enter your name"
+              required
+            ></eva-input>
+          </div>
+          <div class="form-group">
+            <eva-label for="email">Email Address</eva-label>
+            <eva-input 
+              id="email" 
+              type="email"
+              placeholder="name@example.com"
+            ></eva-input>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Select & Checkbox</h3>
+          <div class="form-group">
+            <eva-label for="province">Province</eva-label>
+            <eva-select id="province">
+              <eva-select-item value="on">Ontario</eva-select-item>
+              <eva-select-item value="qc">Quebec</eva-select-item>
+              <eva-select-item value="bc">British Columbia</eva-select-item>
+              <eva-select-item value="ab">Alberta</eva-select-item>
+            </eva-select>
+          </div>
+          <div class="form-group">
+            <eva-checkbox>I agree to the terms and conditions</eva-checkbox>
+            <eva-checkbox checked>Subscribe to updates</eva-checkbox>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Form -->
+    <section class="section">
+      <h2>Complete Application Form</h2>
+      <form id="applicationForm" class="card">
+        <h3>Service Application</h3>
+        
+        <div class="form-group">
+          <eva-label for="applicant-name">Applicant Name *</eva-label>
+          <eva-input 
+            id="applicant-name" 
+            name="applicantName"
+            required
+            aria-required="true"
+          ></eva-input>
+        </div>
+
+        <div class="form-group">
+          <eva-label for="applicant-email">Email Address *</eva-label>
+          <eva-input 
+            id="applicant-email" 
+            name="email"
+            type="email"
+            required
+            aria-required="true"
+          ></eva-input>
+        </div>
+
+        <div class="form-group">
+          <eva-label for="service-type">Service Type *</eva-label>
+          <eva-select id="service-type" name="serviceType" required>
+            <eva-select-item value="">-- Select Service --</eva-select-item>
+            <eva-select-item value="employment">Employment Insurance</eva-select-item>
+            <eva-select-item value="passport">Passport Services</eva-select-item>
+            <eva-select-item value="tax">Tax Services</eva-select-item>
+            <eva-select-item value="immigration">Immigration Services</eva-select-item>
+          </eva-select>
+        </div>
+
+        <div class="form-group">
+          <eva-label for="description">Description</eva-label>
+          <eva-textarea 
+            id="description" 
+            name="description"
+            placeholder="Please provide additional details..."
+            rows="4"
+          ></eva-textarea>
+        </div>
+
+        <div class="form-group">
+          <eva-checkbox name="consent" required>
+            I consent to the collection and use of my personal information *
+          </eva-checkbox>
+        </div>
+
+        <div class="button-group">
+          <eva-gc-button type="submit">Submit Application</eva-gc-button>
+          <eva-gc-button type="button" variant="secondary" id="clearForm">
+            Clear Form
+          </eva-gc-button>
+        </div>
+      </form>
+
+      <div id="successMessage" class="alert alert-success" style="display: none; margin-top: 1rem;">
+        <strong>✅ Success!</strong> Your application has been submitted.
+      </div>
+    </section>
+
+    <!-- Interactive Demo -->
+    <section class="section">
+      <h2>Interactive Counter Demo</h2>
+      <div class="card">
+        <h3>Component Event Handling</h3>
+        <p style="margin-bottom: 1rem;">
+          This demonstrates JavaScript interaction with EVA components:
+        </p>
+        
+        <div style="display: flex; align-items: center; gap: 1rem; margin: 1rem 0;">
+          <eva-gc-button id="decrementBtn">- Decrease</eva-gc-button>
+          <div style="font-size: 2rem; font-weight: bold; color: #2d5a8c;" id="counter">0</div>
+          <eva-gc-button id="incrementBtn">+ Increase</eva-gc-button>
+        </div>
+
+        <eva-gc-button id="resetBtn" variant="secondary">Reset Counter</eva-gc-button>
+
+        <div class="code" style="margin-top: 1rem;">
+// Event handling example
+document.getElementById('incrementBtn').addEventListener('click', () => {
+  counter++;
+  updateDisplay();
+});
+        </div>
+      </div>
+    </section>
+
+    <!-- Language Switcher Demo -->
+    <section class="section">
+      <h2>Language Switcher</h2>
+      <div class="card">
+        <h3>Bilingual Support (English/French)</h3>
+        <eva-language-switcher 
+          current-locale="en-CA"
+          available-locales='["en-CA", "fr-CA"]'
+        ></eva-language-switcher>
+        
+        <p style="margin-top: 1rem;">
+          Current Language: <strong id="currentLang">English (Canada)</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- CDN Benefits -->
+    <section class="section">
+      <h2>Why Use CDN?</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>🚀 Fast Setup</h3>
+          <p>Add two lines to your HTML and start using components immediately. No npm, no build tools, no configuration.</p>
+        </div>
+        <div class="card">
+          <h3>⚡ Performance</h3>
+          <p>Global CDN with 750+ locations ensures fast loading worldwide. Automatic caching and compression.</p>
+        </div>
+        <div class="card">
+          <h3>🔒 Reliable</h3>
+          <p>jsDelivr provides 100% uptime SLA with automatic failover. Versions are immutable and always available.</p>
+        </div>
+        <div class="card">
+          <h3>📦 No Dependencies</h3>
+          <p>Pure Web Components work in any framework or vanilla JS. No React, Vue, or Angular required.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- GC Footer -->
+  <eva-gc-footer>
+    <p>© 2025 Government of Canada</p>
+    <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+      EVA Sovereign UI v1.1.0 | Loaded from jsDelivr CDN
+    </p>
+  </eva-gc-footer>
+
+  <footer>
+    <p>
+      <strong>EVA Sovereign UI</strong> - Production-ready Web Components<br>
+      <a href="https://github.com/eva-suite/eva-sovereign-ui" target="_blank">GitHub</a> |
+      <a href="https://www.npmjs.com/package/@eva-suite/sovereign-ui" target="_blank">npm</a> |
+      <a href="https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui/" target="_blank">CDN</a>
+    </p>
+  </footer>
+
+  <script>
+    // Form submission handler
+    document.getElementById('applicationForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
+      
+      console.log('Form submitted:', data);
+      
+      // Show success message
+      document.getElementById('successMessage').style.display = 'block';
+      
+      // Hide after 5 seconds
+      setTimeout(() => {
+        document.getElementById('successMessage').style.display = 'none';
+      }, 5000);
+      
+      // Scroll to success message
+      document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // Clear form handler
+    document.getElementById('clearForm').addEventListener('click', () => {
+      document.getElementById('applicationForm').reset();
+      document.getElementById('successMessage').style.display = 'none';
+    });
+
+    // Counter demo
+    let counter = 0;
+    const counterDisplay = document.getElementById('counter');
+
+    function updateCounter() {
+      counterDisplay.textContent = counter;
+      counterDisplay.style.color = counter === 0 ? '#666' : counter > 0 ? '#4caf50' : '#f44336';
+    }
+
+    document.getElementById('incrementBtn').addEventListener('click', () => {
+      counter++;
+      updateCounter();
+    });
+
+    document.getElementById('decrementBtn').addEventListener('click', () => {
+      counter--;
+      updateCounter();
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      counter = 0;
+      updateCounter();
+    });
+
+    // Language switcher demo
+    const langMap = {
+      'en-CA': 'English (Canada)',
+      'fr-CA': 'Français (Canada)'
+    };
+
+    document.querySelectorAll('eva-language-switcher').forEach(switcher => {
+      switcher.addEventListener('locale-change', (e) => {
+        const locale = e.detail.locale;
+        document.getElementById('currentLang').textContent = langMap[locale] || locale;
+        document.documentElement.lang = locale;
+        console.log('Language changed to:', locale);
+      });
+    });
+
+    // Log component registration
+    console.log('EVA Sovereign UI components loaded from CDN!');
+    console.log('Custom elements registered:', customElements.get('eva-gc-button') ? '✓' : '✗');
+  </script>
+</body>
+</html>
