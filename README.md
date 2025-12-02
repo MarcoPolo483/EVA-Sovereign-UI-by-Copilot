@@ -66,11 +66,46 @@ npm test
 npm run build
 ```
 
-### Option 3: Try the Demos
+### Option 3: Try the Official Demos
 
-After cloning, visit:
-- **ESDC Portal**: http://localhost:5173/apps/esdc-demo/index.html
-- **Component Gallery**: http://localhost:5173/apps/dev-kit-demo/index.html
+EVA-Sovereign-UI includes **two official production-ready demos**:
+
+#### 🏛️ ESDC Portal Demo (`apps/esdc-demo/`)
+Full-scale Employment and Social Development Canada portal demonstration.
+
+```bash
+npm run dev:esdc
+```
+
+**Features**:
+- Realistic government portal (program pages, service navigation)
+- Integrated EVA AI chatbot assistant
+- Bilingual EN-CA / FR-CA content
+- GC Design System header/footer/breadcrumbs
+- Accessibility-first templates
+
+**Access**: `http://localhost:5173/apps/esdc-demo/index.html`
+
+#### 🛠️ Dev Kit / Component Gallery (`apps/dev-kit-demo/`)
+Comprehensive showcase of all **49 Web Components** with interactive examples.
+
+```bash
+npm run dev:devkit
+# Alias: npm run dev (default)
+```
+
+**Features**:
+- Live preview of all 49 components
+- Code tabs: HTML, React, Vue, Angular, Svelte (coming as wrappers are added)
+- Property editors (interactive prop + attribute testing)
+- Accessibility documentation (WCAG 2.2 AA+ patterns)
+- Five Eyes sovereign profile switcher (Canada, USA, UK, Australia, NZ)
+- 9-locale internationalization demo
+- Spec tables (props, events, slots, a11y notes, i18n keys)
+
+**Access**: `http://localhost:5173/apps/dev-kit-demo/index.html`
+
+> Legacy demos (`src/`, `apps/demo/`, `demos/`) are deprecated. See [LEGACY-DEMOS-DEPRECATED.md](./LEGACY-DEMOS-DEPRECATED.md) for migration guidance.
 
 ### Production Build Artifacts
 
@@ -568,36 +603,36 @@ const canada = getProfile('canada_gc');
 ## 🏗️ Project Structure
 
 ```
-EVA-Sovereign-By-Copilot/
-├── packages/eva-sovereign-ui-wc/    # Web Components library
-│   ├── src/
-│   │   ├── tokens/                  # Design tokens (colors, typography, etc.)
-│   │   ├── themes/                  # CSS themes (5 countries)
-│   │   ├── components/              # Web Components
-│   │   │   ├── gc-design/           # GC Design System
-│   │   │   ├── accessibility/       # WCAG components
-│   │   │   ├── i18n/                # Internationalization
-│   │   │   ├── layout/              # Page structure
-│   │   │   ├── chat/                # EVA chatbot
-│   │   │   └── esdc/                # ESDC-specific
-│   │   ├── i18n/                    # Translation engine
-│   │   │   ├── i18n-service.ts
-│   │   │   ├── locales/             # JSON translation files
-│   │   │   └── formatters/          # Date/number/currency
-│   │   ├── a11y/                    # Accessibility utilities
-│   │   ├── utils/                   # DOM/event helpers
-│   │   └── index.ts                 # Main entry
+EVA-Sovereign-UI-by-Copilot/
+├── packages/
+│   ├── eva-sovereign-ui-wc/         # Core Web Components (source, tokens, a11y, i18n)
+│   ├── eva-sovereign-ui-react/      # React wrappers (implemented / expanding)
+│   ├── eva-sovereign-ui-vue/        # Vue 3 plugin & wrappers (placeholder scaffolding)
+│   ├── eva-sovereign-ui-angular/    # Angular module & wrappers (placeholder scaffolding)
+│   └── eva-sovereign-ui-svelte/     # Svelte wrappers (placeholder scaffolding)
 ├── apps/
-│   ├── esdc-demo/                   # ESDC Public Website
-│   │   └── index.html
-│   └── dev-kit-demo/                # Developer Kit
-│       └── index.html
-├── docs/                            # Documentation
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
+│   ├── esdc-demo/                   # ESDC Portal production-style demo
+│   └── dev-kit-demo/                # Developer Kit & component gallery
+├── docs/                            # High-level and deep-dive documentation
+├── scripts/                         # Repo automation (audit, size, perf, status matrix)
+├── test-results/                    # Generated test & regression artifacts
+├── tests/                           # Vitest + Playwright test suites
+├── COMPONENT-INVENTORY.json         # Component metadata (to be expanded)
+├── LEGACY-DEMOS-DEPRECATED.md       # Deprecation & migration guidance
+├── package.json                     # Multi-package orchestration scripts
+├── vite.config.ts                   # Root Vite config (WC + demos)
 └── README.md
 ```
+
+### Monorepo Layering
+
+1. **Core Layer (WC)**: Framework-agnostic custom elements, tokens, accessibility, i18n services.
+2. **Wrapper Layer (React/Vue/Angular/Svelte)**: Thin adapters mapping attributes → props, events → callbacks, slots → children.
+3. **Demo Layer (Dev Kit + ESDC)**: Integration showcase, component gallery, sovereign & locale switching, production UX patterns.
+4. **Automation Layer (scripts/)**: Audits (accessibility, performance, size), status matrix generation, release tooling.
+
+> Vue, Angular, and Svelte packages are currently scaffolded placeholders. Their wrapper implementations will follow the established React conventions (Task 13+).
+
 
 ---
 

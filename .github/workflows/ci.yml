@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - name: Install dependencies
+      - name: Install root dependencies
         run: npm ci
       - name: Type check
         run: npm run lint
@@ -27,7 +27,7 @@ jobs:
         run: npm test --silent
       - name: Accessibility tests
         run: npm run test:a11y
-      - name: Generate coverage report
+      - name: Coverage report
         run: npm run test:coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
@@ -41,7 +41,7 @@ jobs:
         continue-on-error: true
 
   build:
-    name: Build & Validate
+    name: Build & Validate All
     runs-on: ubuntu-latest
     needs: test
     steps:
@@ -52,9 +52,21 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-      - name: Install dependencies
+      - name: Install root dependencies
         run: npm ci
-      - name: Build project
+      - name: Install React package deps
+        run: npm install --no-audit --no-fund
+        working-directory: packages/eva-sovereign-ui-react
+      - name: Install Vue package deps
+        run: npm install --no-audit --no-fund
+        working-directory: packages/eva-sovereign-ui-vue
+      - name: Install Angular package deps
+        run: npm install --no-audit --no-fund
+        working-directory: packages/eva-sovereign-ui-angular
+      - name: Install Svelte package deps
+        run: npm install --no-audit --no-fund
+        working-directory: packages/eva-sovereign-ui-svelte
+      - name: Build all packages & demos
         run: npm run build
       - name: Generate status matrix
         run: npm run status:matrix
@@ -72,3 +84,45 @@ jobs:
         run: npm run benchmark
       - name: Bundle size guard
         run: npm run size:guard
+      - name: Upload core dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-core
+          path: dist
+          retention-days: 7
+      - name: Upload React dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-react
+          path: packages/eva-sovereign-ui-react/dist
+          retention-days: 7
+      - name: Upload Vue dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-vue
+          path: packages/eva-sovereign-ui-vue/dist
+          retention-days: 7
+      - name: Upload Angular dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-angular
+          path: packages/eva-sovereign-ui-angular/dist
+          retention-days: 7
+      - name: Upload Svelte dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-svelte
+          path: packages/eva-sovereign-ui-svelte/dist
+          retention-days: 7
+      - name: Upload Dev Kit dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-devkit
+          path: dist-devkit
+          retention-days: 7
+      - name: Upload ESDC dist artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-esdc
+          path: dist-esdc
+          retention-days: 7

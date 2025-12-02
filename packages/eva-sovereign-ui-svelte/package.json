@@ -1,0 +1,29 @@
+{
+  "name": "@eva-suite/sovereign-ui-svelte",
+  "version": "0.1.0",
+  "description": "Svelte wrappers for EVA-Sovereign-UI Web Components",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": ["dist", "README.md"],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "svelte": "^4.0.0 || ^5.0.0",
+    "@eva-suite/sovereign-ui": "^1.0.0"
+  },
+  "devDependencies": {
+    "svelte": "^4.2.0",
+    "@types/node": "^20.9.0",
+    "typescript": "^5.3.3",
+    "tsup": "^8.0.1",
+    "vitest": "^4.0.5"
+  },
+  "license": "MIT"
+}

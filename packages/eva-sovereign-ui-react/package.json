@@ -18,8 +18,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "tsup src/index.ts --format cjs,esm --dts --external @eva-suite/sovereign-ui",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch --external @eva-suite/sovereign-ui",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "tsc --noEmit"
@@ -28,6 +28,11 @@
     "@eva-suite/sovereign-ui": "^1.0.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@eva-suite/sovereign-ui": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/react": "^18.2.45",
