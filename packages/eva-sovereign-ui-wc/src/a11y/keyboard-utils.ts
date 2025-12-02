@@ -88,7 +88,6 @@ export function simulateClick(element: HTMLElement): void {
   const clickEvent = new MouseEvent('click', {
     bubbles: true,
     cancelable: true,
-    view: window,
   });
   element.dispatchEvent(clickEvent);
 }
@@ -180,10 +179,18 @@ export function isFocusable(element: HTMLElement): boolean {
   const tabindex = element.getAttribute('tabindex');
   if (tabindex === '-1') return false;
 
-  // Check if element is visible
-  if (element.offsetParent === null) return false;
+  // Check if element is visible (in jsdom offsetParent is always null for elements not styled)
+  const style = window.getComputedStyle(element);
+  if (style.display === 'none' || style.visibility === 'hidden') {
+    return false;
+  }
 
-  return true;
+  // Check if naturally focusable or has tabindex
+  const focusableTags = ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
+  const isFocusableTag = focusableTags.includes(element.tagName);
+  const hasTabindex = tabindex !== null;
+
+  return isFocusableTag || hasTabindex;
 }
 
 /**

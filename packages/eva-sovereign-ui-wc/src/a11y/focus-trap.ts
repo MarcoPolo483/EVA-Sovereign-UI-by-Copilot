@@ -97,7 +97,7 @@ export class FocusTrap {
     
     let elementToFocus: HTMLElement | null = null;
 
-    if (typeof initialFocus === 'string') {
+    if (typeof initialFocus === 'string' && initialFocus.length > 0) {
       elementToFocus = this.container.querySelector(initialFocus);
     } else if (initialFocus instanceof HTMLElement) {
       elementToFocus = initialFocus;
