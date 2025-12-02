@@ -8,9 +8,9 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/eva-sovereign-ui.es.js",
-      "require": "./dist/eva-sovereign-ui.umd.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/eva-sovereign-ui.umd.js"
     },
     "./components/*": "./dist/components/*/index.js"
   },
