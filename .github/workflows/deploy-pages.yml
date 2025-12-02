@@ -36,6 +36,9 @@ jobs:
       - name: Build ESDC Demo
         run: npm run build:esdc
 
+      - name: Build Performance Dashboard
+        run: npm run build:perf
+
       - name: Build Storybook
         run: npm run build-storybook
 
@@ -45,6 +48,8 @@ jobs:
           cp -r dist-devkit/* public/
           mkdir -p public/esdc
           cp -r dist-esdc/* public/esdc/
+          mkdir -p public/performance
+          cp -r dist-performance/* public/performance/
           mkdir -p public/storybook
           cp -r storybook-static/* public/storybook/
           cp public-index.html public/index.html
