@@ -80,6 +80,11 @@ export { EVASheetHeader } from './components/EVASheetHeader';
 export { EVASheetFooter } from './components/EVASheetFooter';
 export { EVASheetTitle } from './components/EVASheetTitle';
 export { EVASheetDescription } from './components/EVASheetDescription';
+export { EVAAlert } from './components/EVAAlert';
+export { EVAAspectRatio } from './components/EVAAspectRatio';
+export { EVABadge } from './components/EVABadge';
+export { EVACalendar } from './components/EVACalendar';
+export { EVACarousel } from './components/EVACarousel';
 
 // Export types
 export type { EVAGCButtonProps } from './components/EVAGCButton';
@@ -160,5 +165,10 @@ export type { EVASheetHeaderProps } from './components/EVASheetHeader';
 export type { EVASheetFooterProps } from './components/EVASheetFooter';
 export type { EVASheetTitleProps } from './components/EVASheetTitle';
 export type { EVASheetDescriptionProps } from './components/EVASheetDescription';
+export type { EVAAlertProps } from './components/EVAAlert';
+export type { EVAAspectRatioProps } from './components/EVAAspectRatio';
+export type { EVABadgeProps } from './components/EVABadge';
+export type { EVACalendarProps } from './components/EVACalendar';
+export type { EVACarouselProps } from './components/EVACarousel';
 
 export type * from './types';

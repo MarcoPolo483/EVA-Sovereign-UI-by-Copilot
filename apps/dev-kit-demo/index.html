@@ -832,6 +832,105 @@ export function MySheet() {
 }</pre>
       </section>
       
+      <!-- Alert -->
+      <section class="component-demo">
+        <h2 class="demo-title">Alert</h2>
+        <eva-alert role="status">This is an informational alert.</eva-alert>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-alert role="status"&gt;This is an informational alert.&lt;/eva-alert&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAAlert } from '@eva-suite/sovereign-ui-react';
+
+export function MyAlert() {
+  return (&lt;EVAAlert role="status"&gt;This is an informational alert.&lt;/EVAAlert&gt;);
+}</pre>
+      </section>
+
+      <!-- Aspect Ratio -->
+      <section class="component-demo">
+        <h2 class="demo-title">Aspect Ratio</h2>
+        <eva-aspect-ratio style="display:block; max-width:400px; background:#f5f5f5;" ratio="16/9">
+          <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#555;">16:9 Content</div>
+        </eva-aspect-ratio>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-aspect-ratio ratio="16/9" style="display:block; max-width:400px;"&gt;...&lt;/eva-aspect-ratio&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVAAspectRatio } from '@eva-suite/sovereign-ui-react';
+
+export function MyAspect() {
+  return (&lt;EVAAspectRatio ratio="16/9" style={{ display: 'block', maxWidth: 400 }} /&gt;);
+}</pre>
+      </section>
+
+      <!-- Badge -->
+      <section class="component-demo">
+        <h2 class="demo-title">Badge</h2>
+        <div style="display:flex; gap:12px; align-items:center;">
+          <eva-badge>Default</eva-badge>
+          <eva-badge>New</eva-badge>
+        </div>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-badge&gt;New&lt;/eva-badge&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVABadge } from '@eva-suite/sovereign-ui-react';
+
+export function MyBadge() {
+  return (&lt;EVABadge&gt;New&lt;/EVABadge&gt;);
+}</pre>
+      </section>
+
+      <!-- Calendar -->
+      <section class="component-demo">
+        <h2 class="demo-title">Calendar</h2>
+        <eva-calendar></eva-calendar>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-calendar&gt;&lt;/eva-calendar&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVACalendar } from '@eva-suite/sovereign-ui-react';
+
+export function MyCalendar() {
+  return (&lt;EVACalendar /&gt;);
+}</pre>
+      </section>
+
+      <!-- Carousel -->
+      <section class="component-demo">
+        <h2 class="demo-title">Carousel</h2>
+        <eva-carousel>
+          <div>Slide 1</div>
+          <div>Slide 2</div>
+          <div>Slide 3</div>
+        </eva-carousel>
+        <div class="code-tabs" data-code-tabs>
+          <button class="code-tab active" data-target="wc">Web Components</button>
+          <button class="code-tab" data-target="react">React</button>
+        </div>
+        <pre class="code-example" data-pane="wc">&lt;eva-carousel&gt;
+  &lt;div&gt;Slide 1&lt;/div&gt;
+  &lt;div&gt;Slide 2&lt;/div&gt;
+  &lt;div&gt;Slide 3&lt;/div&gt;
+&lt;/eva-carousel&gt;</pre>
+        <pre class="code-example hidden" data-pane="react">import { EVACarousel } from '@eva-suite/sovereign-ui-react';
+
+export function MyCarousel() {
+  return (
+    &lt;EVACarousel&gt;
+      &lt;div&gt;Slide 1&lt;/div&gt;
+      &lt;div&gt;Slide 2&lt;/div&gt;
+      &lt;div&gt;Slide 3&lt;/div&gt;
+    &lt;/EVACarousel&gt;
+  );
+}</pre>
+      </section>
+
       <!-- Accessibility Features -->
       <section class="component-demo">
         <h2 class="demo-title">Accessibility Features</h2>

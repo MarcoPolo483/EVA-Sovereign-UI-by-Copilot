@@ -81,6 +81,11 @@ declare global {
       'eva-breadcrumb-link': any;
       'eva-breadcrumb-page': any;
       'eva-breadcrumb-separator': any;
+      'eva-alert': any;
+      'eva-aspect-ratio': any;
+      'eva-badge': any;
+      'eva-calendar': any;
+      'eva-carousel': any;
     }
   }
 }
