@@ -17,6 +17,14 @@ declare global {
       'eva-input': any;
       'eva-switch': any;
       'eva-drawer': any;
+      'eva-textarea': any;
+      'eva-tooltip': any;
+      'eva-breadcrumb': any;
+      'eva-breadcrumb-list': any;
+      'eva-breadcrumb-item': any;
+      'eva-breadcrumb-link': any;
+      'eva-breadcrumb-page': any;
+      'eva-breadcrumb-separator': any;
     }
   }
 }
