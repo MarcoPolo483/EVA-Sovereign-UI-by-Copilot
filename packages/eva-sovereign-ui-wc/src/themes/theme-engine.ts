@@ -1,10 +1,13 @@
 /**
  * Theme Engine - Runtime Theme Management
- * Supports dark mode, high contrast, custom themes, and GC Design System presets
+ * Supports dark mode, high contrast, custom themes, Five Eyes sovereign themes
+ * Automatic theme detection based on user preferences (dark mode, high contrast)
+ * localStorage persistence for user theme preferences
  */
 
 import { baseColors, baseFontFamilies, baseSpacing } from '../tokens/base-tokens';
 import { semanticColors, semanticSpacing, semanticTypography } from '../tokens/semantic-tokens';
+import { fiveEyesThemes } from './five-eyes-themes';
 
 export interface Theme {
   id: string;
@@ -291,6 +294,7 @@ export class ThemeEngine {
   private currentTheme: Theme = gcCanadaTheme;
   private customThemes: Map<string, Theme> = new Map();
   private styleElement: HTMLStyleElement | null = null;
+  private mediaQueryListeners: Array<{ query: MediaQueryList; handler: (e: MediaQueryListEvent) => void }> = [];
   
   constructor() {
     // Register built-in themes
@@ -299,8 +303,11 @@ export class ThemeEngine {
     this.registerTheme(gcHighContrastTheme);
     this.registerTheme(modernTheme);
     
-    // Detect user preferences
-    this.detectUserPreferences();
+    // Register all Five Eyes themes
+    Object.values(fiveEyesThemes).forEach(theme => this.registerTheme(theme));
+    
+    // Load saved theme or detect user preferences
+    this.initializeTheme();
   }
   
   /**
@@ -326,8 +333,10 @@ export class ThemeEngine {
   
   /**
    * Apply a theme
+   * @param themeId - ID of the theme to apply
+   * @param savePreference - Whether to save this as user's preference (default: true)
    */
-  applyTheme(themeId: string): boolean {
+  applyTheme(themeId: string, savePreference: boolean = true): boolean {
     const theme = this.getTheme(themeId);
     if (!theme) {
       console.error(`Theme "${themeId}" not found`);
@@ -339,10 +348,54 @@ export class ThemeEngine {
     this.updateDataAttributes(theme);
     this.dispatchThemeChangeEvent(theme);
     
-    // Save preference
-    this.saveThemePreference(themeId);
+    // Save preference if requested
+    if (savePreference) {
+      this.saveThemePreference(themeId);
+    }
     
     return true;
+  }
+  
+  /**
+   * Clear saved theme preference (allow auto-detection)
+   */
+  clearThemePreference(): void {
+    try {
+      localStorage.removeItem('eva-theme-preference');
+      // Re-detect from system preferences
+      this.detectAndApplyUserPreferences();
+    } catch (error) {
+      console.warn('Failed to clear theme preference:', error);
+    }
+  }
+  
+  /**
+   * Toggle between light and dark mode of current theme
+   */
+  toggleDarkMode(): boolean {
+    const currentId = this.currentTheme.id;
+    
+    // Try to find the corresponding dark/light variant
+    let targetThemeId: string;
+    
+    if (this.currentTheme.mode === 'dark') {
+      // Switch to light
+      targetThemeId = currentId.replace('-dark', '-light');
+    } else {
+      // Switch to dark
+      targetThemeId = currentId.replace('-light', '-dark');
+      // Handle legacy IDs without -light suffix
+      if (!this.getTheme(targetThemeId)) {
+        targetThemeId = `${currentId}-dark`;
+      }
+    }
+    
+    // Fall back to generic Canada themes if variant not found
+    if (!this.getTheme(targetThemeId)) {
+      targetThemeId = this.currentTheme.mode === 'dark' ? 'canada-gc-light' : 'canada-gc-dark';
+    }
+    
+    return this.applyTheme(targetThemeId);
   }
   
   /**
@@ -407,41 +460,89 @@ export class ThemeEngine {
   }
   
   /**
-   * Detect user preferences (dark mode, high contrast, reduced motion)
+   * Initialize theme on startup
    */
-  private detectUserPreferences(): void {
+  private initializeTheme(): void {
+    // Try to load saved theme preference
+    const savedThemeId = this.loadThemePreference();
+    if (savedThemeId && this.getTheme(savedThemeId)) {
+      this.applyTheme(savedThemeId);
+      return;
+    }
+    
+    // No saved preference, detect from system
+    this.detectAndApplyUserPreferences();
+    
+    // Set up listeners for preference changes
+    this.setupPreferenceListeners();
+  }
+  
+  /**
+   * Detect user preferences (dark mode, high contrast) and apply appropriate theme
+   */
+  private detectAndApplyUserPreferences(): void {
+    // Check for high contrast preference (takes priority)
+    if (window.matchMedia && window.matchMedia('(prefers-contrast: high)').matches) {
+      this.applyTheme('gc-high-contrast');
+      return;
+    }
+    
     // Check for dark mode preference
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      const savedTheme = this.loadThemePreference();
-      if (!savedTheme) {
-        this.applyTheme('gc-canada-dark');
-      }
+      this.applyTheme('canada-gc-dark');
+      return;
     }
     
-    // Check for high contrast preference
-    if (window.matchMedia && window.matchMedia('(prefers-contrast: high)').matches) {
-      const savedTheme = this.loadThemePreference();
-      if (!savedTheme) {
-        this.applyTheme('gc-high-contrast');
-      }
-    }
+    // Default to light theme
+    this.applyTheme('canada-gc-light');
+  }
+  
+  /**
+   * Set up listeners for system preference changes
+   */
+  private setupPreferenceListeners(): void {
+    if (!window.matchMedia) return;
     
-    // Listen for changes
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      const savedTheme = this.loadThemePreference();
-      if (!savedTheme) {
-        this.applyTheme(e.matches ? 'gc-canada-dark' : 'gc-canada');
-      }
-    });
-    
-    window.matchMedia('(prefers-contrast: high)').addEventListener('change', (e) => {
-      const savedTheme = this.loadThemePreference();
-      if (!savedTheme) {
-        if (e.matches) {
-          this.applyTheme('gc-high-contrast');
+    // Listen for dark mode changes
+    const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const darkModeHandler = (e: MediaQueryListEvent) => {
+      // Only auto-switch if user hasn't manually selected a theme
+      if (!this.loadThemePreference()) {
+        const currentMode = this.currentTheme.mode;
+        if (currentMode !== 'high-contrast') {
+          this.applyTheme(e.matches ? 'canada-gc-dark' : 'canada-gc-light');
         }
       }
+    };
+    darkModeQuery.addEventListener('change', darkModeHandler);
+    this.mediaQueryListeners.push({ query: darkModeQuery, handler: darkModeHandler });
+    
+    // Listen for high contrast changes
+    const highContrastQuery = window.matchMedia('(prefers-contrast: high)');
+    const highContrastHandler = (e: MediaQueryListEvent) => {
+      // Only auto-switch if user hasn't manually selected a theme
+      if (!this.loadThemePreference()) {
+        if (e.matches) {
+          this.applyTheme('gc-high-contrast');
+        } else {
+          // Switch back to appropriate light/dark theme
+          const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          this.applyTheme(isDark ? 'canada-gc-dark' : 'canada-gc-light');
+        }
+      }
+    };
+    highContrastQuery.addEventListener('change', highContrastHandler);
+    this.mediaQueryListeners.push({ query: highContrastQuery, handler: highContrastHandler });
+  }
+  
+  /**
+   * Clean up media query listeners
+   */
+  public destroy(): void {
+    this.mediaQueryListeners.forEach(({ query, handler }) => {
+      query.removeEventListener('change', handler);
     });
+    this.mediaQueryListeners = [];
   }
   
   /**
@@ -513,8 +614,12 @@ export const themeEngine = new ThemeEngine();
 
 // Export theme presets
 export const themes = {
+  // Legacy Canada themes (backward compatibility)
   gcCanada: gcCanadaTheme,
   gcCanadaDark: gcCanadaDarkTheme,
   gcHighContrast: gcHighContrastTheme,
   modern: modernTheme,
+  
+  // Five Eyes themes
+  ...fiveEyesThemes,
 };
