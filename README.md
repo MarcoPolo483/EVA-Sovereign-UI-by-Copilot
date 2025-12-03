@@ -735,6 +735,18 @@ npm run dev
 npm run build
 ```
 
+### CDN Usage (Production)
+
+```html
+<!-- Recommended: ES Module via CDN -->
+<script type="module" src="https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui@latest/dist/eva-sovereign-ui.es.js" crossorigin></script>
+
+<!-- Fallback: UMD via CDN -->
+<script src="https://unpkg.com/@eva-suite/sovereign-ui@latest/dist/eva-sovereign-ui.umd.js" crossorigin></script>
+```
+
+See also: `DEPLOYMENT-CHECKLIST.md`, `docs/PERFORMANCE-GUIDE.md`, and `docs/SECURITY-GUIDE.md`.
+
 ### Preview Production Build
 ```bash
 npm run preview
