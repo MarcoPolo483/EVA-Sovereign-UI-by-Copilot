@@ -97,5 +97,26 @@
     "warning": "Whakatūpato",
     "info": "Pārongo",
     "learnMore": "Ako atu"
+  },
+  "validation": {
+    "required": "E hiahiatia ana tēnei āpure",
+    "email": "Tomo i te wāhitau īmera tika",
+    "minLength": "Me kia iti rawa {min} pūāhua",
+    "maxLength": "Kāore e taea te hipa i te {max} pūāhua",
+    "pattern": "Hōputu muhu"
+  },
+  "dialog": {
+    "close": "Kati kōrero"
+  },
+  "table": {
+    "noResults": "Kāore he hua i kitea"
+  },
+  "pagination": {
+    "previous": "Whārangi o mua",
+    "next": "Whārangi panuku"
+  },
+  "calendar": {
+    "prevMonth": "Marama o mua",
+    "nextMonth": "Marama panuku"
   }
 }

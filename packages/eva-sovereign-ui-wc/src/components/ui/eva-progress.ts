@@ -64,10 +64,12 @@ export class EVAProgress extends EVABaseComponent {
     progress.setAttribute('aria-valuemin', '0');
     progress.setAttribute('aria-valuemax', max.toString());
     progress.setAttribute('aria-valuenow', value.toString());
+    progress.setAttribute('aria-live', 'polite');
+    progress.setAttribute('aria-atomic', 'true');
     if (ariaLabel) {
       progress.setAttribute('aria-label', ariaLabel);
     } else {
-      progress.setAttribute('aria-label', `${Math.round(percentage)}%`);
+      progress.setAttribute('aria-label', `${Math.round(percentage)}% complete`);
     }
 
     const indicator = document.createElement('div');

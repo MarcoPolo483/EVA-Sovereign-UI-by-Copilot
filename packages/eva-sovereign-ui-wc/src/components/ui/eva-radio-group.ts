@@ -149,6 +149,13 @@ export class EVARadioGroupItem extends EVABaseComponent {
         box-shadow: 0 0 0 3px color-mix(in srgb, ${modernColors.ring} 50%, transparent);
       }
 
+      @media (forced-colors: active) {
+        .radio:focus-visible + .visual {
+          outline: 3px solid CanvasText;
+          outline-offset: 2px;
+        }
+      }
+
       .radio:disabled + .visual {
         cursor: not-allowed;
         opacity: 0.5;

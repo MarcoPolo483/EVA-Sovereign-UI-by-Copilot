@@ -93,17 +93,17 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-BwibY5Dt.js"></script>
+  <script type="module" crossorigin src="/assets/index-fXr3zoJJ.js"></script>
 </head>
 <body>
   
   <!-- Locale Selector -->
-  <div class="locale-selector">
+  <div class="locale-selector" data-testid="locale-selector">
     <h2>🌍 Five Eyes Government Services Demo</h2>
     <p style="text-align: center; color: #718096; margin-bottom: 16px;">
       Experience government services across Canada, United States, United Kingdom, Australia, and New Zealand
     </p>
-    <div class="locale-grid">
+    <div class="locale-grid" data-testid="locale-grid">
       <button class="locale-btn active" data-locale="en-CA">
         <span class="locale-flag">🇨🇦</span>
         <span>Canada (EN)</span>
@@ -141,7 +141,7 @@
   <eva-skip-link target="#main-content">Skip to main content</eva-skip-link>
   
   <!-- Page shell -->
-  <eva-page-shell>
+  <eva-page-shell data-testid="page-shell">
     
     <!-- Header -->
     <eva-gc-header slot="header"
@@ -164,7 +164,7 @@
     <eva-container max-width="1200px">
       <h2 style="font-family: 'Lato', sans-serif; font-size: 32px; margin-bottom: 16px;">Programs and Services</h2>
       
-      <div class="program-grid">
+      <div class="program-grid" data-testid="program-grid">
         <eva-program-card
           title-key="esdc.programs.ei.title"
           description-key="esdc.programs.ei.description"
@@ -200,7 +200,7 @@
     
   </eva-page-shell>
   
-  <!-- Load Web Components -->
+  <!-- Load Web Components via Vite alias -->
   
   <!-- Locale Switching Logic -->
 </body>

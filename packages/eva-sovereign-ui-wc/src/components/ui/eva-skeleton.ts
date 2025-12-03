@@ -85,14 +85,29 @@ export class EVASkeleton extends EVABaseComponent {
           background: var(--eva-background-tertiary, #e0e0e0);
         }
       }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
     `);
     
     this.shadow.innerHTML = '';
     this.shadow.appendChild(style);
     
-    const container = document.createElement('div');
-    container.setAttribute('aria-busy', 'true');
-    container.setAttribute('aria-label', 'Loading content');
+      const container = document.createElement('div');
+      container.setAttribute('role', 'status');
+      container.setAttribute('aria-busy', 'true');
+      const srText = document.createElement('span');
+      srText.textContent = 'Loading';
+      srText.className = 'sr-only';
+      container.appendChild(srText);
     
     if (isCircle || variant === 'circle') {
       const skeleton = document.createElement('div');

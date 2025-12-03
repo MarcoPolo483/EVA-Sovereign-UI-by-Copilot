@@ -96,5 +96,26 @@
     "success": "Succès",
     "warning": "Avertissement",
     "info": "Information"
+  },
+  "validation": {
+    "required": "Ce champ est requis",
+    "email": "Veuillez entrer une adresse courriel valide",
+    "minLength": "Doit contenir au moins {min} caractères",
+    "maxLength": "Ne doit pas dépasser {max} caractères",
+    "pattern": "Format invalide"
+  },
+  "dialog": {
+    "close": "Fermer la boîte de dialogue"
+  },
+  "table": {
+    "noResults": "Aucun résultat trouvé"
+  },
+  "pagination": {
+    "previous": "Page précédente",
+    "next": "Page suivante"
+  },
+  "calendar": {
+    "prevMonth": "Mois précédent",
+    "nextMonth": "Mois suivant"
   }
 }

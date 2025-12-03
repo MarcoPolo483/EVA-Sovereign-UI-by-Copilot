@@ -19,8 +19,14 @@ export class EVADrawer extends EVABaseComponent {
   }
 
   attributeChangedCallback() {
+    const wasOpen = this.isOpen;
     this.isOpen = this.getBoolAttr('open');
     this.render();
+    
+    // Emit close event when transitioning from open to closed
+    if (wasOpen && !this.isOpen) {
+      this.emit('close');
+    }
   }
 
   connectedCallback() {

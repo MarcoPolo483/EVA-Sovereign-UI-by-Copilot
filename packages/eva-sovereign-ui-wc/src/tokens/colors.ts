@@ -17,11 +17,11 @@ export const modernColors = {
   popoverForeground: 'oklch(0.25 0 0)',
   
   // Primary brand color (GC dark blue)
-  primary: 'oklch(0.30 0.04 250)',
+  primary: 'oklch(0.28 0.04 250)',
   primaryForeground: 'oklch(0.98 0 0)',
   
   // Secondary brand color
-  secondary: 'oklch(0.32 0.04 245)',
+  secondary: 'oklch(0.30 0.04 245)',
   secondaryForeground: 'oklch(0.98 0 0)',
   
   // Accent color (for highlights)
@@ -34,7 +34,7 @@ export const modernColors = {
   
   // Muted backgrounds
   muted: 'oklch(0.96 0.005 250)',
-  mutedForeground: 'oklch(0.50 0.01 250)',
+  mutedForeground: 'oklch(0.45 0.01 250)',
   
   // Borders & inputs
   border: 'oklch(0.90 0.005 250)',

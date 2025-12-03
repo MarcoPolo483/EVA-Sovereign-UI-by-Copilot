@@ -25,6 +25,7 @@ export class EVAChatPanel extends EVABaseComponent {
   private messages: Message[] = [];
   private messageContainer?: HTMLDivElement;
   private inputField?: HTMLInputElement;
+  private announceTimeout?: number;
 
   static get observedAttributes() {
     return ['title-key', 'placeholder-key', 'assistant-name'];
@@ -138,12 +139,17 @@ export class EVAChatPanel extends EVABaseComponent {
     // Scroll to bottom
     this.messageContainer.scrollTop = this.messageContainer.scrollHeight;
 
-    // Announce new message to screen readers
-    const liveRegion = this.shadow.querySelector('[role="log"]');
-    if (liveRegion && this.messages.length > 0) {
-      const lastMessage = this.messages[this.messages.length - 1];
-      liveRegion.textContent = `${lastMessage.type === 'user' ? 'You' : 'EVA'}: ${lastMessage.content}`;
+    // Debounced screen reader announcement (500ms delay to batch rapid messages)
+    if (this.announceTimeout) {
+      clearTimeout(this.announceTimeout);
     }
+    this.announceTimeout = window.setTimeout(() => {
+      const liveRegion = this.shadow.querySelector('[role="log"][aria-atomic="true"]');
+      if (liveRegion && this.messages.length > 0) {
+        const lastMessage = this.messages[this.messages.length - 1];
+        liveRegion.textContent = `${lastMessage.type === 'user' ? 'You' : 'EVA'}: ${lastMessage.content}`;
+      }
+    }, 500);
   }
 
   protected render(): void {

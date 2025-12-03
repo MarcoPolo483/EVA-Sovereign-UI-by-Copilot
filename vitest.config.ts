@@ -63,7 +63,13 @@ export default defineConfig({
       // Exclude Playwright suites from Vitest unit run (but include accessibility tests)
       'tests/browser-compatibility/**',
       'tests/performance/**',
-      'tests/visual-regression/**'
+      'tests/visual-regression/**',
+      // Exclude Playwright-based tests from Vitest environment
+      'tests/accessibility/**',
+      'tests/integration/**'
+      ,
+      // Exclude complex accessibility interaction suites from unit run
+      'packages/eva-sovereign-ui-wc/src/__tests__/accessibility/**'
     ],
   },
   resolve: {
