@@ -86,6 +86,21 @@ npm test
 npm run build
 ```
 
+## Deployment
+
+See `DEPLOYMENT-CHECKLIST.md` for the end-to-end production steps.
+
+### CI Release (semantic-release)
+For automated versioning and npm publish via GitHub Actions:
+- Configure `.github/workflows/release.yml` (already included).
+- Add repository secrets:
+  - `NPM_TOKEN`: npm Access Token (Automation) with publish rights
+  - `GITHUB_TOKEN`: provided by GitHub Actions
+- Push to `main` to trigger the release; artifacts and GitHub release are created by `semantic-release`.
+- Validate CDN:
+  - jsDelivr: `https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui@latest/dist/eva-sovereign-ui.umd.js`
+  - unpkg: `https://unpkg.com/@eva-suite/sovereign-ui@latest/dist/eva-sovereign-ui.es.js`
+
 ### Option 3: Try the Official Demos
 
 EVA-Sovereign-UI includes **two official production-ready demos**:

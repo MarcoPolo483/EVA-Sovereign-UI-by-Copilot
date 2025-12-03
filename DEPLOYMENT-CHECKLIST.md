@@ -44,6 +44,20 @@ This checklist ensures EVA Sovereign UI is deployed safely and optimally in prod
   - `https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui@X.Y.Z/dist/eva-sovereign-ui.es.js`
   - `https://unpkg.com/@eva-suite/sovereign-ui@X.Y.Z/dist/eva-sovereign-ui.umd.js`
 
+### CI-based Release (Recommended)
+
+If manual `npm publish` is blocked by authentication, use CI:
+- Ensure `.github/workflows/release.yml` exists on `main`.
+- Add repository secrets:
+  - `NPM_TOKEN`: npm Access Token (Automation) with publish rights
+  - `GITHUB_TOKEN`: provided automatically by GitHub Actions
+- On push to `main`, CI will:
+  - Install deps and build the library (`npm run build:wc`)
+  - Run `semantic-release` to bump version, publish to npm, and create GitHub release
+- After CI publishes, validate CDN endpoints:
+  - `https://cdn.jsdelivr.net/npm/@eva-suite/sovereign-ui@latest/dist/eva-sovereign-ui.umd.js`
+  - `https://unpkg.com/@eva-suite/sovereign-ui@latest/dist/eva-sovereign-ui.es.js`
+
 ## 7. Server Configuration
 - [ ] Apply CSP (recommended or strict)
 - [ ] Enable compression (Brotli/Gzip)
