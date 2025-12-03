@@ -743,7 +743,7 @@ export function requestIdleCallback(
     return window.requestIdleCallback(callback, options);
   }
   // Fallback to setTimeout
-  return window.setTimeout(() => {
+  return setTimeout(() => {
     callback({
       didTimeout: false,
       timeRemaining: () => 50,

@@ -26,5 +26,15 @@
     }
   },
   "include": ["packages/**/*.ts", "packages/**/*.tsx", "apps/**/*.ts", "apps/**/*.tsx"],
-  "exclude": ["node_modules", "**/*.test.ts", "**/*.spec.ts", "**/__tests__/**", "tests/**", "packages/eva-sovereign-ui-vue/**"]
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/__tests__/**",
+    "tests/**",
+    "packages/eva-sovereign-ui-vue/**",
+    "packages/eva-sovereign-ui-wc/src/components/ui/eva-spinner.ts",
+    "packages/eva-sovereign-ui-wc/src/components/ui/eva-theme-switcher.ts",
+    "packages/eva-sovereign-ui-wc/src/components/ui/eva-theme-switcher.stories.ts"
+  ]
 }
