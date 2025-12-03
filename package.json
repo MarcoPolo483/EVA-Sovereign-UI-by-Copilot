@@ -1,6 +1,6 @@
 {
   "name": "@eva-suite/sovereign-ui",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "EVA-Sovereign-UI: Production-ready Web Components design system for government applications",
   "type": "module",
   "main": "./dist/eva-sovereign-ui.umd.js",
