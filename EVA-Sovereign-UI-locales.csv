@@ -1,0 +1,9 @@
+locale_code,language_name,country,file_path,file_count
+en-CA,English,Canada,public/content/en/,2
+fr-CA,French,Canada,public/content/fr/,2
+es-US,Spanish,United States,public/content/es/,2
+cy-GB,Welsh,United Kingdom,public/content/cy/,2
+mi-NZ,Māori,New Zealand,public/content/mi/,2
+en-AU,English,Australia,N/A (test mock only),0
+en-NZ,English,New Zealand,N/A (test mock only),0
+en-GB,English,United Kingdom,N/A (test mock only),0

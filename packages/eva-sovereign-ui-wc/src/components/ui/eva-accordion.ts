@@ -149,17 +149,22 @@ export class EVAAccordionItem extends EVABaseComponent {
       }
 
       .chevron {
-        display: inline-block;
-        width: 1rem;
-        height: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.25rem;
+        height: 1.25rem;
         flex-shrink: 0;
-        transform: translateY(0.125rem);
+        font-size: 0.875rem;
+        line-height: 1;
+        transform: rotate(0deg);
         transition: transform 200ms;
-        color: ${modernColors.mutedForeground};
+        color: ${modernColors.foreground};
+        font-weight: bold;
       }
 
       .trigger[aria-expanded="true"] .chevron {
-        transform: translateY(0.125rem) rotate(180deg);
+        transform: rotate(180deg);
       }
 
       .content {
@@ -228,7 +233,7 @@ export class EVAAccordionItem extends EVABaseComponent {
 
     const chevron = document.createElement('span');
     chevron.className = 'chevron';
-    chevron.innerHTML = '▼';
+    chevron.textContent = '▼';
     chevron.setAttribute('aria-hidden', 'true');
     trigger.appendChild(chevron);
 

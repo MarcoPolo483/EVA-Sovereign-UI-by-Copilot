@@ -43,7 +43,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    open: '/apps/esdc-demo/index.html',
+    open: '/apps/agency-demo/index.html',
   },
   resolve: {
     alias: {

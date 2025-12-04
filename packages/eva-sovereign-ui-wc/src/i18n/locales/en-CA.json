@@ -1,7 +1,7 @@
 {
-  "esdc": {
-    "title": "Employment and Social Development Canada",
-    "shortTitle": "ESDC",
+  "agency": {
+    "title": "Government Services Agency",
+    "shortTitle": "GSA",
     "hero": {
       "title": "Building a skilled, adaptable, and inclusive workforce",
       "description": "Access employment services, benefits, and support programs"
@@ -41,7 +41,7 @@
     "send": "Send",
     "voice": "Voice input",
     "thinking": "Thinking...",
-    "welcome": "Hello! I'm EVA, your Employment and Social Development Canada assistant. How can I help you today?"
+    "welcome": "Hello! I'm EVA, your Government Services assistant. How can I help you today?"
   },
   "nav": {
     "skipToContent": "Skip to main content",

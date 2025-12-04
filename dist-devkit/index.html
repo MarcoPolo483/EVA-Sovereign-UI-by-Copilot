@@ -21,6 +21,8 @@
       margin: 24px 0;
       border-radius: 4px;
       background: #fff;
+      position: relative;
+      z-index: auto;
     }
 
     .demo-title {
@@ -66,6 +68,8 @@
       flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .theme-selector {
@@ -78,7 +82,7 @@
     }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/index-B1exqPvp.js"></script>
+  <script type="module" crossorigin src="/assets/index-ChHtZxZu.js"></script>
 </head>
 <body>
   
@@ -102,7 +106,7 @@
           <option value="usa_gov">🇺🇸 US Government</option>
           <option value="uk_gov">🇬🇧 UK Government</option>
           <option value="australia_gov">🇦🇺 Australian Government</option>
-          <option value="nz_gov">🇳🇿 New Zealand Government</option>
+          <option value="nz_govt">🇳🇿 New Zealand Government</option>
         </select>
       </section>
       
@@ -175,7 +179,8 @@ export function MySkeleton() {
       <!-- Slider -->
       <section class="component-demo">
         <h2 class="demo-title">Slider</h2>
-        <eva-slider value="30" max="100"></eva-slider>
+        <eva-slider value="30" max="100" id="demo-slider"></eva-slider>
+        <p style="margin-top: 8px; color: #666; font-size: 14px;">Value: <span id="slider-value">30</span></p>
         <div class="code-tabs" data-code-tabs>
           <button class="code-tab active" data-target="wc">Web Components</button>
           <button class="code-tab" data-target="react">React</button>

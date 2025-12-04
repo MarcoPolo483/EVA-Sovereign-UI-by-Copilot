@@ -5,11 +5,11 @@ export default defineConfig({
   root: __dirname,
   server: {
     port: 5173,
-    open: '/apps/esdc-demo/index.html',
+    open: '/apps/agency-demo/index.html',
   },
   preview: {
     port: 5173,
-    open: '/apps/esdc-demo/index.html',
+    open: '/apps/agency-demo/index.html',
   },
   resolve: {
     alias: {
@@ -18,7 +18,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: '../../dist-esdc',
+    outDir: '../../dist-agency',
     emptyOutDir: true,
   },
 });

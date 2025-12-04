@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Toaster } from 'sonner';
-import { ESDCDemo } from '@/pages/ESDCDemo';
+import { AgencyDemo } from '@/pages/AgencyDemo';
 import { GCTemplatesDemo } from '@/pages/GCTemplatesDemo';
 import { FiveEyesDemo } from '@/pages/FiveEyesDemo';
 import { FiveEyesComplianceGuide } from '@/pages/FiveEyesComplianceGuide';
 
-type Page = 'esdc' | 'templates' | 'five-eyes' | 'compliance-guide';
+type Page = 'agency' | 'templates' | 'five-eyes' | 'compliance-guide';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('compliance-guide');
@@ -15,18 +15,18 @@ function App() {
       <Toaster position="top-center" />
 
       <div>
-        {currentPage === 'esdc' && (
-          <ESDCDemo 
+        {currentPage === 'agency' && (
+          <AgencyDemo 
             onNavigateToTemplates={() => setCurrentPage('templates')}
             onNavigateToFiveEyes={() => setCurrentPage('five-eyes')}
           />
         )}
         {currentPage === 'templates' && (
-          <GCTemplatesDemo onNavigateToESDC={() => setCurrentPage('esdc')} />
+          <GCTemplatesDemo onNavigateToESDC={() => setCurrentPage('agency')} />
         )}
         {currentPage === 'five-eyes' && (
           <FiveEyesDemo 
-            onNavigateToESDC={() => setCurrentPage('esdc')}
+            onNavigateToESDC={() => setCurrentPage('agency')}
             onNavigateToGuide={() => setCurrentPage('compliance-guide')}
           />
         )}

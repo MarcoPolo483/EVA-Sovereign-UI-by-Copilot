@@ -1,0 +1,32 @@
+# ESDC/Nuenergy/Accenture Scrub Report
+
+## Search Results:
+
+### Locale Files (9 files):
+- packages/eva-sovereign-ui-wc/src/i18n/locales/*.json
+  - All contain "esdc" object with "Employment and Social Development Canada" and "ESDC" references
+
+### Source Files:
+- src/App.tsx - ESDCDemo imports and page routing
+- src/pages/ESDCDemo.tsx - Main demo page with esdc.* i18n keys
+- src/pages/GCTemplatesDemo.tsx - Navigation to ESDC
+- apps/esdc-demo/ - Entire demo app directory
+
+### Storybook:
+- packages/eva-sovereign-ui-wc/src/components/esdc/ - ESDC-specific components
+- storybook-static/components/esdc/ - Built storybook files
+
+### Inventory Files:
+- _rebuild-inventory/literals-extract.json - Contains ESDC strings
+- _rebuild-inventory/inventory.json - References to esdc-demo app
+
+## Replacement Strategy:
+
+1. Rename "esdc" → "agency" or "department" (generic government department)
+2. Change "Employment and Social Development Canada" → "Government Services" or "Public Services"
+3. Change "ESDC Demo" → "Agency Demo" or "Services Demo"
+4. Rename ESDCDemo component → AgencyDemo or ServicesDemo
+5. Rename apps/esdc-demo → apps/agency-demo
+6. Rename components/esdc → components/agency
+
+## No Nuenergy or Accenture found in EVA-Sovereign-UI codebase ✅

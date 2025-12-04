@@ -12,7 +12,7 @@
 
 **Production-ready Web Components design system for government applications**
 
-Built using the official **Government of Canada Design System** with **WCAG 2.2 AAA accessibility**, full **internationalization** (5 languages), and **Five Eyes sovereign profiles** (🇨🇦🇺🇸🇬🇧🇦🇺🇳🇿).
+Built using the official **Government of Canada Design System** with **WCAG 2.2 AAA accessibility**, full **internationalization** (5 languages), and **Canada sovereign profiles** (🇨🇦🇺🇸🇬🇧🇦🇺🇳🇿).
 
 ## ⚡ Quick Start
 
@@ -136,7 +136,7 @@ npm run dev:devkit
 - Code tabs: HTML, React, Vue, Angular, Svelte (coming as wrappers are added)
 - Property editors (interactive prop + attribute testing)
 - Accessibility documentation (WCAG 2.2 AA+ patterns)
-- Five Eyes sovereign profile switcher (Canada, USA, UK, Australia, NZ)
+- Canada sovereign profile switcher (Canada, USA, UK, Australia, NZ)
 - 9-locale internationalization demo
 - Spec tables (props, events, slots, a11y notes, i18n keys)
 
@@ -186,7 +186,7 @@ After `npm run build`, use these files:
 - Date/number/currency formatters
 - Reactive updates on locale change
 
-### ✅ Five Eyes Sovereign Profiles
+### ✅ Canada Sovereign Profiles
 - 🇨🇦 **Canada** - Government of Canada (GC wordmark, official footer)
 - 🇺🇸 **USA** - US Government (seal, US.gov branding)
 - 🇬🇧 **UK** - UK Government (Crown logo, GOV.UK branding)
@@ -326,7 +326,7 @@ The dev server will start at **http://localhost:5173/** and open the ESDC demo a
 2. **Developer Kit** - http://localhost:5173/apps/dev-kit-demo/index.html
    - Component gallery with all variants
    - Code examples
-   - Theme switcher (Five Eyes profiles)
+   - Theme switcher (Canada profiles)
    - Accessibility features showcase
 
 ---
@@ -490,7 +490,7 @@ The chatbot includes pre-programmed responses for:
 </eva-program-card>
 ```
 
-### Five Eyes Theme Switching
+### Canada Theme Switching
 
 ```javascript
 // Change profile at runtime

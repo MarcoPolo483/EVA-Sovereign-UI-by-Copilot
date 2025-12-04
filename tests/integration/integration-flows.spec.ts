@@ -9,7 +9,7 @@ import { test, expect } from '@playwright/test';
 test.describe('Integration Tests - Government Form Flow', () => {
   test.beforeEach(async ({ page }) => {
     // Navigate to demo application
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForLoadState('networkidle');
   });
 
@@ -88,7 +88,7 @@ test.describe('Integration Tests - Government Form Flow', () => {
 
 test.describe('Integration Tests - Data Table Workflow', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForLoadState('networkidle');
   });
 
@@ -155,7 +155,7 @@ test.describe('Integration Tests - Data Table Workflow', () => {
 
 test.describe('Integration Tests - Modal and Dialog Flows', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForLoadState('networkidle');
   });
 
@@ -227,7 +227,7 @@ test.describe('Integration Tests - Modal and Dialog Flows', () => {
 
 test.describe('Integration Tests - Navigation and Routing', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForLoadState('networkidle');
   });
 
@@ -287,7 +287,7 @@ test.describe('Integration Tests - Navigation and Routing', () => {
 
 test.describe('Integration Tests - Accessibility Flow', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForLoadState('networkidle');
   });
 
@@ -334,7 +334,7 @@ test.describe('Integration Tests - Accessibility Flow', () => {
 
 test.describe('Integration Tests - Error Handling', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForLoadState('networkidle');
   });
 
@@ -368,7 +368,7 @@ test.describe('Integration Tests - Error Handling', () => {
 
 test.describe('Integration Tests - Multi-Step Workflows', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForLoadState('networkidle');
   });
 
@@ -426,7 +426,7 @@ test.describe('Integration Tests - Multi-Step Workflows', () => {
 
 test.describe('Integration Tests - File Upload Workflow', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForLoadState('networkidle');
   });
 

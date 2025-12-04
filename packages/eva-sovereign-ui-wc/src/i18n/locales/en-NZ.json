@@ -1,7 +1,7 @@
 {
-  "esdc": {
-    "title": "Employment and Social Development Canada",
-    "shortTitle": "ESDC",
+  "agency": {
+    "title": "Government Services Agency",
+    "shortTitle": "GSA",
     "hero": {
       "title": "Building a skilled, adaptable, and inclusive workforce",
       "description": "Access employment services, benefits, and support programmes"

@@ -17,46 +17,46 @@ type ProgramDetails = {
   icon: string;
 };
 
-interface ESDCDemoProps {
+interface AgencyDemoProps {
   onNavigateToTemplates?: () => void;
   onNavigateToFiveEyes?: () => void;
 }
 
-export function ESDCDemo({ onNavigateToTemplates, onNavigateToFiveEyes }: ESDCDemoProps = {}) {
+export function AgencyDemo({ onNavigateToTemplates, onNavigateToFiveEyes }: AgencyDemoProps = {}) {
   const { locale, setLocale, t } = useI18n();
   const [selectedProgram, setSelectedProgram] = useState<ProgramDetails | null>(null);
 
   const programs = [
     {
       icon: '💼',
-      titleKey: 'esdc.programs.ei.title',
-      descKey: 'esdc.programs.ei.description',
-      detailsKey: 'esdc.programs.ei.details',
+      titleKey: 'agency.programs.ei.title',
+      descKey: 'agency.programs.ei.description',
+      detailsKey: 'agency.programs.ei.details',
     },
     {
       icon: '🧓',
-      titleKey: 'esdc.programs.oas.title',
-      descKey: 'esdc.programs.oas.description',
-      detailsKey: 'esdc.programs.oas.details',
+      titleKey: 'agency.programs.oas.title',
+      descKey: 'agency.programs.oas.description',
+      detailsKey: 'agency.programs.oas.details',
     },
     {
       icon: '💰',
-      titleKey: 'esdc.programs.cpp.title',
-      descKey: 'esdc.programs.cpp.description',
-      detailsKey: 'esdc.programs.cpp.details',
+      titleKey: 'agency.programs.cpp.title',
+      descKey: 'agency.programs.cpp.description',
+      detailsKey: 'agency.programs.cpp.details',
     },
   ];
 
   const services = [
     {
       icon: MagnifyingGlass,
-      titleKey: 'esdc.services.jobSearch.title',
-      descKey: 'esdc.services.jobSearch.description',
+      titleKey: 'agency.services.jobSearch.title',
+      descKey: 'agency.services.jobSearch.description',
     },
     {
       icon: ListChecks,
-      titleKey: 'esdc.services.benefitsFinder.title',
-      descKey: 'esdc.services.benefitsFinder.description',
+      titleKey: 'agency.services.benefitsFinder.title',
+      descKey: 'agency.services.benefitsFinder.description',
     },
   ];
 
@@ -80,7 +80,7 @@ export function ESDCDemo({ onNavigateToTemplates, onNavigateToFiveEyes }: ESDCDe
         {t('navigation.skipToMain')}
       </a>
 
-      <GCHeader appName={t('esdc.title')} profile="canada_gc">
+      <GCHeader appName={t('agency.title')} profile="canada_gc">
         <div className="flex items-center gap-3">
           {onNavigateToFiveEyes && (
             <Button
@@ -116,10 +116,10 @@ export function ESDCDemo({ onNavigateToTemplates, onNavigateToFiveEyes }: ESDCDe
         <div className="bg-gradient-to-br from-primary/5 to-accent/5 border-b">
           <div className="container mx-auto px-6 py-16 max-line-length">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-primary">
-              {t('esdc.hero.title')}
+              {t('agency.hero.title')}
             </h2>
             <p className="text-xl text-muted-foreground">
-              {t('esdc.hero.description')}
+              {t('agency.hero.description')}
             </p>
           </div>
         </div>
@@ -127,7 +127,7 @@ export function ESDCDemo({ onNavigateToTemplates, onNavigateToFiveEyes }: ESDCDe
         <div className="container mx-auto px-6 py-12 space-y-12">
           <section aria-labelledby="programs-heading">
             <h2 id="programs-heading" className="text-3xl font-bold mb-8">
-              {t('esdc.programs.title')}
+              {t('agency.programs.title')}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {programs.map((program) => (

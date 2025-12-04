@@ -71,7 +71,7 @@ npm run dev
 #### Scenario 1: Stakeholder Walkthrough (5 minutes)
 1. Open ESDC demo → Show bilingual capability (EN-CA/FR-CA)
 2. Interact with EVA chatbot → Demonstrate AI assistant integration
-3. Switch themes → Show Five Eyes sovereign profiles (🇨🇦🇺🇸🇬🇧🇦🇺🇳🇿)
+3. Switch themes → Show Canada sovereign profiles (🇨🇦🇺🇸🇬🇧🇦🇺🇳🇿)
 4. Test keyboard navigation → Demonstrate accessibility compliance
 
 #### Scenario 2: Technical Evaluation (15 minutes)
@@ -1042,7 +1042,7 @@ Send-AzMonitorMetric -ResourceId "/subscriptions/{sub-id}/resourceGroups/{rg}/pr
 
 ### Overview
 **Purpose**: Global reach, mission-critical systems, 99.99% uptime  
-**Audience**: International organizations, Five Eyes alliances, critical infrastructure  
+**Audience**: International organizations, Canada alliances, critical infrastructure  
 **Timeline**: 1-2 weeks  
 **Cost**: $5,000-25,000/month
 
@@ -1095,7 +1095,7 @@ Are you evaluating the product?
 | Internal HR system (Protected B) | Option 3: Self-Hosted | Data sovereignty, air-gap capable |
 | Federal API platform (microservices) | Option 4: Kubernetes | Auto-scaling, cloud-native |
 | Defense/intelligence (classified) | Option 5: Gov Cloud | FedRAMP/PBMM certified |
-| Five Eyes collaboration platform | Option 6: Hybrid Multi-Region | Multi-jurisdiction, 99.99% uptime |
+| Canada collaboration platform | Option 6: Hybrid Multi-Region | Multi-jurisdiction, 99.99% uptime |
 
 ---
 

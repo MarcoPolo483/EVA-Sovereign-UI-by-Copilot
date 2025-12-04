@@ -13,7 +13,7 @@ test.describe('ESDC Demo Smoke', () => {
     });
     page.on('pageerror', (err) => errors.push(String(err)));
 
-    await page.goto('http://localhost:5173/apps/esdc-demo/index.html');
+    await page.goto('http://localhost:5173/apps/agency-demo/index.html');
     await page.waitForSelector('eva-page-shell', { state: 'attached', timeout: 60000 });
 
     const localeSelector = page.locator('[data-testid="locale-selector"]');
