@@ -33,8 +33,8 @@ jobs:
       - name: Build Dev Kit
         run: npm run build:devkit
 
-      - name: Build ESDC Demo
-        run: npm run build:esdc
+      - name: Build Agency Demo
+        run: npm run build:agency
 
       - name: Build Performance Dashboard
         run: npm run build:perf
@@ -46,8 +46,8 @@ jobs:
         run: |
           mkdir -p public
           cp -r dist-devkit/* public/
-          mkdir -p public/esdc
-          cp -r dist-esdc/* public/esdc/
+          mkdir -p public/agency
+          cp -r dist-agency/* public/agency/
           mkdir -p public/performance
           cp -r dist-performance/* public/performance/
           mkdir -p public/storybook
