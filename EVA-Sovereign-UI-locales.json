@@ -1,0 +1,82 @@
+[
+  {
+    "locale_code": "en-CA",
+    "language_name": "English",
+    "country": "Canada",
+    "region": "Five Eyes",
+    "file_path": "public/content/en/",
+    "file_count": 2,
+    "files": ["welcome.json", "service/apply.json"],
+    "status": "active"
+  },
+  {
+    "locale_code": "fr-CA",
+    "language_name": "French",
+    "country": "Canada",
+    "region": "Five Eyes",
+    "file_path": "public/content/fr/",
+    "file_count": 2,
+    "files": ["welcome.json", "service/apply.json"],
+    "status": "active"
+  },
+  {
+    "locale_code": "es-US",
+    "language_name": "Spanish",
+    "country": "United States",
+    "region": "Five Eyes",
+    "file_path": "public/content/es/",
+    "file_count": 2,
+    "files": ["welcome.json", "service/apply.json"],
+    "status": "active"
+  },
+  {
+    "locale_code": "cy-GB",
+    "language_name": "Welsh",
+    "country": "United Kingdom",
+    "region": "Five Eyes",
+    "file_path": "public/content/cy/",
+    "file_count": 2,
+    "files": ["welcome.json", "service/apply.json"],
+    "status": "active"
+  },
+  {
+    "locale_code": "mi-NZ",
+    "language_name": "Māori",
+    "country": "New Zealand",
+    "region": "Five Eyes",
+    "file_path": "public/content/mi/",
+    "file_count": 2,
+    "files": ["welcome.json", "service/apply.json"],
+    "status": "active"
+  },
+  {
+    "locale_code": "en-AU",
+    "language_name": "English",
+    "country": "Australia",
+    "region": "Five Eyes",
+    "file_path": null,
+    "file_count": 0,
+    "files": [],
+    "status": "test_mock_only"
+  },
+  {
+    "locale_code": "en-NZ",
+    "language_name": "English",
+    "country": "New Zealand",
+    "region": "Five Eyes",
+    "file_path": null,
+    "file_count": 0,
+    "files": [],
+    "status": "test_mock_only"
+  },
+  {
+    "locale_code": "en-GB",
+    "language_name": "English",
+    "country": "United Kingdom",
+    "region": "Five Eyes",
+    "file_path": null,
+    "file_count": 0,
+    "files": [],
+    "status": "test_mock_only"
+  }
+]

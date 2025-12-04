@@ -31,9 +31,9 @@ export class I18nService {
     }
 
     try {
-      const response = await fetch(`/src/i18n/locales/${locale}.json`);
-      const data = await response.json();
-      this.translations[locale] = data;
+      // Import locale JSON directly - Vite will handle this at build time
+      const localeModule = await import(`./locales/${locale}.json`);
+      this.translations[locale] = localeModule.default || localeModule;
     } catch (error) {
       console.error(`Failed to load locale ${locale}:`, error);
       this.translations[locale] = {};

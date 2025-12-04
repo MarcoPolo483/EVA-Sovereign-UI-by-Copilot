@@ -107,6 +107,8 @@ export class EVAAlertDialog extends EVABaseComponent {
     content.className = 'content';
     content.setAttribute('role', 'alertdialog');
     content.setAttribute('aria-modal', 'true');
+    // Add accessible name
+    content.setAttribute('aria-label', this.getAttr('aria-label', 'Alert'));
     
     const slot = document.createElement('slot');
     content.appendChild(slot);

@@ -107,6 +107,7 @@ export class EVAContextMenu extends EVABaseComponent {
     const menu = document.createElement('div');
     menu.className = 'menu';
     menu.setAttribute('role', 'menu');
+    menu.setAttribute('aria-orientation', 'vertical');
     menu.addEventListener('keydown', (e) => this.handleMenuKeydown(e as KeyboardEvent));
     const menuSlot = document.createElement('slot');
     menu.appendChild(menuSlot);

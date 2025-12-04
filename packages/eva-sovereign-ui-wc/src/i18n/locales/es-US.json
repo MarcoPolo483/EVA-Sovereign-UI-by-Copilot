@@ -1,5 +1,5 @@
 {
-  "esdc": {
+  "agency": {
     "title": "Empleo y Desarrollo Social de Canadá",
     "shortTitle": "EDSC",
     "hero": {
@@ -97,5 +97,26 @@
     "warning": "Advertencia",
     "info": "Información",
     "learnMore": "Más información"
+  },
+  "validation": {
+    "required": "Este campo es obligatorio",
+    "email": "Por favor ingrese una dirección de correo electrónico válida",
+    "minLength": "Debe tener al menos {min} caracteres",
+    "maxLength": "No debe exceder {max} caracteres",
+    "pattern": "Formato inválido"
+  },
+  "dialog": {
+    "close": "Cerrar diálogo"
+  },
+  "table": {
+    "noResults": "No se encontraron resultados"
+  },
+  "pagination": {
+    "previous": "Página anterior",
+    "next": "Página siguiente"
+  },
+  "calendar": {
+    "prevMonth": "Mes anterior",
+    "nextMonth": "Mes siguiente"
   }
 }

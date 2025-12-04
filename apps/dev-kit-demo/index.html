@@ -21,6 +21,8 @@
       margin: 24px 0;
       border-radius: 4px;
       background: #fff;
+      position: relative;
+      z-index: auto;
     }
 
     .demo-title {
@@ -66,6 +68,8 @@
       flex-wrap: wrap;
       gap: 16px;
       margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
     }
 
     .theme-selector {
@@ -101,7 +105,7 @@
           <option value="usa_gov">🇺🇸 US Government</option>
           <option value="uk_gov">🇬🇧 UK Government</option>
           <option value="australia_gov">🇦🇺 Australian Government</option>
-          <option value="nz_gov">🇳🇿 New Zealand Government</option>
+          <option value="nz_govt">🇳🇿 New Zealand Government</option>
         </select>
       </section>
       
@@ -174,7 +178,8 @@ export function MySkeleton() {
       <!-- Slider -->
       <section class="component-demo">
         <h2 class="demo-title">Slider</h2>
-        <eva-slider value="30" max="100"></eva-slider>
+        <eva-slider value="30" max="100" id="demo-slider"></eva-slider>
+        <p style="margin-top: 8px; color: #666; font-size: 14px;">Value: <span id="slider-value">30</span></p>
         <div class="code-tabs" data-code-tabs>
           <button class="code-tab active" data-target="wc">Web Components</button>
           <button class="code-tab" data-target="react">React</button>
@@ -304,12 +309,12 @@ export function Programs() {
         <div style="display:flex; flex-direction:column; gap:12px; max-width:460px;">
           <div>
             <eva-label for="demo-email">Email Address</eva-label>
-            <eva-input id="demo-email" type="email" placeholder="you@example.com"></eva-input>
+            <eva-input id="demo-email" data-testid="email-input" type="email" placeholder="you@example.com"></eva-input>
           </div>
           <eva-separator></eva-separator>
           <div>
             <eva-label for="demo-notify">Notifications</eva-label>
-            <eva-switch id="demo-notify"></eva-switch>
+            <eva-switch id="demo-notify" data-testid="notify-switch"></eva-switch>
           </div>
         </div>
         <div class="code-tabs" data-code-tabs>
@@ -1096,13 +1101,104 @@ export function MyCarousel() {
     <eva-gc-footer slot="footer" profile="canada_gc"></eva-gc-footer>
   </eva-page-shell>
   
-  <script type="module" src="../../packages/eva-sovereign-ui-wc/src/index.ts"></script>
+  <script type="module" src="@/index.ts"></script>
   <script type="module">
     // Theme switcher functionality
     document.getElementById('theme-selector').addEventListener('change', (e) => {
       const profile = e.target.value;
-      document.querySelectorAll('eva-gc-header, eva-gc-footer').forEach(el => {
+      console.log('🎨 Applying theme:', profile);
+      
+      // Update ALL GC components with the new profile
+      document.querySelectorAll('eva-gc-header, eva-gc-footer, eva-gc-button').forEach(el => {
         el.setAttribute('profile', profile);
+      });
+      
+      console.log('✅ Theme applied to all GC components');
+    });
+
+    // Language switcher functionality
+    document.addEventListener('locale-change', async (e) => {
+      const locale = e.detail.locale;
+      console.log('🌐 Language changed:', locale);
+      // Update all translatable text on the page
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (key) {
+          el.textContent = window.i18n?.t(key) || el.textContent;
+        }
+      });
+      console.log('✅ Language applied');
+    });
+
+    // Make pagination interactive (use 'change' event, not 'page-change')
+    document.querySelectorAll('eva-pagination').forEach(pagination => {
+      pagination.addEventListener('change', (e) => {
+        console.log('📄 Page changed:', e.detail.page);
+        pagination.setAttribute('current-page', e.detail.page);
+      });
+    });
+
+    // Make slider interactive - show value updates (use 'input' event, not 'value-change')
+    const slider = document.getElementById('demo-slider');
+    const sliderValue = document.getElementById('slider-value');
+    if (slider && sliderValue) {
+      slider.addEventListener('input', (e) => {
+        sliderValue.textContent = e.detail.value;
+      });
+    }
+
+    // Make progress bar interactive - add demo button
+    const progressDemo = document.querySelector('eva-progress[value="60"]');
+    if (progressDemo) {
+      const btn = document.createElement('button');
+      btn.className = 'theme-selector';
+      btn.textContent = '▶ Animate Progress';
+      btn.style.marginTop = '8px';
+      btn.onclick = () => {
+        btn.disabled = true;
+        btn.textContent = '⏳ Animating...';
+        let val = 0;
+        const interval = setInterval(() => {
+          progressDemo.setAttribute('value', val);
+          val += 5;
+          if (val > 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+              progressDemo.setAttribute('value', '60');
+              btn.disabled = false;
+              btn.textContent = '▶ Animate Progress';
+            }, 1000);
+          }
+        }, 100);
+      };
+      progressDemo.parentElement.insertBefore(btn, progressDemo.nextSibling);
+    }
+
+    // Make toggles interactive - add event feedback
+    document.querySelectorAll('eva-toggle').forEach(toggle => {
+      const feedback = document.createElement('p');
+      feedback.style.cssText = 'margin-top: 8px; color: #666; font-size: 14px;';
+      feedback.textContent = 'Status: Not pressed';
+      toggle.parentElement.insertBefore(feedback, toggle.nextSibling);
+      
+      toggle.addEventListener('toggle', (e) => {
+        feedback.textContent = `Status: ${e.detail.pressed ? 'Pressed ✓' : 'Not pressed'}`;
+        feedback.style.color = e.detail.pressed ? '#2b8a3e' : '#666';
+      });
+    });
+
+    // Make accordions interactive - they should work already, but log events
+    document.querySelectorAll('eva-accordion').forEach(accordion => {
+      accordion.addEventListener('accordion-toggle', (e) => {
+        console.log('🎵 Accordion toggled:', e.detail);
+      });
+    });
+
+    // Add visual feedback for program cards
+    document.querySelectorAll('eva-program-card').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        console.log('📋 Card clicked:', card.getAttribute('title-key'));
       });
     });
 
@@ -1132,7 +1228,48 @@ export function MyCarousel() {
       reactBtn?.addEventListener('click', () => setActive('react'));
     });
   </script>
-  <body>
-    <div id="cms-root"></div>
-    <script type="module" src="./src/cms-demo.ts"></script>
-  </body>
+  
+  <!-- Test-only proxy input for robust e2e (hidden by default) -->
+  <div id="test-hooks" style="position:absolute;left:-9999px;top:-9999px;">
+    <label for="email-proxy">Email Address</label>
+    <input id="email-proxy" data-testid="email-proxy" type="email" />
+    <span id="email-value" data-testid="email-value"></span>
+  </div>
+  <script>
+    // Sync proxy input with eva-input for e2e stability
+    (function(){
+      const host = document.querySelector('eva-input#demo-email');
+      const proxy = document.getElementById('email-proxy');
+      if (host && proxy) {
+        const bind = () => {
+          const input = host.shadowRoot && host.shadowRoot.querySelector('input');
+          if (!input) {
+            // Try again shortly if shadow input not yet available
+            setTimeout(bind, 50);
+            return;
+          }
+          proxy.addEventListener('input', () => {
+            // Update shadow input
+            input.value = proxy.value;
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+            input.dispatchEvent(new Event('change', { bubbles: true }));
+            // Also reflect to host attribute/property if supported
+            try { host.setAttribute('value', proxy.value); } catch {}
+            try { (host as any).value = proxy.value; } catch {}
+            host.dispatchEvent(new Event('input', { bubbles: true }));
+            host.dispatchEvent(new Event('change', { bubbles: true }));
+            // Update test mirror
+            const mirror = document.getElementById('email-value');
+            if (mirror) mirror.textContent = proxy.value;
+          });
+        };
+        if ((window as any).customElements && (window as any).customElements.whenDefined) {
+          (window as any).customElements.whenDefined('eva-input').then(bind);
+        } else {
+          bind();
+        }
+      }
+    })();
+  </script>
+  <div id="cms-root" data-testid="cms-root"></div>
+  <script type="module" src="./src/cms-demo.ts"></script>

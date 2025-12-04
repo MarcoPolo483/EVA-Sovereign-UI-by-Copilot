@@ -108,7 +108,7 @@ Explore these component categories:
 
 **Why This Matters**: 59 production-ready components. No need to build from scratch. Estimated $200K+ in development savings.
 
-#### 2. Theme Switcher (Five Eyes Profiles) (1 minute)
+#### 2. Theme Switcher (Canada Profiles) (1 minute)
 - **Location**: Top-right corner, country flag dropdown
 - **Action**: Switch between profiles:
   - 🇨🇦 Canada (Government of Canada)
@@ -119,7 +119,7 @@ Explore these component categories:
 
 **Result**: Entire UI re-themes instantly (colors, logos, footer text)
 
-**Why This Matters**: Pre-configured for Five Eyes nations. International deployment in minutes, not months.
+**Why This Matters**: Pre-configured for Canada nations. Canadian federal deployment in minutes, not months.
 
 #### 3. Code Examples (1 minute)
 - **Location**: Scroll down to "Usage Examples" section
@@ -163,7 +163,7 @@ Explore these component categories:
 - i18n, CMS & Templates: `/demos/i18n-cms-templates.html`
 
 ### Highlights
-- Theme profiles (Five Eyes), token swatches, typography, responsive grid
+- Theme profiles (Canada), token swatches, typography, responsive grid
 - Header/footer/breadcrumbs/nav/tabs/pagination; language switcher URL/non-URL modes
 - Label/input patterns, helper text, error states, and form layouts
 - Alerts, modal dialogs with focus management, progress/spinners
@@ -432,8 +432,8 @@ Use this calculator to estimate savings for your project:
 ### Q: What about commercial support?
 **A**: Community support via GitHub Issues. Enterprise support available (contact for pricing).
 
-### Q: Is this Five Eyes exclusive?
-**A**: No. Customizable for any nation. Five Eyes profiles are pre-configured examples.
+### Q: Is this Canada exclusive?
+**A**: No. Customizable for any nation. Canada profiles are pre-configured examples.
 
 ### Q: What's the browser support?
 **A**: Chrome/Edge 90+, Firefox 88+, Safari 14+. 99.8% global coverage.

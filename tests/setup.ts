@@ -48,14 +48,10 @@ if (typeof IntersectionObserver === 'undefined') {
 }
 
 // Mock i18n locale fetch responses to avoid network/JSON noise in tests
+// Canada-only locales
 const mockLocales: Record<string, any> = {
   'en-CA': { hello: 'Hello', locale: 'en-CA' },
   'fr-CA': { hello: 'Bonjour', locale: 'fr-CA' },
-  'en-GB': { hello: 'Hello', locale: 'en-GB' },
-  'cy-GB': { hello: 'Helo', locale: 'cy-GB' },
-  'en-AU': { hello: 'Hello', locale: 'en-AU' },
-  'en-NZ': { hello: 'Hello', locale: 'en-NZ' },
-  'mi-NZ': { hello: 'Kia ora', locale: 'mi-NZ' },
 };
 
 const originalFetch = window.fetch?.bind(window);

@@ -1,0 +1,36 @@
+name: Smoke Audit and E2E
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+        working-directory: .
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run smoke (preview + lighthouse + esdc e2e)
+        shell: pwsh
+        run: |
+          npm run ci:smoke:pwsh
+
+      - name: Upload Lighthouse Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-devkit
+          path: playwright-report/lh-devkit.html

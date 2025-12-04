@@ -14,6 +14,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('../../packages/eva-sovereign-ui-wc/src', import.meta.url)),
+      'packages': fileURLToPath(new URL('../../packages', import.meta.url)),
     },
   },
   build: {

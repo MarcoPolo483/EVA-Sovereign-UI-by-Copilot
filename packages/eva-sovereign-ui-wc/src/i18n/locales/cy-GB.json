@@ -1,7 +1,7 @@
 {
-  "esdc": {
-    "title": "Cyflogaeth a Datblygiad Cymdeithasol Canada",
-    "shortTitle": "EDSC",
+  "agency": {
+    "title": "Asiantaeth Gwasanaethau Llywodraeth",
+    "shortTitle": "AGL",
     "hero": {
       "title": "Adeiladu gweithlu medrus, hyblyg a chynhwysol",
       "description": "Cael mynediad at wasanaethau cyflogaeth, budd-daliadau a rhaglenni cymorth"
@@ -97,5 +97,26 @@
     "warning": "Rhybudd",
     "info": "Gwybodaeth",
     "learnMore": "Dysgu mwy"
+  },
+  "validation": {
+    "required": "Mae'r maes hwn yn ofynnol",
+    "email": "Rhowch gyfeiriad e-bost dilys",
+    "minLength": "Rhaid bod o leiaf {min} nod",
+    "maxLength": "Ni ddylai fod yn fwy na {max} nod",
+    "pattern": "Fformat annilys"
+  },
+  "dialog": {
+    "close": "Cau deialog"
+  },
+  "table": {
+    "noResults": "Dim canlyniadau wedi'u canfod"
+  },
+  "pagination": {
+    "previous": "Tudalen flaenorol",
+    "next": "Tudalen nesaf"
+  },
+  "calendar": {
+    "prevMonth": "Mis blaenorol",
+    "nextMonth": "Mis nesaf"
   }
 }

@@ -152,6 +152,7 @@ export class EVAPagination extends EVABaseComponent {
         const pageBtn = document.createElement('button');
         pageBtn.className = 'button';
         pageBtn.textContent = page.toString();
+        pageBtn.setAttribute('aria-label', `Go to page ${page}`);
         pageBtn.setAttribute('data-active', (page === this.currentPage).toString());
         if (page === this.currentPage) {
           pageBtn.setAttribute('aria-current', 'page');

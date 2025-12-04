@@ -105,6 +105,13 @@ export class EVATableRow extends EVABaseComponent {
         background: ${modernColors.muted};
       }
 
+      :host(:focus-visible) {
+        outline: none;
+        box-shadow: inset 0 0 0 3px ${modernColors.ring};
+        position: relative;
+        z-index: 10;
+      }
+
       tr {
         display: contents;
       }
@@ -147,6 +154,14 @@ export class EVATableHead extends EVABaseComponent {
 }
 
 export class EVATableCell extends EVABaseComponent {
+  connectedCallback(): void {
+    super.connectedCallback();
+    // Make table cells focusable for keyboard navigation
+    if (!this.hasAttribute('tabindex')) {
+      this.setAttribute('tabindex', '0');
+    }
+  }
+
   protected render(): void {
     this.shadow.innerHTML = '';
     
@@ -155,6 +170,13 @@ export class EVATableCell extends EVABaseComponent {
         display: table-cell;
         padding: ${gcSpacing[4]};
         vertical-align: middle;
+      }
+
+      :host(:focus-visible) {
+        outline: none;
+        box-shadow: inset 0 0 0 3px ${modernColors.ring};
+        position: relative;
+        z-index: 10;
       }
 
       td {

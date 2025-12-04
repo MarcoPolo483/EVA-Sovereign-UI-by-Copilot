@@ -18,6 +18,8 @@ export class EVASlider extends EVABaseComponent {
   private max = 100;
   private step = 1;
   private inputEl?: HTMLInputElement;
+  private rangeEl?: HTMLElement;
+  private thumbEl?: HTMLElement;
 
   static get observedAttributes() {
     return ['value', 'min', 'max', 'step', 'disabled', 'aria-label'];
@@ -28,7 +30,6 @@ export class EVASlider extends EVABaseComponent {
     this.min = parseFloat(this.getAttr('min', '0'));
     this.max = parseFloat(this.getAttr('max', '100'));
     this.step = parseFloat(this.getAttr('step', '1'));
-    this.render();
     
     if (this.inputEl) {
       this.inputEl.value = this.value.toString();
@@ -36,6 +37,9 @@ export class EVASlider extends EVABaseComponent {
       this.inputEl.max = this.max.toString();
       this.inputEl.step = this.step.toString();
       this.inputEl.disabled = this.getBoolAttr('disabled');
+      this.updateVisuals();
+    } else {
+      this.render();
     }
   }
 
@@ -51,13 +55,26 @@ export class EVASlider extends EVABaseComponent {
         this.value = parseFloat(target.value);
         this.setAttribute('value', this.value.toString());
         this.emit('input', { value: this.value });
-        this.render();
+        this.updateVisuals();
       });
 
       this.inputEl.addEventListener('change', (e) => {
         const target = e.target as HTMLInputElement;
         this.emit('change', { value: parseFloat(target.value) });
       });
+    }
+  }
+
+  private updateVisuals() {
+    const percentage = this.getPercentage();
+    if (this.rangeEl) {
+      this.rangeEl.style.width = `${percentage}%`;
+    }
+    if (this.thumbEl) {
+      this.thumbEl.style.left = `calc(${percentage}% - 10px)`;
+    }
+    if (this.inputEl) {
+      this.inputEl.setAttribute('aria-valuenow', this.value.toString());
     }
   }
 
@@ -83,6 +100,7 @@ export class EVASlider extends EVABaseComponent {
         touch-action: none;
         align-items: center;
         user-select: none;
+        padding: 12px 0;
       }
 
       .slider {
@@ -91,6 +109,7 @@ export class EVASlider extends EVABaseComponent {
         height: 100%;
         opacity: 0;
         cursor: pointer;
+        z-index: 2;
       }
 
       .slider:disabled {
@@ -103,7 +122,7 @@ export class EVASlider extends EVABaseComponent {
         overflow: hidden;
         border-radius: 9999px;
         background: ${modernColors.muted};
-        height: 0.375rem;
+        height: 8px;
         width: 100%;
       }
 
@@ -117,27 +136,34 @@ export class EVASlider extends EVABaseComponent {
       .thumb {
         position: absolute;
         display: block;
-        width: 1rem;
-        height: 1rem;
+        width: 20px;
+        height: 20px;
         flex-shrink: 0;
         border-radius: 9999px;
-        border: 1px solid ${modernColors.primary};
+        border: 2px solid ${modernColors.primary};
         background: ${modernColors.background};
         box-shadow: ${shadows.sm};
         transition: ${transitions.colors};
-        left: calc(${percentage}% - 0.5rem);
+        left: calc(${percentage}% - 10px);
         top: 50%;
         transform: translateY(-50%);
         pointer-events: none;
       }
 
       .slider:hover:not(:disabled) ~ .thumb {
-        box-shadow: 0 0 0 4px color-mix(in srgb, ${modernColors.ring} 50%, transparent);
+        box-shadow: 0 0 0 6px color-mix(in srgb, ${modernColors.ring} 40%, transparent);
+        transform: translateY(-50%) scale(1.1);
       }
 
       .slider:focus-visible ~ .thumb {
         outline: none;
-        box-shadow: 0 0 0 4px color-mix(in srgb, ${modernColors.ring} 50%, transparent);
+        box-shadow: 0 0 0 6px color-mix(in srgb, ${modernColors.ring} 50%, transparent);
+        transform: translateY(-50%) scale(1.15);
+      }
+      
+      .slider:active:not(:disabled) ~ .thumb {
+        transform: translateY(-50%) scale(1.2);
+        box-shadow: 0 0 0 8px color-mix(in srgb, ${modernColors.ring} 30%, transparent);
       }
 
       .slider:disabled ~ .track,
@@ -191,6 +217,8 @@ export class EVASlider extends EVABaseComponent {
 
     this.shadow.appendChild(wrapper);
     this.inputEl = input;
+    this.rangeEl = range;
+    this.thumbEl = thumb;
     this.setupInput();
   }
 }

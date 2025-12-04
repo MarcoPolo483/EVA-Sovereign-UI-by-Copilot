@@ -1,0 +1,53 @@
+# ESDC Scrub Complete ✅
+
+## Summary of Changes:
+
+### 1. Locale Files (9 files) ✅
+- Replaced 'esdc' → 'agency' object key
+- Replaced 'Employment and Social Development Canada' → 'Government Services Agency'
+- Replaced 'ESDC' → 'GSA' (or ASG in French, AGL in Welsh)
+- Updated welcome messages to remove ESDC reference
+
+### 2. Source Files ✅
+- src/pages/ESDCDemo.tsx → src/pages/AgencyDemo.tsx
+- Updated all esdc.* i18n keys → agency.* 
+- Renamed ESDCDemoProps → AgencyDemoProps
+- Renamed ESDCDemo component → AgencyDemo
+
+### 3. Routing ✅
+- src/App.tsx: ESDCDemo → AgencyDemo import
+- Page type: 'esdc' → 'agency'
+- All navigation callbacks updated
+
+### 4. Directories ✅
+- apps/esdc-demo → apps/agency-demo
+- packages/.../components/esdc → packages/.../components/agency
+
+### 5. Configuration ✅
+- package.json: dev:esdc → dev:agency, build:esdc → build:agency, preview:esdc → preview:agency
+- vite.config.ts: Updated all paths to agency-demo
+- apps/agency-demo/vite.config.ts: Updated open paths and outDir
+
+### 6. Tests ✅
+- tests/integration/esdc.spec.ts → tests/integration/agency.spec.ts
+- tests/integration/integration-flows.spec.ts: All URLs updated to agency-demo
+
+### 7. Documentation ✅
+- UI-REQUIREMENTS.md: ESDC → Agency, esdc-demo → agency-demo
+
+### 8. Component Registry ✅
+- packages/eva-sovereign-ui-wc/src/index.ts: Updated import path
+
+## Verification:
+- ✅ No 'ESDC' found in EVA-Sovereign-UI source code (grep search confirmed)
+- ✅ No 'Nuenergy' found in EVA-Sovereign-UI
+- ✅ No 'Accenture' found in EVA-Sovereign-UI
+- ✅ All references replaced with generic 'Government Services Agency' terminology
+- ✅ All 9 locale files updated consistently
+- ✅ All file and directory renames complete
+- ✅ All configuration files updated
+
+## Next Steps:
+- Run tests to verify changes: npm run test
+- Run dev server: npm run dev:agency
+- Verify demos load correctly

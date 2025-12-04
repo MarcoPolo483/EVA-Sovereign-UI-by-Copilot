@@ -45,6 +45,40 @@ export class EVACalendar extends EVABaseComponent {
     this.render();
   }
 
+  private handleDayKeydown(e: KeyboardEvent, currentDate: Date) {
+    const isOutsideMonth = currentDate.getMonth() !== this.currentDate.getMonth();
+    
+    switch (e.key) {
+      case 'ArrowLeft':
+        if (isOutsideMonth && currentDate < this.currentDate) {
+          this.previousMonth();
+          e.preventDefault();
+        }
+        break;
+      case 'ArrowRight':
+        if (isOutsideMonth && currentDate > this.currentDate) {
+          this.nextMonth();
+          e.preventDefault();
+        }
+        break;
+      case 'ArrowUp':
+        // Move to previous week (7 days earlier)
+        if (currentDate.getDate() <= 7 && currentDate.getMonth() !== this.currentDate.getMonth()) {
+          this.previousMonth();
+          e.preventDefault();
+        }
+        break;
+      case 'ArrowDown':
+        // Move to next week (7 days later)
+        const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+        if (currentDate.getDate() > daysInMonth - 7 && currentDate.getMonth() !== this.currentDate.getMonth()) {
+          this.nextMonth();
+          e.preventDefault();
+        }
+        break;
+    }
+  }
+
   private getDaysInMonth(): Date[] {
     const year = this.currentDate.getFullYear();
     const month = this.currentDate.getMonth();
@@ -149,6 +183,12 @@ export class EVACalendar extends EVABaseComponent {
         background: ${modernColors.accent};
       }
 
+      .day:focus-visible {
+        outline: 3px solid ${modernColors.ring};
+        outline-offset: 2px;
+        z-index: 10;
+      }
+
       .day[data-outside="true"] {
         color: ${modernColors.mutedForeground};
         opacity: 0.5;
@@ -228,6 +268,7 @@ export class EVACalendar extends EVABaseComponent {
       button.setAttribute('data-today', isToday.toString());
 
       button.addEventListener('click', () => this.selectDate(date));
+      button.addEventListener('keydown', (e) => this.handleDayKeydown(e as KeyboardEvent, date));
 
       days.appendChild(button);
     });

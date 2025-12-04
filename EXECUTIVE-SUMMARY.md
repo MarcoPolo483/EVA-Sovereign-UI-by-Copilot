@@ -6,7 +6,7 @@
 
 ## At a Glance
 
-**EVA Sovereign UI** is a production-ready, government-grade Web Components library designed for international deployment across Canada, USA, UK, Australia, and New Zealand (Five Eyes nations).
+**EVA Sovereign UI** is a production-ready, government-grade Web Components library designed for Canadian federal deployment across Canada, USA, UK, Australia, and New Zealand (Canada nations).
 
 ### Key Metrics
 
@@ -39,7 +39,7 @@ Government digital services face unique challenges:
 
 EVA Sovereign UI solves these challenges with:
 - **Web Components**: Framework-agnostic, 10+ year browser commitment
-- **Sovereign Profiles**: Pre-configured for Five Eyes nations (GC Design System compliance)
+- **Sovereign Profiles**: Pre-configured for Canada nations (GC Design System compliance)
 - **Built-in i18n**: Reactive language switching with 5 locales
 - **Security-First**: Zero dependencies, CSP-compliant, SRI-ready
 - **Performance-Optimized**: 47% smaller than React equivalent
@@ -341,7 +341,7 @@ npm run dev
 ### Q: Can we get commercial support?
 **A**: Community support via GitHub Issues. Enterprise support available through EVA Suite consulting (contact for pricing).
 
-### Q: Is this Five Eyes exclusive?
+### Q: Is this Canada exclusive?
 **A**: No. While optimized for Canada/USA/UK/Australia/NZ, the design system is customizable for any nation.
 
 ### Q: What about TypeScript?

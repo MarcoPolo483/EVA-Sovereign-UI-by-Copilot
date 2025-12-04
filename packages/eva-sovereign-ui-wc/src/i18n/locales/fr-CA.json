@@ -1,7 +1,7 @@
 {
-  "esdc": {
-    "title": "Emploi et Développement social Canada",
-    "shortTitle": "EDSC",
+  "agency": {
+    "title": "Agence des services gouvernementaux",
+    "shortTitle": "ASG",
     "hero": {
       "title": "Bâtir une main-d'œuvre qualifiée, adaptable et inclusive",
       "description": "Accédez aux services d'emploi, aux prestations et aux programmes de soutien"
@@ -41,7 +41,7 @@
     "send": "Envoyer",
     "voice": "Entrée vocale",
     "thinking": "Réflexion...",
-    "welcome": "Bonjour! Je suis EVA, votre assistante d'Emploi et Développement social Canada. Comment puis-je vous aider aujourd'hui?"
+    "welcome": "Bonjour! Je suis EVA, votre assistante des services gouvernementaux. Comment puis-je vous aider aujourd'hui?"
   },
   "nav": {
     "skipToContent": "Passer au contenu principal",
@@ -96,5 +96,26 @@
     "success": "Succès",
     "warning": "Avertissement",
     "info": "Information"
+  },
+  "validation": {
+    "required": "Ce champ est requis",
+    "email": "Veuillez entrer une adresse courriel valide",
+    "minLength": "Doit contenir au moins {min} caractères",
+    "maxLength": "Ne doit pas dépasser {max} caractères",
+    "pattern": "Format invalide"
+  },
+  "dialog": {
+    "close": "Fermer la boîte de dialogue"
+  },
+  "table": {
+    "noResults": "Aucun résultat trouvé"
+  },
+  "pagination": {
+    "previous": "Page précédente",
+    "next": "Page suivante"
+  },
+  "calendar": {
+    "prevMonth": "Mois précédent",
+    "nextMonth": "Mois suivant"
   }
 }

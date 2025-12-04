@@ -14,8 +14,8 @@ describe('eva-progress additional', () => {
     expect(shadow).toBeTruthy();
     const div = shadow.querySelector('.progress') as HTMLElement | null;
     expect(div).toBeTruthy();
-    // With no aria-label provided, component sets percentage text
-    expect(div!.getAttribute('aria-label')).toBe('60%');
+    // With no aria-label provided, component sets descriptive percentage text
+    expect(div!.getAttribute('aria-label')).toBe('60% complete');
   });
 });
 import { describe, it, expect, beforeEach } from 'vitest';
@@ -35,8 +35,8 @@ describe('eva-progress (additional branches)', () => {
     await new Promise((r) => setTimeout(r, 0));
     const progress = shadowQuery<HTMLDivElement>(element, '.progress');
     expect(progress).toBeTruthy();
-    // 33/70 ~= 47.14% -> rounds to 47%
-    expect(progress!.getAttribute('aria-label')).toBe('47%');
+    // 33/70 ~= 47.14% -> rounds to 47% (with description)
+    expect(progress!.getAttribute('aria-label')).toBe('47% complete');
   });
 
   it('honors explicit aria-label when provided', async () => {
@@ -52,12 +52,12 @@ describe('eva-progress (additional branches)', () => {
     const belowEl = shadowQuery<HTMLDivElement>(below, '.progress');
     expect(belowEl!.getAttribute('aria-valuenow')).toBe('-50');
     // Indicator translate will clamp internally; just ensure label shows 0%
-    expect(belowEl!.getAttribute('aria-label')).toBe('0%');
+    expect(belowEl!.getAttribute('aria-label')).toBe('0% complete');
 
     // Above max
     const above = await createComponent('eva-progress', { value: '250', max: '100' });
     const aboveEl = shadowQuery<HTMLDivElement>(above, '.progress');
     expect(aboveEl!.getAttribute('aria-valuenow')).toBe('250');
-    expect(aboveEl!.getAttribute('aria-label')).toBe('100%');
+    expect(aboveEl!.getAttribute('aria-label')).toBe('100% complete');
   });
 });

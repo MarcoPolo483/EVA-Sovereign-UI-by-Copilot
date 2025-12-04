@@ -14,13 +14,14 @@ import {
   transitions,
   generateHoverColor,
 } from '../../tokens';
+import { getProfile } from '../../tokens/sovereign-profiles';
 
 export type ButtonVariant = 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
 export type ButtonSize = 'default' | 'sm' | 'lg' | 'icon';
 
 export class EVAGCButton extends EVABaseComponent {
   static get observedAttributes() {
-    return ['variant', 'size', 'disabled', 'loading', 'aria-label'];
+    return ['variant', 'size', 'disabled', 'loading', 'aria-label', 'profile'];
   }
 
   connectedCallback() {
@@ -40,6 +41,10 @@ export class EVAGCButton extends EVABaseComponent {
     const size = this.getAttr('size', 'default') as ButtonSize;
     const disabled = this.getBoolAttr('disabled');
     const loading = this.getBoolAttr('loading');
+    const profile = getProfile(this.getAttr('profile', 'canada_gc'));
+    
+    // Use profile colors instead of hardcoded modernColors
+    const colors = profile.colors;
 
     this.shadow.innerHTML = '';
     
@@ -81,10 +86,10 @@ export class EVAGCButton extends EVABaseComponent {
         
         /* Focus visible state (WCAG 2.2) */
         &:focus-visible {
-          outline: 3px solid ${modernColors.ring};
+          outline: 3px solid ${colors.primary};
           outline-offset: 3px;
-          border-color: ${modernColors.ring};
-          box-shadow: 0 0 0 3px color-mix(in srgb, ${modernColors.ring} 20%, transparent);
+          border-color: ${colors.primary};
+          box-shadow: 0 0 0 3px color-mix(in srgb, ${colors.primary} 20%, transparent);
         }
         
         /* Invalid state */
@@ -94,21 +99,21 @@ export class EVAGCButton extends EVABaseComponent {
         }
       }
 
-      /* Default variant - Primary blue */
+      /* Default variant - Primary (country-specific) */
       button.default {
-        background: ${modernColors.primary};
-        color: ${modernColors.primaryForeground};
+        background: ${colors.primary};
+        color: ${colors.text};
         box-shadow: ${shadows.xs};
       }
       
       button.default:hover:not(:disabled) {
-        background: ${generateHoverColor(modernColors.primary, 10)};
+        background: ${generateHoverColor(colors.primary, 10)};
       }
 
-      /* Destructive variant - Red */
+      /* Destructive variant - Error color */
       button.destructive {
         background: ${modernColors.destructive};
-        color: ${modernColors.destructiveForeground};
+        color: ${colors.text};
         box-shadow: ${shadows.xs};
       }
       
@@ -122,31 +127,32 @@ export class EVAGCButton extends EVABaseComponent {
 
       /* Outline variant */
       button.outline {
-        border: 1px solid ${modernColors.border};
-        background: ${modernColors.background};
+        border: 1px solid ${colors.primary};
+        background: transparent;
+        color: ${colors.primary};
         box-shadow: ${shadows.xs};
       }
       
       button.outline:hover:not(:disabled) {
-        background: ${modernColors.accent};
-        color: ${modernColors.accentForeground};
+        background: ${colors.primary};
+        color: ${colors.text};
       }
 
       /* Secondary variant */
       button.secondary {
-        background: ${modernColors.secondary};
-        color: ${modernColors.secondaryForeground};
+        background: ${colors.secondary};
+        color: ${colors.text};
         box-shadow: ${shadows.xs};
       }
       
       button.secondary:hover:not(:disabled) {
-        background: ${generateHoverColor(modernColors.secondary, 20)};
+        background: ${generateHoverColor(colors.secondary, 20)};
       }
 
       /* Ghost variant - Transparent */
       button.ghost:hover:not(:disabled) {
-        background: ${modernColors.accent};
-        color: ${modernColors.accentForeground};
+        background: color-mix(in srgb, ${colors.primary} 10%, transparent);
+        color: ${colors.primary};
       }
 
       /* Link variant */

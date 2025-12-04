@@ -68,7 +68,10 @@ export class EVAMenubar extends EVABaseComponent {
     const triggers = this.getMenuTriggers();
     if (!triggers.length) return;
     const currentIndex = triggers.findIndex(t => t === document.activeElement);
-    const targetIndex = currentIndex === -1 ? 0 : Math.min(Math.max(currentIndex + delta, 0), triggers.length - 1);
+    let targetIndex = currentIndex === -1 ? 0 : currentIndex + delta;
+    // Wrap around at boundaries
+    if (targetIndex < 0) targetIndex = triggers.length - 1;
+    if (targetIndex >= triggers.length) targetIndex = 0;
     triggers.forEach((t, i) => t.setAttribute('tabindex', i === targetIndex ? '0' : '-1'));
     triggers[targetIndex].focus();
   }
